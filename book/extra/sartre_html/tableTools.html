@@ -1,0 +1,158 @@
+<!--
+ //==============================================================================
+ //  tableTools.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:33:37 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<!-- Sartre 2 table and table-tools overview. -->
+<!DOCTYPE html
+PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en_US" lang="en_US">
+  <head>
+    <title>Sartre 2 - Tables and Table Tools</title>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+    <link href="sartre.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <!-- Standard documentation navigation. -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120" align="left" valign="top"><img src="images/sartreLogo.png" alt="Sartre" border="0" align="right" /></td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td align="left" valign="middle" class="postheader">
+          <a href="index.html"><font color="#004faf">Home</font></a>&#xA0;&#xB7;
+          <a href="overview.html"><font color="#004faf">Overview</font></a>&#xA0;&#xB7;
+          <a href="usersGuide.html"><font color="#004faf">User Guide</font></a>&#xA0;&#xB7;
+          <a href="referenceGuide.html"><font color="#004faf">Library Reference Guide</font></a>
+        </td>
+      </tr>
+    </table>
+
+    <h1 class="title">Tables and Table Tools</h1>
+
+    <h2>Why Sartre uses tables</h2>
+
+    <p>Sar<em>t</em>re generates events from precomputed amplitude or cross-section tables. Calculating the required integrations at every phase-space point during event generation would be too slow. The tables therefore hold the information needed to evaluate cross sections and sample events efficiently.</p>
+
+    <p>Generating tables is computationally demanding and requires care in choosing physics settings, phase-space ranges, binning, and numerical controls. It is intended for expert users. Most users should use a matching provided table set rather than generate a new one.</p>
+
+    <p>Every Sartre event-generation run requires tables compatible with its target, dipole model, process, and other settings. A missing or mismatched table set prevents the intended calculation from running correctly.</p>
+
+    <h2>Obtaining table sets</h2>
+
+    <p>Many table sets are provided separately from the source distribution. The installed <code>getSartreTables.py</code> utility downloads a compatible published set from the Sartre table server. Run the copy in <code>$SARTRE_DIR/bin/</code> (or <code>/usr/local/sartre/bin/</code> for the default installation), not a copied script elsewhere: it identifies the destination from its installed location. Use <code>getSartreTables.py list</code> to see the catalog, then select a set with, for example, <code>getSartreTables.py --sys=ePb --sat=bSat --part=phi --set=KMW</code>. The selection is case-insensitive; add <code>--upc</code> for a UPC set, while <code>--part=X</code> selects inclusive-diffraction tables. <code>SARTRE_DIR</code> is an optional explicit override.</p>
+
+    <p>After installation, tables belong under the Sartre table directory:</p>
+    <pre class="code">$SARTRE_DIR/tables/</pre>
+    <p>For a default installation this is normally <code>/usr/local/sartre/tables/</code>.</p>
+
+    <h2>Table directory hierarchy</h2>
+
+    <p>The directory hierarchy identifies the physics configuration. Sartre locates tables by their directory placement; do not flatten or rename the hierarchy when copying a table set.</p>
+
+    <pre class="code">tables/
+&#x251C;&#x2500;&#x2500; 1/                     # proton target
+&#x2502;   &#x251C;&#x2500;&#x2500; bSat/
+&#x2502;   &#x2502;   &#x251C;&#x2500;&#x2500; 333/             # exclusive &#x3C6; production
+&#x2502;   &#x2502;   &#x251C;&#x2500;&#x2500; 443/             # exclusive J/&#x3C8; production
+&#x2502;   &#x2502;   &#x2514;&#x2500;&#x2500; X/               # inclusive diffraction
+&#x2502;   &#x2514;&#x2500;&#x2500; bNonSat/
+&#x2502;       &#x2514;&#x2500;&#x2500; ...
+&#x251C;&#x2500;&#x2500; 197/                   # nucleus with A = 197
+&#x2502;   &#x251C;&#x2500;&#x2500; bSat/
+&#x2502;   &#x2514;&#x2500;&#x2500; bNonSat/
+&#x2514;&#x2500;&#x2500; 208/                   # nucleus with A = 208
+    &#x2514;&#x2500;&#x2500; ...</pre>
+
+    <p>The levels are:</p>
+    <ul>
+      <li><strong>Target directory:</strong> <code>1</code> for a proton, or the nuclear mass number <code>A</code> for a nuclear target.</li>
+      <li><strong>Dipole-model directory:</strong> <code>bSat</code> or <code>bNonSat</code>.</li>
+      <li><strong>Process directory:</strong> the PDG particle identifier for exclusive vector-meson or DVCS production (for example, <code>333</code> for the &#x3C6; meson), or <code>X</code> for inclusive diffraction.</li>
+    </ul>
+
+    <p>The process directory contains all ROOT table files required by that calculation. Their filenames carry additional bookkeeping information, but Sartre reads the table content and relies primarily on the hierarchy above. A complete process directory can occupy substantial disk space.</p>
+
+    <h2>Table generation</h2>
+
+    <p>The distribution contains <code>tableGeneratorMain.cpp</code> for exclusive tables and <code>tableGeneratorInclusiveDiffractionMain.cpp</code> for inclusive-diffraction tables. Their runcards define the target, dipole model, phase-space range, and binning. See the <a href="runcardRef.html">Runcard Reference</a> for the settings, particularly the inclusive <code>betamin</code>, <code>betamax</code>, <code>zmin</code>, <code>zmax</code>, <code>betabins</code>, and <code>zbins</code> parameters.</p>
+
+    <p>Table generation is an expert workflow. Before producing a substantial set, verify the intended settings and table hierarchy with the maintainers or against an existing compatible set. The <a href="tableGeneratorGuide.html">Table Generator Guide</a> describes the supplied programs, work splitting, DFT/FFT path, merging, and validation expectations; parts of the complete Sartre 2 production procedure remain <strong>TBD</strong>.</p>
+
+    <h2>Table tools</h2>
+
+    <p>When Sartre is built with the default <code>SARTRE_BUILD_TOOLS=ON</code> option, the following command-line tools are installed in <code>$SARTRE_DIR/bin</code>. They operate on binary ROOT table files. Most are intended for expert table production or maintenance; <code>tableInspector</code> is generally useful for checking a downloaded table before a run.</p>
+
+    <h2>Public Table Tool Summary</h2>
+    <table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr><td class="memItemLeft" align="right" valign="top">inspect</td><td class="memItemRight" align="left" valign="top"><a href="#tableInspector">tableInspector</a></td></tr>
+      <tr><td class="memItemLeft" align="right" valign="top">export</td><td class="memItemRight" align="left" valign="top"><a href="#tableDumper">tableDumper</a></td></tr>
+      <tr><td class="memItemLeft" align="right" valign="top">merge</td><td class="memItemRight" align="left" valign="top"><a href="#tableMerger">tableMerger</a></td></tr>
+      <tr><td class="memItemLeft" align="right" valign="top">modify</td><td class="memItemRight" align="left" valign="top"><a href="#tablePriority">tablePriority</a></td></tr>
+      <tr><td class="memItemLeft" align="right" valign="top">query</td><td class="memItemRight" align="left" valign="top"><a href="#tableQuery">tableQuery</a></td></tr>
+      <tr><td class="memItemLeft" align="right" valign="top">derive</td><td class="memItemRight" align="left" valign="top"><a href="#tableVarianceMaker">tableVarianceMaker</a></td></tr>
+    </table>
+
+    <h2>Table Tool Documentation</h2>
+
+    <h3 class="fn" id="tableInspector">tableInspector</h3>
+    <p>Inspects one or more tables and prints their metadata, dimensions, and kinematic coverage. This is the generally useful tool for ordinary users: run it after downloading or copying a table set to verify that the table has the expected target, process, dipole model, and range.</p>
+    <pre class="code">tableInspector [-v] [ -x bin -y bin [-z bin [-w bin]] | -g bin | [-a] [-s] [-b] | -e txt] file(s)</pre>
+    <table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr><td class="memItemLeft" align="right" valign="top"><code>-v</code></td><td class="memItemRight" align="left" valign="top">Print extra diagnostic output.</td></tr>
+      <tr><td class="memItemLeft" align="right" valign="top"><code>-b</code></td><td class="memItemRight" align="left" valign="top">Print the table identifier in binary form first.</td></tr>
+      <tr><td class="memItemLeft" align="right" valign="top"><code>-a</code></td><td class="memItemRight" align="left" valign="top">Print the position and value of every table cell.</td></tr>
+      <tr><td class="memItemLeft" align="right" valign="top"><code>-s</code></td><td class="memItemRight" align="left" valign="top">Print content statistics, including extrema and empty bins.</td></tr>
+      <tr><td class="memItemLeft" align="right" valign="top"><code>-g bin</code></td><td class="memItemRight" align="left" valign="top">Convert a global bin number to ROOT/table-bin coordinates.</td></tr>
+      <tr><td class="memItemLeft" align="right" valign="top"><code>-x bin -y bin [-z bin [-w bin]]</code></td><td class="memItemRight" align="left" valign="top">Convert ROOT/table-bin coordinates to a global bin number.</td></tr>
+      <tr><td class="memItemLeft" align="right" valign="top"><code>-e txt</code></td><td class="memItemRight" align="left" valign="top">Print one metadata element: <code>A</code>, <code>pol</code>, <code>cont</code>, <code>vmid</code>, <code>vmstr</code>, <code>model</code>, <code>pset</code>, <code>type</code>, <code>hotspots</code>, <code>fock</code>, or <code>quark</code>.</td></tr>
+    </table>
+
+    <h3 class="fn" id="tableDumper">tableDumper</h3>
+    <p>Exports the complete content of one Sartre table to a new binary data file. It refuses to overwrite an existing output file.</p>
+    <pre class="code">tableDumper [-v] table_file binary_file</pre>
+    <p>Use <code>-v</code> for additional diagnostics while writing. This is principally an expert export and debugging tool.</p>
+
+    <h3 class="fn" id="tableMerger">tableMerger</h3>
+    <p>Merges compatible table files, including partially filled tables. It checks table integrity and writes merged output named <code>&lt;prefix&gt;&lt;ID&gt;_merged.root</code>. Inspect the resulting files with <code>tableInspector</code>.</p>
+    <pre class="code">tableMerger [-n] [-0] [-p prefix] [-m] file(s)</pre>
+    <p><code>-n</code> performs all checks without writing output and should be used first. <code>-0</code> ignores zero-content bins, which is useful for partially filled inputs. <code>-p</code> selects an output prefix, and <code>-m</code> lists missing bins.</p>
+
+    <h3 class="fn" id="tablePriority">tablePriority</h3>
+    <p>Lists or changes a table's embedded priority. Priority is part of the table identifier and controls precedence when otherwise matching table candidates are available. Changing a priority rewrites the supplied table file, so use it only for deliberate table-set maintenance.</p>
+    <pre class="code">tablePriority [-s priority] [-f] file(s)</pre>
+    <p>Without <code>-s</code>, the tool lists priorities. <code>-s priority</code> sets a new priority from 0 through 255. <code>-f</code> includes the filename in the output.</p>
+
+    <h3 class="fn" id="tableQuery">tableQuery</h3>
+    <p>Interactively evaluates and prints interpolated values from one or more tables. It prompts for the relevant coordinates and identifies results outside a table's stored range. This is useful for checking interpolation and coverage.</p>
+    <pre class="code">tableQuery file(s)</pre>
+    <p>For exclusive tables it prompts for <em>t</em>, <em>Q</em><sup>2</sup>, and <em>W</em>; for UPC tables it prompts for <em>t</em> and <em>x</em><sub>&#x2119;</sub>; and for inclusive tables it prompts for <em>Q</em><sup>2</sup>, <em>W</em>, &#x3B2;, and <em>z</em>.</p>
+
+    <h3 class="fn" id="tableVarianceMaker">tableVarianceMaker</h3>
+    <p>Creates an exclusive <code>variance_A</code> table from compatible <code>mean_A2</code> and <code>mean_A</code> input tables. It verifies that the two inputs agree in their physics metadata and binning before continuing. Inclusive-diffraction tables are not supported by this tool.</p>
+    <pre class="code">tableVarianceMaker [-n | -o output] file_mean_A2 file_mean_A</pre>
+    <p><code>-n</code> checks the inputs without creating output. <code>-o output</code> writes the result to the named ROOT file. Without either option, the generated content is written to standard output. Run the no-output check first and inspect a generated table with <code>tableInspector</code>.</p>
+
+    <address>
+      <div align="center">
+        <table border="0" cellspacing="0" width="100%">
+          <tbody><tr class="address">
+            <td align="left" width="40%">&#xA0;</td>
+            <td align="center" width="20%">&#xA0;</td>
+            <td align="right" width="40%"><div align="right"><br />Last Update: September 11, 2026</div></td>
+          </tr></tbody>
+        </table>
+      </div>
+    </address>
+  </body>
+</html>

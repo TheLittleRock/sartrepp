@@ -1,0 +1,156 @@
+<!--
+ //==============================================================================
+ //  tableGeneratorGuide.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:33:37 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<!-- Sartre 2 expert guide to the production and validation of tables. -->
+<!DOCTYPE html
+PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en_US" lang="en_US">
+  <head>
+    <title>Sartre 2 - Table Generator Guide</title>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+    <link href="sartre.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <!-- Standard documentation navigation. -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120" align="left" valign="top"><img src="images/sartreLogo.png" alt="Sartre" border="0" align="right" /></td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td align="left" valign="middle" class="postheader">
+          <a href="index.html"><font color="#004faf">Home</font></a>&#xA0;&#xB7;
+          <a href="overview.html"><font color="#004faf">Overview</font></a>&#xA0;&#xB7;
+          <a href="usersGuide.html"><font color="#004faf">User Guide</font></a>&#xA0;&#xB7;
+          <a href="referenceGuide.html"><font color="#004faf">Library Reference Guide</font></a>
+        </td>
+      </tr>
+    </table>
+
+    <h1 class="title">Table Generator Guide</h1>
+
+    <p>Expert reference for producing, combining, and validating Sartre amplitude and cross-section tables. Table production encodes physics and numerical choices; it is not an ordinary event-generation step. Prefer a released, compatible table set whenever one is available.</p>
+
+    <div class="pageToc">
+      <h2>Contents</h2>
+      <ul>
+        <li><a href="#purpose">What a table-generation run calculates</a></li>
+        <li><a href="#before">Before starting a production</a></li>
+        <li><a href="#programs">Generator programs and bin ranges</a></li>
+        <li><a href="#upc">UPC table generator</a></li>
+        <li><a href="#lambda">Lambda-correction generator</a></li>
+        <li><a href="#runcard">Runcard and production controls</a></li>
+        <li><a href="#fft">DFT/FFT calculation path</a></li>
+        <li><a href="#validation">Merging and validation</a></li>
+        <li><a href="#ml">Machine-learning work and numerical quality</a></li>
+      </ul>
+    </div>
+
+    <h2 id="purpose">What a table-generation run calculates</h2>
+
+    <p>Sartre event generation is fast because it interpolates quantities calculated in advance. The expensive integrations over impact parameter and, where applicable, fluctuating target configurations are performed when the tables are made. Consequently, a table set is valid only for the physics configuration and phase space used to create it.</p>
+
+    <table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr><td class="memItemLeft" align="right" valign="top">Exclusive diffraction</td><td class="memItemRight" align="left" valign="top">Tables over <em>Q</em><sup>2</sup>, <em>W</em>, and <em>t</em>, containing amplitude moments used for coherent and incoherent vector-meson or DVCS cross sections.</td></tr>
+      <tr><td class="memItemLeft" align="right" valign="top">Inclusive diffraction</td><td class="memItemRight" align="left" valign="top">Four-dimensional tables over &#x3B2;, <em>Q</em><sup>2</sup>, <em>W</em>, and <em>z</em>. The current calculation stores the transverse <em>q</em>&#x0305;<em>q</em>, longitudinal <em>q</em>&#x0305;<em>q</em>, and transverse <em>q</em>&#x0305;<em>qg</em> contributions for the supported quark flavours.</td></tr>
+      <tr><td class="memItemLeft" align="right" valign="top">UPC</td><td class="memItemRight" align="left" valign="top">Two-dimensional transverse-amplitude tables over <em>x</em><sub>pom</sub> and <em>t</em>, produced by the dedicated UPC generator for the ultra-peripheral-collision calculation path.</td></tr>
+    </table>
+
+    <p>The table format, lookup hierarchy, and inspection tools are described in <a href="tableTools.html">Tables and Table Tools</a>. Runcard keywords are documented in the <a href="runcardRef.html">Runcard Reference</a>.</p>
+
+    <h2 id="before">Before starting a production</h2>
+
+    <ul>
+      <li>Start from a runcard that produced a validated, nearby table set; preserve a copy with the output.</li>
+      <li>Fix the target, dipole model, particle or process, fluctuation settings, kinematic range, binning, and integration mode before splitting work over a cluster.</li>
+      <li>Make a small trial range first, inspect it, and establish the required disk space and run time. Do not use a sparse trial as a production table.</li>
+      <li>Record the Sartre revision, build options, ROOT version, runcard, and command ranges. These are needed to reproduce or safely merge the result.</li>
+      <li>Place the finished, complete set in the normal <code>tables/&lt;A&gt;/&lt;model&gt;/&lt;process&gt;/</code> hierarchy only after it has passed validation.</li>
+    </ul>
+
+    <h2 id="programs">Generator programs and bin ranges</h2>
+
+    <p>When the corresponding build option is enabled, Sartre installs the following table-production executables. The three main generators divide their work by an inclusive global-bin range:</p>
+
+    <pre class="code"># Exclusive diffraction&#10;tableGeneratorMain tableGeneratorRuncard.txt startBin endBin&#10;&#10;# Inclusive diffraction&#10;tableGeneratorInclusiveDiffractionMain tableGeneratorInclusiveDiffractionRuncard.txt startBin endBin&#10;&#10;# Ultra-peripheral collisions&#10;tableGeneratorUPCMain tableGeneratorUPCRuncard.txt startBin endBin&#10;&#10;# Legacy proton lambda-correction tables&#10;lambdaGeneratorMain tableGeneratorRuncard.txt startBin endBin</pre>
+
+    <p>For <code>tableGeneratorMain</code>, <code>tableGeneratorInclusiveDiffractionMain</code>, and <code>tableGeneratorUPCMain</code>, <code>startBin</code> and <code>endBin</code> are both included. Adjacent jobs must therefore use non-overlapping ranges, for example <code>0 999</code> and <code>1000 1999</code>. They are global table-bin indices, not values of a physics variable. <code>lambdaGeneratorMain</code> is different: its ending bin is excluded; see <a href="#lambda">Lambda-correction generator</a>.</p>
+
+    <table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr><td class="memItemLeft" align="right" valign="top">Exclusive, conventional integration</td><td class="memItemRight" align="left" valign="top">The full range has <code>Q2bins * W2bins * tbins</code> bins.</td></tr>
+      <tr><td class="memItemLeft" align="right" valign="top">Exclusive, FFT mode</td><td class="memItemRight" align="left" valign="top">The outer work range has <code>Q2bins * W2bins</code> rows; each row produces all <em>t</em> values supplied by the transform.</td></tr>
+      <tr><td class="memItemLeft" align="right" valign="top">Inclusive diffraction</td><td class="memItemRight" align="left" valign="top">The full range has <code>betabins * Q2bins * W2bins * zbins</code> bins.</td></tr>
+      <tr><td class="memItemLeft" align="right" valign="top">UPC</td><td class="memItemRight" align="left" valign="top">The full range has <code>xbins * tbins</code> bins, with axes in <em>x</em><sub>pom</sub> and <em>t</em>.</td></tr>
+      <tr><td class="memItemLeft" align="right" valign="top">Lambda correction</td><td class="memItemRight" align="left" valign="top">The full range has <code>Q2bins * W2bins * tbins</code> bins. This legacy program uses an end-exclusive job interval.</td></tr>
+    </table>
+
+    <h2 id="upc">UPC table generator</h2>
+
+    <p><code>tableGeneratorUPCMain</code> creates the amplitude tables used by Sartre's ultra-peripheral-collision (UPC) calculation. Start from <code>tableGeneratorUPCRuncard.txt</code>, which enables <code>UPC=true</code> and specifies the target, vector meson, dipole-model parameters, amplitude-moment mode, configuration count, substructure setting, and the <code>xmin</code>, <code>xmax</code>, <code>tmin</code>, <code>tmax</code>, <code>xbins</code>, and <code>tbins</code> grid. The supplied runcard is an example, not a production prescription.</p>
+
+    <p>The generator makes transverse tables for the first amplitude moment, its squared moment, and its variance. When <code>A=1</code>, <code>modesToCalculate</code> is not 1, and <code>numberOfConfigurations=1</code>, it also makes real-part and skewness correction tables. The output file name is marked with <code>_UPC</code>. Use the same model, target, meson, and fluctuation settings when running the UPC event calculation; a UPC table is not interchangeable with an ordinary exclusive table.</p>
+
+    <p>The source's banner still contains an old usage label that names <code>tableGeneratorMain</code>. Invoke the installed executable named <code>tableGeneratorUPCMain</code>, as shown above. It accepts an inclusive range, so a split such as <code>0 999</code> followed by <code>1000 1999</code> covers each requested global bin once. The <code>useBackupFile</code> and <code>startingBinFromBackup</code> controls are available, but should be tested on a small run before a long production.</p>
+
+    <h2 id="lambda">Lambda-correction generator</h2>
+
+    <p><code>lambdaGeneratorMain</code> is a legacy, developer-oriented program for making proton real-part correction tables. It derives a transverse and a longitudinal <code>lambda_real</code> table on the ordinary exclusive <em>Q</em><sup>2</sup>, <em>W</em><sup>2</sup>, <em>t</em> grid. For each bin it estimates the energy derivative of the logarithm of the amplitude by finite differences in <em>W</em><sup>2</sup>. It is not a general table generator and does not create inclusive or UPC tables.</p>
+
+    <p>Although it reads an exclusive table-generator runcard, the program explicitly forces <code>A=1</code>, <code>modesToCalculate=1</code>, and <code>numberOfConfigurations=1</code>. It must therefore not be used to produce nuclear, fluctuating-target, or multi-configuration correction tables. Treat it as an expert compatibility utility and begin with the same validated exclusive runcard and binning as the amplitude table it is intended to accompany.</p>
+
+    <p>Unlike the main generators, its loop is <code>startBin &lt;= bin &lt; endBin</code>: <code>endBin</code> is excluded. Adjacent jobs should consequently be written as <code>0 1000</code> and <code>1000 2000</code>. Its partial output names include the starting bin and the polarization suffix, for example <code>_bin0_T.root</code> and <code>_bin0_L.root</code>. Inspect and merge these partial tables only after confirming that their metadata and grids match.</p>
+
+    <h2 id="runcard">Runcard and production controls</h2>
+
+    <p>Exclusive production is configured by <code>tableGeneratorRuncard.txt</code>; inclusive production uses <code>tableGeneratorInclusiveDiffractionRuncard.txt</code>; and UPC production uses <code>tableGeneratorUPCRuncard.txt</code>. The runcard specifies the same physical model inputs that event generation must later match. In particular, changing the target mass, dipole model, meson, substructure, number of configurations, or kinematic limits requires compatible tables. The lambda utility reads the exclusive runcard but overrides several of its target and configuration controls, as described above.</p>
+
+    <p>For exclusive tables, <code>modesToCalculate</code> selects which amplitude moments are made. In conventional mode, options distinguish an analytical first moment, a configuration-averaged first moment, and the second moment. This choice controls which coherent and incoherent observables can be evaluated. Use the comments in the supplied runcard and the validated table set as the authority for a production choice.</p>
+
+    <p>Important numerical controls include <code>Q2bins</code>, <code>W2bins</code>, <code>tbins</code>, <code>numberOfConfigurations</code>, and the integration tolerances. Inclusive tables additionally require the &#x3B2; and <em>z</em> ranges and their bin counts. <code>fractionOfBinsToFill</code> is useful for a quick test only; a released table must cover its declared grid. Exclusive jobs can write periodic backup files when <code>useBackupFile</code> is enabled, but backup and recovery behaviour should be verified in a small test before relying on it for a long campaign.</p>
+
+    <h2 id="fft">DFT/FFT calculation path</h2>
+
+    <p>For the exclusive calculation, the current source offers a two-dimensional discrete Fourier-transform path controlled by <code>useFFT</code> and <code>nFFT</code>. It computes the impact-parameter transform on a grid and supplies all transformed <em>t</em> values for each outer (<em>Q</em><sup>2</sup>, <em>W</em><sup>2</sup>) row. This is particularly relevant to nuclear calculations, where direct multidimensional integration of second moments can be very costly.</p>
+
+    <p>The 2026 EIC@BNL talk reports a roughly 2,000-fold speed-up for the shown second-moment calculation, with the demonstrated calculation changing from about a week to minutes. The same talk quotes 2,000&#x2013;7,000 for optimised examples. These are method- and setup-dependent benchmarks, not guaranteed production timings. They are nevertheless the reason new nuclear table campaigns should evaluate the FFT path first.</p>
+
+    <p>In FFT mode the traditional <code>tbins</code>, <code>tmin</code>, and <code>tmax</code> controls are not the normal way of choosing the transform output. <code>nFFT</code> must be even. Custom arbitrary <em>t</em> grids are an expert, source-level path in the current generator and should be reviewed carefully before use. The <code>nThreads</code> setting controls OpenMP parallel work only when Sartre was built with OpenMP support; confirm this in the build before planning resource use.</p>
+
+    <h2 id="validation">Merging and validation</h2>
+
+    <p>Produce disjoint partial ranges with otherwise identical settings, then combine only compatible results. Use <code>tableMerger -n</code> as a dry run before writing a merged table. Missing bins and zero-valued bins must be understood rather than silently accepted.</p>
+
+    <p>Use <code>tableInspector</code> on every output and final merged table to check table metadata, dimensions, phase-space coverage, and content statistics. <code>tableQuery</code> can probe interpolation at representative points. Compare overlaps between independently produced pieces, inspect edge bins, and make a small event-generation test with the intended runcard. The <a href="tableTools.html#tableInspector">tableInspector reference</a> lists the available checks.</p>
+
+    <h2 id="ml">Machine-learning work and numerical quality</h2>
+
+    <p>Older numerical table workflows could exhibit isolated spikes from difficult integrations and interpolated dipole-model lookup functions. Sartre-related research has investigated neural-network fitting as a way to identify or smooth such numerical artefacts. The newer DFT/FFT approach discussed in the 2026 talk is designed to avoid the numerical-glitch workflow for the demonstrated exclusive transform calculation.</p>
+
+    <p>Machine learning is not presently exposed as a general, turnkey command-line option in the Sartre table generators. It remains an expert analysis and validation method: preserve the unmodified numerical tables, validate any fit against independent points and physical constraints, and never substitute a fitted table for a production result without documented checks. The operational ML workflow for Sartre 2 remains <strong>TBD</strong>.</p>
+
+    <p>Further reading: <a href="sartrePubs.html">Sartre publications</a>, including the 2023 neural-network paper and the 2026 efficient-calculation paper. A local copy of the T. Toll EIC@BNL 2026 talk can be added here when it is distributed with the documentation.</p>
+
+    <div class="address">
+      <div align="center">
+        <table border="0" cellspacing="0" width="100%">
+          <tbody><tr class="address">
+            <td align="left" width="40%">&#xA0;</td>
+            <td align="center" width="20%">&#xA0;</td>
+            <td align="right" width="40%"><div align="right"><br />Last Update: September 14, 2026</div></td>
+          </tr></tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

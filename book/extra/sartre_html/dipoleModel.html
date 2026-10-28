@@ -1,0 +1,93 @@
+<!--
+ //==============================================================================
+ //  dipoleModel.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:33:37 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<!-- Sartre 2 overview of the physics implemented by the dipole-model classes. -->
+<!DOCTYPE html
+PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en_US" lang="en_US">
+  <head>
+    <title>Sartre 2 - The Dipole Model</title>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+    <link href="sartre.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <!-- Standard documentation navigation. -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120" align="left" valign="top"><img src="images/sartreLogo.png" alt="Sartre" border="0" align="right" /></td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td align="left" valign="middle" class="postheader">
+          <a href="index.html"><font color="#004faf">Home</font></a>&#xA0;&#xB7;
+          <a href="overview.html"><font color="#004faf">Overview</font></a>&#xA0;&#xB7;
+          <a href="usersGuide.html"><font color="#004faf">User Guide</font></a>&#xA0;&#xB7;
+          <a href="referenceGuide.html"><font color="#004faf">Library Reference Guide</font></a>
+        </td>
+      </tr>
+    </table>
+
+    <h1 class="title">The Dipole Model</h1>
+
+    <p>Sar<em>t</em>re describes small-<em>x</em> deep-inelastic scattering in the colour-dipole picture. In the target rest frame, a virtual photon fluctuates into a partonic state long before it reaches the proton or nucleus. At leading order this state is a quark-antiquark pair, <em>q</em><em>q</em>&#x0305;, with transverse separation <em>r</em> and longitudinal momentum fraction <em>z</em>. The dipole then scatters from the target at impact parameter <em>b</em>.</p>
+
+    <p>The central quantity is the dipole scattering amplitude <em>N</em>(<em>x</em>, <em>r</em>, <em>b</em>). In Sartre's convention, the impact-parameter differential dipole cross section is:</p>
+    <pre class="code">d&#x3C3;<sub>dip</sub> / d<sup>2</sup>b = 2 N(x, r, b)</pre>
+    <p>The photon wave function specifies the probability of the fluctuation, while the dipole amplitude supplies the interaction with the target. The same underlying amplitude therefore connects inclusive DIS, exclusive diffraction, and inclusive diffractive DIS; the difference lies in how the final state is projected.</p>
+
+    <h2>Exclusive and inclusive diffraction</h2>
+
+    <p>For exclusive diffraction, the scattered dipole is projected onto a specified final state: a vector meson or a real photon for deeply virtual Compton scattering (DVCS). Sartre generates coherent events, in which the target remains intact, and—in nuclear scattering—incoherent events, in which the target changes configuration or breaks up.</p>
+
+    <p>For coherent diffraction the cross section is obtained from the squared configuration-averaged amplitude. Incoherent diffraction is sensitive to fluctuations and is obtained from the variance of the amplitude over target configurations. Consequently, the momentum-transfer dependence of coherent and incoherent scattering constrains complementary aspects of the transverse gluon distribution.</p>
+
+    <p>Sartre 2 also implements inclusive diffractive DIS, <em>e p/A</em> &#x2192; <em>e' p'/A' X</em>. Here the scattered photon dissociates into a diffractive hadronic system <em>X</em>, rather than a selected vector meson or real photon. The inclusive calculation includes transverse and longitudinal <em>q</em><em>q</em>&#x0305; contributions and the higher <em>q</em><em>q</em>&#x0305;<em>g</em> Fock state, which is important at small &#x3B2;. The partonic system is then hadronized to produce an event record.</p>
+
+    <h2>Dipole models in Sartre</h2>
+
+    <h3>bSat (IPsat)</h3>
+    <p>The bSat, or IPsat, model uses an impact-parameter-dependent eikonal form. Its exponent contains the dipole size, a DGLAP-evolved gluon distribution, the running strong coupling, and a transverse target profile. At sufficiently large dipole size or gluon density, the exponential unitarizes the cross section. This supplies the saturation behaviour.</p>
+
+    <h3>bNonSat (IPNonSat)</h3>
+    <p>bNonSat is the linearized version of bSat. It uses the same basic ingredients but replaces the eikonal saturation form by its leading linear term. Comparing bSat with bNonSat isolates the impact of nonlinear saturation dynamics within a common setup.</p>
+
+    <h3>bCGC</h3>
+    <p>The bCGC model is an impact-parameter-dependent colour-glass-condensate parameterization. Sartre provides it as an alternative dipole-model implementation for the relevant exclusive workflows but it is also slowly phased out and depreciated. The Sartre 2 inclusive-diffraction implementation uses the bSat/IPsat and bNonSat/IPNonSat amplitudes.</p>
+
+    <p>The implementation is represented in the library by <a href="references/refDipoleModel.html">DipoleModel</a> and its bSat, bNonSat, and bCGC derived classes. Model selection is controlled by the <code>dipoleModel</code> runcard setting; see the <a href="runcardRef.html#dipoleModel">Runcard Reference</a>.</p>
+
+    <h2>From protons to nuclei</h2>
+
+    <p>For a proton, the impact-parameter profile represents the transverse gluon distribution. For a nucleus, Sartre samples configurations of nucleons and constructs a nuclear profile from them. Repeating this procedure supplies the configuration average and fluctuations required for coherent and incoherent nuclear diffraction. Optional subnucleon structure introduces hot-spot fluctuations within the nucleons.</p>
+
+    <p>Nuclei amplify the high-density regime because the transverse density of gluons increases with nuclear size. This makes electron-nucleus diffraction particularly sensitive to saturation and to the spatial distribution and fluctuations of nuclear gluons.</p>
+
+    <h2>Numerical tables</h2>
+
+    <p>The integrations needed to calculate amplitudes and cross sections are too expensive to repeat at every generated event. Sartre therefore precomputes the required quantities as tables for each compatible target, dipole model, process, and phase-space range. Event generation reads those tables. See <a href="tableTools.html">Tables and Table Tools</a> for their hierarchy and the expert table-generation workflow.</p>
+
+
+    <address>
+      <div align="center">
+        <table border="0" cellspacing="0" width="100%">
+          <tbody><tr class="address">
+            <td align="left" width="40%">&#xA0;</td>
+            <td align="center" width="20%">&#xA0;</td>
+            <td align="right" width="40%"><div align="right"><br />Last Update: September 14, 2026</div></td>
+          </tr></tbody>
+        </table>
+      </div>
+    </address>
+  </body>
+</html>

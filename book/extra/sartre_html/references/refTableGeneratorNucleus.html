@@ -1,0 +1,221 @@
+<!--
+ //==============================================================================
+ //  refTableGeneratorNucleus.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:44:24 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>Sartre 2 - TableGeneratorNucleus Class Reference</title>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+    <link href="../sartre.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120" align="left" valign="top">
+          <img src="../images/sartreLogo.png" alt="Sartre" border="0" align="right" />
+        </td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td align="left" valign="middle" class="postheader"><a href="../index.html"><font color="#004faf">Home</font></a>&#xA0;&#xB7; <a href="../overview.html"><font color="#004faf">Overview</font></a>&#xA0;&#xB7; <a href="../usersGuide.html"><font color="#004faf">User Guide</font></a>&#xA0;&#xB7; <a href="../referenceGuide.html"><font color="#004faf">Library Reference Guide</font></a></td>
+      </tr>
+    </table>
+    <!-- Page title and overview -->
+    <h1 class="title">
+      <span class="className">TableGeneratorNucleus</span>
+      <span class="referenceKind">Class Reference</span>
+    </h1>
+    <p>Nucleus specialization used while generating amplitude tables. <a href="#details">More...</a></p>
+    <pre><span class="preprocessor">#include</span> "TableGeneratorNucleus.h"</pre>
+    <!-- Reference summaries and documentation -->
+    <h2>Inheritance</h2>
+    <p>Inherits from <a href="refNucleus.html">Nucleus</a>.</p>
+    <h2>Public Member Functions</h2>
+    <table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tbody>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top"></td>
+          <td class="memItemRight" align="left" valign="top"><a href="#TableGeneratorNucleus">TableGeneratorNucleus</a>()</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top"></td>
+          <td class="memItemRight" align="left" valign="top"><a href="#TableGeneratorNucleusA">TableGeneratorNucleus</a>(unsigned int A)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top"></td>
+          <td class="memItemRight" align="left" valign="top"><a href="#TableGeneratorNucleusCopy">TableGeneratorNucleus</a>(const TableGeneratorNucleus&amp;)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top"></td>
+          <td class="memItemRight" align="left" valign="top"><a href="#dtor">~TableGeneratorNucleus</a>()</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">TableGeneratorNucleus&amp;</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#operatorAssign">operator=</a>(const TableGeneratorNucleus&amp;)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">bool</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#generate">generate</a>()</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">bool</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#generateProton">generateProton</a>()</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">bool</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#generateSubQuarkStructure">generateSubQuarkStructure</a>()</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">bool</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#generateFurtherSubQuarkStructure">generateFurtherSubQuarkStructure</a>()</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">bool</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#generateWooblyProton">generateWooblyProton</a>()</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">bool</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#generateSatScales">generateSatScales</a>()</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">const TH1D*</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#getRHisto">getRHisto</a>() const</td>
+        </tr>
+      </tbody>
+    </table>
+    <h2>Public Data Members</h2>
+    <table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tbody>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">vector&lt;Nucleon&gt;</td>
+          <td class="memItemRight" valign="bottom" align="left">
+            <a href="#configuration">configuration</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">vector&lt;TVector3&gt;</td>
+          <td class="memItemRight" valign="top" align="left">
+            <a href="#mSubNucleonConfiguration">mSubNucleonConfiguration</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">vector&lt;TVector3&gt;</td>
+          <td class="memItemRight" valign="top" align="left">
+            <a href="#mFurhterSubQuarkConfiguration">mFurhterSubQuarkConfiguration</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">vector&lt;TVector3&gt;</td>
+          <td class="memItemRight" valign="top" align="left">
+            <a href="#mSubQuarkConfiguration">mSubQuarkConfiguration</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" valign="top" align="left">
+            <a href="#mWoobleParameter">mWoobleParameter</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">vector&lt;double&gt;</td>
+          <td class="memItemRight" valign="top" align="left">
+            <a href="#mSatScales">mSatScales</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <hr />
+    <h2>Public Member Function Documentation</h2>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="TableGeneratorNucleus" id="TableGeneratorNucleus"></a>TableGeneratorNucleus()</span>
+    </h3>
+    <p>Default constructor.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="TableGeneratorNucleusA" id="TableGeneratorNucleusA"></a>TableGeneratorNucleus(unsigned int <var>A</var>)</span>
+    </h3>
+    <p>Constructs a table-generator nucleus with mass number <var>A</var>.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="TableGeneratorNucleusCopy" id="TableGeneratorNucleusCopy"></a>TableGeneratorNucleus(const TableGeneratorNucleus&amp; <var>other</var>)</span>
+    </h3>
+    <p>Copy constructor.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="dtor" id="dtor"></a>~TableGeneratorNucleus()</span>
+    </h3>
+    <p>Destructor.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="operatorAssign" id="operatorAssign"></a>TableGeneratorNucleus&amp; operator=(const TableGeneratorNucleus&amp; <var>other</var>)</span>
+    </h3>
+    <p>Assignment operator.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="generate" id="generate"></a>bool generate()</span>
+    </h3>
+    <p>Generates a nuclear configuration. Returns whether generation succeeded.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="generateProton" id="generateProton"></a>bool generateProton()</span>
+    </h3>
+    <p>Generates the proton configuration used in table generation.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="generateSubQuarkStructure" id="generateSubQuarkStructure"></a>bool generateSubQuarkStructure()</span>
+    </h3>
+    <p>Generates a sub-quark configuration. Physics convention and stability status: TBD.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="generateFurtherSubQuarkStructure" id="generateFurtherSubQuarkStructure"></a>bool generateFurtherSubQuarkStructure()</span>
+    </h3>
+    <p>Generates the further sub-quark configuration layer. Detailed meaning: TBD.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="generateWooblyProton" id="generateWooblyProton"></a>bool generateWooblyProton()</span>
+    </h3>
+    <p>Generates the wobbling-proton variant. The source uses the historical spelling <code>Woobly</code>. Detailed model: TBD.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="generateSatScales" id="generateSatScales"></a>bool generateSatScales()</span>
+    </h3>
+    <p>Generates saturation-scale values stored in <code>mSatScales</code>.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="getRHisto" id="getRHisto"></a>const TH1D* getRHisto() const</span>
+    </h3>
+    <p>Returns the radial-distribution histogram used by the generator.</p>
+    <h2>Data Member Documentation</h2>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="configuration" id="configuration"></a>vector&lt;Nucleon&gt; configuration</span>
+    </h3>
+    <p>Generated nucleon positions/configuration.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="mSubNucleonConfiguration" id="mSubNucleonConfiguration"></a>vector&lt;TVector3&gt; mSubNucleonConfiguration</span>
+    </h3>
+    <p>Generated sub-nucleon coordinates.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="mFurhterSubQuarkConfiguration" id="mFurhterSubQuarkConfiguration"></a>vector&lt;TVector3&gt; mFurhterSubQuarkConfiguration</span>
+    </h3>
+    <p>Generated further-subquark coordinates. The spelling follows the public source member name.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="mSubQuarkConfiguration" id="mSubQuarkConfiguration"></a>vector&lt;TVector3&gt; mSubQuarkConfiguration</span>
+    </h3>
+    <p>Generated subquark coordinates.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="mWoobleParameter" id="mWoobleParameter"></a>double mWoobleParameter</span>
+    </h3>
+    <p>Parameter for the wobbling-proton variant. Meaning: TBD.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="mSatScales" id="mSatScales"></a>vector&lt;double&gt; mSatScales</span>
+    </h3>
+    <p>Saturation-scale values associated with the generated configuration.</p>
+    <hr />
+    <h2><a name="details" id="details"></a>Detailed Description</h2>
+    <p>Nuclear-geometry helper used while generating tables. It supplies target-dependent configuration and thickness information to the dipole-model and amplitude calculations.</p>
+  <address>
+    <p align="right">Last Update: September 14, 2026</p>
+  </address>
+  </body>
+</html>

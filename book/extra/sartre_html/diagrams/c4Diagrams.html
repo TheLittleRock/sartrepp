@@ -1,0 +1,144 @@
+<!--
+ //==============================================================================
+ //  c4Diagrams.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:44:24 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Sartre 2 - C4 Design Views</title>
+    <link href="../sartre.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+      .diagram { width:100%; height:auto; margin:0.7em 0 1.6em 0; }
+      .diagram .group { fill:#f8f8f8; stroke:#777; stroke-width:1.2; stroke-dasharray:5 4; }
+      .diagram .node { fill:#eef4fb; stroke:#004faf; stroke-width:1.4; }
+      .diagram .title { fill:#003b7a; font-size:16px; font-weight:bold; }
+      .diagram .label { fill:#222; font-size:13px; }
+      .diagram .small { fill:#444; font-size:11px; }
+      .diagram .edge { stroke:#555; stroke-width:1.3; fill:none; marker-end:url(#arrow); }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120" align="left" valign="top">
+          <img src="../images/sartreLogo.png" alt="Sartre" border="0" align="right" />
+        </td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td align="left" valign="middle" class="postheader"><a href="../index.html"><font color="#004faf">Home</font></a>&#xA0;&#xB7; <a href="../overview.html"><font color="#004faf">Overview</font></a>&#xA0;&#xB7; <a href="../usersGuide.html"><font color="#004faf">User Guide</font></a>&#xA0;&#xB7; <a href="../referenceGuide.html"><font color="#004faf">Library Reference Guide</font></a></td>
+      </tr>
+    </table>
+    <!-- Page title and overview -->
+    <h1 class="title">
+      <span class="className">Sartre 2</span>
+      <span class="referenceKind">C4 Design Views</span>
+    </h1>
+    <p>Context and component views of <code>examples/</code> and <code>src/</code>. Gemini and Cuhre are intentionally omitted. For class relationships derived from the main example programs, see the <a href="umlDiagrams.html">UML Design Views</a>.</p>
+    <!-- Context diagram -->
+    <h2>System context: examples and library</h2>
+    <svg class="diagram" viewBox="0 0 980 355" role="img" aria-labelledby="contextTitle">
+      <title id="contextTitle">Examples invoke the Sartre library, which reads runcards and reads or writes tables.</title>
+      <defs>
+        <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+          <polygon points="0 0,10 3.5,0 7" fill="#555"></polygon>
+        </marker>
+      </defs>
+      <rect class="group" x="25" y="35" width="280" height="260" rx="8"></rect>
+      <text class="title" x="45" y="65">examples/</text>
+      <rect class="node" x="50" y="90" width="230" height="55" rx="6"></rect>
+      <text class="label" x="68" y="115">Exclusive and UPC drivers</text>
+      <text class="small" x="68" y="133">sartreMain, tableGeneratorMain, &#x2026;</text>
+      <rect class="node" x="50" y="170" width="230" height="55" rx="6"></rect>
+      <text class="label" x="68" y="195">Inclusive-diffraction drivers</text>
+      <text class="small" x="68" y="213">sartreInclusiveDiffractionMain, &#x2026;</text>
+      <rect class="node" x="50" y="250" width="230" height="28" rx="6"></rect>
+      <text class="label" x="68" y="270">Tests and utilities</text>
+      <rect class="group" x="370" y="35" width="345" height="260" rx="8"></rect>
+      <text class="title" x="390" y="65">Sartre library: src/</text>
+      <rect class="node" x="400" y="100" width="285" height="72" rx="6"></rect>
+      <text class="label" x="420" y="128">Public library interface</text>
+      <text class="small" x="420" y="147">Sartre &#xB7; SartreInclusiveDiffraction</text>
+      <text class="small" x="420" y="162">settings &#xB7; events &#xB7; cross sections</text>
+      <rect class="node" x="400" y="210" width="285" height="62" rx="6"></rect>
+      <text class="label" x="420" y="237">Physics and table implementation</text>
+      <text class="small" x="420" y="256">dipole models &#xB7; integrals &#xB7; tables &#xB7; geometry</text>
+      <rect class="node" x="790" y="100" width="150" height="55" rx="6"></rect>
+      <text class="label" x="820" y="125">Runcards</text>
+      <text class="small" x="805" y="143">configuration input</text>
+      <rect class="node" x="790" y="215" width="150" height="55" rx="6"></rect>
+      <text class="label" x="828" y="240">Tables</text>
+      <text class="small" x="805" y="258">stored calculation data</text>
+      <path class="edge" d="M280,117 C335,117 350,130 400,136"></path>
+      <path class="edge" d="M280,197 C335,197 350,160 400,150"></path>
+      <path class="edge" d="M280,263 C335,263 355,240 400,240"></path>
+      <path class="edge" d="M790,127 L686,137"></path>
+      <path class="edge" d="M686,241 L790,241"></path>
+      <text class="small" x="728" y="120">read</text>
+      <text class="small" x="730" y="231">read/write</text>
+    </svg>
+    <!-- Component diagram -->
+    <h2>Library component view</h2>
+    <svg class="diagram" viewBox="0 0 980 460" role="img" aria-labelledby="componentTitle">
+      <title id="componentTitle">The public generators coordinate settings, cross sections, events, physics calculation, and tables.</title>
+      <defs>
+        <marker id="arrow2" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+          <polygon points="0 0,10 3.5,0 7" fill="#555"></polygon>
+        </marker>
+      </defs>
+      <rect class="group" x="25" y="25" width="930" height="400" rx="8"></rect>
+      <text class="title" x="45" y="53">src/</text>
+      <rect class="node" x="60" y="85" width="245" height="72" rx="6"></rect>
+      <text class="label" x="80" y="112">Public generators</text>
+      <text class="small" x="80" y="132">Sartre &#xB7; SartreInclusiveDiffraction</text>
+      <text class="small" x="80" y="147">public application API</text>
+      <rect class="node" x="368" y="85" width="245" height="72" rx="6"></rect>
+      <text class="label" x="388" y="112">Configuration</text>
+      <text class="small" x="388" y="132">Settings &#xB7; EventGeneratorSettings</text>
+      <text class="small" x="388" y="147">TableGeneratorSettings</text>
+      <rect class="node" x="675" y="85" width="245" height="72" rx="6"></rect>
+      <text class="label" x="695" y="112">Event representation</text>
+      <text class="small" x="695" y="132">Event &#xB7; Particle</text>
+      <text class="small" x="695" y="147">final-state generators</text>
+      <rect class="node" x="60" y="260" width="245" height="86" rx="6"></rect>
+      <text class="label" x="80" y="287">Cross-section services</text>
+      <text class="small" x="80" y="307">CrossSection</text>
+      <text class="small" x="80" y="324">InclusiveDiffractiveCrossSections</text>
+      <text class="small" x="80" y="339">&#x2026;FromTables</text>
+      <rect class="node" x="368" y="260" width="245" height="86" rx="6"></rect>
+      <text class="label" x="388" y="287">Physics calculation</text>
+      <text class="small" x="388" y="307">DipoleModel and bSat/bNonSat/bCGC</text>
+      <text class="small" x="388" y="324">Integrals &#xB7; Amplitudes &#xB7; WaveOverlap</text>
+      <text class="small" x="388" y="339">Nucleus &#xB7; FrangibleNucleus</text>
+      <rect class="node" x="675" y="260" width="245" height="86" rx="6"></rect>
+      <text class="label" x="695" y="287">Table subsystem</text>
+      <text class="small" x="695" y="307">Table &#xB7; TableCollection</text>
+      <text class="small" x="695" y="324">TableGeneratorNucleus</text>
+      <text class="small" x="695" y="339">interpolation utilities</text>
+      <g style="marker-end:url(#arrow2)">
+        <path class="edge" d="M305,121 L368,121"></path>
+        <path class="edge" d="M613,121 L675,121"></path>
+        <path class="edge" d="M182,157 L182,260"></path>
+        <path class="edge" d="M305,302 L368,302"></path>
+        <path class="edge" d="M613,302 L675,302"></path>
+        <path class="edge" d="M490,260 L490,158"></path>
+        <path class="edge" d="M798,260 L798,158"></path>
+      </g>
+    </svg>
+    <address>
+      <p align="right">Last Update: September 14, 2026</p>
+    </address>
+  </body>
+</html>

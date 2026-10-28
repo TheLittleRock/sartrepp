@@ -1,0 +1,35 @@
+#==============================================================================
+# Sartre UPC Runcard: bSat (IPsat) with HMPZ Parameter Set
+# System: p + p -> p + J/psi + p @ sqrt(s) = 510 GeV
+# Decay: J/psi -> e+ e- (userInt = 11)
+#==============================================================================
+
+eBeamEnergy = 255.0
+hBeamEnergy = 255.0
+A = 1
+UPCA = 1
+UPC = true
+
+numberOfEvents = 100000
+timesToShow = 10
+
+verbose = false
+verboseLevel = 0
+
+rootfile = data/sartre_bSat_100k.root
+
+dipoleModel = bSat
+dipoleModelParameterSet = HMPZ
+vectorMesonId = 443
+tableSetType = total_and_coherent
+
+# Decay vector meson to e+ e- (PDG = 11)
+userInt = 11
+
+correctForRealAmplitude = true
+correctSkewedness = true
+maxLambdaUsedInCorrections = 0.1
+
+enableNuclearBreakup = false
+applyPhotonFlux = true
+seed = 20261025

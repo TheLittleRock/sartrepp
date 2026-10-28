@@ -1,0 +1,39 @@
+# Python virtual environment
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# CERN ROOT, Pythia8 & Sartre compiled install directories
+root_install/
+pythia8_install/
+pythia8318/
+sartre_install/
+sartre_src/
+local_libs/
+
+# Simulation chunk and binary ROOT files (large data files)
+data/chunks/
+*.root
+
+# Compiled test binaries and object files
+*.o
+*.so
+*.a
+calc_cs
+profile_fft
+test_*
+simulation/sartre_pp_jpsi
+
+# Jupyter Book build artifacts and caches
+book/_build/
+_build/
+.jupyter_cache/
+.ipynb_checkpoints/
+
+# System and editor files
+.DS_Store
+.vscode/
+.idea/
+install-agy.sh

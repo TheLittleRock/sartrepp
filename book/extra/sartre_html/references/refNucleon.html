@@ -1,0 +1,108 @@
+<!--
+ //==============================================================================
+ //  refNucleon.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:44:24 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<html>
+  <head>
+    <title>Nucleon</title>
+    <link href="../sartre.css" rel="stylesheet" type="text/css"/>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120" align="left" valign="top">
+          <img src="../images/sartreLogo.png" alt="Sartre" border="0" align="right"/>
+        </td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td align="left" valign="middle" class="postheader"><a href="../index.html"><font color="#004faf">Home</font></a>&#xA0;&#xB7; <a href="../overview.html"><font color="#004faf">Overview</font></a>&#xA0;&#xB7; <a href="../usersGuide.html"><font color="#004faf">User Guide</font></a>&#xA0;&#xB7; <a href="../referenceGuide.html"><font color="#004faf">Library Reference Guide</font></a></td>
+      </tr>
+    </table>
+    <!-- Page title and overview -->
+    <h1 class="title">
+      <span class="className">Nucleon</span>
+      <span class="referenceKind">Class Reference</span>
+    </h1>
+    <p>Class reference. <a href="#details">More...</a></p>
+    <pre>#include "Nucleon.h"</pre>
+    <!-- Reference summaries and documentation -->
+    <h2>Public Member Functions</h2>
+    <table class="alignedsummary">
+      <tr>
+        <td class="memItemLeft" align="right" valign="top"/>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m0">Nucleon()</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top"/>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m1">Nucleon(const TVector3&amp;, unsigned int)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top"/>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m2">Nucleon(const TVector3&amp;)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">const TVector3&amp;</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m3">position() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">unsigned int</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m4">charge() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m5">setPosition(const TVector3&amp;)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m6">setCharge(unsigned int)</a>
+        </td>
+      </tr>
+    </table>
+    <h2>Public Member Function Documentation</h2>
+    <h3 class="fn" id="m0"> Nucleon()</h3>
+    <p>Constructs a nucleon at the origin with charge zero.</p>
+    <h3 class="fn" id="m1"> Nucleon(const TVector3&amp;, unsigned int)</h3>
+    <p>Constructs a nucleon at the supplied three-dimensional position with the supplied charge.</p>
+    <h3 class="fn" id="m2"> Nucleon(const TVector3&amp;)</h3>
+    <p>Constructs a nucleon at the supplied three-dimensional position with charge zero.</p>
+    <h3 class="fn" id="m3">const TVector3&amp; position() const</h3>
+    <p>Returns the stored three-dimensional position.</p>
+    <h3 class="fn" id="m4">unsigned int charge() const</h3>
+    <p>Returns the stored nucleon charge.</p>
+    <h3 class="fn" id="m5">void setPosition(const TVector3&amp;)</h3>
+    <p>Sets the stored three-dimensional position.</p>
+    <h3 class="fn" id="m6">void setCharge(unsigned int)</h3>
+    <p>Sets the stored nucleon charge.</p>
+    <hr/>
+    <h2><a name="details" id="details"/>Detailed Description</h2>
+    <p>Lightweight nucleon record used by nuclear-configuration classes. It stores a three-dimensional position and the nucleon charge, with simple accessors and mutators.</p>
+  <address>
+    <p align="right">Last Update: September 14, 2026</p>
+  </address>
+  </body>
+</html>

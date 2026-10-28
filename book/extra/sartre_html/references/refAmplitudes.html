@@ -1,0 +1,262 @@
+<!--
+ //==============================================================================
+ //  refAmplitudes.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:44:24 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>Sartre 2 - Amplitudes Class Reference</title>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+    <link href="../sartre.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120" align="left" valign="top">
+          <img src="../images/sartreLogo.png" alt="Sartre" border="0" align="right" />
+        </td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td align="left" valign="middle" class="postheader"><a href="../index.html"><font color="#004faf">Home</font></a>&#xA0;&#xB7; <a href="../overview.html"><font color="#004faf">Overview</font></a>&#xA0;&#xB7; <a href="../usersGuide.html"><font color="#004faf">User Guide</font></a>&#xA0;&#xB7; <a href="../referenceGuide.html"><font color="#004faf">Library Reference Guide</font></a></td>
+      </tr>
+    </table>
+    <!-- Page title and overview -->
+    <h1 class="title">
+      <span class="className">Amplitudes</span>
+      <span class="referenceKind">Class Reference</span>
+    </h1>
+    <p>Calculates gamma-A amplitudes and cross-section moments for exclusive diffraction. <a href="#details">More...</a></p>
+    <pre><span class="preprocessor">#include</span> "Amplitudes.h"</pre>
+    <!-- Reference summaries and documentation -->
+    <h2>Public Member Functions</h2>
+    <table class="alignedsummary">
+      <tr>
+        <td class="memItemLeft" align="right" valign="top"></td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m0">Amplitudes()</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top"></td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m1">Amplitudes(const Amplitudes&amp;)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top"></td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m2">~Amplitudes()</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">Amplitudes&amp;</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m3">operator=(const Amplitudes&amp;)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m4">calculate(double*)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m5">generateConfigurations()</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m6">calculateForAllT(double Q2, double W2)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m7">calculateForAllT(double xpom)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">const vector&lt;double&gt;&amp;</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m8">deltaGrid_allT() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">const vector&lt;double&gt;&amp;</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m9">amplitudeT_allT() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">const vector&lt;double&gt;&amp;</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m10">amplitudeL_allT() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">const vector&lt;double&gt;&amp;</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m11">amplitudeT2_allT() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">const vector&lt;double&gt;&amp;</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m12">amplitudeL2_allT() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">const vector&lt;double&gt;&amp;</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m13">fftDeltaGrid() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m14">amplitudeT() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m15">amplitudeL() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m16">amplitudeTnum() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m17">amplitudeLnum() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m18">amplitudeT2() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m19">amplitudeL2() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m20">errorT() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m21">errorL() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m22">errorT2() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m23">errorL2() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m24">amplitudeTForSkewednessCorrection() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m25">amplitudeLForSkewednessCorrection() const</a>
+        </td>
+      </tr>
+    </table>
+    <h2>Public Member Function Documentation</h2>
+<h3 class="fn" id="m0"> Amplitudes()</h3>
+    <p>Constructs an amplitude-calculation object using the configured physics settings.</p>
+<h3 class="fn" id="m1"> Amplitudes(const Amplitudes&amp;)</h3>
+    <p>Constructs a copy of another amplitude-calculation object.</p>
+<h3 class="fn" id="m2"> ~Amplitudes()</h3>
+    <p>Destroys the amplitude calculator and its owned integration objects.</p>
+<h3 class="fn" id="m3">Amplitudes&amp; operator=(const Amplitudes&amp;)</h3>
+    <p>Replaces this object with a copy of another amplitude calculator.</p>
+<h3 class="fn" id="m4">void calculate(double*)</h3>
+    <p>Calculates configured amplitude quantities at the kinematic point supplied in the input array.</p>
+<h3 class="fn" id="m5">void generateConfigurations()</h3>
+    <p>Generates the target configurations required for a fluctuating-nucleus calculation.</p>
+<h3 class="fn" id="m6">void calculateForAllT(double Q2, double W2)</h3>
+    <p>Calculates amplitudes for all transform <em>t</em> values at the supplied exclusive <em>Q</em><sup>2</sup> and <em>W</em><sup>2</sup> point.</p>
+<h3 class="fn" id="m7">void calculateForAllT(double xpom)</h3>
+    <p>Calculates amplitudes for all transform <em>t</em> values at the supplied UPC <em>x</em><sub>&#x2119;</sub> point.</p>
+<h3 class="fn" id="m8">const vector&lt;double&gt;&amp; deltaGrid_allT() const</h3>
+    <p>Returns the transform momentum-transfer grid used by the all-<em>t</em> calculation.</p>
+<h3 class="fn" id="m9">const vector&lt;double&gt;&amp; amplitudeT_allT() const</h3>
+    <p>Returns the transverse amplitudes on the all-<em>t</em> grid.</p>
+<h3 class="fn" id="m10">const vector&lt;double&gt;&amp; amplitudeL_allT() const</h3>
+    <p>Returns the longitudinal amplitudes on the all-<em>t</em> grid.</p>
+<h3 class="fn" id="m11">const vector&lt;double&gt;&amp; amplitudeT2_allT() const</h3>
+    <p>Returns the transverse second-moment amplitudes on the all-<em>t</em> grid.</p>
+<h3 class="fn" id="m12">const vector&lt;double&gt;&amp; amplitudeL2_allT() const</h3>
+    <p>Returns the longitudinal second-moment amplitudes on the all-<em>t</em> grid.</p>
+<h3 class="fn" id="m13">const vector&lt;double&gt;&amp; fftDeltaGrid() const</h3>
+    <p>Returns the FFT momentum-transfer grid.</p>
+<h3 class="fn" id="m14">double amplitudeT() const</h3>
+    <p>Returns the most recently calculated transverse amplitude.</p>
+<h3 class="fn" id="m15">double amplitudeL() const</h3>
+    <p>Returns the most recently calculated longitudinal amplitude.</p>
+<h3 class="fn" id="m16">double amplitudeTnum() const</h3>
+    <p>Returns the most recently calculated numerical transverse amplitude.</p>
+<h3 class="fn" id="m17">double amplitudeLnum() const</h3>
+    <p>Returns the most recently calculated numerical longitudinal amplitude.</p>
+<h3 class="fn" id="m18">double amplitudeT2() const</h3>
+    <p>Returns the most recently calculated transverse second amplitude moment.</p>
+<h3 class="fn" id="m19">double amplitudeL2() const</h3>
+    <p>Returns the most recently calculated longitudinal second amplitude moment.</p>
+<h3 class="fn" id="m20">double errorT() const</h3>
+    <p>Returns the numerical uncertainty of the transverse amplitude.</p>
+<h3 class="fn" id="m21">double errorL() const</h3>
+    <p>Returns the numerical uncertainty of the longitudinal amplitude.</p>
+<h3 class="fn" id="m22">double errorT2() const</h3>
+    <p>Returns the numerical uncertainty of the transverse second amplitude moment.</p>
+<h3 class="fn" id="m23">double errorL2() const</h3>
+    <p>Returns the numerical uncertainty of the longitudinal second amplitude moment.</p>
+<h3 class="fn" id="m24">double amplitudeTForSkewednessCorrection() const</h3>
+    <p>Returns the transverse amplitude used to form the skewedness correction.</p>
+<h3 class="fn" id="m25">double amplitudeLForSkewednessCorrection() const</h3>
+    <p>Returns the longitudinal amplitude used to form the skewedness correction.</p>
+    <hr />
+    <h2><a name="details" id="details"></a>Detailed Description</h2>
+    <p><code>Amplitudes</code> calculates gamma-A d sigma/dt ingredients for transverse and longitudinal photons. It returns average amplitudes, average squared amplitudes, numerical coherent amplitudes, errors, and values needed for skewedness corrections. The FFT methods calculate values for all Delta grid points in one call for nuclear targets.</p>
+  <address>
+    <p align="right">Last Update: September 14, 2026</p>
+  </address>
+  </body>
+</html>

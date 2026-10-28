@@ -1,0 +1,208 @@
+<!--
+ //==============================================================================
+ //  refNucleus.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:44:24 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Sartre 2 - Nucleus Class Reference</title>
+    <link href="../sartre.css" rel="stylesheet" type="text/css"/>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120" align="left" valign="top">
+          <img src="../images/sartreLogo.png" alt="Sartre" border="0" align="right"/>
+        </td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td align="left" valign="middle" class="postheader"><a href="../index.html"><font color="#004faf">Home</font></a>&#xA0;&#xB7; <a href="../overview.html"><font color="#004faf">Overview</font></a>&#xA0;&#xB7; <a href="../usersGuide.html"><font color="#004faf">User Guide</font></a>&#xA0;&#xB7; <a href="../referenceGuide.html"><font color="#004faf">Library Reference Guide</font></a></td>
+      </tr>
+    </table>
+    <!-- Page title and overview -->
+    <h1 class="title">
+      <span class="className">Nucleus</span>
+      <span class="referenceKind">Class Reference</span>
+    </h1>
+    <p>Class reference. <a href="#details">More...</a></p>
+    <pre><span class="preprocessor">#include</span> "Nucleus.h"</pre>
+    <!-- Reference summaries and documentation -->
+    <h2>Public Member Functions</h2>
+    <table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tbody>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top"/>
+          <td class="memItemRight" valign="bottom" align="left"><a href="#Nucleus">Nucleus</a>()</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top"/>
+          <td class="memItemRight" valign="top" align="left"><a href="#NucleusA">Nucleus</a>(unsigned int A)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top"/>
+          <td class="memItemRight" valign="top" align="left"><a href="#NucleusCopy">Nucleus</a>(const Nucleus&amp;)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">virtual</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#dtor">~Nucleus</a>()</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">Nucleus&amp;</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#assign">operator=</a>(const Nucleus&amp;)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">void</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#init">init</a>(unsigned int A)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#T">T</a>(double b) const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#TofProton">TofProton</a>(double b)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">unsigned int</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#A">A</a>() const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">unsigned int</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#Z">Z</a>() const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">float</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#spin">spin</a>() const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#radius">radius</a>() const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">string</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#name">name</a>() const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">int</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#pdgID">pdgID</a>() const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">int</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#pdgIDZA">pdgID</a>(int Z, int A) const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#atomicMass">atomicMass</a>() const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">void</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#normalizationOfT">normalizationOfT</a>(double eps = 1.e-8)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#rho0">rho0</a>() const</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr/>
+    <h2>Public Member Function Documentation</h2>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="Nucleus" id="Nucleus"/>Nucleus()</span>
+    </h3>
+    <p>Constructs an uninitialized nucleus.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="NucleusA" id="NucleusA"/>Nucleus(unsigned int <var>A</var>)</span>
+    </h3>
+    <p>Constructs a nucleus with mass number <var>A</var>.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="NucleusCopy" id="NucleusCopy"/>Nucleus(const Nucleus&amp; <var>other</var>)</span>
+    </h3>
+    <p>Copy constructor.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="dtor" id="dtor"/>virtual ~Nucleus()</span>
+    </h3>
+    <p>Virtual destructor.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="assign" id="assign"/>Nucleus&amp; operator=(const Nucleus&amp; <var>other</var>)</span>
+    </h3>
+    <p>Assigns <var>other</var> and returns this object.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="init" id="init"/>void init(unsigned int <var>A</var>)</span>
+    </h3>
+    <p>Initializes nuclear parameters for mass number <var>A</var>.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="T" id="T"/>double T(double <var>b</var>) const</span>
+    </h3>
+    <p>Returns the nuclear thickness profile at impact parameter <var>b</var> in fm, in GeV<sup>2</sup>.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="TofProton" id="TofProton"/>double TofProton(double <var>b</var>)</span>
+    </h3>
+    <p>Returns the proton thickness profile at impact parameter <var>b</var>.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="A" id="A"/>unsigned int A() const</span>
+    </h3>
+    <p>Returns the mass number.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="Z" id="Z"/>unsigned int Z() const</span>
+    </h3>
+    <p>Returns the charge number.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="spin" id="spin"/>float spin() const</span>
+    </h3>
+    <p>Returns the nuclear spin in units of hbar.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="radius" id="radius"/>double radius() const</span>
+    </h3>
+    <p>Returns the nuclear radius in fm.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="name" id="name"/>string name() const</span>
+    </h3>
+    <p>Returns the nucleus name.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="pdgID" id="pdgID"/>int pdgID() const</span>
+    </h3>
+    <p>Returns this nucleus's PDG identifier.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="pdgIDZA" id="pdgIDZA"/>int pdgID(int <var>Z</var>, int <var>A</var>) const</span>
+    </h3>
+    <p>Returns the nuclear PDG identifier for the supplied charge and mass numbers.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="atomicMass" id="atomicMass"/>double atomicMass() const</span>
+    </h3>
+    <p>Returns the atomic mass in GeV.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="normalizationOfT" id="normalizationOfT"/>void normalizationOfT(double <var>eps</var> = 1.e-8)</span>
+    </h3>
+    <p>Runs a thickness-profile normalization diagnostic with tolerance <var>eps</var>.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="rho0" id="rho0"/>double rho0() const</span>
+    </h3>
+    <p>Returns the central density in fm<sup>-3</sup>.</p>
+    <hr/>
+    <h2><a name="details" id="details"/>Detailed Description</h2>
+    <p><code>Nucleus</code> holds target information such as name, radius, spin, mass, and the Woods--Saxon density distribution as a function of impact parameter. It is used directly in table generation, while event generation uses the derived <code>FrangibleNucleus</code> class.</p>
+    <p>Sartre initializes the target internally, but the current nucleus is available through <code>Sartre::nucleus()</code>. The legacy documentation lists H (p), O, Al, Ca, Cu, Cd, Au, and Pb among the supported nuclei.</p>
+  
+    <h3 id="legacy-sartre1">Legacy Sartre 1 notes and examples</h3>
+    <div class="legacyNotes">
+
+<p>The <code>Nucleus</code> class contains the necessary information about the nucleus (name, radius, spin, mass, ....) as well as the referring Woods-Saxon distribution to describe its density as a function of impact parameter. This class is used in the generation of amplitude tables as-is (see <a href="../tableGeneratorGuide.html">here</a> for details), while a derived class <a href="refFrangibleNucleus.html">FrangibleNucleus</a> is used for event generation in class <a href="refSartre.html">Sartre</a>. The user does not have to care about the class or its initialization since it is handled internally in <a href="refSartre.html">Sartre</a>. However, it is always available through a call of <a href="refSartre.html#m8">Sartre::nucleus()</a>.</p>
+<p>At the moment this class is able to describe the following nuclei: H (p), O, Al, Ca, Cu, Cd, Au, and Pb.</p>
+
+    </div>
+<address>
+  <p align="right">Last Update: September 14, 2026</p>
+</address>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!--
+ //==============================================================================
+ //  refBreakupProduct.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:44:24 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<html>
+  <head>
+    <title>BreakupProduct</title>
+    <link href="../sartre.css" rel="stylesheet" type="text/css"/>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120" align="left" valign="top">
+          <img src="../images/sartreLogo.png" alt="Sartre" border="0" align="right"/>
+        </td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td align="left" valign="middle" class="postheader"><a href="../index.html"><font color="#004faf">Home</font></a>&#xA0;&#xB7; <a href="../overview.html"><font color="#004faf">Overview</font></a>&#xA0;&#xB7; <a href="../usersGuide.html"><font color="#004faf">User Guide</font></a>&#xA0;&#xB7; <a href="../referenceGuide.html"><font color="#004faf">Library Reference Guide</font></a></td>
+      </tr>
+    </table>
+    <!-- Page title and overview -->
+    <h1 class="title">
+      <span class="className">BreakupProduct</span>
+      <span class="referenceKind">Structure Reference</span>
+    </h1>
+    <p><code>BreakupProduct</code> is a simple structure holding all information
+        of fragments of a nuclear breakup in incoherent eA collisions. <a href="#details">More...</a></p>
+    <pre>#include "BreakupProduct.h"</pre>
+    <!-- Reference summaries and documentation -->
+    <h2>Public Data Members</h2>
+    <table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tbody>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" valign="bottom" align="left">
+            <a href="#Z">Z</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" valign="top" align="left">
+            <a href="#A">A</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" valign="top" align="left">
+            <a href="#emissionTime">emissionTime</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">long</td>
+          <td class="memItemRight" valign="top" align="left">
+            <a href="#pdgId">pdgId</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">TLorentzVector</td>
+          <td class="memItemRight" valign="top" align="left">
+            <a href="#p">p</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">string</td>
+          <td class="memItemRight" valign="top" align="left">
+            <a href="#name">name</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <hr/>
+    <h2>Data Member Documentation</h2>
+    <h3 class="fn"><a name="Z" id="Z"/>double Z</h3>
+    <p>Charge number of the breakup fragment.</p>
+    <h3 class="fn"><a name="A" id="A"/>double A</h3>
+    <p>Mass number of the breakup fragment.</p>
+    <h3 class="fn"><a name="emissionTime" id="emissionTime"/>double emissionTime</h3>
+    <p>Emission time in units of 10<sup>-21</sup> seconds after creation of the compound nucleus.</p>
+    <h3 class="fn"><a name="pdgId" id="pdgId"/>long pdgId</h3>
+    <p>PDG particle identifier; nuclear fragments use the nuclear PDG convention.</p>
+    <h3 class="fn"><a name="p" id="p"/>TLorentzVector p</h3>
+    <p>Fragment four-momentum in GeV units.</p>
+    <h3 class="fn"><a name="name" id="name"/>string name</h3>
+    <p>Human-readable fragment name.</p>
+    <hr/>
+    <h2><a name="details" id="details"/>Detailed Description</h2>
+    <p><code>BreakupProduct</code> holds one fragment created by nuclear breakup in incoherent eA collisions. It records Gemini++ breakup output before that output is copied to the event record when breakup is enabled (via runcard or programmatically). The emission time is measured in 10<sup>-21</sup> seconds in the nucleus rest frame; its four-momentum is already boosted to the Sartre laboratory frame and, unlike nuclear entries in the main event record, is not expressed per nucleon.</p>
+    
+  
+    <h3 id="legacy-sartre1">Legacy Sartre 1 notes and examples</h3>
+    <div class="legacyNotes">
+
+<p>BreakupProduct holds information about the fragments created by nuclear breakup in incoherent eA collisions. They essentially hold the results of Gemini++ the Monte Carlo used to describe the nuclear breakup. Each fragment from Gemini++ is stored as a BreakupProduct structure and kept in a vector that is later passed and stored in the <a href="refEvent.html">event record</a> if nuclear breakup is switched on (via <a href="../runcardRef.html#enableNuclearBreakup">runcard</a> or <a href="refEventGeneratorSettings.html#m16">programmatically</a>). The emission time of the fragment is in units of 10<sup>-21</sup> seconds since the creation of the compound nucleus in the nucleus rest frame. This unit is common in NP and we left it as provided by Gemini. Note that the 4-momentum (p) is already boosted into the Sartre lab frame. 4-momenta are <strong>not</strong> expressed per nucleon here as it is done in the main <a href="refEvent.html">event record</a>.</p>
+
+    </div>
+<address>
+  <p align="right">Last Update: September 14, 2026</p>
+</address>
+</body>
+</html>

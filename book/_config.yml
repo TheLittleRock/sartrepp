@@ -1,0 +1,52 @@
+title: "Analysis of J/ψ Photoproduction in p+p Collisions at √s = 510 GeV with Sartre"
+author: "Štěpán Skalka"
+logo: "_static/logo_light.svg"
+
+repository:
+  url: "https://github.com/TheLittleRock/sartrepp"
+  path_to_book: "book"
+  branch: "main"
+
+execute:
+  execute_notebooks: "off"  # We pre-execute notebooks with jupyter nbconvert before building
+
+html:
+  favicon: "_static/favicon.png"
+  use_edit_page_button: true
+  use_repository_button: true
+  use_issues_button: true
+  extra_navbar: |
+    <div style="font-size: 0.85em; padding: 10px; color: #555;">
+      <b>Master Thesis Project</b><br>
+      Author: <b>Štěpán Skalka</b><br>
+      CTU in Prague & STAR Experiment<br>
+      Sartre 2 UPC Event Generator
+    </div>
+
+sphinx:
+  extra_extensions:
+    - sphinxcontrib.mermaid
+  config:
+    html_theme_options:
+      logo:
+        image_light: "logo_light.svg"
+        image_dark: "logo_dark.svg"
+    html_static_path: ["_static"]
+    html_extra_path: ["extra"]
+    html_css_files:
+      - custom.css
+    html_js_files:
+      - mobile-nav.js
+
+parse:
+  myst_enable_extensions:
+    - amsmath
+    - colon_fence
+    - deflist
+    - dollarmath
+    - html_admonition
+    - html_image
+    - linkify
+    - smartquotes
+    - substitution
+    - tasklist

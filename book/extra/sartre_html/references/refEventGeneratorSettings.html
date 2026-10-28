@@ -1,0 +1,341 @@
+<!--
+ //==============================================================================
+ //  refEventGeneratorSettings.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:44:24 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<html>
+  <head>
+    <title>EventGeneratorSettings</title>
+    <link href="../sartre.css" rel="stylesheet" type="text/css"/>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120" align="left" valign="top">
+          <img src="../images/sartreLogo.png" alt="Sartre" border="0" align="right"/>
+        </td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td align="left" valign="middle" class="postheader"><a href="../index.html"><font color="#004faf">Home</font></a>&#xA0;&#xB7; <a href="../overview.html"><font color="#004faf">Overview</font></a>&#xA0;&#xB7; <a href="../usersGuide.html"><font color="#004faf">User Guide</font></a>&#xA0;&#xB7; <a href="../referenceGuide.html"><font color="#004faf">Library Reference Guide</font></a></td>
+      </tr>
+    </table>
+    <!-- Page title and overview -->
+    <h1 class="title">
+      <span class="className">EventGeneratorSettings</span>
+      <span class="referenceKind">Class Reference</span>
+    </h1>
+    <p>Holds all Sartre run and configuration parameters. <a href="#details">More...</a></p>
+    <pre>#include "EventGeneratorSettings.h"</pre>
+    <!-- Reference summaries and documentation -->
+    <h2>Inheritance</h2>
+    <p>Inherits from <a href="refSettings.html">Settings</a>.</p>
+    <p>Singleton event-generation configuration. Obtain its only instance with <code>instance()</code>.</p>
+    <h2>Public Member Functions</h2>
+    <table class="alignedsummary">
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">static EventGeneratorSettings*</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m0">instance()</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m1">setNumberOfEvents(unsigned long)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">unsigned long</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m2">numberOfEvents() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m3">setTimesToShow(unsigned int)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">unsigned int</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m4">timesToShow() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m5">electronBeamEnergy() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m6">setElectronBeamEnergy(double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m7">hadronBeamEnergy() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m8">setHadronBeamEnergy(double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">TLorentzVector</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m9">eBeam() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">TLorentzVector</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m10">hBeam() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m11">correctForRealAmplitude() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m12">setCorrectForRealAmplitude(bool)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m13">correctSkewedness() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m14">setCorrectSkewedness(bool)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m15">enableNuclearBreakup() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m16">setEnableNuclearBreakup(bool)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m17">maxNuclearExcitationEnergy() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m18">setMaxNuclearExcitationEnergy(double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m19">maxLambdaUsedInCorrections() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m20">setMaxLambdaUsedInCorrections(double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m21">applyPhotonFlux() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m22">setApplyPhotonFlux(bool)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m23">hasSubstructure() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m24">setHasSubstructure(bool)</a>
+        </td>
+      </tr>
+    </table>
+    <h2>Public Member Function Documentation</h2>
+    <h3 class="fn" id="m0">static EventGeneratorSettings* instance()</h3>
+    
+<p>Static method returning a pointer to self. Note, that there is no public constructor for EventGeneratorSettings. The only way to get an instance is through this method.</p>
+
+    <h3 class="fn" id="m1">void setNumberOfEvents(unsigned long)</h3>
+    
+<p>Set number of events to generate to <var>value</var>. Equivalent runcard entry is <a href="../runcardRef.html#numberOfEvents">numberOfEvents</a>. Note that this is a user parameter and is only added for convenience since it allows to set the number of events to generate through a runcard. See example program <code>sartreMain.cpp</code> for how to use.</p>
+
+    <h3 class="fn" id="m2">unsigned long numberOfEvents() const</h3>
+    
+<p>Returns the number of events to generate. See <span class="memItemRight"><a href="#m1">setNumberOfEvents</a>(</span>).</p>
+
+    <h3 class="fn" id="m3">void setTimesToShow(unsigned int)</h3>
+    
+<p>Defines how many times the current status (number of events generated so far) should be printed. Equivalent runcard entry is <a href="../runcardRef.html#timesToShow">timesToShow</a>. Note that this is a user parameter and is only added for convenience since it allows to set this useful parameter through a runcard. See example program <code>sartreMain.cpp</code> for how to use, or example <a href="#details">above</a>.</p>
+
+    <h3 class="fn" id="m4">unsigned int timesToShow() const</h3>
+    
+<p>Returns user parameter meant to control status-printouts. See <span class="memItemRight"><a href="#m3">setTimesToShow</a></span><a href="#m3">()</a>.</p>
+
+    <h3 class="fn" id="m5">double electronBeamEnergy() const</h3>
+    
+<p>Electron beam energy in GeV.</p>
+
+    <h3 class="fn" id="m6">void setElectronBeamEnergy(double)</h3>
+    
+<p>Sets electron beam energy to <var>E</var> (in GeV). Equivalent runcard entry is <a href="../runcardRef.html#eBeamEnergy">eBeamEnergy</a><code>.</code></p>
+
+    <h3 class="fn" id="m7">double hadronBeamEnergy() const</h3>
+    
+<p>Hadron beam energy on GeV.</p>
+
+    <h3 class="fn" id="m8">void setHadronBeamEnergy(double)</h3>
+    
+<p>Sets electron beam energy to <var>E</var> (in GeV). Equivalent runcard entry is <a href="../runcardRef.html#hBeamEnergy">hBeamEnergy</a><code>.</code></p>
+
+    <h3 class="fn" id="m9">TLorentzVector eBeam() const</h3>
+    
+<p>Returns electron beam 4-vector. See <a href="http://root.cern.ch/root/html/TLorentzVector.html">ROOT documentation</a> for TLorentzVector.</p>
+
+    <h3 class="fn" id="m10">TLorentzVector hBeam() const</h3>
+    
+<p>Returns hadron beam 4-vector. See <a href="http://root.cern.ch/root/html/TLorentzVector.html">ROOT documentation</a> for TLorentzVector.</p>
+
+    <h3 class="fn" id="m11">bool correctForRealAmplitude() const</h3>
+    
+<p>Whether the correction for the missing real amplitude is switched on or off.</p>
+
+    <h3 class="fn" id="m12">void setCorrectForRealAmplitude(bool)</h3>
+    
+<p>Switch correction for real amplitude not being taken into account or or off. Equivalent runcard entry is <a href="../runcardRef.html#correctForRealAmplitude"><span class="memItemRight">correctForRealAmplitude</span></a><code>.</code></p>
+
+    <h3 class="fn" id="m13">bool correctSkewedness() const</h3>
+    
+<p>Whether the skewedness correction switched on or off.</p>
+
+    <h3 class="fn" id="m14">void setCorrectSkewedness(bool)</h3>
+    
+<p>Switch skewedness on or off. Equivalent runcard entry is <a href="../runcardRef.html#correctSkewedness"><span class="memItemRight">correctSkewedness</span></a><code>.</code></p>
+
+    <h3 class="fn" id="m15">bool enableNuclearBreakup() const</h3>
+    
+<p>Returns if nuclear break up for incoherent events is switched on or off.</p>
+
+    <h3 class="fn" id="m16">void setEnableNuclearBreakup(bool)</h3>
+    
+<p>Switch nuclear break up for incoherent events on or off. Equivalent runcard entry is <a href="../runcardRef.html#enableNuclearBreakup"><span class="memItemRight">enableNuclearBreakup</span></a><code>.</code> Note that switching nuclear breakup on slows event generation down significantly.</p>
+
+    <h3 class="fn" id="m17">double maxNuclearExcitationEnergy() const</h3>
+    
+<p>Maximum excitation energy of nuclei in incoherent events.</p>
+
+    <h3 class="fn" id="m18">void setMaxNuclearExcitationEnergy(double)</h3>
+    
+<p>Sets the maximum excitation energy of nuclei in incoherent events to <var>E</var> (in GeV). This is necessary since the underlying evaporation engine (Gemini) cannot handle too large energies. Equivalent runcard entry is <a href="../runcardRef.html#maxNuclearExcitationEnergy"><span class="memItemRight">maxNuclearExcitationEnergy</span></a><code>.</code></p>
+
+    <h3 class="fn" id="m19">double maxLambdaUsedInCorrections() const</h3>
+    
+<p>Maximum log derivate of the amplitude used in corrections.</p>
+
+    <h3 class="fn" id="m20">void setMaxLambdaUsedInCorrections(double)</h3>
+    
+<p>Sets the maximum log derivate of the amplitude used in corrections. See <span class="memItemRight"><a href="#m14">setCorrectSkewedness</a></span><a href="#m14">()</a> and <span class="memItemRight"><a href="#m12">setCorrectForRealAmplitude</a></span><a href="#m12">()</a>. Equivalent runcard entry is <a href="../runcardRef.html#maxLambdaUsedInCorrections"><span class="memItemRight">maxLambdaUsedInCorrections</span></a><code>.</code></p>
+
+    <h3 class="fn" id="m21">bool applyPhotonFlux() const</h3>
+    
+<p>Returns flag that controls if the photon flux is applied to the cross-section or not.</p>
+
+    <h3 class="fn" id="m22">void setApplyPhotonFlux(bool)</h3>
+    
+<p>Sets flag to control if the photon flux is applied in the cross-section calculation or not. This should be always on in generator mode. There are few cases (see example program <code>heraCompare.cpp</code>) when Sartre is used to calculate cross-sections only, where this might be useful. For experts only. Equivalent runcard entry is <a href="../runcardRef.html#applyPhotonFlux"><span class="memItemRight">applyPhotonFlux</span></a><code>.</code></p>
+
+    <h3 class="fn" id="m23">bool hasSubstructure() const</h3>
+    <p>Returns whether target substructure/hotspots are enabled for the event-generation run.</p>
+    <h3 class="fn" id="m24">void setHasSubstructure(bool)</h3>
+    <p>Enables or disables target substructure/hotspots for the event-generation run.</p>
+    <hr/>
+    <h2><a name="details" id="details"/>Detailed Description</h2>
+    <p><code>EventGeneratorSettings</code> is the singleton settings object used when generating events or evaluating cross sections. It extends the common <code>Settings</code> infrastructure.</p>
+    <h3 id="legacy-sartre1">Legacy Sartre 1 notes and examples</h3>
+    <div class="legacyNotes">
+
+<p>The main API for event generation is class <a href="refSartre.html">Sartre</a>. However, Sartre does not handle its settings parameters at all but defers that job to the "Settings" classes. These classes are not only simple containers for parameters but provide lots of functionality to load, print, and manage parameters and also provide some particle lookup features. The basic functionality is provided by the <a href="refSettings.html">Settings</a> class, inherited by the EventGeneratorSettings class. For creating the amplitude table a separate class needs to be used (TableGeneratorSettings), EventGeneratorSettings only deals with the parameter needed for generating events and/or calculating cross-sections.</p>
+<p>EventGeneratorSettings is a singleton class, i.e., only one instance exist at any time. One can always obtain the actual instance using the static <a href="#m0">instance()</a> method. For example:</p>
+<pre class="code">
+            // somewhere in your code
+            EventGeneratorSettings* mySettings = EventGeneratorSettings::instance();
+</pre>
+<p>The more conventional (and preferred) way of obtaining the actual instance is through your instance of <a href="refSartre.html">Sartre</a>.</p>
+<pre class="code">
+            Sartre mySartre;
+            EventGeneratorSettings* mySettings = mySartre::runSettings();
+</pre>
+<p>EventGeneratorSettings (via Settings) also provides the "runcard" mechanism, that is the possibility to store all parameters to run Sartre in a text file (the <a href="../runcardRef.html">runcard</a>) and read them in (see <a href="refSartre.html#m2">Sartre::init()</a> for details).</p>
+<p>Parameters managed by EventGeneratorSettings can be set and used via access functions. Each access function has an equivalent <a href="../runcardRef.html">runcard</a> name. For more on see the <a href="refSartre.html#details">detailed documentation</a> on the Sartre class page where also the default values for all parameters are listed.</p>
+<p>Several of the parameters listed here are strictly not mandatory to run Sartre. The are only provided for convenience to allow the user to control his program through a runcard allowing multiple runs with different parameters without the need to recompile. Two examples are the "number of events" and the "times to show" parameter. Here is an example on how to make effective use of them:</p>
+<pre class="code">
+            int nPrint;   
+            if (settings-&gt;timesToShow())   
+            nPrint = settings-&gt;numberOfEvents()/settings-&gt;timesToShow();   
+            else    
+            nPrint = 0;   
+            
+            
+            for (unsigned long iEvent = 0; iEvent &lt; settings-&gt;numberOfEvents(); iEvent++) {   
+                //   
+                //  Generate one event   
+                //   
+                Event *event = sartre.generateEvent();   
+                if (nPrint &amp;&amp; iEvent%nPrint == 0 &amp;&amp; iEvent != 0) {   
+                cout &lt;&lt; "processed " &lt;&lt; iEvent &lt;&lt; " events" &lt;&lt; endl;   
+                }
+                // you code here
+                }
+</pre>
+<p>If the timesToShow parameter was set to 20, the status is printed out exactly 20 times independent of the number of events. The number of events to process can be controlled through the runcard.</p>
+<p>Note that parameters should not be changed after the call to <a href="refSartre.html#m2">Sartre::init()</a>.</p>
+
+    </div>
+<address>
+  <p align="right">Last Update: September 14, 2026</p>
+</address>
+</body>
+</html>

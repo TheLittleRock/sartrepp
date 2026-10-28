@@ -1,0 +1,148 @@
+<!--
+ //==============================================================================
+ //  refPhotonFlux.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:44:24 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<html>
+  <head>
+    <title>PhotonFlux</title>
+    <link href="../sartre.css" rel="stylesheet" type="text/css"/>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120" align="left" valign="top">
+          <img src="../images/sartreLogo.png" alt="Sartre" border="0" align="right"/>
+        </td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td align="left" valign="middle" class="postheader"><a href="../index.html"><font color="#004faf">Home</font></a>&#xA0;&#xB7; <a href="../overview.html"><font color="#004faf">Overview</font></a>&#xA0;&#xB7; <a href="../usersGuide.html"><font color="#004faf">User Guide</font></a>&#xA0;&#xB7; <a href="../referenceGuide.html"><font color="#004faf">Library Reference Guide</font></a></td>
+      </tr>
+    </table>
+    <!-- Page title and overview -->
+    <h1 class="title">
+      <span class="className">PhotonFlux</span>
+      <span class="referenceKind">Class Reference</span>
+    </h1>
+    <p>Class reference. <a href="#details">More...</a></p>
+    <pre>#include "PhotonFlux.h"</pre>
+    <!-- Reference summaries and documentation -->
+    <h2>Public Member Functions</h2>
+    <table class="alignedsummary">
+      <tr>
+        <td class="memItemLeft" align="right" valign="top"/>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m0">PhotonFlux()</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top"/>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m1">PhotonFlux(double s)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m2">setS(double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m3">operator()(double Q2, double W2, GammaPolarization p) const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m4">operator()(double Egamma) const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m5">nuclearPhotonFlux(double Egamma) const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m6">photonFlux2(double, double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m7">formFactor(double q2, bool upcA=true) const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m8">sigma_VA(double sigma_Vp, bool isCoherent) const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m9">uiSigma_VA(double* var, double* par) const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">Nucleus*</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m10">nucleus()</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">Nucleus*</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m11">nucleusUPC()</a>
+        </td>
+      </tr>
+    </table>
+    <h2>Public Member Function Documentation</h2>
+<h3 class="fn" id="m0"> PhotonFlux()</h3>
+    <p>Constructs a photon-flux helper without an initial centre-of-mass energy.</p>
+<h3 class="fn" id="m1"> PhotonFlux(double s)</h3>
+    <p>Constructs a photon-flux helper for the supplied centre-of-mass energy squared.</p>
+<h3 class="fn" id="m2">void setS(double)</h3>
+    <p>Sets the centre-of-mass energy squared used by electroproduction flux calculations.</p>
+<h3 class="fn" id="m3">double operator()(double Q2, double W2, GammaPolarization p) const</h3>
+    <p>Returns the virtual-photon flux at the supplied <em>Q</em><sup>2</sup>, <em>W</em><sup>2</sup>, and photon polarization.</p>
+<h3 class="fn" id="m4">double operator()(double Egamma) const</h3>
+    <p>Returns the equivalent-photon flux at the supplied photon energy.</p>
+<h3 class="fn" id="m5">double nuclearPhotonFlux(double Egamma) const</h3>
+    <p>Returns the nuclear equivalent-photon flux at the supplied photon energy.</p>
+<h3 class="fn" id="m6">double photonFlux2(double, double)</h3>
+    <p>Evaluates an alternate two-argument photon-flux form used internally.</p>
+<h3 class="fn" id="m7">double formFactor(double q2, bool upcA=true) const</h3>
+    <p>Returns the nuclear form factor at the supplied momentum-transfer squared; the flag selects the UPC nucleus.</p>
+<h3 class="fn" id="m8">double sigma_VA(double sigma_Vp, bool isCoherent) const</h3>
+    <p>Converts a vector-meson&#x2013;proton cross section into the corresponding vector-meson&#x2013;nucleus cross section for coherent or incoherent production.</p>
+<h3 class="fn" id="m9">double uiSigma_VA(double* var, double* par) const</h3>
+    <p>Internal numerical-integration wrapper for the vector-meson&#x2013;nucleus cross section.</p>
+<h3 class="fn" id="m10">Nucleus* nucleus()</h3>
+    <p>Returns the nucleus object used by the electroproduction flux calculation.</p>
+<h3 class="fn" id="m11">Nucleus* nucleusUPC()</h3>
+    <p>Returns the nucleus object used by the UPC flux calculation.</p>
+    <hr/>
+    <h2><a name="details" id="details"/>Detailed Description</h2>
+    <p>Calculates equivalent-photon fluxes for lepton--hadron and ultraperipheral-collision calculations. It provides polarization-dependent DIS fluxes, UPC photon fluxes, nuclear form factors, and related photon--nucleus helpers.</p>
+  <address>
+    <p align="right">Last Update: September 14, 2026</p>
+  </address>
+  </body>
+</html>

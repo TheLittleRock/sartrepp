@@ -1,0 +1,157 @@
+<!--
+ //==============================================================================
+ //  refSartreInclusiveDiffraction.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:44:24 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<html>
+  <head>
+    <link href="../sartre.css" rel="stylesheet" type="text/css"/>
+    <title>SartreInclusiveDiffraction</title>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120" align="left" valign="top">
+          <img src="../images/sartreLogo.png" alt="Sartre" border="0" align="right"/>
+        </td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td align="left" valign="middle" class="postheader"><a href="../index.html"><font color="#004faf">Home</font></a>&#xA0;&#xB7; <a href="../overview.html"><font color="#004faf">Overview</font></a>&#xA0;&#xB7; <a href="../usersGuide.html"><font color="#004faf">User Guide</font></a>&#xA0;&#xB7; <a href="../referenceGuide.html"><font color="#004faf">Library Reference Guide</font></a></td>
+      </tr>
+    </table>
+    <!-- Page title and overview -->
+    <h1 class="title">
+      <span class="className">SartreInclusiveDiffraction</span>
+      <span class="referenceKind">Class Reference</span>
+    </h1>
+    <p>Class reference. <a href="#details">More...</a></p>
+    <pre>#include "SartreInclusiveDiffraction.h"</pre>
+    <p>Inclusive-diffraction event generator.</p>
+    <!-- Reference summaries and documentation -->
+    <h2>Public Member Functions</h2>
+    <table class="alignedsummary">
+      <tr>
+        <td class="memItemLeft" align="right" valign="top"/>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m0">SartreInclusiveDiffraction()</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top"/>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m1">~SartreInclusiveDiffraction()</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m2">init(const char* = 0)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m3">init(const string&amp;)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">Event*</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m4">generateEvent()</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m5">totalCrossSection()</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m6">totalCrossSection(double lower[4], double upper[4])</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m7">integrationVolume()</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">EventGeneratorSettings*</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m8">runSettings()</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">const FrangibleNucleus*</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m9">nucleus() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m10">listStatus(ostream&amp; os=cout) const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">time_t</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m11">runTime() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">vector&lt;pair&lt;double,double&gt; &gt;</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m12">kinematicLimits()</a>
+        </td>
+      </tr>
+    </table>
+    <h2>Public Member Function Documentation</h2>
+    <h3 class="fn" id="m0"> SartreInclusiveDiffraction()</h3>
+    <p>Constructs the inclusive-diffraction event generator.</p>
+    <h3 class="fn" id="m1"> ~SartreInclusiveDiffraction()</h3>
+    <p>Destroys the inclusive-diffraction event generator and its owned resources.</p>
+    <h3 class="fn" id="m2">bool init(const char* = 0)</h3>
+    <p>Initialises the generator from the default or supplied runcard filename.</p>
+    <h3 class="fn" id="m3">bool init(const string&amp;)</h3>
+    <p>Initialises the generator from the supplied runcard path.</p>
+    <h3 class="fn" id="m4">Event* generateEvent()</h3>
+    <p>Generates and returns one inclusive-diffraction event; ownership remains with the generator.</p>
+    <h3 class="fn" id="m5">double totalCrossSection()</h3>
+    <p>Returns the total inclusive cross section in the configured generation limits.</p>
+    <h3 class="fn" id="m6">double totalCrossSection(double lower[4], double upper[4])</h3>
+    <p>Returns the total inclusive cross section integrated over the supplied &#x3B2;, <em>Q</em><sup>2</sup>, <em>W</em><sup>2</sup>, and <em>z</em> bounds.</p>
+    <h3 class="fn" id="m7">double integrationVolume()</h3>
+    <p>Returns the phase-space integration volume used for cross-section integration.</p>
+    <h3 class="fn" id="m8">EventGeneratorSettings* runSettings()</h3>
+    <p>Returns the event-generator settings used by this run.</p>
+    <h3 class="fn" id="m9">const FrangibleNucleus* nucleus() const</h3>
+    <p>Returns the configured frangible nuclear target, when applicable.</p>
+    <h3 class="fn" id="m10">void listStatus(ostream&amp; os=cout) const</h3>
+    <p>Writes current run status and counters to the supplied output stream.</p>
+    <h3 class="fn" id="m11">time_t runTime() const</h3>
+    <p>Returns the elapsed run time since initialisation.</p>
+    <h3 class="fn" id="m12">vector&lt;pair&lt;double,double&gt; &gt; kinematicLimits()</h3>
+    <p>Returns the current kinematic limits as lower/upper pairs.</p>
+    <hr/>
+    <h2><a name="details" id="details"/>Detailed Description</h2>
+    <p>Main public interface for inclusive-diffractive Sartre event generation. It initializes the direct or table-backed inclusive cross-section calculation, samples beta--Q&#xB2;--W--z phase space, and exposes generated events and integrated cross sections.</p>
+  <address>
+    <p align="right">Last Update: September 14, 2026</p>
+  </address>
+  </body>
+</html>

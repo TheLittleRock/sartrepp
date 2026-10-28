@@ -1,0 +1,119 @@
+<!--
+ //==============================================================================
+ //  refAlphaStrong.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:44:24 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<html>
+  <head>
+    <title>AlphaStrong</title>
+    <link href="../sartre.css" rel="stylesheet" type="text/css"/>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120" align="left" valign="top">
+          <img src="../images/sartreLogo.png" alt="Sartre" border="0" align="right"/>
+        </td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td align="left" valign="middle" class="postheader"><a href="../index.html"><font color="#004faf">Home</font></a>&#xA0;&#xB7; <a href="../overview.html"><font color="#004faf">Overview</font></a>&#xA0;&#xB7; <a href="../usersGuide.html"><font color="#004faf">User Guide</font></a>&#xA0;&#xB7; <a href="../referenceGuide.html"><font color="#004faf">Library Reference Guide</font></a></td>
+      </tr>
+    </table>
+    <!-- Page title and overview -->
+    <h1 class="title">
+      <span class="className">AlphaStrong</span>
+      <span class="referenceKind">Class Reference</span>
+    </h1>
+    <p>Running strong-coupling evaluator. <a href="#details">More...</a></p>
+    <pre>#include "AlphaStrong.h"</pre>
+    <!-- Reference summaries and documentation -->
+    <h2>Public Member Functions</h2>
+    <table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tbody>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top"/>
+          <td class="memItemRight" valign="bottom" align="left"><a href="#AlphaStrong">AlphaStrong</a>(int order = 0, double fr2 = 1, double mur = 91.1876, double asmur = 0.1183, double mc = 1.3528, double mb = 4.75, double mt = 175)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#at">at</a>(double Q2)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">int</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#order">order</a>() const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#massCharm">massCharm</a>() const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#massBottom">massBottom</a>() const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#massTop">massTop</a>() const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#ratioFR2">ratioFR2</a>() const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#alphasAtMuR">alphasAtMuR</a>() const</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr/>
+    <h2>Public Member Function Documentation</h2>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="AlphaStrong" id="AlphaStrong"/>AlphaStrong(int <var>order</var> = 0, double <var>fr2</var> = 1, double <var>mur</var> = 91.1876, double <var>asmur</var> = 0.1183, double <var>mc</var> = 1.3528, double <var>mb</var> = 4.75, double <var>mt</var> = 175)</span>
+    </h3>
+    <p>Constructs running coupling with perturbative order, scale ratio, reference scale/coupling, and heavy-quark masses.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="at" id="at"/>double at(double <var>Q2</var>)</span>
+    </h3>
+    <p>Returns alpha_s at scale <var>Q2</var> in GeV&#xB2;.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="order" id="order"/>int order() const</span>
+    </h3>
+    <p>Returns the configured perturbative order.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="massCharm" id="massCharm"/>double massCharm() const</span>
+    </h3>
+    <p>Returns the configured charm-quark mass.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="massBottom" id="massBottom"/>double massBottom() const</span>
+    </h3>
+    <p>Returns the configured bottom-quark mass.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="massTop" id="massTop"/>double massTop() const</span>
+    </h3>
+    <p>Returns the configured top-quark mass.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="ratioFR2" id="ratioFR2"/>double ratioFR2() const</span>
+    </h3>
+    <p>Returns the configured ratio of mu_f&#xB2; to mu_r&#xB2;.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="alphasAtMuR" id="alphasAtMuR"/>double alphasAtMuR() const</span>
+    </h3>
+    <p>Returns the input alpha_s value at the reference scale mu_r.</p>
+    <hr/>
+    <h2><a name="details" id="details"/>Detailed Description</h2>
+    <p>Provides the running strong coupling used by the dipole-model calculations. It obtains the relevant scale from the active dipole-model parameters and exposes the coupling as a small callable utility.</p>
+  <address>
+    <p align="right">Last Update: September 14, 2026</p>
+  </address>
+  </body>
+</html>

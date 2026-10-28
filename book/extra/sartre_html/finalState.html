@@ -1,0 +1,107 @@
+<!--
+ //==============================================================================
+ //  finalState.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:33:37 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<!-- Sartre 2 final-state generation overview. -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en_US" lang="en_US">
+  <head>
+    <title>Sartre 2 - Final-State Particle Generation</title>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+    <link href="sartre.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <!-- Standard documentation navigation. -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120" align="left" valign="top"><img src="images/sartreLogo.png" alt="Sartre" border="0" align="right" /></td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td align="left" valign="middle" class="postheader">
+          <a href="index.html"><font color="#004faf">Home</font></a>&#xA0;&#xB7;
+          <a href="overview.html"><font color="#004faf">Overview</font></a>&#xA0;&#xB7;
+          <a href="usersGuide.html"><font color="#004faf">User Guide</font></a>&#xA0;&#xB7;
+          <a href="referenceGuide.html"><font color="#004faf">Library Reference Guide</font></a>
+        </td>
+      </tr>
+    </table>
+
+    <h1 class="title">Final-State Particle Generation</h1>
+
+    <p>Sar<em>t</em>re separates the physics calculation that selects an event's kinematics from construction of its final-state particles. The final-state generator turns the generated variables and beam four-momenta into a consistent <a href="references/refEvent.html">Event</a> record.</p>
+
+    <h2>Exclusive diffraction</h2>
+
+    <p>Sar<em>t</em>re generates processes of the form <em>e p &#x2192; e' p' V</em> and <em>e A &#x2192; e' A' V</em>, where <em>V</em> can be any vector meson. This process is special because the final-state particles—<em>e'</em>, <em>p'</em> or <em>A'</em>, and <em>V</em>—can be almost completely determined from <em>t</em>, <em>W</em>, and <em>Q</em>.</p>
+
+    <p>The beam energies of the incoming electron and proton or nucleus are inputs to the generator. Sartre generates <em>t</em>, <em>W</em>, and <em>Q</em>, and therefore also <em>y</em> and <em>x</em>. This information is sufficient to derive the four-momenta of <em>e'</em>, <em>p'</em>, and <em>V</em>. The following describes the calculation implemented by <a href="references/refExclusiveFinalStateGenerator.html">ExclusiveFinalStateGenerator</a>, used by <a href="references/refSartre.html">Sartre</a>. Four-vectors are written in bold.</p>
+
+    <h3>Input</h3>
+    <ul>
+      <li>Incoming electron: <em><strong>q</strong> = (E<sub>e</sub>, 0, 0, q<sub>z</sub>)</em></li>
+      <li>Incoming proton or nucleus: <em><strong>p</strong> = (E<sub>p</sub>, 0, 0, p<sub>z</sub>)</em></li>
+      <li><em>s, t, x, y, Q, W</em></li>
+    </ul>
+    <p>The beam electron comes from the right, so <em>q<sub>z</sub></em> is negative. The proton or nuclear beam comes from the left, so <em>p<sub>z</sub></em> is positive.</p>
+
+    <h3>Scattered electron</h3>
+    <p>The scattered-electron momentum <strong><em>q'</em></strong> is calculated from the generated kinematics:</p>
+    <p><img src="images/scatteredElectron.png" alt="Scattered-electron kinematics" width="416" height="158" /></p>
+    <p>To form a true four-momentum, an azimuthal angle must be selected. This does not change <em>q'<sub>t</sub></em> or <em>q'<sub>z</sub></em>, so the azimuth <em>&#x3C6;</em> is chosen randomly and uniformly in [0, 2&#x3C0;[. The final value is <em><strong>q'</strong> = (E'<sub>e</sub>, q'<sub>t</sub> sin &#x3C6;, q'<sub>t</sub> cos &#x3C6;, q'<sub>z</sub>)</em>.</p>
+
+    <h3>Virtual photon</h3>
+    <p>The virtual-photon four-momentum follows directly from the incoming and scattered electron:</p>
+    <p><img src="images/photon.png" alt="Virtual-photon kinematics" width="334" height="152" /></p>
+
+    <h3>Scattered proton or nucleus</h3>
+    <p>This reconstruction is less direct. From the definition <em>t = (<strong>p</strong> - <strong>p'</strong>)<sup>2</sup></em>, one relation follows immediately:</p>
+    <p><img src="images/scatteredProton1.png" alt="First scattered-proton relation" width="181" height="45" /></p>
+    <p>Additional relations, again using a randomly selected azimuthal angle, are:</p>
+    <p><img src="images/scatteredProton2.png" alt="Additional scattered-proton relations" width="208" height="88" /></p>
+    <p>The remaining issue is the scattered-target energy <em>E'</em>. Once it is known, the other components are fixed. Here it helps that there is only one generated particle, the vector meson, with a defined mass <em>m<sub>V</sub></em>:</p>
+    <p><img src="images/scatteredProton3.png" alt="Vector-meson mass constraint" width="164" height="22" /></p>
+    <p><strong><em>p</em></strong><em><sub>&#x3B3;</sub></em> and <strong><em>p</em></strong> are known. There are three unknowns—<em>E'</em>, <em>p'<sub>z</sub></em>, and <em>p'<sub>t</sub></em>—and three equations. The equations are nonlinear and do not have a simple analytical solution. <code>ExclusiveFinalStateGenerator</code> uses a Brent root finder to solve them. Once <em>E'</em> is known, the momenta can be calculated directly; the search is limited to the kinematically valid range.</p>
+
+    <h3>Vector meson</h3>
+    <p>The vector-meson four-momentum is then obtained from conservation of four-momentum:</p>
+    <p class="latex"><strong><em>p</em></strong><em><sub>V</sub></em> = (<strong><em>p</em></strong> + <strong><em>q</em></strong> - <strong><em>q'</em></strong> - <strong><em>p'</em></strong>)</p>
+    <p>The implementation includes additional checks, but this is the basic construction.</p>
+
+    <p>For incoherent nuclear events, the recoiling nuclear system can subsequently be passed to the nuclear-breakup model when <code>enableNuclearBreakup=true</code>. Stable breakup fragments are then appended to the event record. See <a href="epeAMode.html">ep and eA Modes</a> for the coherent/incoherent distinction.</p>
+
+    <h2>Inclusive diffraction</h2>
+
+    <p>Sartre 2 adds inclusive diffractive DIS, <em>e + p/A &#x2192; e' + p'/A' + X</em>. The diffractive system <em>X</em> does not have a predetermined hadronic composition. Sartre first reconstructs the scattered electron, virtual photon, and recoiling target from the generated inclusive kinematics. It then constructs a partonic <em>q</em><em>q</em>&#x0305; or <em>q</em><em>q</em>&#x0305;<em>g</em> state with the selected quark flavour, momentum fractions, and colour connections.</p>
+
+    <p>The <a href="references/refInclusiveFinalStateGenerator.html">InclusiveFinalStateGenerator</a> hands that colour-connected partonic system to Pythia 8. Sartre disables Pythia's hard-process generation and uses it as a hadronizer. Pythia's standard Lund string-fragmentation model converts the coloured partons into colour-neutral hadrons and performs the relevant decays. The resulting Pythia particles are copied into the Sartre event record, together with their PDG identifiers, four-momenta, status values, and available parent/daughter relations.</p>
+
+    <p>This is why an inclusive Sartre 2 build requires Pythia 8. The process is inclusive at the diffractive-system level, while the produced Sartre event contains an exclusive list of generated hadrons. The number of Pythia particles stored in the event is recorded in <code>Event::numberOfPythiaParticlesStored</code>.</p>
+
+    <h2>Event records</h2>
+
+    <p>In both workflows, the event record contains the incoming beams, scattered particles, generated final state, and the corresponding kinematic variables. The record is replaced by the next generated event; make a copy if it must be retained. The <a href="references/refEvent.html">Event</a> and <a href="references/refParticle.html">Particle</a> reference pages document its layout and status conventions.</p>
+
+    <h2>Further reading</h2>
+
+    <p>For the exclusive dipole-model framework, see the <a href="dipoleModel.html">Dipole Model</a> documentation. For the fragmentation model used by Pythia 8, see the <a href="https://pythia.org/latest-manual/StringFragmentation.html">Pythia 8 Lund string-fragmentation documentation</a>.</p>
+
+    <address><div align="center">
+      <table border="0" cellspacing="0" width="100%"><tbody><tr class="address">
+        <td align="left" width="40%">&#xA0;</td>
+        <td align="center" width="20%">&#xA0;</td>
+        <td align="right" width="40%"><div align="right"><br />Last Update: September 14, 2026</div></td>
+      </tr></tbody></table>
+    </div></address>
+  </body>
+</html>

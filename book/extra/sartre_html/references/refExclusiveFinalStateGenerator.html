@@ -1,0 +1,73 @@
+<!--
+ //==============================================================================
+ //  refExclusiveFinalStateGenerator.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:44:24 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<html>
+  <head>
+    <title>ExclusiveFinalStateGenerator</title>
+    <link href="../sartre.css" rel="stylesheet" type="text/css"/>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120" align="left" valign="top">
+          <img src="../images/sartreLogo.png" alt="Sartre" border="0" align="right"/>
+        </td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td align="left" valign="middle" class="postheader"><a href="../index.html"><font color="#004faf">Home</font></a>&#xA0;&#xB7; <a href="../overview.html"><font color="#004faf">Overview</font></a>&#xA0;&#xB7; <a href="../usersGuide.html"><font color="#004faf">User Guide</font></a>&#xA0;&#xB7; <a href="../referenceGuide.html"><font color="#004faf">Library Reference Guide</font></a></td>
+      </tr>
+    </table>
+    <!-- Page title and overview -->
+    <h1 class="title">
+      <span class="className">ExclusiveFinalStateGenerator</span>
+      <span class="referenceKind">Class Reference</span>
+    </h1>
+    <p>Class reference. <a href="#details">More...</a></p>
+    <pre>#include "ExclusiveFinalStateGenerator.h"</pre>
+    <!-- Reference summaries and documentation -->
+    <h2>Inheritance</h2>
+    <p>Inherits from <a href="refFinalStateGenerator.html">FinalStateGenerator</a>.</p>
+    <p>Final-state builder used by <a href="refSartre.html">Sartre</a>.</p>
+    <h2>Public Member Functions</h2>
+    <table class="alignedsummary">
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top"><a href="#generate">generate</a>(int id,double t,double y,double Q2,bool incoherent,int A,Event* event)</td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top"><a href="#upc">generate</a>(int id,double xpom,bool incoherent,int A,Event* event)</td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top"><a href="#xpom">xpomMin</a>(double massVM,double t,TLorentzVector hadron,TLorentzVector electron)</td>
+      </tr>
+    </table>
+    <h2>Member Function Documentation</h2>
+    <h3 class="fn" id="generate">bool generate(int id, double t, double y, double Q2, bool isIncoherent, int A, Event* event)</h3>
+    <p>Builds an exclusive electroproduction event from PDG <var>id</var>, kinematics, coherent/incoherent flag, target mass number <var>A</var>, and output <var>event</var>. Returns success.</p>
+    <h3 class="fn" id="upc">bool generate(int id, double xpom, bool isIncoherent, int A, Event* event)</h3>
+    <p>Builds a UPC exclusive event from the produced-particle PDG identifier, <em>x</em><sub>&#x2119;</sub>, coherent/incoherent flag, target mass number, and output event. Returns success.</p>
+    <h3 class="fn" id="xpom">double xpomMin(double massVM, double t, TLorentzVector hBeam, TLorentzVector eBeam)</h3>
+    <p>Returns the UPC lower x-pomeron limit for the supplied masses, t, and beams.</p>
+    <hr/>
+    <h2><a name="details" id="details"/>Detailed Description</h2>
+    <p>Builds the exclusive final state after the exclusive event kinematics have been sampled. It creates the produced vector meson or DVCS final state and records the corresponding particles in the Event.</p>
+  <address>
+    <p align="right">Last Update: September 14, 2026</p>
+  </address>
+  </body>
+</html>

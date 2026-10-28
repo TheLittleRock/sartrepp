@@ -1,0 +1,201 @@
+<!--
+ //==============================================================================
+ //  refCrossSection.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:44:24 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>Sartre 2 - CrossSection Class Reference</title>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+    <link href="../sartre.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120" align="left" valign="top">
+          <img src="../images/sartreLogo.png" alt="Sartre" border="0" align="right" />
+        </td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td align="left" valign="middle" class="postheader"><a href="../index.html"><font color="#004faf">Home</font></a>&#xA0;&#xB7; <a href="../overview.html"><font color="#004faf">Overview</font></a>&#xA0;&#xB7; <a href="../usersGuide.html"><font color="#004faf">User Guide</font></a>&#xA0;&#xB7; <a href="../referenceGuide.html"><font color="#004faf">Library Reference Guide</font></a></td>
+      </tr>
+    </table>
+    <!-- Page title and overview -->
+    <h1 class="title">
+      <span class="className">CrossSection</span>
+      <span class="referenceKind">Class Reference</span>
+    </h1>
+    <p>Functor for exclusive and UPC cross sections. <a href="#details">More...</a></p>
+    <pre><span class="preprocessor">#include</span> "CrossSection.h"</pre>
+    <!-- Reference summaries and documentation -->
+    <h2>Public Member Functions</h2>
+    <table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tbody>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top"></td>
+          <td class="memItemRight" valign="top" align="left"><a href="#CrossSection">CrossSection</a>(TableCollection* = 0, TableCollection* = 0)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top"></td>
+          <td class="memItemRight" valign="top" align="left"><a href="#dtor">~CrossSection</a>()</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#operator3">operator()</a>(double t, double Q2, double W2)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#operator2">operator()</a>(double t, double xpom)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#operatorArray">operator()</a>(const double*)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#unuranPDF">unuranPDF</a>(const double*)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">void</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#setTableCollection">setTableCollection</a>(TableCollection*)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">void</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#setProtonTableCollection">setProtonTableCollection</a>(TableCollection*)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">GammaPolarization</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#polarizationOfLastCall">polarizationOfLastCall</a>() const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">DiffractiveMode</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#diffractiveModeOfLastCall">diffractiveModeOfLastCall</a>() const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#crossSectionRatioLTOfLastCall">crossSectionRatioLTOfLastCall</a>() const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">void</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#setCheckKinematics">setCheckKinematics</a>(bool)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#dsigdtdQ2dW2_total">dsigdtdQ2dW2_total</a>(double t, double Q2, double W2, GammaPolarization) const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#dPdlogk2">dPdlogk2</a>(double*, double*)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#dsigdt_coherent">dsigdt_coherent</a>(double t, double xpom) const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#dsigmadp2dy_FFT">dsigmadp2dy_FFT</a>(double p2, double y, int nBins) const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#dsigdtdxp_incoherent">dsigdtdxp_incoherent</a>(double t, double xpom) const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#dsigdtdxp_coherent">dsigdtdxp_coherent</a>(double t, double xpom, int nBins = 512) const</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr />
+    <h2>Public Member Function Documentation</h2>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="CrossSection" id="CrossSection"></a>CrossSection(TableCollection* <var>tables</var> = 0, TableCollection* <var>protonTables</var> = 0)</span>
+    </h3>
+    <p>Constructs a cross-section functor using optional nuclear and proton table collections.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="dtor" id="dtor"></a>~CrossSection()</span>
+    </h3>
+    <p>Destructor.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="operator3" id="operator3"></a>double operator()(double <var>t</var>, double <var>Q2</var>, double <var>W2</var>)</span>
+    </h3>
+    <p>Returns the exclusive differential cross section for the requested kinematic point. The header comment states the unit as nb/GeV<sup>6</sup> for d<sup>3</sup>sigma/(dt dQ2 dW2).</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="operator2" id="operator2"></a>double operator()(double <var>t</var>, double <var>xpom</var>)</span>
+    </h3>
+    <p>UPC overload using momentum transfer <var>t</var> and Pomeron momentum fraction <var>xpom</var>.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="operatorArray" id="operatorArray"></a>double operator()(const double* <var>x</var>)</span>
+    </h3>
+    <p>Array interface used by numerical integration. For non-UPC calls the array contains <var>t</var>, <var>Q2</var>, <var>W2</var>; for UPC calls it contains <var>t</var>, <var>xpom</var>.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="unuranPDF" id="unuranPDF"></a>double unuranPDF(const double* <var>x</var>)</span>
+    </h3>
+    <p>UNU.RAN callback. Uses logarithmic Q2, or logarithmic xpom for UPC, and returns the logarithm of the cross section.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="setTableCollection" id="setTableCollection"></a>void setTableCollection(TableCollection* <var>tables</var>)</span>
+    </h3>
+    <p>Sets the main table collection used by subsequent evaluations.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="setProtonTableCollection" id="setProtonTableCollection"></a>void setProtonTableCollection(TableCollection* <var>tables</var>)</span>
+    </h3>
+    <p>Sets the proton table collection used when a cross-section evaluation needs proton amplitudes in addition to the main table collection.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="polarizationOfLastCall" id="polarizationOfLastCall"></a>GammaPolarization polarizationOfLastCall() const</span>
+    </h3>
+    <p>Returns the photon polarization chosen in the last cross-section evaluation.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="diffractiveModeOfLastCall" id="diffractiveModeOfLastCall"></a>DiffractiveMode diffractiveModeOfLastCall() const</span>
+    </h3>
+    <p>Returns the coherent or incoherent diffractive mode chosen in the last cross-section evaluation.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="crossSectionRatioLTOfLastCall" id="crossSectionRatioLTOfLastCall"></a>double crossSectionRatioLTOfLastCall() const</span>
+    </h3>
+    <p>Returns the longitudinal/transverse cross-section ratio computed for the last evaluation.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="setCheckKinematics" id="setCheckKinematics"></a>void setCheckKinematics(bool <var>on</var>)</span>
+    </h3>
+    <p>Enables or disables kinematic validation before evaluating cross sections.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="dsigdtdQ2dW2_total" id="dsigdtdQ2dW2_total"></a>double dsigdtdQ2dW2_total(double <var>t</var>, double <var>Q2</var>, double <var>W2</var>, GammaPolarization <var>pol</var>) const</span>
+    </h3>
+    <p>Returns the total exclusive differential cross section at <var>t</var>, <var>Q2</var>, and <var>W2</var> for the requested photon polarization.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="dPdlogk2" id="dPdlogk2"></a>double dPdlogk2(double* <var>x</var>, double* <var>par</var>)</span>
+    </h3>
+    <p>Internal probability-density callback, differential in logarithmic transverse-momentum-squared, used by the sampler.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="dsigdt_coherent" id="dsigdt_coherent"></a>double dsigdt_coherent(double <var>t</var>, double <var>xpom</var>) const</span>
+    </h3>
+    <p>Returns the coherent UPC d sigma/dt for <var>t</var> and <var>xpom</var>.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="dsigmadp2dy_FFT" id="dsigmadp2dy_FFT"></a>double dsigmadp2dy_FFT(double <var>p2</var>, double <var>y</var>, int <var>nBins</var>) const</span>
+    </h3>
+    <p>Evaluates the coherent UPC cross section differential in transverse-momentum-squared and rapidity with the FFT implementation. <var>nBins</var> selects the numerical Fourier-grid resolution.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="dsigdtdxp_incoherent" id="dsigdtdxp_incoherent"></a>double dsigdtdxp_incoherent(double <var>t</var>, double <var>xpom</var>) const</span>
+    </h3>
+    <p>Returns the incoherent UPC differential cross section in <var>t</var> and <var>xpom</var>.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="dsigdtdxp_coherent" id="dsigdtdxp_coherent"></a>double dsigdtdxp_coherent(double <var>t</var>, double <var>xpom</var>, int <var>nBins</var> = 512) const</span>
+    </h3>
+    <p>Returns the coherent UPC differential cross section in <var>t</var> and <var>xpom</var>. <var>nBins</var> controls the numerical resolution for the coherent UPC calculation.</p>
+    <hr />
+    <h2><a name="details" id="details"></a>Detailed Description</h2>
+    <p><code>CrossSection</code> evaluates exclusive vector-meson/DVCS cross sections from Sartre tables. It supports the usual ep/eA variables <var>t</var>, <var>Q2</var>, and <var>W2</var>, and UPC variables <var>t</var> and <var>xpom</var>. The main functor returns total cross sections and records which polarization and diffractive mode were used for the last accepted call.</p>
+  <address>
+    <p align="right">Last Update: September 14, 2026</p>
+  </address>
+  </body>
+</html>

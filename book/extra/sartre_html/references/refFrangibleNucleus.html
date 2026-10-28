@@ -1,0 +1,155 @@
+<!--
+ //==============================================================================
+ //  refFrangibleNucleus.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:44:24 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Sartre 2 - FrangibleNucleus Class Reference</title>
+    <link href="../sartre.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120" align="left" valign="top">
+          <img src="../images/sartreLogo.png" alt="Sartre" border="0" align="right" />
+        </td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td align="left" valign="middle" class="postheader"><a href="../index.html"><font color="#004faf">Home</font></a>&#xA0;&#xB7; <a href="../overview.html"><font color="#004faf">Overview</font></a>&#xA0;&#xB7; <a href="../usersGuide.html"><font color="#004faf">User Guide</font></a>&#xA0;&#xB7; <a href="../referenceGuide.html"><font color="#004faf">Library Reference Guide</font></a></td>
+      </tr>
+    </table>
+    <!-- Page title and overview -->
+    <h1 class="title">
+      <span class="className">FrangibleNucleus</span>
+      <span class="referenceKind">Class Reference</span>
+    </h1>
+    <p>Nucleus implementation that can generate nuclear-breakup products. <a href="#details">More...</a></p>
+    <pre><span class="preprocessor">#include</span> "FrangibleNucleus.h"</pre>
+    <!-- Reference summaries and documentation -->
+    <h2>Inheritance</h2>
+    <p>Inherits from <a href="refNucleus.html">Nucleus</a>.</p>
+    <h2>Public Member Functions</h2>
+    <table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tbody>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top"></td>
+          <td class="memItemRight" valign="bottom" align="left"><a href="#FrangibleNucleus">FrangibleNucleus</a>()</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top"></td>
+          <td class="memItemRight" valign="top" align="left"><a href="#FrangibleNucleusCopy">FrangibleNucleus</a>(const FrangibleNucleus&amp;)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top"></td>
+          <td class="memItemRight" valign="top" align="left"><a href="#FrangibleNucleusA">FrangibleNucleus</a>(unsigned int A, bool enableBreakup = false)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top"></td>
+          <td class="memItemRight" valign="top" align="left"><a href="#dtor">~FrangibleNucleus</a>()</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">void</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#init">init</a>(unsigned int A)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">void</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#initBreakup">init</a>(unsigned int A, bool enableBreakup)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">FrangibleNucleus&amp;</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#operatorAssign">operator=</a>(const FrangibleNucleus&amp;)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">int</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#breakup">breakup</a>(const TLorentzVector&amp;)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">const vector&lt;BreakupProduct&gt;&amp;</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#breakupProducts">breakupProducts</a>() const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">void</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#listBreakupProducts">listBreakupProducts</a>(ostream&amp; = cout) const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">void</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#resetBreakup">resetBreakup</a>()</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr />
+    <h2>Public Member Function Documentation</h2>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="FrangibleNucleus" id="FrangibleNucleus"></a>FrangibleNucleus()</span>
+    </h3>
+    <p>Constructs an uninitialized frangible nucleus.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="FrangibleNucleusCopy" id="FrangibleNucleusCopy"></a>FrangibleNucleus(const FrangibleNucleus&amp; <var>other</var>)</span>
+    </h3>
+    <p>Copy constructor.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="FrangibleNucleusA" id="FrangibleNucleusA"></a>FrangibleNucleus(unsigned int <var>A</var>, bool <var>enableBreakup</var> = false)</span>
+    </h3>
+    <p>Constructs a nucleus with mass number <var>A</var>; <var>enableBreakup</var> enables breakup handling.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="dtor" id="dtor"></a>~FrangibleNucleus()</span>
+    </h3>
+    <p>Destructor.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="init" id="init"></a>void init(unsigned int <var>A</var>)</span>
+    </h3>
+    <p>Initializes the nucleus for mass number <var>A</var>.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="initBreakup" id="initBreakup"></a>void init(unsigned int <var>A</var>, bool <var>enableBreakup</var>)</span>
+    </h3>
+    <p>Initializes the nucleus and selects whether breakup handling is enabled.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="operatorAssign" id="operatorAssign"></a>FrangibleNucleus&amp; operator=(const FrangibleNucleus&amp; <var>other</var>)</span>
+    </h3>
+    <p>Assigns the state of <var>other</var> and returns this object.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="breakup" id="breakup"></a>int breakup(const TLorentzVector&amp; <var>p</var>)</span>
+    </h3>
+    <p>Breaks up a nucleus with four-momentum <var>p</var> and returns the number of generated fragments.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="breakupProducts" id="breakupProducts"></a>const vector&lt;BreakupProduct&gt;&amp; breakupProducts() const</span>
+    </h3>
+    <p>Returns the generated stable breakup products.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="listBreakupProducts" id="listBreakupProducts"></a>void listBreakupProducts(ostream&amp; <var>os</var> = cout) const</span>
+    </h3>
+    <p>Writes the stable breakup products to <var>os</var>.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="resetBreakup" id="resetBreakup"></a>void resetBreakup()</span>
+    </h3>
+    <p>Clears the breakup state and stored products.</p>
+    <hr />
+    <h2><a name="details" id="details"></a>Detailed Description</h2>
+    <p><code>FrangibleNucleus</code> represents the event-generation nucleus and inherits the descriptive geometry of <code>Nucleus</code>. Sartre initializes it internally, but the current object is available through <code>Sartre::nucleus()</code>.</p>
+    <p>After an incoherent event, when nuclear breakup is enabled, its breakup products are retained in the event record and can also be inspected through this nucleus object.</p>
+  
+    <h3 id="legacy-sartre1">Legacy Sartre 1 notes and examples</h3>
+    <div class="legacyNotes">
+
+<p>The <code>FrangibleNucleus</code> class represent a nucleus in Sartre, inheriting all descriptive features form <a href="refNucleus.html">Nucleus</a>. The user does not have to care about the class or its initialization since it is all handled internally in <a href="refSartre.html">Sartre</a>. However, the actual instance of this class is always accessible through <a href="refSartre.html#m8">Sartre::nucleus()</a>. After an incoherent event is generated <strong>and</strong> nuclear breakup is switched on (via <a href="../runcardRef.html#enableNuclearBreakup">runcard</a> or <a href="refEventGeneratorSettings.html#m16">programmatically</a>) the breakup products are stored in the <a href="refEvent.html">event record</a>. More information about the nucleus and the breakup can be obtained through an instance of this class which can be obtained from the class <a href="refSartre.html">Sartre</a> via <a href="refSartre.html#m8">Sartre::nucleus()</a>.</p>
+
+    </div>
+<address>
+  <p align="right">Last Update: September 14, 2026</p>
+</address>
+</body>
+</html>

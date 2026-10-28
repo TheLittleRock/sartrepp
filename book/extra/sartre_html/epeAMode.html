@@ -1,0 +1,113 @@
+<!--
+ //==============================================================================
+ //  epeAMode.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:33:37 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<!-- Sartre 2 proton and nuclear target modes. -->
+<!DOCTYPE html
+PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en_US" lang="en_US">
+  <head>
+    <title>Sartre 2 - ep and eA Modes</title>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+    <link href="sartre.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <!-- Standard documentation navigation. -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120" align="left" valign="top"><img src="images/sartreLogo.png" alt="Sartre" border="0" align="right" /></td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td align="left" valign="middle" class="postheader">
+          <a href="index.html"><font color="#004faf">Home</font></a>&#xA0;&#xB7;
+          <a href="overview.html"><font color="#004faf">Overview</font></a>&#xA0;&#xB7;
+          <a href="usersGuide.html"><font color="#004faf">User Guide</font></a>&#xA0;&#xB7;
+          <a href="referenceGuide.html"><font color="#004faf">Library Reference Guide</font></a>
+        </td>
+      </tr>
+    </table>
+
+    <h1 class="title">ep and eA Modes</h1>
+
+    <p>Sar<em>t</em>re uses the same small-<em>x</em> dipole framework for electron-proton (<em>ep</em>) and electron-nucleus (<em>eA</em>) scattering. The target differs: an <em>ep</em> calculation uses a proton profile, while an <em>eA</em> calculation represents a nucleus as a fluctuating configuration of nucleons. This makes eA diffraction sensitive to both the average spatial gluon distribution and its event-by-event fluctuations.</p>
+
+    <h2>Selecting the target</h2>
+
+    <p>The runcard setting <code>A</code> selects the target mass number:</p>
+    <pre class="code">A = 1       # proton target: ep
+A = 197     # nuclear target: eA, for example gold
+A = 208     # nuclear target: eA, for example lead</pre>
+    <p>A table set must exist for the selected mass number and all other requested physics settings. The table hierarchy begins with this value, for example <code>tables/1/...</code> for a proton and <code>tables/197/...</code> for a nucleus. See <a href="tableTools.html">Tables and Table Tools</a>.</p>
+
+    <h2>Proton targets: ep</h2>
+
+    <p>With <code>A = 1</code>, Sartre models scattering from a proton. In exclusive diffraction it generates vector-meson production or DVCS from the impact-parameter-dependent dipole amplitude. Proton tables contain the precomputed amplitude information needed for the chosen dipole model, parameter set, and process.</p>
+
+    <p>Proton scattering is also the baseline for nuclear calculations. In particular, Sartre uses compatible proton information when it evaluates the real-amplitude and skewedness corrections for an eA run. Consequently, a nuclear table set alone may not be sufficient when either correction is enabled.</p>
+
+    <h2>Nuclear targets: eA</h2>
+
+    <p>With <code>A &gt; 1</code>, Sartre constructs the target from a nuclear configuration. Nucleon positions are sampled from a Woods-Saxon distribution; deuterium is handled with a Hulth&#xE9;n distribution. The sampled configuration is recentered before it is used to construct the transverse nuclear density. Optional subnucleon structure adds hot-spot fluctuations within each nucleon.</p>
+
+    <p>The nuclear extension is not a simple multiplication of a proton cross section by <em>A</em>. The dipole interacts with the transverse distribution of nucleons, so nuclear geometry, multiple scattering, and saturation affect the result. The larger nuclear gluon density makes eA scattering a particularly useful setting for studying nonlinear small-<em>x</em> dynamics.</p>
+
+    <h2>Coherent and incoherent diffraction</h2>
+
+    <p>For a nuclear target, exclusive diffraction has two experimentally and physically distinct components:</p>
+    <table width="100%" border="0" cellpadding="5">
+      <tr>
+        <th width="22%" bgcolor="#CCCCCC" scope="col"><div align="left">Mode</div></th>
+        <th bgcolor="#CCCCCC" scope="col"><div align="left">Target response and physics sensitivity</div></th>
+      </tr>
+      <tr>
+        <td valign="top"><strong>Coherent</strong></td>
+        <td valign="top">The nucleus remains intact. The cross section is calculated from the squared configuration-averaged amplitude and probes the average transverse gluon distribution.</td>
+      </tr>
+      <tr>
+        <td valign="top"><strong>Incoherent</strong></td>
+        <td valign="top">The nucleus changes configuration or dissociates. The cross section is the variance of the amplitude over configurations and probes fluctuations of the nuclear and, when enabled, subnucleon structure.</td>
+      </tr>
+    </table>
+
+    <p>If <code>enableNuclearBreakup = true</code>, Sartre can pass an incoherently excited nucleus to the Gemini++ breakup model and add the stable breakup products to the event record. This option is meaningful only for nuclear targets, increases the run time, and is disabled for UPC mode.</p>
+
+    <h2>Inclusive diffraction in ep and eA</h2>
+
+    <p>Sartre 2 extends both target modes to inclusive diffractive DIS:</p>
+    <pre class="code">e + p/A &#x2192; e' + p'/A' + X</pre>
+    <p>The <code>SartreInclusiveDiffraction</code> interface selects the inclusive workflow. It uses bSat/IPsat or bNonSat/IPNonSat amplitudes and includes the <em>q</em><em>q</em>&#x0305; and <em>q</em><em>q</em>&#x0305;<em>g</em> contributions. Inclusive runs require compatible inclusive tables when <code>useInclusiveCrossSectionTables = true</code>; these are stored in the <code>X</code> process directory described in the table documentation.</p>
+
+    <h2>Practical checklist</h2>
+
+    <ol>
+      <li>Set <code>A</code> to <code>1</code> for ep or to the desired nuclear mass number for eA.</li>
+      <li>Select a compatible <code>dipoleModel</code>, <code>dipoleModelParameterSet</code>, and process.</li>
+      <li>Install the matching table set under <code>$SARTRE_DIR/tables</code>.</li>
+      <li>For eA exclusive runs with real-amplitude or skewedness corrections enabled, also ensure that matching proton tables are present.</li>
+      <li>For inclusive diffraction, start from <code>examples/sartreInclusiveDiffractionRuncard.txt</code> and check the &#x3B2;, <em>Q</em><sup>2</sup>, <em>W</em>, and <em>z</em> ranges against the supplied tables.</li>
+    </ol>
+
+    <address>
+      <div align="center">
+        <table border="0" cellspacing="0" width="100%">
+          <tbody><tr class="address">
+            <td align="left" width="40%">&#xA0;</td>
+            <td align="center" width="20%">&#xA0;</td>
+            <td align="right" width="40%"><div align="right"><br />Last Update: September 14, 2026</div></td>
+          </tr></tbody>
+        </table>
+      </div>
+    </address>
+  </body>
+</html>

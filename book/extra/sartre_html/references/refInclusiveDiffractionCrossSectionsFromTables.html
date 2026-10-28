@@ -1,0 +1,249 @@
+<!--
+ //==============================================================================
+ //  refInclusiveDiffractionCrossSectionsFromTables.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:44:24 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<html>
+  <head>
+    <title>InclusiveDiffractionCrossSectionsFromTables</title>
+    <link href="../sartre.css" rel="stylesheet" type="text/css"/>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120">
+          <img src="../images/sartreLogo.png" alt="Sartre" border="0" align="right"/>
+        </td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td class="postheader"><a href="../index.html">Home</a>&#xA0;&#xB7; <a href="../overview.html">Overview</a>&#xA0;&#xB7; <a href="../usersGuide.html">User Guide</a>&#xA0;&#xB7; <a href="../referenceGuide.html">Library Reference Guide</a></td>
+      </tr>
+    </table>
+    <!-- Page title and overview -->
+    <h1 class="title">
+      <span class="className">InclusiveDiffractionCrossSectionsFromTables</span>
+      <span class="referenceKind">Class Reference</span>
+    </h1>
+    <p>Table-backed inclusive diffractive cross-section evaluator. <a href="#details">More...</a></p>
+    <pre>#include "InclusiveDiffractiveCrossSectionsFromTables.h"</pre>
+    <!-- Reference summaries and documentation -->
+    <h2>Inheritance</h2>
+    <p>Inherits from <a href="refInclusiveDiffractiveCrossSections.html">InclusiveDiffractiveCrossSections</a>.</p>
+    <h2>Public Member Functions</h2>
+    <table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tbody>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top"/>
+          <td class="memItemRight" align="left" valign="top">
+            <a href="#m0">InclusiveDiffractionCrossSectionsFromTables(TableCollection* = 0)</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top"/>
+          <td class="memItemRight" align="left" valign="top">
+            <a href="#m1">~InclusiveDiffractionCrossSectionsFromTables()</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double </td>
+          <td class="memItemRight" align="left" valign="top">
+            <a href="#m2">operator()(double beta, double Q2, double W2, double z)</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double </td>
+          <td class="memItemRight" align="left" valign="top">
+            <a href="#m3">operator()(const double* array)</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double </td>
+          <td class="memItemRight" align="left" valign="top">
+            <a href="#m4">unuranPDF(const double*)</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double </td>
+          <td class="memItemRight" align="left" valign="top">
+            <a href="#m5">unuranPDF_qqg(const double*)</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">void </td>
+          <td class="memItemRight" align="left" valign="top">
+            <a href="#m6">setTableCollection(TableCollection*)</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">GammaPolarization </td>
+          <td class="memItemRight" align="left" valign="top">
+            <a href="#m7">polarizationOfLastCall()</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double </td>
+          <td class="memItemRight" align="left" valign="top">
+            <a href="#m8">crossSectionOfLastCall()</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">unsigned int </td>
+          <td class="memItemRight" align="left" valign="top">
+            <a href="#m9">quarkSpeciesOfLastCall()</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double </td>
+          <td class="memItemRight" align="left" valign="top">
+            <a href="#m10">quarkMassOfLastCall()</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double </td>
+          <td class="memItemRight" align="left" valign="top">
+            <a href="#m11">crossSectionRatioLTOfLastCall() const</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">void </td>
+          <td class="memItemRight" align="left" valign="top">
+            <a href="#m12">setCheckKinematics(bool)</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">void </td>
+          <td class="memItemRight" align="left" valign="top">
+            <a href="#m13">setFockState(FockState)</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">FockState </td>
+          <td class="memItemRight" align="left" valign="top">
+            <a href="#m14">getFockState()</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double </td>
+          <td class="memItemRight" align="left" valign="top">
+            <a href="#m15">dsigdbetadQ2dW2dz_total(double beta, double Q2, double W2, double z, GammaPolarization)</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double </td>
+          <td class="memItemRight" align="left" valign="top">
+            <a href="#m16">dsigdbetadQ2dW2dz_qqg(double beta, double Q2, double W2, double z)</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double </td>
+          <td class="memItemRight" align="left" valign="top">
+            <a href="#m17">dsigdbetadQ2dW2dz_total_checked(double beta, double Q2, double W2, double z)</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double </td>
+          <td class="memItemRight" align="left" valign="top">
+            <a href="#m18">dsigdbetadQ2dW2dz_total_qqg_checked(double beta, double Q2, double W2, double z)</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double </td>
+          <td class="memItemRight" align="left" valign="top">
+            <a href="#m19">dsigmadbetadz_T(double, double, double, double)</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double </td>
+          <td class="memItemRight" align="left" valign="top">
+            <a href="#m20">dsigmadbetadz_L(double, double, double, double)</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double </td>
+          <td class="memItemRight" align="left" valign="top">
+            <a href="#m21">dsigmadbetadz_QQG(double, double, double, double)</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">void </td>
+          <td class="memItemRight" align="left" valign="top">
+            <a href="#m22">setQuarkIndex(unsigned int)</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">DipoleModel* </td>
+          <td class="memItemRight" align="left" valign="top">
+            <a href="#m23">dipoleModel()</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <hr/>
+    <h2>Public Member Function Documentation</h2>
+    <h3 class="fn"><a name="m0" id="m0"/>InclusiveDiffractionCrossSectionsFromTables(TableCollection* = 0)</h3>
+    <p>Constructs an inclusive cross-section calculator that obtains results from the supplied table collection.</p>
+    <h3 class="fn"><a name="m1" id="m1"/>~InclusiveDiffractionCrossSectionsFromTables()</h3>
+    <p>Destroys the table-based inclusive cross-section calculator.</p>
+    <h3 class="fn"><a name="m2" id="m2"/>double operator()(double beta, double Q2, double W2, double z)</h3>
+    <p>Evaluates the inclusive differential cross section from precomputed tables at the supplied &#x3B2;, <em>Q</em><sup>2</sup>, <em>W</em><sup>2</sup>, and <em>z</em> point.</p>
+    <h3 class="fn"><a name="m3" id="m3"/>double operator()(const double* array)</h3>
+    <p>Evaluates the table-based inclusive cross section from a coordinate array in the expected order.</p>
+    <h3 class="fn"><a name="m4" id="m4"/>double unuranPDF(const double*)</h3>
+    <p>Returns the probability-density value used for UNURAN sampling of the selected <em>q</em>&#x0305;<em>q</em> table contribution.</p>
+    <h3 class="fn"><a name="m5" id="m5"/>double unuranPDF_qqg(const double*)</h3>
+    <p>Returns the probability-density value used for UNURAN sampling of the <em>q</em>&#x0305;<em>qg</em> table contribution.</p>
+    <h3 class="fn"><a name="m6" id="m6"/>void setTableCollection(TableCollection*)</h3>
+    <p>Sets the table collection used for interpolation.</p>
+    <h3 class="fn"><a name="m7" id="m7"/>GammaPolarization polarizationOfLastCall()</h3>
+    <p>Returns the photon polarization used by the most recent calculation.</p>
+    <h3 class="fn"><a name="m8" id="m8"/>double crossSectionOfLastCall()</h3>
+    <p>Returns the total cross section from the most recent calculation.</p>
+    <h3 class="fn"><a name="m9" id="m9"/>unsigned int quarkSpeciesOfLastCall()</h3>
+    <p>Returns the number of quark species contributing to the most recent calculation.</p>
+    <h3 class="fn"><a name="m10" id="m10"/>double quarkMassOfLastCall()</h3>
+    <p>Returns the quark mass used by the most recent calculation.</p>
+    <h3 class="fn"><a name="m11" id="m11"/>double crossSectionRatioLTOfLastCall() const</h3>
+    <p>Returns the longitudinal-to-transverse ratio from the most recent calculation.</p>
+    <h3 class="fn"><a name="m12" id="m12"/>void setCheckKinematics(bool)</h3>
+    <p>Enables or disables kinematic validation before table lookup.</p>
+    <h3 class="fn"><a name="m13" id="m13"/>void setFockState(FockState)</h3>
+    <p>Selects the inclusive Fock-state contribution to calculate.</p>
+    <h3 class="fn"><a name="m14" id="m14"/>FockState getFockState()</h3>
+    <p>Returns the currently selected Fock state.</p>
+    <h3 class="fn"><a name="m15" id="m15"/>double dsigdbetadQ2dW2dz_total(double beta, double Q2, double W2, double z, GammaPolarization)</h3>
+    <p>Returns the total <em>q</em>&#x0305;<em>q</em> differential cross section obtained from tables for the requested photon polarization.</p>
+    <h3 class="fn"><a name="m16" id="m16"/>double dsigdbetadQ2dW2dz_qqg(double beta, double Q2, double W2, double z)</h3>
+    <p>Returns the table-based <em>q</em>&#x0305;<em>qg</em> differential cross section.</p>
+    <h3 class="fn"><a name="m17" id="m17"/>double dsigdbetadQ2dW2dz_total_checked(double beta, double Q2, double W2, double z)</h3>
+    <p>Returns the kinematically checked total table-based inclusive cross section.</p>
+    <h3 class="fn"><a name="m18" id="m18"/>double dsigdbetadQ2dW2dz_total_qqg_checked(double beta, double Q2, double W2, double z)</h3>
+    <p>Returns the kinematically checked table-based <em>q</em>&#x0305;<em>qg</em> contribution.</p>
+    <h3 class="fn"><a name="m19" id="m19"/>double dsigmadbetadz_T(double, double, double, double)</h3>
+    <p>Returns the transverse <em>q</em>&#x0305;<em>q</em> contribution differential in &#x3B2; and <em>z</em> from tables.</p>
+    <h3 class="fn"><a name="m20" id="m20"/>double dsigmadbetadz_L(double, double, double, double)</h3>
+    <p>Returns the longitudinal <em>q</em>&#x0305;<em>q</em> contribution differential in &#x3B2; and <em>z</em> from tables.</p>
+    <h3 class="fn"><a name="m21" id="m21"/>double dsigmadbetadz_QQG(double, double, double, double)</h3>
+    <p>Returns the transverse <em>q</em>&#x0305;<em>qg</em> contribution differential in &#x3B2; and <em>z</em> from tables.</p>
+    <h3 class="fn"><a name="m22" id="m22"/>void setQuarkIndex(unsigned int)</h3>
+    <p>Selects the quark-flavour index used by subsequent table lookups.</p>
+    <h3 class="fn"><a name="m23" id="m23"/>DipoleModel* dipoleModel()</h3>
+    <p>Returns the dipole model associated with this calculator.</p>
+    <hr/>
+    <h2><a name="details" id="details"/>Detailed Description</h2>
+    <p>Evaluates inclusive-diffractive cross sections by interpolating precomputed tables. It mirrors the sampling-facing interface of the direct calculator while avoiding repeated numerical integrations when compatible tables are available.</p>
+  <address>
+    <p align="right">Last Update: September 14, 2026</p>
+  </address>
+  </body>
+</html>

@@ -1,0 +1,135 @@
+<!--
+ //==============================================================================
+ //  refDglapEvolution.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:44:24 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<html>
+  <head>
+    <title>DglapEvolution</title>
+    <link href="../sartre.css" rel="stylesheet" type="text/css"/>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120" align="left" valign="top">
+          <img src="../images/sartreLogo.png" alt="Sartre" border="0" align="right"/>
+        </td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td align="left" valign="middle" class="postheader"><a href="../index.html"><font color="#004faf">Home</font></a>&#xA0;&#xB7; <a href="../overview.html"><font color="#004faf">Overview</font></a>&#xA0;&#xB7; <a href="../usersGuide.html"><font color="#004faf">User Guide</font></a>&#xA0;&#xB7; <a href="../referenceGuide.html"><font color="#004faf">Library Reference Guide</font></a></td>
+      </tr>
+    </table>
+    <!-- Page title and overview -->
+    <h1 class="title">
+      <span class="className">DglapEvolution</span>
+      <span class="referenceKind">Class Reference</span>
+    </h1>
+    <p>Singleton leading-order DGLAP evolution evaluator. <a href="#details">More...</a></p>
+    <pre>#include "DglapEvolution.h"</pre>
+    <!-- Reference summaries and documentation -->
+    <h2>Public Member Functions</h2>
+    <table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tbody>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">static DglapEvolution&amp;</td>
+          <td class="memItemRight" align="left" valign="bottom"><a href="#instance">instance</a>()</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top"/>
+          <td class="memItemRight" align="left" valign="top"><a href="#dtor">~DglapEvolution</a>()</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#xG">xG</a>(double x, double Q2)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#alphaSxG">alphaSxG</a>(double x, double Q2)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#alphaS">alphaS</a>(double Q2)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#logDerivative">logDerivative</a>(double x, double Q2)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">void</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#generateLookupTable">generateLookupTable</a>(int nx = 200, int nq2 = 200)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">void</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#useLookupTable">useLookupTable</a>(bool)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">bool</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#lookupTableIsUsed">lookupTableIsUsed</a>() const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">void</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#list">list</a>(ostream&amp; = cout)</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr/>
+    <h2>Public Member Function Documentation</h2>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="instance" id="instance"/>static DglapEvolution&amp; instance()</span>
+    </h3>
+    <p>Returns the singleton LO DGLAP evolution object.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="dtor" id="dtor"/>~DglapEvolution()</span>
+    </h3>
+    <p>Destructor.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="xG" id="xG"/>double xG(double <var>x</var>, double <var>Q2</var>)</span>
+    </h3>
+    <p>Returns xg(x,Q&#xB2;).</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="alphaSxG" id="alphaSxG"/>double alphaSxG(double <var>x</var>, double <var>Q2</var>)</span>
+    </h3>
+    <p>Returns alpha_s(Q&#xB2;) times xg(x,Q&#xB2;).</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="alphaS" id="alphaS"/>double alphaS(double <var>Q2</var>)</span>
+    </h3>
+    <p>Returns alpha_s at Q&#xB2;.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="logDerivative" id="logDerivative"/>double logDerivative(double <var>x</var>, double <var>Q2</var>)</span>
+    </h3>
+    <p>Returns d log(xg)/d log(1/x).</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="generateLookupTable" id="generateLookupTable"/>void generateLookupTable(int <var>nx</var> = 200, int <var>nq2</var> = 200)</span>
+    </h3>
+    <p>Builds an in-memory interpolation table over x and Q&#xB2;.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="useLookupTable" id="useLookupTable"/>void useLookupTable(bool <var>value</var>)</span>
+    </h3>
+    <p>Enables or disables lookup-table evaluation.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="lookupTableIsUsed" id="lookupTableIsUsed"/>bool lookupTableIsUsed() const</span>
+    </h3>
+    <p>Returns whether a filled lookup table is currently used.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="list" id="list"/>void list(ostream&amp; <var>os</var> = cout)</span>
+    </h3>
+    <p>Writes the configured evolution state to <var>os</var>.</p>
+    <hr/>
+    <h2><a name="details" id="details"/>Detailed Description</h2>
+    <p>Implements the DGLAP-based gluon-distribution evolution used by the dipole models. It is accessed as a shared service and supplies the scale- and x-dependent quantities needed by the bSat and related parameterizations.</p>
+  <address>
+    <p align="right">Last Update: September 14, 2026</p>
+  </address>
+  </body>
+</html>

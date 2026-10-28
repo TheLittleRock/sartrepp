@@ -1,0 +1,260 @@
+<!--
+ //==============================================================================
+ //  umlLibraryDiagrams.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:44:24 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Sartre 2 - Complete UML Library Diagram</title>
+    <link href="../sartre.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+      .uml { width:100%; height:auto; margin:0.7em 0 1.5em 0; }
+      .uml .pkg { fill:#fafafa; stroke:#777; stroke-width:1.1; stroke-dasharray:5 4; }
+      .uml .cls { fill:#eef4fb; stroke:#004faf; stroke-width:1.2; }
+      .uml .abs { fill:#f2f2f2; stroke:#555; stroke-width:1.2; }
+      .uml .data { fill:#fff7e6; stroke:#a65c00; stroke-width:1.2; }
+      .uml .n { fill:#003b7a; font-size:12px; font-weight:bold; }
+      .uml .s { fill:#333; font-size:10px; }
+      .uml .p { fill:#003b7a; font-size:14px; font-weight:bold; }
+      .uml .edge { stroke:#555; stroke-width:1.1; fill:none; marker-end:url(#arrow); }
+      .uml .inh { stroke:#555; stroke-width:1.1; fill:none; marker-end:url(#tri); }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120" align="left" valign="top">
+          <img src="../images/sartreLogo.png" alt="Sartre" border="0" align="right" />
+        </td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td align="left" valign="middle" class="postheader"><a href="../index.html"><font color="#004faf">Home</font></a>&#xA0;&#xB7; <a href="../overview.html"><font color="#004faf">Overview</font></a>&#xA0;&#xB7; <a href="../usersGuide.html"><font color="#004faf">User Guide</font></a>&#xA0;&#xB7; <a href="../referenceGuide.html"><font color="#004faf">Library Reference Guide</font></a></td>
+      </tr>
+    </table>
+    <!-- Page title and overview -->
+    <h1 class="title">
+      <span class="className">Sartre 2</span>
+      <span class="referenceKind">Complete UML Library Diagram</span>
+    </h1>
+    <p>This is the complete class map for <code>src/</code>. Open triangles denote inheritance; arrows denote a direct ownership, creation, or principal-use relation evident in the headers. The association views are divided by domain so the full design remains readable.</p>
+    <!-- Inheritance overview -->
+    <h2>Complete inheritance overview</h2>
+    <svg class="uml" viewBox="0 0 1160 700" role="img" aria-labelledby="inheritTitle">
+      <title id="inheritTitle">All Sartre source class inheritance relationships and standalone types</title>
+      <defs>
+        <marker id="arrow" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+          <polygon points="0 0,9 3.5,0 7" fill="#555"></polygon>
+        </marker>
+        <marker id="tri" markerWidth="11" markerHeight="11" refX="10" refY="5.5" orient="auto">
+          <path d="M0,0 L11,5.5 L0,11 z" fill="white" stroke="#555"></path>
+        </marker>
+      </defs>
+      <rect class="pkg" x="20" y="25" width="350" height="315"></rect>
+      <text class="p" x="38" y="50">Configuration and final state</text>
+      <rect class="abs" x="45" y="75" width="130" height="35"></rect>
+      <text class="n" x="73" y="97">Settings</text>
+      <rect class="cls" x="45" y="145" width="145" height="35"></rect>
+      <text class="n" x="55" y="167">EventGeneratorSettings</text>
+      <rect class="cls" x="215" y="145" width="140" height="35"></rect>
+      <text class="n" x="225" y="167">TableGeneratorSettings</text>
+      <path class="inh" d="M117,145 L112,110"></path>
+      <path class="inh" d="M285,145 L145,110"></path>
+      <rect class="abs" x="45" y="220" width="135" height="35"></rect>
+      <text class="n" x="57" y="242">FinalStateGenerator</text>
+      <rect class="cls" x="205" y="220" width="145" height="35"></rect>
+      <text class="n" x="214" y="242">ExclusiveFinalStateGenerator</text>
+      <rect class="cls" x="205" y="285" width="145" height="35"></rect>
+      <text class="n" x="214" y="307">InclusiveFinalStateGenerator</text>
+      <path class="inh" d="M205,237 L180,237"></path>
+      <path class="inh" d="M205,302 L145,255"></path>
+      <rect class="data" x="45" y="285" width="120" height="35"></rect>
+      <text class="n" x="73" y="307">SettingsParameterBase</text>
+      <rect class="data" x="210" y="285" width="125" height="35"></rect>
+      <text class="n" x="238" y="307">SettingsParameter&lt;T&gt;</text>
+      <path class="inh" d="M210,302 L165,302"></path>
+      <rect class="pkg" x="405" y="25" width="350" height="315"></rect>
+      <text class="p" x="423" y="50">Physics-model hierarchies</text>
+      <rect class="abs" x="430" y="75" width="130" height="35"></rect>
+      <text class="n" x="462" y="97">DipoleModel</text>
+      <rect class="cls" x="600" y="75" width="115" height="35"></rect>
+      <text class="n" x="625" y="97">DipoleModel_bCGC</text>
+      <rect class="cls" x="430" y="145" width="125" height="35"></rect>
+      <text class="n" x="457" y="167">DipoleModel_bSat</text>
+      <rect class="cls" x="600" y="145" width="125" height="35"></rect>
+      <text class="n" x="620" y="167">DipoleModel_bNonSat</text>
+      <path class="inh" d="M600,92 L560,92"></path>
+      <path class="inh" d="M492,145 L495,110"></path>
+      <path class="inh" d="M600,162 L555,162"></path>
+      <rect class="abs" x="430" y="220" width="110" height="35"></rect>
+      <text class="n" x="455" y="242">WaveOverlap</text>
+      <rect class="cls" x="580" y="220" width="125" height="35"></rect>
+      <text class="n" x="603" y="242">WaveOverlapVM</text>
+      <rect class="cls" x="580" y="285" width="125" height="35"></rect>
+      <text class="n" x="598" y="307">WaveOverlapDVCS</text>
+      <path class="inh" d="M580,237 L540,237"></path>
+      <path class="inh" d="M580,302 L540,255"></path>
+      <rect class="abs" x="430" y="285" width="100" height="35"></rect>
+      <text class="n" x="452" y="307">Integrals</text>
+      <rect class="cls" x="570" y="285" width="135" height="35"></rect>
+      <text class="n" x="585" y="307">IntegralsExclusive</text>
+      <path class="inh" d="M570,302 L530,302"></path>
+      <rect class="pkg" x="790" y="25" width="350" height="315"></rect>
+      <text class="p" x="808" y="50">Nuclear and inclusive hierarchies</text>
+      <rect class="cls" x="815" y="75" width="100" height="35"></rect>
+      <text class="n" x="842" y="97">Nucleus</text>
+      <rect class="cls" x="965" y="75" width="145" height="35"></rect>
+      <text class="n" x="978" y="97">FrangibleNucleus</text>
+      <rect class="cls" x="965" y="145" width="145" height="35"></rect>
+      <text class="n" x="975" y="167">TableGeneratorNucleus</text>
+      <path class="inh" d="M965,92 L915,92"></path>
+      <path class="inh" d="M965,162 L865,110"></path>
+      <rect class="cls" x="815" y="220" width="180" height="35"></rect>
+      <text class="n" x="825" y="242">InclusiveDiffractiveCrossSections</text>
+      <rect class="cls" x="1000" y="220" width="125" height="35"></rect>
+      <text class="n" x="1008" y="242">&#x2026;Integrals</text>
+      <rect class="cls" x="1000" y="285" width="125" height="35"></rect>
+      <text class="n" x="1006" y="307">&#x2026;FromTables</text>
+      <path class="inh" d="M1000,237 L995,237"></path>
+      <path class="inh" d="M1000,302 L995,255"></path>
+      <rect class="pkg" x="20" y="375" width="1120" height="285"></rect>
+      <text class="p" x="38" y="400">Standalone classes, records, templates, and adapters (no Sartre-to-Sartre inheritance)</text>
+      <text class="s" x="45" y="430">Public API / events:</text>
+      <text class="n" x="45" y="450">Sartre &#xB7; SartreInclusiveDiffraction &#xB7; Event &#xB7; Particle &#xB7; EicSmearFormatWriter</text>
+      <text class="n" x="45" y="470">TwoBodyVectorMesonDecay &#xB7; VectorMesonDecayMass &#xB7; BreakupProduct</text>
+      <text class="s" x="45" y="505">Calculation and geometry:</text>
+      <text class="n" x="45" y="525">CrossSection &#xB7; Amplitudes &#xB7; PhotonFlux &#xB7; DglapEvolution &#xB7; AlphaStrong &#xB7; AlphaStrong::rootFinderFormula</text>
+      <text class="n" x="45" y="545">DipoleModelParameters &#xB7; Kinematics &#xB7; LowerXpomeronFormula &#xB7; Nucleon</text>
+      <text class="s" x="45" y="580">Tables and numerical utilities:</text>
+      <text class="n" x="45" y="600">Table &#xB7; TableCollection &#xB7; ModeFinderFunctor &#xB7; InclusiveDiffractionModeFinderFunctor &#xB7; UPCModeFinderFunctor</text>
+      <text class="n" x="45" y="620">NDInterpolator&lt;&#x2026;&gt; &#xB7; InterpSimplex&lt;&#x2026;&gt; &#xB7; InterpMultilinear&lt;&#x2026;&gt; &#xB7; EmptyClass &#xB7; NDInterpolator::MultiArray</text>
+      <text class="n" x="45" y="640">local_scal_1D&lt;q&gt; &#xB7; local_scal_3D&lt;q&gt; (GridSpline helpers)</text>
+      <text class="s" x="45" y="655">Template inheritance: InterpSimplex and InterpMultilinear inherit NDInterpolator.</text>
+      <text class="s" x="45" y="672">LowerXpomeronFormula and the three mode-finder functors inherit ROOT callable interfaces.</text>
+    </svg>
+    <!-- Runtime associations -->
+    <h2>Generator, event, and cross-section relations</h2>
+    <svg class="uml" viewBox="0 0 1160 420" role="img" aria-labelledby="runtimeTitle">
+      <title id="runtimeTitle">Generator and physics-service associations</title>
+      <defs>
+        <marker id="arrowR" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+          <polygon points="0 0,9 3.5,0 7" fill="#555"></polygon>
+        </marker>
+      </defs>
+      <style type="text/css">.uml .r { stroke:#555; stroke-width:1.1; fill:none; marker-end:url(#arrowR); }</style>
+      <rect class="cls" x="35" y="50" width="175" height="50"></rect>
+      <text class="n" x="95" y="78">Sartre</text>
+      <rect class="cls" x="35" y="260" width="215" height="50"></rect>
+      <text class="n" x="50" y="288">SartreInclusiveDiffraction</text>
+      <rect class="cls" x="330" y="35" width="185" height="50"></rect>
+      <text class="n" x="350" y="63">EventGeneratorSettings</text>
+      <rect class="data" x="330" y="135" width="145" height="50"></rect>
+      <text class="n" x="380" y="163">Event</text>
+      <rect class="cls" x="330" y="245" width="175" height="50"></rect>
+      <text class="n" x="347" y="273">FrangibleNucleus</text>
+      <rect class="cls" x="620" y="35" width="165" height="50"></rect>
+      <text class="n" x="660" y="63">CrossSection</text>
+      <rect class="cls" x="620" y="135" width="205" height="50"></rect>
+      <text class="n" x="635" y="163">ExclusiveFinalStateGenerator</text>
+      <rect class="cls" x="620" y="245" width="230" height="50"></rect>
+      <text class="n" x="632" y="273">InclusiveDiffractiveCrossSections</text>
+      <rect class="cls" x="620" y="345" width="205" height="50"></rect>
+      <text class="n" x="635" y="373">InclusiveFinalStateGenerator</text>
+      <rect class="cls" x="950" y="35" width="145" height="50"></rect>
+      <text class="n" x="978" y="63">PhotonFlux</text>
+      <rect class="cls" x="950" y="135" width="145" height="50"></rect>
+      <text class="n" x="970" y="163">TableCollection</text>
+      <rect class="cls" x="950" y="245" width="145" height="50"></rect>
+      <text class="n" x="980" y="273">DipoleModel</text>
+      <path class="r" d="M210,70 L330,60"></path>
+      <path class="r" d="M210,80 L330,150"></path>
+      <path class="r" d="M210,90 L330,265"></path>
+      <path class="r" d="M210,70 L620,60"></path>
+      <path class="r" d="M210,90 L620,155"></path>
+      <path class="r" d="M250,280 L330,160"></path>
+      <path class="r" d="M250,280 L620,270"></path>
+      <path class="r" d="M250,290 L620,370"></path>
+      <path class="r" d="M785,60 L950,60"></path>
+      <path class="r" d="M785,60 L950,155"></path>
+      <path class="r" d="M825,270 L950,270"></path>
+      <path class="r" d="M850,270 L950,155"></path>
+      <text class="s" x="225" y="55">configures</text>
+      <text class="s" x="225" y="132">returns</text>
+      <text class="s" x="490" y="52">uses</text>
+      <text class="s" x="490" y="145">owns</text>
+      <text class="s" x="480" y="265">uses</text>
+    </svg>
+    <!-- Calculation and table associations -->
+    <h2>Calculation, tables, and numerical relations</h2>
+    <svg class="uml" viewBox="0 0 1160 430" role="img" aria-labelledby="calcTitle">
+      <title id="calcTitle">Calculation, table, and numerical utility associations</title>
+      <defs>
+        <marker id="arrowC" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+          <polygon points="0 0,9 3.5,0 7" fill="#555"></polygon>
+        </marker>
+      </defs>
+      <style type="text/css">.uml .c { stroke:#555; stroke-width:1.1; fill:none; marker-end:url(#arrowC); }</style>
+      <rect class="cls" x="40" y="45" width="155" height="48"></rect>
+      <text class="n" x="82" y="74">Amplitudes</text>
+      <rect class="cls" x="40" y="145" width="155" height="48"></rect>
+      <text class="n" x="72" y="174">IntegralsExclusive</text>
+      <rect class="abs" x="40" y="245" width="155" height="48"></rect>
+      <text class="n" x="80" y="274">Integrals</text>
+      <rect class="abs" x="350" y="45" width="160" height="48"></rect>
+      <text class="n" x="385" y="74">WaveOverlap</text>
+      <rect class="abs" x="350" y="145" width="160" height="48"></rect>
+      <text class="n" x="390" y="174">DipoleModel</text>
+      <rect class="cls" x="350" y="245" width="160" height="48"></rect>
+      <text class="n" x="370" y="274">TableGeneratorNucleus</text>
+      <rect class="cls" x="350" y="345" width="160" height="48"></rect>
+      <text class="n" x="375" y="374">AlphaStrong</text>
+      <rect class="cls" x="660" y="45" width="155" height="48"></rect>
+      <text class="n" x="690" y="74">Table</text>
+      <rect class="cls" x="660" y="145" width="155" height="48"></rect>
+      <text class="n" x="675" y="174">TableCollection</text>
+      <rect class="cls" x="660" y="245" width="155" height="48"></rect>
+      <text class="n" x="675" y="274">NDInterpolator</text>
+      <rect class="cls" x="660" y="345" width="155" height="48"></rect>
+      <text class="n" x="675" y="374">InterpSimplex /</text>
+      <text class="n" x="675" y="388">InterpMultilinear</text>
+      <rect class="cls" x="955" y="45" width="155" height="48"></rect>
+      <text class="n" x="980" y="74">DglapEvolution</text>
+      <rect class="cls" x="955" y="145" width="155" height="48"></rect>
+      <text class="n" x="975" y="174">PhotonFlux</text>
+      <rect class="cls" x="955" y="245" width="155" height="48"></rect>
+      <text class="n" x="980" y="274">Kinematics</text>
+      <rect class="cls" x="955" y="345" width="155" height="48"></rect>
+      <text class="n" x="965" y="374">ModeFinderFunctor</text>
+      <path class="c" d="M195,69 L350,69"></path>
+      <path class="c" d="M195,75 L350,165"></path>
+      <path class="c" d="M117,145 L117,93"></path>
+      <path class="c" d="M195,169 L350,169"></path>
+      <path class="c" d="M510,169 L660,169"></path>
+      <path class="c" d="M510,169 L660,69"></path>
+      <path class="c" d="M510,170 L955,169"></path>
+      <path class="c" d="M510,269 L660,269"></path>
+      <path class="c" d="M815,69 L955,69"></path>
+      <path class="c" d="M815,169 L955,169"></path>
+      <path class="c" d="M815,269 L955,269"></path>
+      <path class="c" d="M815,369 L955,369"></path>
+      <path class="c" d="M510,370 L955,70"></path>
+      <path class="c" d="M815,269 L815,345"></path>
+    </svg>
+    <p><strong>Auxiliary source types not shown as nodes in the association views:</strong><code>EicSmearFormatWriter</code>, <code>TwoBodyVectorMesonDecay</code>, <code>VectorMesonDecayMass</code>, <code>BreakupProduct</code>, <code>Nucleon</code>, <code>LowerXpomeronFormula</code>, and the three mode-finder functors are listed in the inheritance overview. The GridSpline headers primarily provide template helpers and free functions; their two class templates are included there.</p>
+    <address>
+      <p align="right">Last Update: September 14, 2026</p>
+    </address>
+  </body>
+</html>

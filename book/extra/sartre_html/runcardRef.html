@@ -1,0 +1,162 @@
+<!--
+ //==============================================================================
+ //  runcardRef.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:33:37 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<!-- Sartre 2 runcard reference.  Parameter names and defaults are taken from
+     Settings.cpp, EventGeneratorSettings.cpp, and TableGeneratorSettings.cpp. -->
+<!DOCTYPE html
+PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en_US" lang="en_US">
+  <head>
+    <title>Sartre 2 - Runcard Reference</title>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+    <link href="sartre.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <!-- Standard documentation navigation. -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120" align="left" valign="top"><img src="images/sartreLogo.png" alt="Sartre" border="0" align="right" /></td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td align="left" valign="middle" class="postheader">
+          <a href="index.html"><font color="#004faf">Home</font></a>&#xA0;&#xB7;
+          <a href="overview.html"><font color="#004faf">Overview</font></a>&#xA0;&#xB7;
+          <a href="usersGuide.html"><font color="#004faf">User Guide</font></a>&#xA0;&#xB7;
+          <a href="referenceGuide.html"><font color="#004faf">Library Reference Guide</font></a>
+        </td>
+      </tr>
+    </table>
+
+    <h1 class="title">Runcard Reference</h1>
+
+    <p>A runcard is a plain-text settings file read during initialization. It configures the event generator or a table-generator program without recompiling the application. The same settings can be set programmatically through <a href="references/refSettings.html">Settings</a>, <a href="references/refEventGeneratorSettings.html">EventGeneratorSettings</a>, and <a href="references/refTableGeneratorSettings.html">TableGeneratorSettings</a>.</p>
+
+    <p>Each non-comment line has the form <code>name = value</code> but <code>name : value</code> is also accepted. Lines beginning with <code>#</code> or <code>//</code>, and blank lines, are ignored. Boolean values accept <code>true/false</code>, <code>yes/no</code>, and <code>on/off</code>.</p>
+
+    <h2>Event-generation runcards</h2>
+
+    <p><code>Sartre</code> uses the exclusive workflow. <code>SartreInclusiveDiffraction</code> selects inclusive mode automatically; use <code>sartreInclusiveDiffractionRuncard.txt</code> in the examples/ directory as the starting point for that workflow. Parameters marked <em>inclusive only</em> are ignored by the exclusive generator.</p>
+
+    <table width="100%" border="0" cellpadding="5">
+      <tr>
+        <th width="22%" bgcolor="#CCCCCC" scope="col"><div align="left">Variable</div></th>
+        <th width="13%" bgcolor="#CCCCCC" scope="col"><div align="left">Type</div></th>
+        <th bgcolor="#CCCCCC" scope="col"><div align="left">Description</div></th>
+        <th width="12%" bgcolor="#CCCCCC" scope="col"><div align="left">Default</div></th>
+      </tr>
+      <tr><td colspan="4" bgcolor="#eeeeee"><strong>Beam, target, and model</strong></td></tr>
+      <tr><td><a name="eBeamEnergy" id="eBeamEnergy"></a>eBeamEnergy</td><td>floating point</td><td>Electron-beam energy in GeV.</td><td>10.</td></tr>
+      <tr><td><a name="hBeamEnergy" id="hBeamEnergy"></a>hBeamEnergy</td><td>floating point</td><td>Hadron-beam energy in GeV.</td><td>100.</td></tr>
+      <tr><td><a name="A" id="A"></a>A</td><td>integer</td><td>Mass number of the target nucleus; <code>1</code> selects a proton.</td><td>1</td></tr>
+      <tr><td><a name="vectorMesonId" id="vectorMesonId"></a>vectorMesonId</td><td>integer</td><td>PDG identifier of the exclusively produced vector meson. Exclusive workflow only.</td><td>443</td></tr>
+      <tr><td><a name="dipoleModel" id="dipoleModel"></a>dipoleModel</td><td>string</td><td>Dipole model: <code>bSat</code>, <code>bNonSat</code>, or <code>bCGC</code>. Inclusive diffraction uses the bSat/IPsat or bNonSat/IPNonSat implementations.</td><td>bSat</td></tr>
+      <tr><td><a name="dipoleModelParameterSet" id="dipoleModelParameterSet"></a>dipoleModelParameterSet</td><td>string</td><td>Parameter set: <code>KMW</code>, <code>HMPZ</code>, <code>STU</code>, or <code>CUSTOM</code>.</td><td>KMW</td></tr>
+      <tr><td><a name="tableSetType" id="tableSetType"></a>tableSetType</td><td>string</td><td>Exclusive table content: <code>total_and_coherent</code> or <code>coherent_and_incoherent</code>.</td><td>total_and_coherent</td></tr>
+
+      <tr><td colspan="4" bgcolor="#eeeeee"><strong>Kinematic limits</strong></td></tr>
+      <tr><td><a name="Q2min" id="Q2min"></a>Q2min</td><td>floating point</td><td>Minimum photon virtuality <em>Q</em><sup>2</sup>, in GeV<sup>2</sup>.</td><td>1000.</td></tr>
+      <tr><td><a name="Q2max" id="Q2max"></a>Q2max</td><td>floating point</td><td>Maximum photon virtuality <em>Q</em><sup>2</sup>, in GeV<sup>2</sup>.</td><td>0.</td></tr>
+      <tr><td><a name="Wmin" id="Wmin"></a>Wmin</td><td>floating point</td><td>Minimum photon-hadron centre-of-mass energy <em>W</em>, in GeV.</td><td>1000.</td></tr>
+      <tr><td><a name="Wmax" id="Wmax"></a>Wmax</td><td>floating point</td><td>Maximum photon-hadron centre-of-mass energy <em>W</em>, in GeV.</td><td>0.</td></tr>
+      <tr><td><a name="xpomMin" id="xpomMin"></a>xpomMin</td><td>floating point</td><td>Minimum pomeron momentum fraction <em>x</em><sub>&#x2119;</sub>. Exclusive workflow only.</td><td>1e-8</td></tr>
+      <tr><td><a name="xpomMax" id="xpomMax"></a>xpomMax</td><td>floating point</td><td>Maximum pomeron momentum fraction <em>x</em><sub>&#x2119;</sub>. Exclusive workflow only.</td><td>1.</td></tr>
+      <tr><td><a name="betamin" id="betamin"></a>betamin</td><td>floating point</td><td>Minimum &#x3B2; of the inclusive diffractive system. Inclusive workflow only.</td><td>0.</td></tr>
+      <tr><td><a name="betamax" id="betamax"></a>betamax</td><td>floating point</td><td>Maximum &#x3B2; of the inclusive diffractive system. Inclusive workflow only.</td><td>1.</td></tr>
+      <tr><td><a name="zmin" id="zmin"></a>zmin</td><td>floating point</td><td>Minimum final-state longitudinal momentum fraction <em>z</em>. Inclusive workflow only.</td><td>0.</td></tr>
+      <tr><td><a name="zmax" id="zmax"></a>zmax</td><td>floating point</td><td>Maximum final-state longitudinal momentum fraction <em>z</em>. Inclusive workflow only.</td><td>1.</td></tr>
+
+      <tr><td colspan="4" bgcolor="#eeeeee"><strong>Inclusive diffraction</strong></td></tr>
+      <tr><td><a name="inclusiveDiffractionMode" id="inclusiveDiffractionMode"></a>inclusiveDiffractionMode</td><td>boolean</td><td>Internal mode flag. <code>SartreInclusiveDiffraction</code> sets it to <code>true</code>; normally do not set it manually.</td><td>false</td></tr>
+      <tr><td><a name="useInclusiveCrossSectionTables" id="useInclusiveCrossSectionTables"></a>useInclusiveCrossSectionTables</td><td>boolean</td><td>Use precomputed inclusive-diffraction cross-section tables instead of calculating the cross section directly.</td><td>false</td></tr>
+
+      <tr><td colspan="4" bgcolor="#eeeeee"><strong>Corrections, breakup, and UPC</strong></td></tr>
+      <tr><td><a name="correctForRealAmplitude" id="correctForRealAmplitude"></a>correctForRealAmplitude</td><td>boolean</td><td>Apply the real-amplitude correction. Primarily relevant to exclusive diffraction.</td><td>true</td></tr>
+      <tr><td><a name="correctSkewedness" id="correctSkewedness"></a>correctSkewedness</td><td>boolean</td><td>Apply the skewedness correction. Primarily relevant to exclusive diffraction.</td><td>true</td></tr>
+      <tr><td><a name="maxLambdaUsedInCorrections" id="maxLambdaUsedInCorrections"></a>maxLambdaUsedInCorrections</td><td>floating point</td><td>Upper bound on the logarithmic amplitude slope used by the real-amplitude and skewedness corrections.</td><td>0.65</td></tr>
+      <tr><td><a name="enableNuclearBreakup" id="enableNuclearBreakup"></a>enableNuclearBreakup</td><td>boolean</td><td>Generate nuclear-breakup products for incoherent nuclear events. It increases running time and is disabled in UPC mode.</td><td>false</td></tr>
+      <tr><td><a name="maxNuclearExcitationEnergy" id="maxNuclearExcitationEnergy"></a>maxNuclearExcitationEnergy</td><td>floating point</td><td>Maximum excitation energy passed to the nuclear-breakup model, in GeV.</td><td>1.4</td></tr>
+      <tr><td><a name="applyPhotonFlux" id="applyPhotonFlux"></a>applyPhotonFlux</td><td>boolean</td><td>Apply the photon flux. Keep enabled for event generation unless an expert cross-section-only calculation requires otherwise.</td><td>true</td></tr>
+      <tr><td><a name="UPC" id="UPC"></a>UPC</td><td>boolean</td><td>Enable ultra-peripheral-collision mode.</td><td>false</td></tr>
+      <tr><td><a name="UPCA" id="UPCA"></a>UPCA</td><td>integer</td><td>Mass number of the UPC beam particle that emits the photon; used only when <code>UPC=true</code>.</td><td>1</td></tr>
+      <tr><td><a name="hasSubstructure" id="hasSubstructure"></a>hasSubstructure</td><td>boolean</td><td>Request a table set made with subnucleon structure (hot spots).</td><td>false</td></tr>
+
+      <tr><td colspan="4" bgcolor="#eeeeee"><strong>Run control and user values</strong></td></tr>
+      <tr><td><a name="numberOfEvents" id="numberOfEvents"></a>numberOfEvents</td><td>integer</td><td>Number of events for the supplied example main programs to generate.</td><td>10000</td></tr>
+      <tr><td><a name="timesToShow" id="timesToShow"></a>timesToShow</td><td>integer</td><td>Number of progress reports printed by the supplied example main programs.</td><td>100</td></tr>
+      <tr><td><a name="verbose" id="verbose"></a>verbose</td><td>boolean</td><td>Enable additional diagnostic output.</td><td>false</td></tr>
+      <tr><td><a name="verboseLevel" id="verboseLevel"></a>verboseLevel</td><td>integer</td><td>Diagnostic-output level. A nonzero level enables <code>verbose</code>.</td><td>0</td></tr>
+      <tr><td><a name="rootfile" id="rootfile"></a>rootfile</td><td>string</td><td>Output filename used by the supplied example programs.</td><td>sartre.root</td></tr>
+      <tr><td><a name="seed" id="seed"></a>seed</td><td>integer</td><td>Random-number seed. The default is the current time when the settings object is created.</td><td>current time</td></tr>
+      <tr><td><a name="userInt" id="userInt"></a>userInt</td><td>integer</td><td>Application-defined integer value.</td><td>0</td></tr>
+      <tr><td><a name="userDouble" id="userDouble"></a>userDouble</td><td>floating point</td><td>Application-defined floating-point value.</td><td>0.</td></tr>
+      <tr><td><a name="userString" id="userString"></a>userString</td><td>string</td><td>Application-defined string value.</td><td>empty string</td></tr>
+    </table>
+
+    <h2>Table-generator runcards</h2>
+
+    <p>Table-generator programs share the common target, model, <em>Q</em><sup>2</sup>, <em>W</em>, &#x3B2;, and <em>z</em> parameters above. The inclusive table generator uses <code>betamin</code>, <code>betamax</code>, <code>zmin</code>, <code>zmax</code>, <code>betabins</code>, and <code>zbins</code>. The following parameters are specific to table generation.</p>
+
+    <table width="100%" border="0" cellpadding="5">
+      <tr>
+        <th width="22%" bgcolor="#CCCCCC" scope="col"><div align="left">Variable</div></th>
+        <th width="13%" bgcolor="#CCCCCC" scope="col"><div align="left">Type</div></th>
+        <th bgcolor="#CCCCCC" scope="col"><div align="left">Description</div></th>
+        <th width="12%" bgcolor="#CCCCCC" scope="col"><div align="left">Default</div></th>
+      </tr>
+      <tr><td><a name="bSatLookupPath" id="bSatLookupPath"></a>bSatLookupPath</td><td>string</td><td>Path to the b-dependent lookup data needed by the bSat table generator.</td><td>./</td></tr>
+      <tr><td><a name="tmin" id="tmin"></a>tmin</td><td>floating point</td><td>Minimum momentum transfer <em>t</em>, in GeV<sup>2</sup>. It must be negative.</td><td>-2.</td></tr>
+      <tr><td><a name="tmax" id="tmax"></a>tmax</td><td>floating point</td><td>Maximum momentum transfer <em>t</em>, in GeV<sup>2</sup>. It must be non-positive.</td><td>0.</td></tr>
+      <tr><td><a name="xmin" id="xmin"></a>xmin</td><td>floating point</td><td>Minimum <em>x</em> for UPC table generation.</td><td>1e-9</td></tr>
+      <tr><td><a name="xmax" id="xmax"></a>xmax</td><td>floating point</td><td>Maximum <em>x</em> for UPC table generation.</td><td>3e-2</td></tr>
+      <tr><td><a name="Q2bins" id="Q2bins"></a>Q2bins</td><td>integer</td><td>Number of <em>Q</em><sup>2</sup> bins.</td><td>1</td></tr>
+      <tr><td><a name="W2bins" id="W2bins"></a>W2bins</td><td>integer</td><td>Number of <em>W</em><sup>2</sup> bins.</td><td>1</td></tr>
+      <tr><td><a name="tbins" id="tbins"></a>tbins</td><td>integer</td><td>Number of <em>t</em> bins for exclusive tables.</td><td>1</td></tr>
+      <tr><td><a name="xbins" id="xbins"></a>xbins</td><td>integer</td><td>Number of <em>x</em> bins for UPC tables.</td><td>1</td></tr>
+      <tr><td><a name="betabins" id="betabins"></a>betabins</td><td>integer</td><td>Number of &#x3B2; bins for inclusive-diffraction tables.</td><td>1</td></tr>
+      <tr><td><a name="zbins" id="zbins"></a>zbins</td><td>integer</td><td>Number of <em>z</em> bins for inclusive-diffraction tables.</td><td>1</td></tr>
+      <tr><td><a name="numberOfConfigurations" id="numberOfConfigurations"></a>numberOfConfigurations</td><td>integer</td><td>Number of target configurations to average over.</td><td>1000</td></tr>
+      <tr><td><a name="modesToCalculate" id="modesToCalculate"></a>modesToCalculate</td><td>integer</td><td>Exclusive-amplitude mode selection. It is retained for compatibility; the inclusive example treats it as a dummy setting.</td><td>0</td></tr>
+      <tr><td><a name="dipoleModelCustomParameters" id="dipoleModelCustomParameters"></a>dipoleModelCustomParameters</td><td>list of numbers</td><td>Custom dipole-model parameters; used only with <code>dipoleModelParameterSet=CUSTOM</code>.</td><td>empty list</td></tr>
+      <tr><td><a name="hasSubstructureTable" id="hasSubstructureTable"></a>hasSubstructure</td><td>boolean</td><td>Generate tables with subnucleon structure (hot spots).</td><td>false</td></tr>
+      <tr><td><a name="priority" id="priority"></a>priority</td><td>integer</td><td>Priority assigned to the generated table set.</td><td>0</td></tr>
+      <tr><td><a name="fractionOfBinsToFill" id="fractionOfBinsToFill"></a>fractionOfBinsToFill</td><td>floating point</td><td>Fraction of requested table bins to fill.</td><td>1.</td></tr>
+      <tr><td><a name="useBackupFile" id="useBackupFile"></a>useBackupFile</td><td>boolean</td><td>Resume table generation from a backup file.</td><td>false</td></tr>
+      <tr><td><a name="startingBinFromBackup" id="startingBinFromBackup"></a>startingBinFromBackup</td><td>integer</td><td>Global bin at which to resume from a backup.</td><td>0</td></tr>
+      <tr><td><a name="startBin" id="startBin"></a>startBin</td><td>integer</td><td>First global bin to generate; a negative value disables this restriction.</td><td>-1</td></tr>
+      <tr><td><a name="endBin" id="endBin"></a>endBin</td><td>integer</td><td>Last global bin to generate; a negative value disables this restriction.</td><td>-1</td></tr>
+      <tr><td><a name="useFFT" id="useFFT"></a>useFFT</td><td>boolean</td><td>Use the FFT-based table-generation path.</td><td>false</td></tr>
+      <tr><td><a name="nFFT" id="nFFT"></a>nFFT</td><td>integer</td><td>FFT grid size when <code>useFFT=true</code>.</td><td>64</td></tr>
+      <tr><td><a name="bmaxFactorFFT" id="bmaxFactorFFT"></a>bmaxFactorFFT</td><td>floating point</td><td>Impact-parameter range factor for the FFT grid.</td><td>2.5</td></tr>
+      <tr><td><a name="nThreads" id="nThreads"></a>nThreads</td><td>integer</td><td>Number of table-generation threads in a multithreaded build.</td><td>1</td></tr>
+      <tr><td><a name="useArbitraryTGrid" id="useArbitraryTGrid"></a>useArbitraryTGrid</td><td>boolean</td><td>Use an arbitrary user-supplied <em>t</em> grid. The grid itself is supplied programmatically.</td><td>false</td></tr>
+    </table>
+
+    <h2>Examples</h2>
+
+    <p>The shipped files <code>examples/sartreRuncard.txt</code>, <code>examples/sartreInclusiveDiffractionRuncard.txt</code>, and <code>examples/tableGeneratorInclusiveDiffractionRuncard.txt</code> are the most reliable starting points. Copy one, make only the changes needed for the intended calculation, and retain it with the generated output for reproducibility.</p>
+
+    <address>
+      <div align="center">
+        <table border="0" cellspacing="0" width="100%">
+          <tbody><tr class="address">
+            <td align="left" width="40%">&#xA0;</td>
+            <td align="center" width="20%">&#xA0;</td>
+            <td align="right" width="40%"><div align="right"><br />Last Update: September 11, 2026</div></td>
+          </tr></tbody>
+        </table>
+      </div>
+    </address>
+  </body>
+</html>

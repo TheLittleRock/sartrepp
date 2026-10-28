@@ -1,0 +1,569 @@
+<!--
+ //==============================================================================
+ //  examplePrograms.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:44:24 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<!--
+ //==============================================================================
+ //  exampleProgram.html
+ //
+ //  Copyright (C) 2010-2013 Tobias Toll and Thomas Ullrich 
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify 
+ //  it under the terms of the GNU General Public License as published by 
+ //  the Free Software Foundation.   
+ //  This program is distributed in the hope that it will be useful, 
+ //  but without any warranty; without even the implied warranty of 
+ //  merchantability or fitness for a particular purpose. See the 
+ //  GNU General Public License for more details. 
+ //  You should have received a copy of the GNU General Public License
+ //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ //
+ //  Last update: September 14, 2026
+ //  Original document date: 2013-05-29
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<!DOCTYPE html
+PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en_US" lang="en_US">
+    <head>
+        <title>Sartre - Example Program</title>
+        <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />  <link href="sartre.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+                <td width="120" align="left" valign="top"><img src="images/sartreLogo.png" alt="" border="0" align="right" /></td>
+                <td width="10">&nbsp;&nbsp;</td>
+                <td align="left" valign="middle" class="postheader"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; 
+                    <a href="overview.html"><font color="#004faf">Overview</font></a>&nbsp;&middot;<font color="#004faf"> <a href="usersGuide.html">User
+                        Guide</a></font>&nbsp;&middot; 
+                    <a href="referenceGuide.html"><font color="#004faf">Library Reference Guide</font> </a></td></tr>
+        </table>
+        
+        <h1 class="title">Example Program Walk-Throughs</h1>
+        <p>The Sar<em>t</em>re distribution contains a set of example programs in
+        the <tt>sartre/examples</tt> directory. The established exclusive example,
+        <em>sartreMain</em>, is a short but rather complete program for event generation
+        of exclusive vector mesons and DVCS in <em>e</em>p or <em>e</em>A collisions. It
+        consists of the main program <tt>sartreMain.cpp</tt> and the <a href="runcardRef.html">runcard</a>
+        <tt>sartreRuncard.txt</tt>. Its Sartre 2 counterpart,
+        <em>sartreInclusiveDiffractionMain</em>, demonstrates inclusive diffractive DIS with
+        <tt>sartreInclusiveDiffractionMain.cpp</tt> and
+        <tt>sartreInclusiveDiffractionRuncard.txt</tt>. The
+        program sets up Sar<em>t</em>re, generates events, and stores them in a self-defined
+        ROOT tree that is written to file for later analysis. Here we go in detail
+        through the exclusive example, then describe the inclusive counterpart and its
+        additional event content. We also show what the output looks like.
+        It is always easier to start from a running example and modify it for
+        your purposes than to start from scratch. Note that the actual program
+        contained in the distribution might look slightly different.</p>
+        <div class="pageToc">
+            <h2>On this page</h2>
+            <p><strong>Exclusive diffraction: <code>sartreMain</code></strong></p>
+            <ul>
+                <li><a href="#exclusive-structure">Includes and event structure</a></li>
+                <li><a href="#exclusive-command-line">Command line and initialization</a></li>
+                <li><a href="#exclusive-root-tree">ROOT output and event generation</a></li>
+                <li><a href="#exclusive-build">Building, runcard, and sample output</a></li>
+            </ul>
+            <p><strong>Inclusive diffraction: <code>sartreInclusiveDiffractionMain</code></strong></p>
+            <ul>
+                <li><a href="#inclusive-walkthrough">Inclusive walkthrough</a></li>
+                <li><a href="#inclusive-initialization">Initialization and DGLAP lookup table</a></li>
+                <li><a href="#inclusive-root-tree">ROOT output, Pythia particles, runcard, and tables</a></li>
+                <li><a href="#inclusive-output">Output and total-cross-section note</a></li>
+            </ul>
+        </div>
+
+        <h1 class="title" id="exclusive-walkthrough">Exclusive Diffraction Example Walk-Through</h1>
+        <h2 id="exclusive-structure">Exclusive: Include Files and User Structures</h2>
+        First the necessary  header files are included. Since we intend
+        to write the generator output into ROOT Trees (Ntuples)  we include the <code>TTree.h</code> and<code> TFile.h</code> files.
+        For Sar<em>t</em>re all we need to include is <code>Sartre.h.</code>
+        The structure <code>rootSartreEvent</code> is just an example on how
+        to store the event generator output into a ROOT tree.
+        <pre class="code">#include &lt;iostream&gt;   <br />#include &lt;cmath&gt;   <br />#include &quot;TTree.h&quot;   <br />#include &quot;TFile.h&quot;   <br />#include &quot;Sartre.h&quot;   
+            <br />using namespace std;   <br />   <br />struct rootSartreEvent {<br />    double t;   <br />    double Q2;   <br />    double x;   <br />    double s;   <br />    double y;   <br />    double W;   <br />    double xpom;   <br />    int    iEvent;   <br />    int    pol;      // 0=transverse or 1=longitudinal   <br />    int    dmode;    // 0=coherent, 1=Incoherent   <br />};   <br />   <br />rootSartreEvent myRootSartreEvent;</pre>
+        <h2 id="exclusive-command-line">Exclusive: Start Main Program and Check Command-Line Arguments</h2>
+        <p>The example program sartreMain takes 2 arguments. The first is the file
+        name of the runcard and is mandatory the second is the rootfile which
+        is optional.</p>
+        <pre class="code">int main(int argc, char *argv[])   <br />{       <br />    //   <br />    //  Check command line arguments   <br />    //   <br />    if (! (argc == 2 || argc == 3) ) {   <br />        cout &lt;&lt; &quot;Usage:  &quot; &lt;&lt; argv[0] &lt;&lt; &quot; runcard [rootfile]&quot; &lt;&lt; endl;     <br />        return 2;   <br />    }   <br />    string runcard = argv[1];</pre>
+        <h2 id="exclusive-initialization">Exclusive: Initialize Sartre</h2>
+        <p>To initialize the generator all that is needed is to create an instance
+        of class Sartre and initialize it using the parameter defined in the
+        runcard. We also obtain a pointer to EventGeneratorSettings so we can
+        make use of the parameters in the runcard such as file names,  number
+        of events,
+        and many more. It's always good to list all setup parameters (<span class="code">settings-&gt;list()</span>)
+        for checks and record keeping.</p>
+        <pre class="code">    //   <br />    //  Create the generator and initialize it.    <br />    //  Once initialized you cannot (should not) change   <br />    //  the settings w/o re-initialing sartre.   <br />    //   <br />    Sartre sartre;   <br />    bool ok = sartre.init(runcard);   <br />    if (!ok) {   <br />        cerr &lt;&lt; &quot;Initialization of sartre failed.&quot; &lt;&lt; endl;   <br />        return 1;   <br />    }   <br />    EventGeneratorSettings* settings = sartre.runSettings();   <br />    settings-&gt;list();   </pre>
+        <p>Now we are in principle ready to generate events. However we want to store these
+        events for later analysis in a ROOT tree and save it to file. This is happening
+        next. </p>
+        <h2 id="exclusive-root-tree">Exclusive: Set Up the ROOT Tree</h2>
+        <p>In the ROOT tree we keep the general event parameters in the <span class="code"><em>rootSartreEvent</em></span> structure
+        and the 4-momenta of in- and outgoing electron and proton/nucleus, as
+        well as the vector meson and the virtual photon in different branches.
+        The tree is stored in a ROOT file which name is either coming from the
+        <a href="runcardRef.html">runcard</a> or (if present) from the command line. Reading in this file in ROOT allows one to create directly plots, apply cuts, or just filter
+        the events for further processing.</p>
+        <pre class="code">    //   
+    //  ROOT file    
+    //   
+    string rootfile;   
+    if (argc == 3)    
+        rootfile = argv[2];   
+    else   
+        rootfile = settings->rootfile();   
+       
+    TFile *hfile = 0;   
+    if (rootfile.size()) {   
+        hfile  = new TFile(rootfile.c_str(),"RECREATE");   
+        cout << "ROOT file is '" <<  rootfile.c_str() << "'." << endl;   
+    }   
+   
+    //   
+    //  Setup ROOT tree    
+    //   
+    TLorentzVector *eIn = new TLorentzVector;   
+    TLorentzVector *pIn = new TLorentzVector;   
+    TLorentzVector *vm = new TLorentzVector;   
+    TLorentzVector *eOut = new TLorentzVector;   
+    TLorentzVector *pOut = new TLorentzVector;   
+    TLorentzVector *gamma = new TLorentzVector;   
+    TTree tree("tree","sartre");   
+    tree.Branch("event", &amp;myRootSartreEvent.t,    
+                "t/D:Q2/D:x/D:s/D:y/D:W/D:xpom/D:iEvent/I:pol/I:dmode/I");   
+    tree.Branch("eIn",  "TLorentzVector", &amp;eIn, 32000, 0);   
+    tree.Branch("pIn",  "TLorentzVector", &amp;pIn, 32000, 0);   
+    tree.Branch("vm",   "TLorentzVector", &amp;vm, 32000, 0);   
+    tree.Branch("eOut", "TLorentzVector", &amp;eOut, 32000, 0);   
+    tree.Branch("pOut", "TLorentzVector", &amp;pOut, 32000, 0);   
+    tree.Branch("gamma","TLorentzVector", &amp;gamma, 32000, 0);   
+</pre>
+    <h2 id="exclusive-generation">Exclusive: Event Generation</h2>
+    <p>Now we generate the events. The number of events (<span class="code">EventGeneratorSettings::numberOfEvents()</span>)
+        and the frequency with which to print out the status (<span class="code">EventGeneratorSettings::timesToShow()</span>)
+        we get from the runcard. These are 
+        user parameters provided for convenience and not directly used by Sar<em>t</em>re.
+        The user can safely ignore them and hardwire the numbers instead.</p>
+    <p>Events are generated via <span class="code">Sartre::generateEvent()</span>,
+        which returns the <a href="references/refEvent.html">event record</a>. If you want
+        to filter certain events that would be the place to do it. After that
+        all what is left is to store the obtained information into the ROOT tree.        </p>
+<pre class="code">
+    //   
+    //  Event generation   
+    //   
+       
+    int nPrint;   
+    if (settings->timesToShow())   
+        nPrint = settings->numberOfEvents()/settings->timesToShow();   
+    else    
+        nPrint = 0;   
+       
+    unsigned long maxEvents = settings->numberOfEvents();   
+   
+    cout << "Generating " << maxEvents << " events." << endl << endl;   
+   
+    for (unsigned long iEvent = 0; iEvent < maxEvents; iEvent++) {   
+        //   
+        //  Generate one event   
+        //   
+        Event *event = sartre.generateEvent();   
+        if (nPrint &amp;&amp; iEvent%nPrint == 0 &amp;&amp; iEvent != 0) {   
+            cout << "processed " << iEvent << " events" << endl;   
+        }   
+   
+        //   
+        //  Print out (here only for the first few events)   
+        //   
+        if (iEvent < 4) event->list(); 
+           
+        //   
+        //  Fill ROOT tree   
+        //   
+        myRootSartreEvent.iEvent = event->eventNumber;   
+        myRootSartreEvent.t = event->t;   
+        myRootSartreEvent.Q2 = event->Q2;   
+        myRootSartreEvent.x = event->x;   
+        myRootSartreEvent.y = event->y;   
+        myRootSartreEvent.s = event->s;   
+        myRootSartreEvent.W = event->W;   
+        myRootSartreEvent.xpom = event->xpom;   
+        myRootSartreEvent.pol = event->polarization == transverse ? 0 : 1;   
+        myRootSartreEvent.dmode = event->diffractiveMode == coherent ? 0 : 1;   
+        eIn     = &amp;event->particles[0].p;   
+        pIn     = &amp;event->particles[1].p;   
+        eOut    = &amp;event->particles[2].p;   
+        pOut    = &amp;event->particles[6].p;   
+        vm      = &amp;event->particles[4].p;   
+        gamma   = &amp;event->particles[3].p;   
+        
+        tree.Fill();    
+    }   </pre>
+
+    <h2 id="exclusive-finish">Exclusive: Wrapping Things Up</h2>
+    <p>Now we are essentially done. One important thing left to do is to calculate
+        the total cross-section in the kinematic range the events were generated.
+        Without knowledge of that number you will not be able to absolutely normalize
+        the generated output. This is done using Sartre::TotalCrossSection().
+        This might actually take a while depending on the kinematic range chosen,
+        especially in eA because of the complex structure along <em>t</em>. Note
+        that the returned cross-section is in &quot;nb&quot;. Just for bookkeeping
+        purposes we also print the time used per events. </p>
+<pre class="code">
+    //   
+    //  That's it, finish up   
+    //   
+    double runTime = sartre.runTime();
+    hfile->Write();     
+    cout << rootfile.c_str() << " written." << endl;   
+    cout << "Total cross-section: " << sartre.totalCrossSection() << " nb" << endl;   
+    sartre.listStatus();   
+    cout << "CPU Time/event: " << 1000*runTime/maxEvents << " msec/evt" << endl;   
+       
+    return 0;   
+} </pre>
+
+        <!-- Sartre 2 inclusive-diffraction example.  This supplements, rather
+             than replaces, the complete exclusive walkthrough above. -->
+        <h1 class="title" id="inclusive-walkthrough">Inclusive Diffraction Example Walk-Through</h1>
+        <p>The inclusive example program is <code>examples/sartreInclusiveDiffractionMain.cpp</code>. It has the same command-line form as the exclusive example:</p>
+        <pre class="code">sartreInclusiveDiffractionMain sartreInclusiveDiffractionRuncard.txt [rootfile]</pre>
+        <p>The runcard is required. The optional ROOT filename overrides <code>rootfile</code> in the runcard. Unlike the exclusive program, this example generates a diffractive hadronic system <em>X</em> and retains both the partonic state and the stable particles produced by the Pythia 8 afterburner.</p>
+
+        <h2 id="inclusive-structure">Inclusive: Includes and Event Structure</h2>
+        <p>The inclusive program includes <code>SartreInclusiveDiffraction.h</code> instead of <code>Sartre.h</code>. It also includes <code>TClonesArray.h</code> to store a variable number of Pythia particle four-vectors in the ROOT tree. The scalar event structure extends the exclusive structure with &#x3B2;, <em>z</em>, and <em>M</em><sub>X</sub>.</p>
+        <pre class="code">#include &quot;SartreInclusiveDiffraction.h&quot;
+#include &quot;TClonesArray.h&quot;
+#include &quot;DglapEvolution.h&quot;
+
+struct rootSartreEvent {
+    double t;
+    double beta;
+    double Q2;
+    double x;
+    double s;
+    double y;
+    double W;
+    double z;
+    double MX;
+    double xpom;
+    int    iEvent;
+    int    pol;      // 0 = transverse, 1 = longitudinal
+    int    dmode;    // 0 = coherent, 1 = incoherent
+};</pre>
+
+        <h2 id="inclusive-initialization">Inclusive: Initialize the Generator</h2>
+        <p>The interface is <a href="references/refSartreInclusiveDiffraction.html">SartreInclusiveDiffraction</a>. It activates inclusive-diffraction mode during <code>init()</code>. The distributed example also prepares a DGLAP lookup table before initialization, which accelerates DGLAP evolution when direct inclusive cross-section evaluation is used.</p>
+        <pre class="code">SartreInclusiveDiffraction sartre;
+
+DglapEvolution&amp; dglap = DglapEvolution::instance();
+dglap.generateLookupTable(1000, 1000);
+dglap.useLookupTable(true);
+
+bool ok = sartre.init(runcard);
+if (!ok) {
+    cerr &lt;&lt; &quot;Initialization of Sartre failed.&quot; &lt;&lt; endl;
+    return 1;
+}
+
+EventGeneratorSettings* settings = sartre.runSettings();
+settings-&gt;list();</pre>
+        <p>As in the exclusive example, initialize before changing any settings that affect tables or generated phase space. See the <a href="runcardRef.html">runcard reference</a> for all settings and the <a href="usersGuide.html#InclusiveDiffraction">inclusive User Guide section</a> for the physics workflow.</p>
+
+        <h2 id="inclusive-root-tree">Inclusive: ROOT Tree</h2>
+        <p>The ROOT tree stores the scalar inclusive kinematics, incoming and outgoing lepton and target four-vectors, the virtual photon, and the generated quark and antiquark. The <code>pythia</code> branch is a <code>TClonesArray</code> containing stable Pythia particles. If nuclear breakup is enabled, the example adds branches for final-state protons, neutrons, and other nuclear remnants.</p>
+        <pre class="code">TClonesArray pythia(&quot;TLorentzVector&quot;);
+
+TTree tree(&quot;tree&quot;, &quot;sartre&quot;);
+tree.Branch(&quot;event&quot;, &amp;myRootSartreEvent.t,
+    &quot;t/D:beta/D:Q2/D:x/D:s/D:y/D:W/D:z/D:MX/D:xpom/D:&quot;
+    &quot;iEvent/I:pol/I:dmode/I&quot;);
+tree.Branch(&quot;eIn&quot;,       &quot;TLorentzVector&quot;, &amp;eIn, 32000, 0);
+tree.Branch(&quot;pIn&quot;,       &quot;TLorentzVector&quot;, &amp;pIn, 32000, 0);
+tree.Branch(&quot;eOut&quot;,      &quot;TLorentzVector&quot;, &amp;eOut, 32000, 0);
+tree.Branch(&quot;pOut&quot;,      &quot;TLorentzVector&quot;, &amp;pOut, 32000, 0);
+tree.Branch(&quot;gamma&quot;,     &quot;TLorentzVector&quot;, &amp;gamma, 32000, 0);
+tree.Branch(&quot;quark&quot;,     &quot;TLorentzVector&quot;, &amp;quark, 32000, 0);
+tree.Branch(&quot;antiquark&quot;, &quot;TLorentzVector&quot;, &amp;antiquark, 32000, 0);
+tree.Branch(&quot;pythia&quot;, &amp;pythia);</pre>
+
+        <h2 id="inclusive-generation">Inclusive: Generate and Store Events</h2>
+        <p>Generation is again one call per event. In addition to the ordinary event variables, copy &#x3B2;, <em>z</em>, and <em>M</em><sub>X</sub>. The current example records the quark and antiquark at particle-record positions 5 and 6, then copies stable Pythia particles starting at position 7. Those record positions document the current example implementation; use the <a href="references/refEvent.html">Event</a> and <a href="references/refParticle.html">Particle</a> references and inspect <code>event-&gt;list()</code> when adapting the code to another Sartre version.</p>
+        <pre class="code">Event* event = sartre.generateEvent();
+
+myRootSartreEvent.beta = event-&gt;beta;
+myRootSartreEvent.Q2 = event-&gt;Q2;
+myRootSartreEvent.W = event-&gt;W;
+myRootSartreEvent.z = event-&gt;z;
+myRootSartreEvent.MX = event-&gt;MX;
+myRootSartreEvent.xpom = event-&gt;xpom;
+
+quark      = &amp;event-&gt;particles[5].p;
+antiquark  = &amp;event-&gt;particles[6].p;
+
+pythia.Clear();
+for (int iParticle = 7;
+     iParticle &lt; event-&gt;numberOfPythiaParticlesStored; ++iParticle) {
+    const Particle&amp; particle = event-&gt;particles[iParticle];
+    if (particle.status == 1)
+        new (pythia[pythia.GetEntries()]) TLorentzVector(particle.p);
+}
+tree.Fill();</pre>
+
+        <h2 id="inclusive-runcard">Inclusive: Runcard and Tables</h2>
+        <p>The supplied runcard chooses a proton target with the bSat/STU model and defines ranges in &#x3B2;, <em>Q</em><sup>2</sup>, <em>W</em>, and <em>z</em>. Its <code>useInclusiveCrossSectionTables = true</code> setting requests the fast table-based calculation. Compatible inclusive tables are required and are stored under <code>$SARTRE_DIR/tables/&lt;A&gt;/&lt;bSat|bNonSat&gt;/X/</code>. They are distinct from the exclusive vector-meson tables. See <a href="tableTools.html">Table Tools and Tables</a> before changing table-related settings or attempting table production.</p>
+
+        <h2 id="inclusive-output">Inclusive: Output</h2>
+        <p>At startup, the program prints the Sartre inclusive-diffraction banner, the selected runcard, and the resolved settings. It lists the first ten generated events; an inclusive event listing includes &#x3B2;, <em>z</em>, and <em>M</em><sub>X</sub> in addition to the usual <em>Q</em><sup>2</sup>, <em>W</em>, <em>x</em>, <em>y</em>, and <em>x</em><sub>IP</sub>. The ROOT output contains the branches shown above, including stable Pythia particles. Exact numerical output depends on the table set and random seed, so it should be generated from a local table-compatible run rather than copied from the historical exclusive listing above.</p>
+        <p><strong>Current source note:</strong> the example presently initializes <code>totalCS</code> to zero and leaves the call to <code>sartre.totalCrossSection()</code> commented out. Its printed and stored total cross section is therefore zero; it is not a calculated physics result. Enable that calculation only after confirming the intended normalization and integration setup.</p>
+
+        <h1 class="title" id="exclusive-build">Exclusive Example: Building the Program</h1>
+        <p>Here we assume you copied the <code>sartre/examples</code> directory from the <a href="download_install.html">installation</a> directory
+        into your private area. </p>
+        <p>Make sure that the environment variable <code>SARTRE_DIR</code> is
+        defined and points to the installation directory. For example:</p>
+        <pre class="code">
+            # example using bash 
+            export SARTRE_DIR=/usr/local/sartre</pre>
+        <p>Then within the example directory:</p>
+        <pre class="code">
+            cmake .
+            make sartreMain</pre>
+        <p>To build the inclusive example, configure the examples with inclusive diffraction enabled. The library itself must have been built with the same option and Pythia 8 must be available:</p>
+        <pre class="code">
+            cmake -DENABLE_INCLUSIVE_DIFFRACTION=ON .
+            make sartreInclusiveDiffractionMain</pre>
+        <p>Your example generator is now ready for use.</p>
+        
+        <h1 class="title" id="exclusive-runcard">Exclusive Example: Setting Up the Runcard</h1>
+        
+        <p>Below is the runcard we are using for a first test run (<code>examples/sartreRuncard.txt</code>).
+	There is a complete description of the runcard on the <a href="runcardRef.html">runcard reference page</a>. We
+        skip here all comment lines, that is those lines starting with a "#" or
+        &quot;//&quot; and focus only on the definition of the parameters.</p>
+        Define beam energies (in GeV) and the ion mass of the hadron
+        beam. Here we define eAu collisions with 20 GeV electron
+        beams and 100 GeV Au beams.
+        <pre class="code">
+eBeamEnergy =  20 
+hBeamEnergy =  100   
+A           =  197 
+</pre> 
+We will generate only 1000 events and print the status (how many generated so far) 20 times.
+<pre class="code">
+numberOfEvents =  10000
+timesToShow    =  20 
+</pre> 
+We switch the verbosity on but keep it at the default level (minimal amount of additional messages). 
+<pre class="code">
+verbose       =  true 
+verboseLevel  =  1
+</pre> 
+Events are written into a root tree stored in file <code>example.root</code>.
+<pre class="code">
+rootfile =  example.root 
+</pre> 
+We generate J/&psi; mesons using the bSat model (saturation).
+<pre class="code">
+vectorMesonId =  443   
+dipoleModel =  bSat </pre> 
+Here we set the kinematic limits. Note that when setting Q2min &gt; Q2max the maximum
+available kinematic range is automatically selected. Same for Wmin and Wmax.
+<pre class="code">
+Q2min =  1 
+Q2max =  10 
+Wmin  =  10 
+Wmax  =  60</pre> 
+We switch all corrections on to get the most reliable cross-section.
+<pre class="code">
+correctForRealAmplitude =  true 
+correctSkewedness       =  true</pre> 
+        We enable the nuclear breakup of the Au ion for incoherent events but limit the
+        maximum excitation energy to 0.5 GeV. This affects the result very little but
+        reduces the time Gemini (the used evaporation model) takes to generate the breakup
+        products. When producing a large number of events, the breakup should probably
+        be switched off.
+        <pre class="code">
+enableNuclearBreakup = true 
+maxNuclearExcitationEnergy = 0.5</pre>
+
+        <h1 class="title" id="exclusive-running">Exclusive Example: Running the Program</h1>
+<p>Launch  the program <code>sarteMain</code> with the name of the runcard as argument:</p>
+<pre class="code">
+sartreMain sartreRuncard.txt</pre>
+<p>This  will produce the following printout</p>
+<pre class="code">
+/========================================================================\
+|                                                                        |
+|  Sartre, Version 1.10                                                  |
+|                                                                        |
+|  An event generator for exclusive diffractive vector meson production  |
+|  in ep and eA collisions based on the dipole model.                    |
+|                                                                        |
+|  Copyright (C) 2010-2013 Tobias Toll and Thomas Ullrich                |
+|                                                                        |
+|  This program is free software: you can redistribute it and/or modify  |
+|  it under the terms of the GNU General Public License as published by  |
+|  the Free Software Foundation, either version 3 of the License, or     |
+|  any later version.                                                    |
+|                                                                        |
+|  Code compiled on Dec 14 2012 12:36:03                                 |
+|  Run started at Fri Dec 14 12:38:09 2012                               |
+\========================================================================/
+Runcard is 'sartreRuncard.txt'.
+Hadron beam species: Au (197)
+Hadron beam:   0	0	99.9956	100	(0.93827)
+Electron beam: 0	0	-20	20	(0.000510999)
+Dipole model: bSat
+Process is e + Au -> e' + Au' + J/psi
+Random generator seed: 1355506689
+Kinematic limits used for event generation:
+       t=[-0.5, -1.2669e-06]
+      Q2=[1, 10]
+       W=[10, 60]
+Finding mode of pdf:
+	location: t=-0.000693239, Q2=1, W=19.5609; value: 47.6573
+Sartre is initialized.
+
+
+Run Settings:
+                     userInt	0
+                  userDouble	0
+                  userString	
+                 eBeamEnergy	20
+                 hBeamEnergy	100
+                           A	197
+              numberOfEvents	1000
+                 timesToShow	20
+               vectorMesonId	443
+                 dipoleModel	bSat
+                       Q2min	1
+                       Q2max	10
+                        Wmin	10
+                        Wmax	60
+     correctForRealAmplitude	true
+           correctSkewedness	true
+        enableNuclearBreakup	true
+  maxLambdaUsedInCorrections	0.65
+  maxNuclearExcitationEnergy	0.5
+             applyPhotonFlux	true
+                     verbose	true
+                verboseLevel	1
+                    rootfile	example.root
+                        seed	1355506689
+
+ROOT file is 'example.root'.
+Generating 1000 events.
+
+evt = 0           Q2 = 5.475         x = 1.242e-02
+                   W = 20.883        y = 0.055
+                   t = -0.004     xpom = 3.420e-02
+                 pol = L          diff = coherent
+
+   #          id   name       status    parents     daughters        px       py       pz        E           m
+   0          11   e-              4    -     -      2     3      0.000    0.000  -20.000   20.000   5.110e-04 
+   1  1000791970   Au(197)         4    -     -      6     -      0.000    0.000   99.996  100.000       0.938 
+   2          11   e-              1    0     -      -     -     -1.938    1.191  -18.830   18.967   5.110e-04 
+   3          22   gamma           2    0     -      4     5      1.938   -1.191   -1.170    1.033      -2.340 
+   4         443   J/psi           1    3     -      -     -      1.990   -1.212    2.306    4.510       3.097 
+   5         990   pomeron         2    3     3      6     -     -0.053    0.020   -3.477   -3.476      -0.066 
+   6  1000791970   Au(197)         1    1     5      -     -     -0.053    0.020   96.519   96.524       0.938 
+
+evt = 1           Q2 = 2.150         x = 4.916e-03
+                   W = 20.883        y = 0.055
+                   t = -0.004     xpom = 2.685e-02
+                 pol = T          diff = coherent
+
+   #          id   name       status    parents     daughters        px       py       pz        E           m
+   0          11   e-              4    -     -      2     3      0.000    0.000  -20.000   20.000   5.110e-04 
+   1  1000791970   Au(197)         4    -     -      6     -      0.000    0.000   99.996  100.000       0.938 
+   2          11   e-              1    0     -      -     -      1.399   -0.276  -18.880   18.933   5.110e-04 
+   3          22   gamma           2    0     -      4     5     -1.399    0.276   -1.120    1.067      -1.466 
+   4         443   J/psi           1    3     -      -     -     -1.417    0.218    1.569    3.756       3.097 
+   5         990   pomeron         2    3     3      6     -      0.018    0.057   -2.690   -2.690      -0.066 
+   6  1000791970   Au(197)         1    1     5      -     -      0.018    0.057   97.306   97.310       0.938 
+
+evt = 2           Q2 = 2.150         x = 2.961e-03
+                   W = 26.926        y = 0.091
+                   t = -0.004     xpom = 1.617e-02
+                 pol = T          diff = coherent
+
+   #          id   name       status    parents     daughters        px       py       pz        E           m
+   0          11   e-              4    -     -      2     3      0.000    0.000  -20.000   20.000   5.110e-04 
+   1  1000791970   Au(197)         4    -     -      6     -      0.000    0.000   99.996  100.000       0.938 
+   2          11   e-              1    0     -      -     -     -1.238   -0.650  -18.157   18.211   5.110e-04 
+   3          22   gamma           2    0     -      4     5      1.238    0.650   -1.843    1.789      -1.466 
+   4         443   J/psi           1    3     -      -     -      1.301    0.662   -0.202    3.429       3.097 
+   5         990   pomeron         2    3     3      6     -     -0.063   -0.012   -1.641   -1.641      -0.066 
+   6  1000791970   Au(197)         1    1     5      -     -     -0.063   -0.012   98.355   98.359       0.938 
+
+evt = 3           Q2 = 1.683         x = 2.731e-03
+                   W = 24.806        y = 0.077
+                   t = -0.003     xpom = 1.830e-02
+                 pol = T          diff = coherent
+
+   #          id   name       status    parents     daughters        px       py       pz        E           m
+   0          11   e-              4    -     -      2     3      0.000    0.000  -20.000   20.000   5.110e-04 
+   1  1000791970   Au(197)         4    -     -      6     -      0.000    0.000   99.996  100.000       0.938 
+   2          11   e-              1    0     -      -     -     -1.217    0.270  -18.439   18.481   5.110e-04 
+   3          22   gamma           2    0     -      4     5      1.217   -0.270   -1.561    1.519      -1.297 
+   4         443   J/psi           1    3     -      -     -      1.200   -0.219    0.258    3.339       3.097 
+   5         990   pomeron         2    3     3      6     -      0.016   -0.051   -1.819   -1.819      -0.057 
+   6  1000791970   Au(197)         1    1     5      -     -      0.016   -0.051   98.176   98.181       0.938 
+
+processed 50 events
+processed 100 events
+processed 150 events
+processed 200 events
+processed 250 events
+processed 300 events
+processed 350 events
+processed 400 events
+processed 450 events
+processed 500 events
+processed 550 events
+processed 600 events
+processed 650 events
+processed 700 events
+processed 750 events
+processed 800 events
+processed 850 events
+processed 900 events
+processed 950 events
+example.root written.
+Total cross-section: 98.8 nb
+Event summary: 1000 events generated, 1000 tried
+Total time used: 1 min 0 sec
+CPU Time/event: 10 msec/evt
+
+</pre>
+<p>It is easiest to start with this example and modify it for your purposes.</p>
+<div class="address"><div align="center"><table border="0" cellspacing="0" width="100%"><tbody><tr class="address">
+                <td align="left" width="40%">&nbsp;</td>
+                <td align="center" width="20%">&nbsp;</td>
+                <td align="right" width="40%"><div align="right"><br />Last Update:
+                    <!-- #BeginDate format:Am1 -->September 14, 2026<!-- #EndDate -->
+                </div></td>
+    </tr></tbody></table></div></div>
+
+</body></html>

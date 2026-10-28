@@ -1,0 +1,269 @@
+<!--
+ //==============================================================================
+ //  refEvent.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:44:24 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Sartre 2 - Event</title>
+    <link href="../sartre.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120" align="left" valign="top">
+          <img src="../images/sartreLogo.png" alt="Sartre" border="0" align="right" />
+        </td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td align="left" valign="middle" class="postheader"><a href="../index.html"><font color="#004faf">Home</font></a>&#xA0;&#xB7; <a href="../overview.html"><font color="#004faf">Overview</font></a>&#xA0;&#xB7; <a href="../usersGuide.html"><font color="#004faf">User Guide</font></a>&#xA0;&#xB7; <a href="../referenceGuide.html"><font color="#004faf">Library Reference Guide</font></a></td>
+      </tr>
+    </table>
+    <!-- Page title and overview -->
+    <h1 class="title">
+      <span class="className">Event</span>
+      <span class="referenceKind">Class Reference</span>
+    </h1>
+    <p>Public record returned by either generator. The pointer returned by a generator is replaced by the next generated event. <a href="#details">More...</a></p>
+    <pre>#include "Event.h"</pre>
+    <hr />
+    <!-- Reference summaries and documentation -->
+    <h2>Public Member Functions</h2>
+    <table class="alignedsummary" border="0" width="100%">
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top"><a href="#list">list</a>(ostream&amp; os = cout) const</td>
+      </tr>
+    </table>
+    <h2>Public Data Members</h2>
+    <table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tbody>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">unsigned long</td>
+          <td class="memItemRight" valign="bottom" align="left">
+            <a href="#eventNumber">eventNumber</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" valign="top" align="left">
+            <a href="#Q2">Q2</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" valign="top" align="left">
+            <a href="#W">W</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" valign="top" align="left">
+            <a href="#t">t</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" valign="top" align="left">
+            <a href="#x">x</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" valign="top" align="left">
+            <a href="#s">s</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" valign="top" align="left">
+            <a href="#y">y</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" valign="top" align="left">
+            <a href="#xpom">xpom</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" valign="top" align="left">
+            <a href="#beta">beta</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" valign="top" align="left">
+            <a href="#z">z</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" valign="top" align="left">
+            <a href="#MX">MX</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">unsigned int</td>
+          <td class="memItemRight" valign="top" align="left">
+            <a href="#quarkSpecies">quarkSpecies</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">GammaPolarization</td>
+          <td class="memItemRight" valign="top" align="left">
+            <a href="#polarization">polarization</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">DiffractiveMode</td>
+          <td class="memItemRight" valign="top" align="left">
+            <a href="#diffractiveMode">diffractiveMode</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" valign="top" align="left">
+            <a href="#crossSectionRatioLT">crossSectionRatioLT</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">vector&lt;Particle&gt;</td>
+          <td class="memItemRight" valign="top" align="left">
+            <a href="#particles">particles</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">int</td>
+          <td class="memItemRight" valign="top" align="left">
+            <a href="#numberOfPythiaParticlesStored">numberOfPythiaParticlesStored</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <hr />
+    <h2>Member Function Documentation</h2>
+    <h3 class="fn"><a id="list"></a>void list(ostream&amp; os = cout) const</h3>
+    <p>Writes a human-readable event record to <var>os</var>. The default is <code>cout</code>.</p>
+    <h2>Data Member Documentation</h2>
+    <h3 class="fn"><a id="eventNumber"></a>unsigned long eventNumber</h3>
+    <p>Sequential generated-event number.</p>
+    <h3 class="fn"><a id="Q2"></a>double Q2</h3>
+    <p>Photon virtuality in GeV<sup>2</sup>.</p>
+    <h3 class="fn"><a id="W"></a>double W</h3>
+    <p>Photon--hadron center-of-mass energy in GeV.</p>
+    <h3 class="fn"><a id="t"></a>double t</h3>
+    <p>Momentum-transfer variable in GeV<sup>2</sup>.</p>
+    <h3 class="fn"><a id="x"></a>double x</h3>
+    <p>DIS Bjorken-x value.</p>
+    <h3 class="fn"><a id="s"></a>double s</h3>
+    <p>Squared lepton--hadron center-of-mass energy in GeV<sup>2</sup>.</p>
+    <h3 class="fn"><a id="y"></a>double y</h3>
+    <p>DIS inelasticity.</p>
+    <h3 class="fn"><a id="xpom"></a>double xpom</h3>
+    <p>Diffractive momentum fraction.</p>
+    <h3 class="fn"><a id="beta"></a>double beta</h3>
+    <p>Diffractive Bjorken variable.</p>
+    <h3 class="fn"><a id="z"></a>double z</h3>
+    <p>Inclusive-diffraction longitudinal momentum variable.</p>
+    <h3 class="fn"><a id="MX"></a>double MX</h3>
+    <p>Inclusive diffractive mass in GeV.</p>
+    <h3 class="fn"><a id="quarkSpecies"></a>unsigned int quarkSpecies</h3>
+    <p>Selected inclusive quark-species index.</p>
+    <h3 class="fn"><a id="polarization"></a>GammaPolarization polarization</h3>
+    <p>Polarization selected for the generated contribution.</p>
+    <h3 class="fn"><a id="diffractiveMode"></a>DiffractiveMode diffractiveMode</h3>
+    <p>Whether the event is coherent or incoherent.</p>
+    <h3 class="fn"><a id="crossSectionRatioLT"></a>double crossSectionRatioLT</h3>
+    <p>Recorded longitudinal-to-transverse cross-section ratio.</p>
+    <h3 class="fn"><a id="particles"></a>vector&lt;Particle&gt; particles</h3>
+    <p>Event particles. Each Particle's index equals its vector index.</p>
+    <h3 class="fn"><a id="numberOfPythiaParticlesStored"></a>int numberOfPythiaParticlesStored</h3>
+    <p>Inclusive-event boundary: particles before this count originate from the Pythia afterburner; later entries can be nuclear remnants.</p>
+    <hr />
+    <h2><a name="details" id="details"></a>Detailed Description</h2>
+    <p>An <code>Event</code> holds the particles and calculated kinematics for one generated event. The event record may also contain nuclear-breakup products.</p>
+    <h3 id="legacy-sartre1">Legacy Sartre 1 notes and examples</h3>
+    <div class="legacyNotes">
+
+<p>The <code>Event</code> class holds the event record. The complete event record (in the form of a pointer to an instance of <code>Event</code>) is obtained via <a href="refSartre.html#m4">Sartre::generateEvent()</a>. It is a lightweight class with only one member function and all data member are public. The class holds information about general event characteristics (Q<sup>2</sup>, W, t, x, etc) as well as a vector holding all particles involved in the event. Note that the instance of the current event is deleted when the next event is generated. In case you want to keep a certain event in your application you need to keep a copy.</p>
+<p>Note that in the incoherent case (with nuclear breakup on) Sar<em>t</em>re does not conserve momentum/energy. The reason is that the generator that takes care of the nuclear breakup (gemini++) does not generate photons but only baryons. The event record is thus not 100% complete. This might be fixed in future versions of Sar<em>t</em>re.</p>
+<p><a href="refEvent.html#list">Event::list()</a> prints the complete event record with the most useful information. A typical print-out (here e+Au) of two events, one coherent, the other incoherent, looks like this:<a name="listexample" id="listexample"></a></p>
+<pre class="code">
+evt = 48          Q2 = 0.005         x = 2.096e-06
+                   W = 51.145        y = 0.327
+                   t = -0.034     xpom = 3.683e-03
+                 pol = T          diff = coherent
+
+   #          id   name       status    parents     daughters        px       py       pz        E           m
+   0          11   e-              4    -     -      2     3      0.000    0.000  -20.000   20.000   5.110e-04 
+   1  1000791970   Au(197)         4    -     -      6     -      0.000    0.000   99.996  100.000       0.938 
+   2          11   e-              1    0     -      -     -      0.047   -0.039  -13.463   13.463   5.110e-04 
+   3          22   gamma           2    0     -      4     5     -0.047    0.039   -6.537    6.537      -0.074 
+   4         443   J/psi           1    3     -      -     -     -0.213   -0.043   -6.169    6.906       3.097 
+   5         990   pomeron         2    3     3      6     -      0.166    0.081   -0.369   -0.369      -0.186 
+   6  1000791970   Au(197)         1    1     5      -     -      0.166    0.081   99.627   99.631       0.938 
+
+evt = 49          Q2 = 0.111         x = 7.746e-05
+                   W = 37.784        y = 0.178
+                   t = -0.059     xpom = 6.841e-03
+                 pol = T          diff = incoherent
+
+   #          id   name       status    parents     daughters        px       py       pz        E           m
+   0          11   e-              4    -     -      2     3      0.000    0.000  -20.000   20.000   5.110e-04 
+   1  1000791970   Au(197)         4    -     -      6     -      0.000    0.000   99.996  100.000       0.938 
+   2          11   e-              1    0     -      -     -     -0.029   -0.300  -16.431   16.434   5.110e-04 
+   3          22   gamma           2    0     -      4     5      0.029    0.300   -3.569    3.566      -0.332 
+   4         443   J/psi           1    3     -      -     -      0.170    0.497   -2.876    4.259       3.097 
+   5         990   pomeron         2    3     3      6     -     -0.141   -0.197   -0.693   -0.693      -0.243 
+   6  1000791970   Au(197)         2    1     5      -     -     -0.141   -0.197   99.303   99.307       0.940 
+   7        2112   neutron         1    6     -      -     -     -0.279   -0.156  108.304  108.309       0.940 
+   8  1000010020   H(2)            1    6     -      -     -     -0.086   -0.228   86.940   86.945       0.932 
+   9        2112   neutron         1    6     -      -     -     -0.186   -0.140  107.826  107.830       0.940 
+  10        2112   neutron         1    6     -      -     -     -0.237   -0.170  108.517  108.522       0.940 
+  11  1000030080   Li(8)           1    6     -      -     -     -0.057   -0.203   96.457   96.461       0.932 
+  12  1000010020   H(2)            1    6     -      -     -     -0.093   -0.129   86.289   86.294       0.932 
+  13  1000020040   He(4)           1    6     -      -     -     -0.219   -0.241  105.637  105.642       0.932 
+  14        2112   neutron         1    6     -      -     -     -0.106   -0.207  109.252  109.256       0.940 
+  15        2112   neutron         1    6     -      -     -     -0.092   -0.192   99.491   99.496       0.940 
+  16  1000010030   H(3)            1    6     -      -     -     -0.094   -0.280   98.482   98.487       0.932 
+  17  1000010030   H(3)            1    6     -      -     -     -0.142   -0.143   90.911   90.916       0.932 
+  18        2112   neutron         1    6     -      -     -     -0.224   -0.210   93.493   93.498       0.940 
+  19        2112   neutron         1    6     -      -     -     -0.204   -0.266  106.528  106.533       0.940 
+  20        2112   neutron         1    6     -      -     -     -0.076   -0.182   91.921   91.926       0.940 
+  21        2112   neutron         1    6     -      -     -     -0.102   -0.250  105.395  105.400       0.940 
+  22        2112   neutron         1    6     -      -     -     -0.208   -0.178  106.315  106.319       0.940 
+  23  1000010020   H(2)            1    6     -      -     -     -0.232   -0.144   99.072   99.077       0.932 
+  24        2112   neutron         1    6     -      -     -     -0.038   -0.219   97.387   97.392       0.940 
+  25        2112   neutron         1    6     -      -     -     -0.170   -0.263  103.741  103.745       0.940 
+  26  1000020040   He(4)           1    6     -      -     -     -0.091   -0.200   90.720   90.725       0.932 
+  27        2112   neutron         1    6     -      -     -     -0.192   -0.132   93.762   93.767       0.940 
+  28        2112   neutron         1    6     -      -     -     -0.183   -0.213   97.401   97.406       0.940 
+  29        2112   neutron         1    6     -      -     -     -0.183   -0.190   96.888   96.893       0.940 
+  30        2112   neutron         1    6     -      -     -     -0.098   -0.231  106.143  106.147       0.940 
+  31        2112   neutron         1    6     -      -     -     -0.171   -0.207   97.729   97.734       0.940 
+  32  1000671520   Ho(152)         1    6     -      -     -     -0.142   -0.193   98.776   98.780       0.932 
+ 
+</pre>
+Note that the products of the nuclear breakup in the incoherent case are only listed when activated through the runcard (<code>enableNuclearBreakup = true</code>) or programmatically (<a href="refEventGeneratorSettings.html#m16">EventGeneratorSettings::setEnableNuclearBreakup</a>(true)) . It is off by default. Momenta and energies for nuclei are always given as per nucleon.
+
+    </div>
+<address>
+  <p align="right">Last Update: September 14, 2026</p>
+</address>
+</body>
+</html>

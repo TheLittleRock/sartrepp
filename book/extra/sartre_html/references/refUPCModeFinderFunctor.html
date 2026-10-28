@@ -1,0 +1,91 @@
+<!--
+ //==============================================================================
+ //  refUPCModeFinderFunctor.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:44:24 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>Sartre 2 - UPCModeFinderFunctor Class Reference</title>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+    <link href="../sartre.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120" align="left" valign="top">
+          <img src="../images/sartreLogo.png" alt="Sartre" border="0" align="right" />
+        </td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td align="left" valign="middle" class="postheader"><a href="../index.html"><font color="#004faf">Home</font></a>&#xA0;&#xB7; <a href="../overview.html"><font color="#004faf">Overview</font></a>&#xA0;&#xB7; <a href="../usersGuide.html"><font color="#004faf">User Guide</font></a>&#xA0;&#xB7; <a href="../referenceGuide.html"><font color="#004faf">Library Reference Guide</font></a></td>
+      </tr>
+    </table>
+    <!-- Page title and overview -->
+    <h1 class="title">
+      <span class="className">UPCModeFinderFunctor</span>
+      <span class="referenceKind">Class Reference</span>
+    </h1>
+    <p>ROOT one-dimensional function used for UPC cross-section mode finding. <a href="#details">More...</a></p>
+    <pre><span class="preprocessor">#include</span> "ModeFinderFunctor.h"</pre>
+    <!-- Reference summaries and documentation -->
+    <h2>Inheritance</h2>
+    <p>Inherits from <a href="https://root.cern.ch/doc/master/classROOT_1_1Math_1_1IGenFunction.html">ROOT::Math::IGenFunction</a>.</p>
+    <h2>Public Member Functions</h2>
+    <table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tbody>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top"></td>
+          <td class="memItemRight" valign="top" align="left"><a href="#UPCModeFinderFunctor">UPCModeFinderFunctor</a>()</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top"></td>
+          <td class="memItemRight" valign="top" align="left"><a href="#UPCModeFinderFunctor2">UPCModeFinderFunctor</a>(CrossSection*, double vmMass, double hBeamEnergy, double eBeamEnergy)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#DoEval">DoEval</a>(double) const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">ROOT::Math::IGenFunction*</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#Clone">Clone</a>() const</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr />
+    <h2>Public Member Function Documentation</h2>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="UPCModeFinderFunctor" id="UPCModeFinderFunctor"></a>UPCModeFinderFunctor()</span>
+    </h3>
+    <p>Default constructor.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="UPCModeFinderFunctor2" id="UPCModeFinderFunctor2"></a>UPCModeFinderFunctor(CrossSection* <var>cs</var>, double <var>vmMass</var>, double <var>hBeamEnergy</var>, double <var>eBeamEnergy</var>)</span>
+    </h3>
+    <p>Constructs a UPC mode finder for a cross-section object, vector-meson mass, hadron-beam energy, and electron/second-beam energy.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="DoEval" id="DoEval"></a>double DoEval(double <var>xpom</var>) const</span>
+    </h3>
+    <p>Evaluates the UPC objective as a function of <var>xpom</var>.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="Clone" id="Clone"></a>ROOT::Math::IGenFunction* Clone() const</span>
+    </h3>
+    <p>Returns a heap-allocated copy through the ROOT function interface.</p>
+    <hr />
+    <h2><a name="details" id="details"></a>Detailed Description</h2>
+    <p>Functor used to select or integrate ultraperipheral-collision contributions. It presents UPC cross-section information through the callable interface required by the numerical mode finder.</p>
+  <address>
+    <p align="right">Last Update: September 14, 2026</p>
+  </address>
+  </body>
+</html>

@@ -1,0 +1,79 @@
+<!--
+ //==============================================================================
+ //  refSettingsParameter.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:44:24 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>Sartre 2 - SettingsParameter&lt;T&gt; Class Reference</title>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+    <link href="../sartre.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120" align="left" valign="top">
+          <img src="../images/sartreLogo.png" alt="Sartre" border="0" align="right" />
+        </td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td align="left" valign="middle" class="postheader"><a href="../index.html"><font color="#004faf">Home</font></a>&#xA0;&#xB7; <a href="../overview.html"><font color="#004faf">Overview</font></a>&#xA0;&#xB7; <a href="../usersGuide.html"><font color="#004faf">User Guide</font></a>&#xA0;&#xB7; <a href="../referenceGuide.html"><font color="#004faf">Library Reference Guide</font></a></td>
+      </tr>
+    </table>
+    <!-- Page title and overview -->
+    <h1 class="title">
+      <span class="className">SettingsParameter&lt;T&gt;</span>
+      <span class="referenceKind">Class Reference</span>
+    </h1>
+    <p>Template record binding a named setting to its storage location and default value. <a href="#details">More...</a></p>
+    <pre><span class="preprocessor">#include</span> "Settings.h"</pre>
+    <!-- Reference summaries and documentation -->
+    <h2>Inheritance</h2>
+    <p>Inherits from <a href="refSettingsParameterBase.html">SettingsParameterBase</a>.</p>
+    <h2>Public Data Members</h2>
+    <table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tbody>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">T*</td>
+          <td class="memItemRight" valign="top" align="left">
+            <a href="#address">address</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">T</td>
+          <td class="memItemRight" valign="top" align="left">
+            <a href="#defaultValue">defaultValue</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <hr />
+    <h2>Data Member Documentation</h2>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="address" id="address"></a>T* address</span>
+    </h3>
+    <p>Pointer to the variable updated when a setting is read.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="defaultValue" id="defaultValue"></a>T defaultValue</span>
+    </h3>
+    <p>Default value assigned by <code>Settings::registerParameter()</code>.</p>
+    <hr />
+    <h2><a name="details" id="details"></a>Detailed Description</h2>
+    <p>Template record used internally by Settings to associate a registered setting name with a storage address and its default value. It supports the generic settings-file reader.</p>
+  <address>
+    <p align="right">Last Update: September 14, 2026</p>
+  </address>
+  </body>
+</html>

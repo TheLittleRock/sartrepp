@@ -1,0 +1,35 @@
+#==============================================================================
+# Sartre UPC Runcard: bNonSat (IPnonsat) with STU Parameter Set
+# System: p + p -> p + J/psi + p @ sqrt(s) = 510 GeV
+# Decay: J/psi -> e+ e- (userInt = 11)
+#==============================================================================
+
+eBeamEnergy = 255.0
+hBeamEnergy = 255.0
+A = 1
+UPCA = 1
+UPC = true
+
+numberOfEvents = 20000
+timesToShow = 5
+
+verbose = false
+verboseLevel = 0
+
+rootfile = data/sartre_bNonSat_STU_20k.root
+
+dipoleModel = bNonSat
+dipoleModelParameterSet = STU
+vectorMesonId = 443
+tableSetType = coherent_and_incoherent
+
+# Decay vector meson to e+ e- (PDG = 11)
+userInt = 11
+
+correctForRealAmplitude = true
+correctSkewedness = true
+maxLambdaUsedInCorrections = 0.1
+
+enableNuclearBreakup = false
+applyPhotonFlux = true
+seed = 20261028

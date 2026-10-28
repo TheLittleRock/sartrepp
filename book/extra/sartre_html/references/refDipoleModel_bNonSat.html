@@ -1,0 +1,117 @@
+<!--
+ //==============================================================================
+ //  refDipoleModel_bNonSat.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:44:24 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<html>
+  <head>
+    <title>DipoleModel_bNonSat</title>
+    <link href="../sartre.css" rel="stylesheet" type="text/css"/>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120">
+          <img src="../images/sartreLogo.png" alt="Sartre" border="0" align="right"/>
+        </td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td class="postheader"><a href="../index.html">Home</a>&#xA0;&#xB7; <a href="../overview.html">Overview</a>&#xA0;&#xB7; <a href="../usersGuide.html">User Guide</a>&#xA0;&#xB7; <a href="../referenceGuide.html">Library Reference Guide</a></td>
+      </tr>
+    </table>
+    <!-- Page title and overview -->
+    <h1 class="title">
+      <span class="className">DipoleModel_bNonSat</span>
+      <span class="referenceKind">Class Reference</span>
+    </h1>
+    <p>Non-saturated bSat variant with a Gaussian hotspot profile. <a href="#details">More...</a></p>
+    <pre>#include "DipoleModel.h"</pre>
+    <!-- Reference summaries and documentation -->
+    <h2>Inheritance</h2>
+    <p>Inherits from <a href="refDipoleModel_bSat.html">DipoleModel_bSat</a>.</p>
+    <h2>Public Member Functions</h2>
+    <table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tbody>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top"/>
+          <td class="memItemRight" align="left" valign="bottom"><a href="#ctor">DipoleModel_bNonSat</a>()</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top"/>
+          <td class="memItemRight" align="left" valign="top"><a href="#settings">DipoleModel_bNonSat</a>(Settings*)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top"/>
+          <td class="memItemRight" align="left" valign="top"><a href="#dtor">~DipoleModel_bNonSat</a>()</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#dsigmadb2">dsigmadb2</a>(double, double, double, double)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#dsigmadb2ep">dsigmadb2ep</a>(double, double, double)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#coherent">coherentDsigmadb2</a>(double, double, double)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#rFactor">computeRFactor</a>(double r, double xprobe)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#omega">dsigmaFromOmega</a>(double omega) const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">void</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#grid">fillTA_grid</a>(double* grid, int N, double db)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#ta">computeTA_at</a>(double bx, double by) const</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr/>
+    <h2>Public Member Function Documentation</h2>
+    <h3 class="fn"><a name="ctor" id="ctor"/>DipoleModel_bNonSat()</h3>
+    <p>Constructs the default non-saturated model.</p>
+    <h3 class="fn"><a name="settings" id="settings"/>DipoleModel_bNonSat(Settings*)</h3>
+    <p>Constructs the model from settings.</p>
+    <h3 class="fn"><a name="dtor" id="dtor"/>~DipoleModel_bNonSat()</h3>
+    <p>Destructor.</p>
+    <h3 class="fn"><a name="dsigmadb2" id="dsigmadb2"/>double dsigmadb2(double, double, double, double)</h3>
+    <p>Evaluates the non-saturated dipole cross-section density for dipole size, impact parameter, azimuth, and probe momentum fraction.</p>
+    <h3 class="fn"><a name="dsigmadb2ep" id="dsigmadb2ep"/>double dsigmadb2ep(double, double, double)</h3>
+    <p>Evaluates the non-saturated proton dipole cross-section density for dipole size, impact parameter, and probe momentum fraction.</p>
+    <h3 class="fn"><a name="coherent" id="coherent"/>double coherentDsigmadb2(double, double, double)</h3>
+    <p>Evaluates the coherent non-saturated nuclear dipole cross-section density for dipole size, impact parameter, and probe momentum fraction.</p>
+    <h3 class="fn"><a name="rFactor" id="rFactor"/>double computeRFactor(double r, double xprobe)</h3>
+    <p>Computes the r-dependent FFT factor.</p>
+    <h3 class="fn"><a name="omega" id="omega"/>double dsigmaFromOmega(double omega) const</h3>
+    <p>Converts opacity to dipole cross section.</p>
+    <h3 class="fn"><a name="grid" id="grid"/>void fillTA_grid(double* grid, int N, double db)</h3>
+    <p>Fills an N by N target-thickness grid with spacing db.</p>
+    <h3 class="fn"><a name="ta" id="ta"/>double computeTA_at(double bx, double by) const</h3>
+    <p>Evaluates the Gaussian target thickness at Cartesian coordinates.</p>
+    <hr/>
+    <h2><a name="details" id="details"/>Detailed Description</h2>
+    <p>Concrete non-saturating dipole model. It shares the nuclear-configuration machinery of bSat but uses a Gaussian proton profile without the bSat saturation factor; it also supports the separable FFT fast path.</p>
+  <address>
+    <p align="right">Last Update: September 14, 2026</p>
+  </address>
+  </body>
+</html>

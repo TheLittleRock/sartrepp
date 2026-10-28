@@ -1,0 +1,387 @@
+/* ==============================================================================
+   Custom Theme Styling for Master Thesis: Sartre 2 Simulation & Analysis
+   Primary Accent Color: Emerald Green (#059669 / #10b981 / #34d399)
+   Author: Štěpán Skalka (CTU in Prague)
+   ============================================================================== */
+
+:root,
+html,
+html[data-theme="light"],
+html[data-theme="dark"] {
+  --pst-color-primary: #059669 !important;
+  --pst-color-primary-text: #ffffff !important;
+  --pst-color-primary-highlight: #047857 !important;
+  --pst-color-secondary: #10b981 !important;
+  --pst-color-secondary-text: #ffffff !important;
+  --pst-color-secondary-highlight: #059669 !important;
+  --pst-color-link: #059669 !important;
+  --pst-color-link-hover: #10b981 !important;
+  --pst-color-link-higher-contrast: #047857 !important;
+  --pst-color-target: rgba(5, 150, 105, 0.2) !important;
+  --sd-color-primary: #059669 !important;
+  --sd-color-secondary: #10b981 !important;
+}
+
+html[data-theme="dark"] {
+  --pst-color-primary: #34d399 !important;
+  --pst-color-primary-text: #064e3b !important;
+  --pst-color-primary-highlight: #10b981 !important;
+  --pst-color-secondary: #6ee7b7 !important;
+  --pst-color-secondary-text: #064e3b !important;
+  --pst-color-link: #34d399 !important;
+  --pst-color-link-hover: #6ee7b7 !important;
+  --pst-color-link-higher-contrast: #6ee7b7 !important;
+  --pst-color-target: rgba(52, 211, 153, 0.2) !important;
+}
+
+::selection {
+  background-color: rgba(5, 150, 105, 0.25) !important;
+  color: inherit !important;
+}
+
+::-moz-selection {
+  background-color: rgba(5, 150, 105, 0.25) !important;
+  color: inherit !important;
+}
+
+/* ==============================================================================
+   Sidebar Navigation Link Styling (Eliminate Any Orange Highlights)
+   ============================================================================== */
+
+/* Universal Link Reset in Sidebars: prevent orange/purple :visited or default styles */
+.bd-sidebar-primary a,
+.bd-sidebar-primary a:visited,
+.bd-sidenav a,
+.bd-sidenav a:visited,
+.bd-links a,
+.bd-links a:visited,
+nav.bd-links a,
+nav.bd-links a:visited {
+  color: var(--pst-color-text-base) !important;
+  text-decoration: none !important;
+}
+
+/* Base link styling */
+.bd-sidenav li > a,
+nav.bd-links li > a {
+  color: var(--pst-color-text-base) !important;
+  text-decoration: none !important;
+  border-left: 3px solid transparent;
+  transition: all 0.15s ease-in-out;
+}
+
+/* Link Hover */
+.bd-sidenav li > a:hover,
+nav.bd-links li > a:hover {
+  color: #059669 !important;
+  background-color: rgba(5, 150, 105, 0.08) !important;
+  border-left: 3px solid #10b981 !important;
+  text-decoration: none !important;
+}
+
+html[data-theme="dark"] .bd-sidenav li > a:hover,
+html[data-theme="dark"] nav.bd-links li > a:hover {
+  color: #34d399 !important;
+  background-color: rgba(52, 211, 153, 0.1) !important;
+  border-left: 3px solid #34d399 !important;
+}
+
+/* Active / Current Chapter Highlight (Emerald Green, Strictly No Orange) */
+.bd-sidenav li.current > a,
+.bd-sidenav li.active > a,
+.bd-sidenav li.current.active > a,
+.bd-sidenav > .active > a,
+.bd-sidenav .active > a,
+nav.bd-links li.current > a,
+nav.bd-links li.active > a,
+nav.bd-links .current > a,
+nav.bd-links .active > a,
+.bd-toc-item.current > a,
+.bd-toc-item.active > a {
+  color: #059669 !important;
+  border-left: 3px solid #059669 !important;
+  font-weight: 600 !important;
+  background-color: rgba(5, 150, 105, 0.12) !important;
+  text-decoration: none !important;
+}
+
+html[data-theme="dark"] .bd-sidenav li.current > a,
+html[data-theme="dark"] .bd-sidenav li.active > a,
+html[data-theme="dark"] .bd-sidenav li.current.active > a,
+html[data-theme="dark"] .bd-sidenav > .active > a,
+html[data-theme="dark"] .bd-sidenav .active > a,
+html[data-theme="dark"] nav.bd-links li.current > a,
+html[data-theme="dark"] nav.bd-links li.active > a,
+html[data-theme="dark"] nav.bd-links .current > a,
+html[data-theme="dark"] nav.bd-links .active > a,
+html[data-theme="dark"] .bd-toc-item.current > a,
+html[data-theme="dark"] .bd-toc-item.active > a {
+  color: #34d399 !important;
+  border-left: 3px solid #34d399 !important;
+  font-weight: 600 !important;
+  background-color: rgba(52, 211, 153, 0.15) !important;
+  text-decoration: none !important;
+}
+
+/* In-Page Right Sidebar Active TOC */
+.toc-entry a.nav-link.active {
+  color: #059669 !important;
+  border-left: 2px solid #059669 !important;
+  font-weight: 600 !important;
+}
+
+html[data-theme="dark"] .toc-entry a.nav-link.active {
+  color: #34d399 !important;
+  border-left: 2px solid #34d399 !important;
+  font-weight: 600 !important;
+}
+
+.toc-entry a.nav-link:hover {
+  color: #10b981 !important;
+}
+
+html[data-theme="dark"] .toc-entry a.nav-link:hover {
+  color: #6ee7b7 !important;
+}
+
+/* General Link Styling */
+a.reference.internal,
+a.reference.external {
+  color: #059669;
+  text-decoration: none;
+}
+
+html[data-theme="dark"] a.reference.internal,
+html[data-theme="dark"] a.reference.external {
+  color: #34d399;
+}
+
+a.reference.internal:hover,
+a.reference.external:hover {
+  color: #10b981;
+  text-decoration: underline;
+}
+
+html[data-theme="dark"] a.reference.internal:hover,
+html[data-theme="dark"] a.reference.external:hover {
+  color: #6ee7b7;
+}
+
+/* Part Header Captions in Sidebar */
+.bd-sidenav p.caption {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #4b5563;
+  margin-top: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+html[data-theme="dark"] .bd-sidenav p.caption {
+  color: #9ca3af;
+}
+
+/* Table styling fixes */
+table.table,
+table.dataframe {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.5rem 0;
+  font-size: 0.92rem;
+}
+
+table.table th,
+table.dataframe th {
+  background-color: rgba(5, 150, 105, 0.1);
+  color: inherit;
+  font-weight: 600;
+  padding: 0.6rem 0.8rem;
+  border-bottom: 2px solid #059669;
+  text-align: left;
+}
+
+html[data-theme="dark"] table.table th,
+html[data-theme="dark"] table.dataframe th {
+  background-color: rgba(52, 211, 153, 0.12);
+  border-bottom: 2px solid #34d399;
+}
+
+table.table td,
+table.dataframe td {
+  padding: 0.5rem 0.8rem;
+  border-bottom: 1px solid rgba(156, 163, 175, 0.2);
+}
+
+table.table tr:hover,
+table.dataframe tr:hover {
+  background-color: rgba(5, 150, 105, 0.04);
+}
+
+html[data-theme="dark"] table.table tr:hover,
+html[data-theme="dark"] table.dataframe tr:hover {
+  background-color: rgba(52, 211, 153, 0.05);
+}
+
+/* ==============================================================================
+   Mobile Sidebar Drawer & Backdrop Styling (Robust Phone Navigation)
+   ============================================================================== */
+
+@media (max-width: 991.98px) {
+  /* Off-canvas slide-out drawer for primary sidebar on phones/tablets */
+  #pst-primary-sidebar.bd-sidebar-primary {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
+    width: 85vw !important;
+    max-width: 320px !important;
+    background-color: var(--pst-color-background) !important;
+    z-index: 100000 !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.35) !important;
+    transform: translateX(-105%) !important;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.25s ease !important;
+    visibility: hidden !important;
+    margin-left: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 1.2rem 1rem !important;
+  }
+
+  /* When toggled open on phone, slide in smoothly */
+  #pst-primary-sidebar.bd-sidebar-primary.mobile-show {
+    transform: translateX(0) !important;
+    visibility: visible !important;
+  }
+
+  /* Secondary sidebar (On this page TOC) on mobile */
+  .bd-sidebar-secondary {
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
+    width: 85vw !important;
+    max-width: 320px !important;
+    background-color: var(--pst-color-background) !important;
+    z-index: 100000 !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    box-shadow: -4px 0 24px rgba(0, 0, 0, 0.35) !important;
+    transform: translateX(105%) !important;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.25s ease !important;
+    visibility: hidden !important;
+    margin-right: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 1.2rem 1rem !important;
+  }
+
+  .bd-sidebar-secondary.mobile-show {
+    transform: translateX(0) !important;
+    visibility: visible !important;
+  }
+
+  /* Mobile Close Button ("✕") */
+  .pst-mobile-close-btn {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(156, 163, 175, 0.15);
+    border: none;
+    color: var(--pst-color-text-base);
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin-bottom: 0.8rem;
+    align-self: flex-end;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .pst-mobile-close-btn:hover,
+  .pst-mobile-close-btn:active {
+    background: rgba(5, 150, 105, 0.2);
+    color: #059669;
+  }
+}
+
+@media (min-width: 992px) {
+  .pst-mobile-close-btn {
+    display: none !important;
+  }
+}
+
+/* Semi-transparent dark backdrop overlay */
+.pst-mobile-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  z-index: 99990;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.pst-mobile-backdrop.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Lock body scrolling when mobile drawer is open */
+body.pst-mobile-sidebar-open {
+  overflow: hidden !important;
+  touch-action: none;
+}
+
+/* ==============================================================================
+   Sidebar Logo Emblem Styling (Compact & Crisp in Light/Dark Mode)
+   ============================================================================== */
+
+html[data-theme="dark"] .only-light {
+  display: none !important;
+}
+
+html[data-theme="light"] .only-dark {
+  display: none !important;
+}
+
+.navbar-brand {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 0.8rem 1rem !important;
+}
+
+.logo__image {
+  max-height: 85px !important;
+  width: auto !important;
+  border-radius: 50% !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12) !important;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s ease !important;
+}
+
+.logo__image:hover {
+  transform: scale(1.04) !important;
+  box-shadow: 0 6px 20px rgba(5, 150, 105, 0.25) !important;
+}
+
+html[data-theme="dark"] .logo__image {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45) !important;
+}
+
+html[data-theme="dark"] .logo__image:hover {
+  box-shadow: 0 6px 22px rgba(52, 211, 153, 0.35) !important;
+}
+
+

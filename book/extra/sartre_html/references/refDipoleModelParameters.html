@@ -1,0 +1,193 @@
+<!--
+ //==============================================================================
+ //  refDipoleModelParameters.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:44:24 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<html>
+  <head>
+    <title>DipoleModelParameters</title>
+    <link href="../sartre.css" rel="stylesheet" type="text/css"/>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120" align="left" valign="top">
+          <img src="../images/sartreLogo.png" alt="Sartre" border="0" align="right"/>
+        </td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td align="left" valign="middle" class="postheader"><a href="../index.html"><font color="#004faf">Home</font></a>&#xA0;&#xB7; <a href="../overview.html"><font color="#004faf">Overview</font></a>&#xA0;&#xB7; <a href="../usersGuide.html"><font color="#004faf">User Guide</font></a>&#xA0;&#xB7; <a href="../referenceGuide.html"><font color="#004faf">Library Reference Guide</font></a></td>
+      </tr>
+    </table>
+    <!-- Page title and overview -->
+    <h1 class="title">
+      <span class="className">DipoleModelParameters</span>
+      <span class="referenceKind">Class Reference</span>
+    </h1>
+    <p>Provides model and wave-function parameters for dipole calculations. <a href="#details">More...</a></p>
+    <pre>#include "DipoleModelParameters.h"</pre>
+    <!-- Reference summaries and documentation -->
+    <h2>Public Member Functions</h2>
+    <table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tbody>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top"/>
+          <td class="memItemRight" align="left" valign="bottom"><a href="#settings">DipoleModelParameters</a>(Settings*)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top"/>
+          <td class="memItemRight" align="left" valign="top"><a href="#model">DipoleModelParameters</a>(DipoleModelType, DipoleModelParameterSet)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">void</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#setType">setDipoleModelType</a>(DipoleModelType)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">void</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#setSet">setDipoleModelParameterSet</a>(DipoleModelParameterSet)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">DipoleModelType</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#type">dipoleModelType</a>() const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">DipoleModelParameterSet</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#set">dipoleModelParameterSet</a>() const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#BG">BG</a>() const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#mu02">mu02</a>() const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#lambdaG">lambdaG</a>() const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#Ag">Ag</a>() const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#C">C</a>() const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#rMax">rMax</a>() const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#kappa">kappa</a>() const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#N0">N0</a>() const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#x0">x0</a>() const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#lambda">lambda</a>() const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#gammas">gammas</a>() const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#Bcgc">Bcgc</a>() const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#R2">boostedGaussianR2</a>(int vmID)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#NL">boostedGaussianNL</a>(int vmID)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#NT">boostedGaussianNT</a>(int vmID)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#mass">boostedGaussianQuarkMass</a>(int vmID)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">bool</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#list">list</a>(ostream&amp; = cout)</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr/>
+    <h2>Public Member Function Documentation</h2>
+    <h3 class="fn"><a name="settings" id="settings"/>DipoleModelParameters(Settings*)</h3>
+    <p>Constructs parameters from the supplied settings object.</p>
+    <h3 class="fn"><a name="model" id="model"/>DipoleModelParameters(DipoleModelType, DipoleModelParameterSet)</h3>
+    <p>Constructs parameters for the selected model and parameter set.</p>
+    <h3 class="fn"><a name="setType" id="setType"/>void setDipoleModelType(DipoleModelType)</h3>
+    <p>Sets the dipole-model type.</p>
+    <h3 class="fn"><a name="setSet" id="setSet"/>void setDipoleModelParameterSet(DipoleModelParameterSet)</h3>
+    <p>Sets the dipole-model parameter set.</p>
+    <h3 class="fn"><a name="type" id="type"/>DipoleModelType dipoleModelType() const</h3>
+    <p>Returns the selected model type.</p>
+    <h3 class="fn"><a name="set" id="set"/>DipoleModelParameterSet dipoleModelParameterSet() const</h3>
+    <p>Returns the selected parameter set.</p>
+    <h3 class="fn"><a name="BG" id="BG"/>double BG() const</h3>
+    <p>Returns the bSat/bNonSat profile parameter B_G.</p>
+    <h3 class="fn"><a name="mu02" id="mu02"/>double mu02() const</h3>
+    <p>Returns mu_0&#xB2;.</p>
+    <h3 class="fn"><a name="lambdaG" id="lambdaG"/>double lambdaG() const</h3>
+    <p>Returns lambda_g.</p>
+    <h3 class="fn"><a name="Ag" id="Ag"/>double Ag() const</h3>
+    <p>Returns A_g.</p>
+    <h3 class="fn"><a name="C" id="C"/>double C() const</h3>
+    <p>Returns C.</p>
+    <h3 class="fn"><a name="rMax" id="rMax"/>double rMax() const</h3>
+    <p>Returns the maximum r value; used by the STU parameterization.</p>
+    <h3 class="fn"><a name="kappa" id="kappa"/>double kappa() const</h3>
+    <p>Returns the bCGC kappa parameter.</p>
+    <h3 class="fn"><a name="N0" id="N0"/>double N0() const</h3>
+    <p>Returns the bCGC N_0 parameter.</p>
+    <h3 class="fn"><a name="x0" id="x0"/>double x0() const</h3>
+    <p>Returns the bCGC x_0 parameter.</p>
+    <h3 class="fn"><a name="lambda" id="lambda"/>double lambda() const</h3>
+    <p>Returns the bCGC lambda parameter.</p>
+    <h3 class="fn"><a name="gammas" id="gammas"/>double gammas() const</h3>
+    <p>Returns the bCGC gamma_s parameter.</p>
+    <h3 class="fn"><a name="Bcgc" id="Bcgc"/>double Bcgc() const</h3>
+    <p>Returns the bCGC B parameter.</p>
+    <h3 class="fn"><a name="R2" id="R2"/>double boostedGaussianR2(int vmID)</h3>
+    <p>Returns the boosted-Gaussian R&#xB2; parameter for vector meson <var>vmID</var>.</p>
+    <h3 class="fn"><a name="NL" id="NL"/>double boostedGaussianNL(int vmID)</h3>
+    <p>Returns the boosted-Gaussian N_L parameter.</p>
+    <h3 class="fn"><a name="NT" id="NT"/>double boostedGaussianNT(int vmID)</h3>
+    <p>Returns the boosted-Gaussian N_T parameter.</p>
+    <h3 class="fn"><a name="mass" id="mass"/>double boostedGaussianQuarkMass(int vmID)</h3>
+    <p>Returns the quark mass used by the boosted-Gaussian wave function.</p>
+    <h3 class="fn"><a name="list" id="list"/>bool list(ostream&amp; = cout)</h3>
+    <p>Writes the configured parameters to the output stream.</p>
+    <hr/>
+    <h2><a name="details" id="details"/>Detailed Description</h2>
+    <p>Stores the named or custom parameter set that defines a dipole model, including gluon-distribution, saturation, and vector-meson wave-function parameters. It is owned by a dipole-model instance and is selected through the common settings.</p>
+  <address>
+    <p align="right">Last Update: September 14, 2026</p>
+  </address>
+  </body>
+</html>

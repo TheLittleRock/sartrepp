@@ -1,0 +1,331 @@
+<!--
+ //==============================================================================
+ //  refTableCollection.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:44:24 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<html>
+  <head>
+    <link href="../sartre.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120" align="left" valign="top">
+          <img src="../images/sartreLogo.png" alt="Sartre" border="0" align="right"/>
+        </td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td align="left" valign="middle" class="postheader"><a href="../index.html"><font color="#004faf">Home</font></a>&#xA0;&#xB7; <a href="../overview.html"><font color="#004faf">Overview</font></a>&#xA0;&#xB7; <a href="../usersGuide.html"><font color="#004faf">User Guide</font></a>&#xA0;&#xB7; <a href="../referenceGuide.html"><font color="#004faf">Library Reference Guide</font></a></td>
+      </tr>
+    </table>
+    <!-- Page title and overview -->
+    <h1 class="title">
+      <span class="className">TableCollection</span>
+      <span class="referenceKind">Class Reference</span>
+    </h1>
+    <p>Class reference. <a href="#details">More...</a></p>
+    <pre>#include "TableCollection.h"</pre>
+    <!-- Reference summaries and documentation -->
+    <h2>Public Member Functions</h2>
+    <table class="alignedsummary">
+      <tr>
+        <td class="memItemLeft" align="right" valign="top"/>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m0">TableCollection()</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top"/>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m1">TableCollection(const TableCollection&amp;)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top"/>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m2">TableCollection(int A, DipoleModelType typ, DipoleModelParameterSet set, int vmID = 0)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top"/>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m3">~TableCollection()</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">TableCollection&amp;</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m4">operator=(const TableCollection&amp;)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m5">init(int A, DipoleModelType typ, DipoleModelParameterSet set, int vmID = 0)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m6">tableExists(GammaPolarization pol, AmplitudeMoment mom) const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m7">tableExists(AmplitudeMoment mom) const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m8">tableExists(GammaPolarization pol, AmplitudeMoment mom, FockState f, int quarkID) const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m9">available(double Q2, double W2, double t, GammaPolarization p, AmplitudeMoment m) const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m10">available(double xpom, double t, AmplitudeMoment m) const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m11">available(double Q2, double W2, double beta, double z, GammaPolarization p, AmplitudeMoment m, FockState f, int quarkID) const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m12">get(double Q2, double W2, double t, GammaPolarization p, AmplitudeMoment m) const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m13">get(double Q2, double W2, double t, GammaPolarization p, AmplitudeMoment m, Table *&amp;) const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m14">get(double xpom, double t, AmplitudeMoment m) const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m15">get(double xpom, double t, AmplitudeMoment m, Table *&amp;) const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m16">get(double Q2, double W2, double beta, double z, GammaPolarization p, AmplitudeMoment m, FockState f, int qID) const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m17">get(double Q2, double W2, double beta, double z, GammaPolarization p, AmplitudeMoment m, FockState f, int qID, Table *&amp;) const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m18">list(ostream&amp; = cout, bool = false) const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m19">setHasSubstructure(bool val)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m20">hasSubstructure() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m21">minQ2() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m22">maxQ2() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m23">minW2() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m24">maxW2() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m25">minW() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m26">maxW() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m27">minT() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m28">maxT() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m29">minZ() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m30">maxZ() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m31">minBeta() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m32">maxBeta() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m33">minX() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m34">maxX() const</a>
+        </td>
+      </tr>
+    </table>
+    <h2>Public Member Function Documentation</h2>
+<h3 class="fn" id="m0"> TableCollection()</h3>
+    <p>Constructs an empty collection containing no tables.</p>
+<h3 class="fn" id="m1"> TableCollection(const TableCollection&amp;)</h3>
+    <p>Constructs a copy of another table collection.</p>
+<h3 class="fn" id="m2"> TableCollection(int A, DipoleModelType typ, DipoleModelParameterSet set, int vmID = 0)</h3>
+    <p>Constructs and initialises a collection for the supplied target, dipole-model type, parameter set, and optional vector-meson identifier.</p>
+<h3 class="fn" id="m3"> ~TableCollection()</h3>
+    <p>Destroys the collection and its owned table objects.</p>
+<h3 class="fn" id="m4">TableCollection&amp; operator=(const TableCollection&amp;)</h3>
+    <p>Replaces this collection with a copy of another collection.</p>
+<h3 class="fn" id="m5">bool init(int A, DipoleModelType typ, DipoleModelParameterSet set, int vmID = 0)</h3>
+    <p>Finds and loads the tables matching the supplied target, dipole model, parameter set, and optional vector-meson identifier; returns whether initialisation succeeded.</p>
+<h3 class="fn" id="m6">bool tableExists(GammaPolarization pol, AmplitudeMoment mom) const</h3>
+    <p>Returns whether an exclusive table with the requested photon polarization and amplitude moment is present.</p>
+<h3 class="fn" id="m7">bool tableExists(AmplitudeMoment mom) const</h3>
+    <p>Returns whether a UPC table with the requested amplitude moment is present.</p>
+<h3 class="fn" id="m8">bool tableExists(GammaPolarization pol, AmplitudeMoment mom, FockState f, int quarkID) const</h3>
+    <p>Returns whether an inclusive table with the requested polarization, amplitude moment, Fock state, and quark identifier is present.</p>
+<h3 class="fn" id="m9">bool available(double Q2, double W2, double t, GammaPolarization p, AmplitudeMoment m) const</h3>
+    <p>Returns whether a matching exclusive table exists and covers the supplied <em>Q</em><sup>2</sup>, <em>W</em><sup>2</sup>, and <em>t</em> point.</p>
+<h3 class="fn" id="m10">bool available(double xpom, double t, AmplitudeMoment m) const</h3>
+    <p>Returns whether a matching UPC table exists and covers the supplied <em>x</em><sub>&#x2119;</sub> and <em>t</em> point.</p>
+<h3 class="fn" id="m11">bool available(double Q2, double W2, double beta, double z, GammaPolarization p, AmplitudeMoment m, FockState f, int quarkID) const</h3>
+    <p>Returns whether a matching inclusive table exists and covers the supplied <em>Q</em><sup>2</sup>, <em>W</em><sup>2</sup>, &#x3B2;, and <em>z</em> point.</p>
+<h3 class="fn" id="m12">double get(double Q2, double W2, double t, GammaPolarization p, AmplitudeMoment m) const</h3>
+    <p>Returns the interpolated value from the matching exclusive table.</p>
+<h3 class="fn" id="m13">double get(double Q2, double W2, double t, GammaPolarization p, AmplitudeMoment m, Table *&amp;) const</h3>
+    <p>Returns the interpolated exclusive-table value and stores the selected table through the output pointer.</p>
+<h3 class="fn" id="m14">double get(double xpom, double t, AmplitudeMoment m) const</h3>
+    <p>Returns the interpolated value from the matching UPC table.</p>
+<h3 class="fn" id="m15">double get(double xpom, double t, AmplitudeMoment m, Table *&amp;) const</h3>
+    <p>Returns the interpolated UPC-table value and stores the selected table through the output pointer.</p>
+<h3 class="fn" id="m16">double get(double Q2, double W2, double beta, double z, GammaPolarization p, AmplitudeMoment m, FockState f, int qID) const</h3>
+    <p>Returns the interpolated value from the matching inclusive table.</p>
+<h3 class="fn" id="m17">double get(double Q2, double W2, double beta, double z, GammaPolarization p, AmplitudeMoment m, FockState f, int qID, Table *&amp;) const</h3>
+    <p>Returns the interpolated inclusive-table value and stores the selected table through the output pointer.</p>
+<h3 class="fn" id="m18">void list(ostream&amp; = cout, bool = false) const</h3>
+    <p>Lists the tables held by the collection.</p>
+<h3 class="fn" id="m19">void setHasSubstructure(bool val)</h3>
+    <p>Sets whether table selection must require substructure/hotspot metadata.</p>
+<h3 class="fn" id="m20">bool hasSubstructure() const</h3>
+    <p>Returns whether table selection currently requires substructure/hotspot metadata.</p>
+<h3 class="fn" id="m21">double minQ2() const</h3>
+    <p>Returns the common lower <em>Q</em><sup>2</sup> limit of matching tables.</p>
+<h3 class="fn" id="m22">double maxQ2() const</h3>
+    <p>Returns the common upper <em>Q</em><sup>2</sup> limit of matching tables.</p>
+<h3 class="fn" id="m23">double minW2() const</h3>
+    <p>Returns the common lower <em>W</em><sup>2</sup> limit of matching tables.</p>
+<h3 class="fn" id="m24">double maxW2() const</h3>
+    <p>Returns the common upper <em>W</em><sup>2</sup> limit of matching tables.</p>
+<h3 class="fn" id="m25">double minW() const</h3>
+    <p>Returns the common lower <em>W</em> limit of matching tables.</p>
+<h3 class="fn" id="m26">double maxW() const</h3>
+    <p>Returns the common upper <em>W</em> limit of matching tables.</p>
+<h3 class="fn" id="m27">double minT() const</h3>
+    <p>Returns the common lower <em>t</em> limit of matching tables.</p>
+<h3 class="fn" id="m28">double maxT() const</h3>
+    <p>Returns the common upper <em>t</em> limit of matching tables.</p>
+<h3 class="fn" id="m29">double minZ() const</h3>
+    <p>Returns the common lower <em>z</em> limit of matching inclusive tables.</p>
+<h3 class="fn" id="m30">double maxZ() const</h3>
+    <p>Returns the common upper <em>z</em> limit of matching inclusive tables.</p>
+<h3 class="fn" id="m31">double minBeta() const</h3>
+    <p>Returns the common lower &#x3B2; limit of matching inclusive tables.</p>
+<h3 class="fn" id="m32">double maxBeta() const</h3>
+    <p>Returns the common upper &#x3B2; limit of matching inclusive tables.</p>
+<h3 class="fn" id="m33">double minX() const</h3>
+    <p>Returns the common lower <em>x</em><sub>&#x2119;</sub> limit of matching UPC tables.</p>
+<h3 class="fn" id="m34">double maxX() const</h3>
+    <p>Returns the common upper <em>x</em><sub>&#x2119;</sub> limit of matching UPC tables.</p>
+    <hr/>
+    <h2><a name="details" id="details"/>Detailed Description</h2>
+    <p>Owns and selects a compatible collection of precomputed cross-section or amplitude tables. It checks availability over a requested kinematic range and retrieves the table value matching polarization, moment, Fock state, and other table metadata.</p>
+  <address>
+    <p align="right">Last Update: September 14, 2026</p>
+  </address>
+  </body>
+</html>

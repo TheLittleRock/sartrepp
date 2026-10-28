@@ -1,0 +1,347 @@
+<!--
+ //==============================================================================
+ //  refKinematics.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:44:24 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>Sartre 2 - Kinematics Class Reference</title>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+    <link href="../sartre.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120" align="left" valign="top">
+          <img src="../images/sartreLogo.png" alt="Sartre" border="0" align="right" />
+        </td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td align="left" valign="middle" class="postheader"><a href="../index.html"><font color="#004faf">Home</font></a>&#xA0;&#xB7; <a href="../overview.html"><font color="#004faf">Overview</font></a>&#xA0;&#xB7; <a href="../usersGuide.html"><font color="#004faf">User Guide</font></a>&#xA0;&#xB7; <a href="../referenceGuide.html"><font color="#004faf">Library Reference Guide</font></a></td>
+      </tr>
+    </table>
+    <!-- Page title and overview -->
+    <h1 class="title">
+      <span class="className">Kinematics</span>
+      <span class="referenceKind">Class Reference</span>
+    </h1>
+    <p>Static helper class for ep/eA diffractive-event kinematics. It is not for UPC kinematics except where a method is explicitly marked UPC. <a href="#details">More...</a></p>
+    <pre><span class="preprocessor">#include</span> "Kinematics.h"</pre>
+    <!-- Reference summaries and documentation -->
+    <h2>Public Static Member Functions</h2>
+    <table class="alignedsummary">
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">static double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m0">xprobe(double Q2, double W2, double vmM)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">static TLorentzVector</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m1">electronBeam(double eE, bool upc = false)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">static TLorentzVector</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m2">hadronBeam(double eH)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">static double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m3">s(const TLorentzVector&amp; e, const TLorentzVector&amp; p)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">static double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m4">s(double eE, double hE, bool upc = false)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">static double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m5">x(double Q2, double W2)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">static double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m6">y(double Q2, double x, double s)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">static double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m7">ymin(double s, double vmM)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">static double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m8">ymax(double s, double vmM)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">static double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m9">W2(double Q2, double x)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">static double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m10">W2(double Q2, double xprobe, double vmM)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">static double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m11">W2min(double vmM)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">static double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m12">W2max(double s)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">static double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m13">W2max(double s, double Q2, double MX)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">static double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m14">Q2min(double y)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">static double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m15">Q2max(double s)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">static double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m16">xpomeron(double t, double Q2, double W2, double vmM)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">static double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m17">MX2(double Q2, double beta, double t)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">static double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m18">tmax(double xpom)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">static double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m19">tmax(double t, double Q2, double W2, double vmM)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">static double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m20">tmin(double hE)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">static double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m21">betamin(double Q2, double s, double MX, double t)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">static double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m22">Egamma(double xpom, double t, double vmM, double hBeamEnergy, double eBeamEnergy, double MY2minusM2 = 0)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">static double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m23">rapidity(double s, double vmMass, double xpom, double p2=0)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">static bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m24">validUPC(double hBeamEnergy, double eBeamEnergy, double t, double xpom, double vmMass, bool verbose = false)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">static bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m25">valid(double s, double t, double Q2, double W2, double vmMass, bool useTrueXp = false, bool verbose = false)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">static bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m26">valid(double s, double beta, double Q2, double W2, double z, double MC, bool useTrueXp = false, bool verbose = false)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">static bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m27">error()</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">static double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m28">xpomMin(double massVM, double t, TLorentzVector hBeam, TLorentzVector eBeam, double MY2minusM2 = 0)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">static double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m29">xpomMin(double s, double vmM, double t)</a>
+        </td>
+      </tr>
+    </table>
+    <h2>Public Member Function Documentation</h2>
+    <h3 class="fn" id="m0">static double xprobe(double Q2, double W2, double vmM)</h3>
+    
+<p>For vector meson production, the gluon density is typically evaluated at x = x<sub>BJ</sub>(1 + M<sub>V</sub><sup>2</sup>/Q<sup>2</sup>). Here we use the (for our purposes) slightly more robust equivalent expression x = (Q<sup>2</sup>+ M<sub>V</sub><sup>2</sup>)/(W<sup>2</sup> - m<sub>p</sub><sup>2</sup> + Q<sup>2</sup>). If x &lt; 0 or x &gt; 1 the error flag is set.</p>
+
+    <h3 class="fn" id="m1">static TLorentzVector electronBeam(double eE, bool upc = false)</h3>
+    
+<p>Returns Lorentz vector of the electron beam for given beam energy <var>eE</var>. Note that p<sub>x</sub>=p<sub>y</sub>=0 and <sub>z</sub>&lt;0 (Sartre conventions).</p>
+
+    <h3 class="fn" id="m2">static TLorentzVector hadronBeam(double eH)</h3>
+    
+<p>Returns Lorentz vector of the hadron beam for given beam energy <var>eH</var>. Note that p<sub>x</sub>=p<sub>y</sub>=0 and p<sub>z</sub> &gt; 0 (Sartre conventions).<br />
+Note that the units are always per nucleon.</p>
+
+    <h3 class="fn" id="m3">static double s(const TLorentzVector&amp; e, const TLorentzVector&amp; p)</h3>
+    
+<p>Returns the center-of-mass energy squared for electron beam <var>e</var>, and hadron beam 4-vector <var>p</var>.</p>
+
+    <h3 class="fn" id="m4">static double s(double eE, double hE, bool upc = false)</h3>
+    
+<p>Overloaded function. Same as s(Kinematics::<span class="memItemRight">electronBeam(<var>eE</var>), Kinematics::hadronBeam(<var>eH</var>)</span>).</p>
+
+    <h3 class="fn" id="m5">static double x(double Q2, double W2)</h3>
+    
+<p>Returns Bjorken x for given Q<sup>2</sup> and W<sup>2</sup> values.</p>
+
+    <h3 class="fn" id="m6">static double y(double Q2, double x, double s)</h3>
+    
+<p>Returns inelasticity for given Q<sup>2</sup>, W<sup>2</sup>, and <var>s</var>.</p>
+
+    <h3 class="fn" id="m7">static double ymin(double s, double vmM)</h3>
+    
+<p>Returns smallest allowed inelasticity value (kinematic limit) for given <var>s</var> and vector meson mass <var>vmM</var>.</p>
+
+    <h3 class="fn" id="m8">static double ymax(double s, double vmM)</h3>
+    
+<p>Returns largest allowed inelasticity value (kinematic limit) for given <var>s</var> and vector meson mass <var>vmM</var>.</p>
+
+    <h3 class="fn" id="m9">static double W2(double Q2, double x)</h3>
+    
+<p>Returns W<sup>2</sup> for given Q<sup>2</sup> and Bjorken <var>x</var>.</p>
+
+    <h3 class="fn" id="m10">static double W2(double Q2, double xprobe, double vmM)</h3>
+    
+<p>Returns W<sup>2</sup> for given Q<sup>2</sup>, <var>x<sub>probe</sub></var> and vector meson mass <var>vmM</var>. For <var>x<sub>probe</sub></var> see <a href="#m0">xprobe()</a>.</p>
+
+    <h3 class="fn" id="m11">static double W2min(double vmM)</h3>
+    
+<p>Returns smallest allowed W<sup>2</sup> value (kinematic limit) for vector meson mass <var>vmM</var>.</p>
+
+    <h3 class="fn" id="m12">static double W2max(double s)</h3>
+    
+<p>Returns largest allowed W<sup>2</sup> value (kinematic limit) for given <var>s</var>.</p>
+
+    <h3 class="fn" id="m13">static double W2max(double s, double Q2, double MX)</h3>
+    <p>Returns the maximum allowed <em>W</em><sup>2</sup> for the supplied collision energy, virtuality, and diffractive-mass input.</p>
+    <h3 class="fn" id="m14">static double Q2min(double y)</h3>
+    
+<p>Returns smallest allowed Q<sup>2</sup> value (kinematic limit) for given inelasticity <var>y</var>.</p>
+
+    <h3 class="fn" id="m15">static double Q2max(double s)</h3>
+    
+<p>Returns largest allowed Q<sup>2</sup> value (kinematic limit) for given <var>s</var>.</p>
+
+    <h3 class="fn" id="m16">static double xpomeron(double t, double Q2, double W2, double vmM)</h3>
+    
+<p>Returns x<sub>IP</sub> for given t, Q<sup>2</sup>, W<sup>2</sup><var>,</var>and vector meson mass M<sub>V</sub>.</p>
+
+    <h3 class="fn" id="m17">static double MX2(double Q2, double beta, double t)</h3>
+    <p>Returns the diffractive final-state mass squared from <em>Q</em><sup>2</sup>, &#x3B2;, and <em>t</em>.</p>
+    <h3 class="fn" id="m18">static double tmax(double xpom)</h3>
+    
+<p>Returns largest kinematically allowed <var>t</var> for a given x<sub>IP</sub>. Note that this value is incorrectly often referred to as t<sub>min</sub> ignoring the fact that t &lt; 0. See also notes at the second version of tmax().</p>
+
+    <h3 class="fn" id="m19">static double tmax(double t, double Q2, double W2, double vmM)</h3>
+    
+<p>Returns largest kinematically allowed <var>t</var> for given values of <var>t</var>, Q<sup>2</sup>, W<sup>2</sup>, and vector meson mass <var>vmM</var>. At a first glance this looks strange since <em>t</em><sub>max</sub> depends on <em>t</em>. The definition for <em>t</em><sub>max</sub> we use is <em>t</em><sub>max</sub> = - M<sub>p</sub><sup>2</sup> x<sub>IP</sub><sup>2</sup> / (1 - x<sub>IP</sub>). Unfortunately x<sub>IP</sub> depends on <em>t</em> if no approximations are included. For all practical purposes setting t=0 is a good approximation.</p>
+<p>Note that the returned value is incorrectly often referred to as t<sub>min</sub> ignoring the fact that t &lt; 0.</p>
+
+    <h3 class="fn" id="m20">static double tmin(double hE)</h3>
+    
+<p>Returns largest kinematically allowed <var>|t|</var> for a given hadron beam energy, <em>hE</em>.</p>
+
+    <h3 class="fn" id="m21">static double betamin(double Q2, double s, double MX, double t)</h3>
+    <p>Returns the lower kinematic &#x3B2; boundary for the supplied variables.</p>
+    <h3 class="fn" id="m22">static double Egamma(double xpom, double t, double vmM, double hBeamEnergy, double eBeamEnergy, double MY2minusM2 = 0)</h3>
+    <p>Returns the UPC photon energy derived from <em>x</em><sub>&#x2119;</sub>, <em>t</em>, the vector-meson mass, beam energies, and optional dissociation mass term.</p>
+    <h3 class="fn" id="m23">static double rapidity(double s, double vmMass, double xpom, double p2=0)</h3>
+    <p>Returns the produced-system rapidity for the supplied collision energy, mass, <em>x</em><sub>&#x2119;</sub>, and transverse-momentum-squared value.</p>
+    <h3 class="fn" id="m24">static bool validUPC(double hBeamEnergy, double eBeamEnergy, double t, double xpom, double vmMass, bool verbose = false)</h3>
+    <p>Returns whether the supplied UPC variables are kinematically valid; optional verbose output explains a failure.</p>
+    <h3 class="fn" id="m25">static bool valid(double s, double t, double Q2, double W2, double vmMass, bool useTrueXp = false, bool verbose = false)</h3>
+    
+<p>Returns true if the set of kinematic variables (<em>s</em>, <var>t</var>, Q<sup>2</sup>, W<sup>2</sup> and M<sub>p</sub>) are kinematically valid. Flag <var>useTrueXp</var> controls whether the exact calculation of x<sub>IP</sub> should be used (i.e., not neglecting <em>t</em>) or if the approximation for x<sub>IP</sub> with t=0 is to be used. If the <var>verbose</var> flag is on the method will print out the first encountered reason why the set of kinematic variables is not valid.</p>
+
+    <h3 class="fn" id="m26">static bool valid(double s, double beta, double Q2, double W2, double z, double MC, bool useTrueXp = false, bool verbose = false)</h3>
+    <p>Returns whether the supplied inclusive-diffraction variables are kinematically valid; optional verbose output explains a failure.</p>
+    <h3 class="fn" id="m27">static bool error()</h3>
+    
+<p>Returns the error flag of the <strong>last</strong> call. If <code>true</code> an error has occurred and the result cannot be trusted.</p>
+<p>&#160;</p>
+
+    <h3 class="fn" id="m28">static double xpomMin(double massVM, double t, TLorentzVector hBeam, TLorentzVector eBeam, double MY2minusM2 = 0)</h3>
+    <p>Returns the minimum kinematically allowed <em>x</em><sub>&#x2119;</sub> for the supplied vector-meson mass, momentum transfer, and beam four-vectors.</p>
+    <h3 class="fn" id="m29">static double xpomMin(double s, double vmM, double t)</h3>
+    <p>Returns the minimum kinematically allowed <em>x</em><sub>&#x2119;</sub> from the supplied collision energy, vector-meson mass, and momentum transfer.</p>
+    <hr />
+    <h2><a name="details" id="details"></a>Detailed Description</h2>
+    <p><code>Kinematics</code> provides a rich collection of static methods for calculating DIS and diffractive variables. The legacy documentation emphasizes that these calculations retain the nucleon and electron masses rather than relying on massless approximations.</p>
+    <p>The methods are used throughout Sartre and are also suitable for client code. Invalid input ranges set an internal error flag that can be queried with <code>Kinematics::error()</code>.</p>
+  
+    <h3 id="legacy-sartre1">Legacy Sartre 1 notes and examples</h3>
+    <div class="legacyNotes">
+
+<p>The <code>Kinematics</code> class consists of a rich set of static methods that allows one to calculate kinematic variables common in DIS. These methods are heavily used in Sar<em>t</em>re but are also quite useful for the user. All calculation are conducted in the most precise way, i.e. without neglecting the nucleon mass or even the electron mass. We strongly recommend to use these methods. If an error occurs (e.g. invalid range) an internal error flag is set that can be checked using Kinematics::error().</p>
+
+    </div>
+<address>
+  <p align="right">Last Update: September 14, 2026</p>
+</address>
+</body>
+</html>

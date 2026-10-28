@@ -1,0 +1,187 @@
+<!--
+ //==============================================================================
+ //  refDipoleModel.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:44:24 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<html>
+  <head>
+    <link href="../sartre.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120" align="left" valign="top">
+          <img src="../images/sartreLogo.png" alt="Sartre" border="0" align="right"/>
+        </td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td align="left" valign="middle" class="postheader"><a href="../index.html"><font color="#004faf">Home</font></a>&#xA0;&#xB7; <a href="../overview.html"><font color="#004faf">Overview</font></a>&#xA0;&#xB7; <a href="../usersGuide.html"><font color="#004faf">User Guide</font></a>&#xA0;&#xB7; <a href="../referenceGuide.html"><font color="#004faf">Library Reference Guide</font></a></td>
+      </tr>
+    </table>
+    <!-- Page title and overview -->
+    <h1 class="title">
+      <span class="className">DipoleModel</span>
+      <span class="referenceKind">Class Reference</span>
+    </h1>
+    <p>Class reference. <a href="#details">More...</a></p>
+    <pre>#include "DipoleModel.h"</pre>
+    <!-- Reference summaries and documentation -->
+    <h2>Public Member Functions</h2>
+    <table class="alignedsummary">
+      <tr>
+        <td class="memItemLeft" align="right" valign="top"/>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m0">DipoleModel()</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top"/>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m1">~DipoleModel()</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">const TableGeneratorNucleus*</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m2">nucleus() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m3">configurationExists() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m4">createConfiguration(int)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m5">dsigmadb2(double, double, double, double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m6">bDependence(double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m7">bDependence(double, double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m8">dsigmadb2ep(double, double, double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m9">coherentDsigmadb2(double, double, double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m10">createSigma_ep_LookupTable(double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m11">canUseFastPath() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m12">computeRFactor(double , double )</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m13">dsigmaFromOmega(double ) const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m14">generateFreshConfiguration()</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m15">fillTA_grid(double* , int , double )</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">DipoleModelParameters*</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m16">getParameters()</a>
+        </td>
+      </tr>
+    </table>
+    <h2>Public Member Function Documentation</h2>
+<h3 class="fn" id="m0"> DipoleModel()</h3>
+    <p>Constructs the abstract dipole-model base object.</p>
+<h3 class="fn" id="m1"> ~DipoleModel()</h3>
+    <p>Destroys the dipole-model object.</p>
+<h3 class="fn" id="m2">const TableGeneratorNucleus* nucleus() const</h3>
+    <p>Returns the nuclear-configuration generator associated with this model.</p>
+<h3 class="fn" id="m3">bool configurationExists() const</h3>
+    <p>Returns whether a target configuration has been created and is available.</p>
+<h3 class="fn" id="m4">void createConfiguration(int)</h3>
+    <p>Creates the target configuration identified by the supplied index.</p>
+<h3 class="fn" id="m5">double dsigmadb2(double, double, double, double)</h3>
+    <p>Evaluates the impact-parameter differential dipole cross section for the model.</p>
+<h3 class="fn" id="m6">double bDependence(double)</h3>
+    <p>Evaluates the one-argument impact-parameter dependence used by the model.</p>
+<h3 class="fn" id="m7">double bDependence(double, double)</h3>
+    <p>Evaluates the two-argument impact-parameter dependence used by the model.</p>
+<h3 class="fn" id="m8">double dsigmadb2ep(double, double, double)</h3>
+    <p>Evaluates the proton dipole cross section used for electroproduction.</p>
+<h3 class="fn" id="m9">double coherentDsigmadb2(double, double, double)</h3>
+    <p>Evaluates the coherent nuclear dipole cross section; the base implementation returns zero.</p>
+<h3 class="fn" id="m10">void createSigma_ep_LookupTable(double)</h3>
+    <p>Builds the proton cross-section lookup table when the model provides one.</p>
+<h3 class="fn" id="m11">bool canUseFastPath() const</h3>
+    <p>Returns whether the model supports the accelerated calculation path.</p>
+<h3 class="fn" id="m12">double computeRFactor(double , double )</h3>
+    <p>Computes the model-specific radial factor used by the accelerated path.</p>
+<h3 class="fn" id="m13">double dsigmaFromOmega(double ) const</h3>
+    <p>Converts the model opacity into a dipole cross section for the accelerated path.</p>
+<h3 class="fn" id="m14">void generateFreshConfiguration()</h3>
+    <p>Generates a fresh fluctuating target configuration when the model supports it.</p>
+<h3 class="fn" id="m15">void fillTA_grid(double* , int , double )</h3>
+    <p>Fills a transverse nuclear-thickness grid for the accelerated path.</p>
+<h3 class="fn" id="m16">DipoleModelParameters* getParameters()</h3>
+    <p>Returns the dipole-model parameter object.</p>
+    <hr/>
+    <h2><a name="details" id="details"/>Detailed Description</h2>
+    <p>Abstract interface for dipole--target scattering models. Implementations create target configurations and evaluate the dipole cross section as a function of dipole size, impact parameter, and probe x. The interface also provides optional fast-path hooks used by FFT table generation.</p>
+  <address>
+    <p align="right">Last Update: September 14, 2026</p>
+  </address>
+  </body>
+</html>

@@ -1,0 +1,120 @@
+<!--
+ //==============================================================================
+ //  refEnumerations.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:44:24 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>Sartre 2 - Enumerations Reference</title>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+    <link href="../sartre.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120" align="left" valign="top">
+          <img src="../images/sartreLogo.png" alt="Sartre" border="0" align="right" />
+        </td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td align="left" valign="middle" class="postheader"><a href="../index.html"><font color="#004faf">Home</font></a>&#xA0;&#xB7; <a href="../overview.html"><font color="#004faf">Overview</font></a>&#xA0;&#xB7; <a href="../usersGuide.html"><font color="#004faf">User Guide</font></a>&#xA0;&#xB7; <a href="../referenceGuide.html"><font color="#004faf">Library Reference Guide</font></a></td>
+      </tr>
+    </table>
+    <!-- Page title and overview -->
+    <h1 class="title">
+      <span class="className">Enumerations</span>
+      <span class="referenceKind">Reference</span>
+    </h1>
+    <p>Enumerations declared in <code>Enumerations.h</code>. <a href="#details">More...</a></p>
+    <pre><span class="preprocessor">#include</span> "Enumerations.h"</pre>
+    <!-- Reference summaries and documentation -->
+    <h2>Enumerations</h2>
+    <table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tbody>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">enum</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#DipoleModelType">DipoleModelType</a> { bSat, bNonSat, bCGC }</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">enum</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#GammaPolarization">GammaPolarization</a> { transverse, longitudinal }</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">enum</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#AmplitudeMoment">AmplitudeMoment</a> { mean_A, mean_A2, variance_A, lambda_real, lambda_skew }</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">enum</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#DiffractiveMode">DiffractiveMode</a> { coherent, incoherent }</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">enum</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#DipoleModelParameterSet">DipoleModelParameterSet</a> { KMW, HMPZ, STU, CUSTOM }</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">enum</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#TableSetType">TableSetType</a> { total_and_coherent, coherent_and_incoherent }</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">enum</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#FockState">FockState</a> { QQ, QQG, ALL }</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr />
+    <h2>Enumeration Documentation</h2>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="DipoleModelType" id="DipoleModelType"></a>enum DipoleModelType</span>
+    </h3>
+    <p>Selects the dipole model implementation: bSat, bNonSat, or bCGC.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="GammaPolarization" id="GammaPolarization"></a>enum GammaPolarization</span>
+    </h3>
+    <p>Selects transverse or longitudinal virtual-photon polarization.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="AmplitudeMoment" id="AmplitudeMoment"></a>enum AmplitudeMoment</span>
+    </h3>
+    <p>Identifies the stored amplitude quantity in tables: mean amplitude, mean squared amplitude, variance, and lambda values for real-amplitude and skewedness corrections.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="DiffractiveMode" id="DiffractiveMode"></a>enum DiffractiveMode</span>
+    </h3>
+    <p>Selects coherent or incoherent diffraction.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="DipoleModelParameterSet" id="DipoleModelParameterSet"></a>enum DipoleModelParameterSet</span>
+    </h3>
+    <p>Selects a named dipole-model parameter set, or <code>CUSTOM</code>. Exact numeric values are configured elsewhere. TBD: full parameter table.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="TableSetType" id="TableSetType"></a>enum TableSetType</span>
+    </h3>
+    <p>Describes whether table sets store total/coherent tables or coherent/incoherent tables.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="FockState" id="FockState"></a>enum FockState</span>
+    </h3>
+    <p>Selects inclusive-diffraction Fock-state contribution: <code>QQ</code>, <code>QQG</code>, or <code>ALL</code>.</p>
+    <hr />
+    <h2><a name="details" id="details"></a>Detailed Description</h2>
+    <p>Defines the small set of global selector types used throughout the library: dipole model and parameter-set choices, photon polarization, amplitude moment, diffraction mode, table-set layout, and inclusive Fock state.</p>
+  
+    <h3 id="legacy-sartre1">Legacy Sartre 1 notes and examples</h3>
+    <div class="legacyNotes">
+
+<p>These enumerations are used throughout Sar<em>t</em>re to identify the dipole model used, the polarization of the virtual photon, and the diffractive mode. Names are self-explanatory. AmplitudeMoment is used to identify and distinguish tables and is mostly for experts.</p>
+
+    </div>
+<address>
+  <p align="right">Last Update: September 14, 2026</p>
+</address>
+</body>
+</html>

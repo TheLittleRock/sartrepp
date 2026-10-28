@@ -1,0 +1,262 @@
+<!--
+ //==============================================================================
+ //  refSartre.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:44:24 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<html>
+  <head>
+    <link href="../sartre.css" rel="stylesheet" type="text/css"/>
+    <title>Sartre</title>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120" align="left" valign="top">
+          <img src="../images/sartreLogo.png" alt="Sartre" border="0" align="right"/>
+        </td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td align="left" valign="middle" class="postheader"><a href="../index.html"><font color="#004faf">Home</font></a>&#xA0;&#xB7; <a href="../overview.html"><font color="#004faf">Overview</font></a>&#xA0;&#xB7; <a href="../usersGuide.html"><font color="#004faf">User Guide</font></a>&#xA0;&#xB7; <a href="../referenceGuide.html"><font color="#004faf">Library Reference Guide</font></a></td>
+      </tr>
+    </table>
+    <!-- Page title and overview -->
+    <h1 class="title">
+      <span class="className">Sartre</span>
+      <span class="referenceKind">Class Reference</span>
+    </h1>
+    <p>Class reference. <a href="#details">More...</a></p>
+    <pre>#include "Sartre.h"</pre>
+    <p>Exclusive/UPC event generator.</p>
+    <!-- Reference summaries and documentation -->
+    <h2>Public Member Functions</h2>
+    <table class="alignedsummary">
+      <tr>
+        <td class="memItemLeft" align="right" valign="top"/>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m0">Sartre()</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top"/>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m1">~Sartre()</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m2">init(const char* = 0)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m3">init(const string&amp;)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">Event*</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m4">generateEvent()</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m5">totalCrossSection()</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m6">totalCrossSection(double lower[3], double upper[3])</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">EventGeneratorSettings*</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m7">runSettings()</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">const FrangibleNucleus*</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m8">nucleus() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m9">listStatus(std::ostream&amp; os=cout) const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">time_t</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m10">runTime() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">vector&lt;pair&lt;double,double&gt; &gt;</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m11">kinematicLimits()</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m12">postAbortEvent()</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">CrossSection*</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m13">crossSection()</a>
+        </td>
+      </tr>
+    </table>
+    <h2>Public Member Function Documentation</h2>
+    <h3 class="fn" id="m0"> Sartre()</h3>
+    
+<p>Constructor. Note that in order to fully initialize the instance <a href="#m2">Sartre::init()</a> has to be called.</p>
+
+    <h3 class="fn" id="m1"> ~Sartre()</h3>
+    
+<p>Destructor.</p>
+
+    <h3 class="fn" id="m2">bool init(const char* = 0)</h3>
+    
+<p>Initializes Sartre. After this call, Sartre is ready to generate events and/or perform cross-section calculations. <em>runcardfile</em> is the name of the runcard file (simple text file) containing some or all setup parameters. There is no predefined extension for this kinds of file. The argument is optional. If given, Sartre will load the runcard and sets all parameters given in it's instance of <a href="refEventGeneratorSettings.html">EventGeneratorSettings</a>. A pointer to that instance can be obtained through <a href="#m7">Sartre::runSettings()</a>. If no argument is provided Sartre will use the settings as defined in its instance of <a href="refEventGeneratorSettings.html">EventGeneratorSettings</a> before calling init(). See <a href="#details">Detailed Description</a> for more.</p>
+
+    <h3 class="fn" id="m3">bool init(const string&amp;)</h3>
+    
+<p>Overloaded version of above method. Here <var>runcardfile</var> is a string.</p>
+
+    <h3 class="fn" id="m4">Event* generateEvent()</h3>
+    
+<p>Generates one event and returns a pointer to an instance of class <a href="refEvent.html">Event</a> that holds the event record. Note that the old event record is deleted first thing in this method. If the user wants to keep the previous event he/she needs to make a copy of the event record, i.e., copy the object returned by generateEvent().</p>
+
+    <h3 class="fn" id="m5">double totalCrossSection()</h3>
+    
+<p>Returns the total cross-section in <strong>nb</strong> (nanobarn) in the kinematic limits used for event generation. Note that this method is slow since a 3-dim integration is performed.</p>
+<p>Knowledge of the calculated cross-section is mandatory for the user to normalization the generated output of Sartre. Hence this function should always be called typically at the end of each event generating application.</p>
+
+    <h3 class="fn" id="m6">double totalCrossSection(double lower[3], double upper[3])</h3>
+    
+<p>Overloaded method from above. Returns the total cross-section in <strong>nb</strong> (nanobarn) in the kinematic limits passed as arguments. This method is useful when Sartre is deployed to calculate cross-sections in certain kinematic ranges for comparisons or evaluations of yields. See for example the <code>heraCompare.cpp</code> program in the <code>examples/</code> directory.</p>
+<p>lower[0] = tmin, upper[0] = tmax<br />
+lower[1] = Q2min, upper[1] = Q2max<br />
+lower[2] = Wmin, upper[2] = Wmax</p>
+<p>Remember that <em>t</em> is negative so be careful when setting lower[0] and upper[0].</p>
+<p>As mentioned above this method is slow due to the 3D integration that is performed.</p>
+
+    <h3 class="fn" id="m7">EventGeneratorSettings* runSettings()</h3>
+    
+<p>Returns pointer to the <a href="refEventGeneratorSettings.html">EventGeneratorSettings</a> instance Sartre is using. It contains all parameters that can be used to setup and tune Sar<em>t</em>re.</p>
+
+    <h3 class="fn" id="m8">const FrangibleNucleus* nucleus() const</h3>
+    
+<p>Returns constant pointer to the current Nucleus Sartre is using. Useful after the event is generated to look into details of the breakup in the incoherent case. Note that the object from the previous event gets overwritten when <a href="#m4">generateEvent()</a> is called.</p>
+
+    <h3 class="fn" id="m9">void listStatus(std::ostream&amp; os=cout) const</h3>
+    
+<p>Prints-out the current status of Sartre. If no output stream <var>os</var> is given will print to screen (<var>cout</var>). Prints the current event number and the number of tries, as well as the elapsed run time.</p>
+
+    <h3 class="fn" id="m10">time_t runTime() const</h3>
+    
+<p>Returns the elapsed run time in seconds since call to <a href="#m2">init()</a>.</p>
+
+    <h3 class="fn" id="m11">vector&lt;pair&lt;double,double&gt; &gt; kinematicLimits()</h3>
+    
+<p>Returns the kinematic limits currently used in Sartre. Note that these do not necessarily have to be identical with the limits provided by the user (explanation is <a href="#kinematicLimits2">here</a>). Order in the vector is: t, Q2, W. <var>pair::first</var> is the lower limit and <var>pair::second</var> the upper limit.</p>
+<p>&#160;</p>
+
+    <h3 class="fn" id="m12">void postAbortEvent()</h3>
+    <p>Finalises bookkeeping after an event-generation attempt is aborted.</p>
+    <h3 class="fn" id="m13">CrossSection* crossSection()</h3>
+    <p>Returns the exclusive cross-section calculator used by this generator.</p>
+    <hr/>
+    <h2><a name="details" id="details"/>Detailed Description</h2>
+    <p><code>Sartre</code> is the main exclusive and UPC interface. Create an instance, configure its <code>EventGeneratorSettings</code> directly or with a runcard, and call <code>init()</code> before generating events or calculating cross sections. Runcard values loaded during initialization overwrite settings that were set earlier.</p>
+    <p>All Sartre instances share the singleton event-generator settings, so concurrently changing settings through one instance affects the others. Generated events are replaced by the next <code>generateEvent()</code> call; copy an event if it must be retained. The overloaded <code>totalCrossSection()</code> method can calculate a cross section in a supplied t, Q&#xB2;, W range. Initialization reconciles requested limits with beam kinematics and available tables; <code>kinematicLimits()</code> reports the resulting range.</p>
+  
+    <h3 id="legacy-sartre1">Legacy Sartre 1 notes and examples</h3>
+    <div class="legacyNotes">
+
+<p>The Sartre class is <em>the</em> main class the user has to deal with in order to generate events or calculate cross-sections in certain kinematic ranges. After creating an instance of Sartre, <a href="#m2">Sartre::init()</a> should be called in order to fully initialize and setup Sartre. After the call to <a href="#m2">init()</a>, Sartre is ready to generate events. Sartre is holding all its settings and required parameters in an instance of class <a href="refEventGeneratorSettings.html">EventGeneratorSettings</a> (private data member). Parameters can in generally be set in two ways:</p>
+<ol>
+<li>Programmatically using the many access function of the <a href="refEventGeneratorSettings.html">EventGeneratorSettings</a> class. For example:</li>
+<li style="list-style: none">
+<pre class="code">
+                Sartre mySartre;
+                EventGeneratorSettings *mySettings = mySartre.runSettings();
+                
+                mySettings-&gt;setVerbose(false);
+                mySettings-&gt;setNumberOfEvents(1000);   
+                mySettings-&gt;setVectorMesonId(333);   
+                mySettings-&gt;setElectronBeamEnergy(27.);   
+                mySettings-&gt;setHadronBeamEnergy(300.);   
+                mySettings-&gt;setDipoleModelType(bSat);   
+                mySettings-&gt;setA(1); // proton   
+                
+                bool ok = mySartre.init();
+                
+                // if ok ready to generate events ... 
+</pre></li>
+<li>Through a runcard (see the <a href="../runcardRef.html">Runcard</a> Reference Documentation)</li>
+<li style="list-style: none">
+<pre class="code">
+                Sartre mySartre;
+                EventGeneratorSettings *mySettings = mySartre.runSettings();
+                
+                bool ok = mySartre.init("myRuncard.txt);
+                
+                // if ok ready to generate events ... 
+</pre></li>
+</ol>
+<p>You can of course also use a mix of both. Note, however, that the settings in the runcard passed to <a href="#m2">init()</a> overwrite all previous settings.</p>
+<p>Once Sartre is initialized through <a href="#m2">init()</a>, parameter should not be changed any more. In most cases it will have no effect to start with.</p>
+<p>For technical reasons <a href="refEventGeneratorSettings.html">EventGeneratorSettings</a> is a singleton class, meaning only one instance can exist at any given time. Because of this multiple instances of Sartre do share the same settings. Changing it in one instance would alter it in all. It is therefore not recommended to run multiple instances of Sartre at the same time. You can, however, reinitialize Sartre by calling <a href="#m2">init()</a> at any time.</p>
+<p>Events are generated through a call to <a href="#m4">generateEvent()</a>. Note that the event record from the previous event gets deleted each time a new event is generated. If you want to keep a certain event you need too copy the object you obtained from generateEvent(). For example:</p>
+<pre class="code">
+            Event *myevent = mySartre.generateEvent();
+            Event keptEvent = *myevent;  // keep this one
+            myevent = mySartre.generateEvent();
+</pre>
+Sartre can also be used to calculate cross-sections w/o generating events by using an overloaded version of <a href="#m6">totalCrossSection()</a>. Here is a very simple example:
+<pre class="code">
+            Sartre mySartre;
+            mySartre.init("myRuncard.txt");
+            double lower[3], upper[3];
+            lower[0] = -0.2;  upper[0] = -0.05; // t
+            lower[1] = 5;     upper[1] = 6;     // Q2
+            lower[2] = 30;    upper[2] = 32;    // W
+            double cs = mySartre.totalCrossSection(lower, upper);
+            cout &lt;&lt; "Cross-section is: " &lt;&lt; cs &lt;&lt; " nb" &lt;&lt; endl;
+</pre>
+<p><strong><a name="kinematicLimits2" id="kinematicLimits2"></a>On kinematic limits:</strong> Sartre has to deal with several kinematic limits:</p>
+<ol>
+<li>Those given by the user via runcard or programmatically in (Q<sup>2</sup>, and W).</li>
+<li>The kinematic limits given by the event kinematic, essentially the beam energies.</li>
+<li>The range of the amplitude tables available for the selected hadron beam species (in t, Q<sup>2</sup>, and W).</li>
+</ol>
+<p>In <a href="#m2">init()</a> Sartre will take all three into account and calculate the largest possible range not exceeding the range provided by the user (1). If the range has to be reduced a warning is printed but the program is not stopped. The actual used kinematic limit is printed during initialization and can also be obtained at any time using the <a href="#m11">kinematicLimits()</a> method. To obtain the largest possible limit given by the tables and kinematic range (beam energies) the user should set Q2min &gt; Q2max and Wmin &gt; Wmax.</p>
+<p><strong>On CPU time:</strong> Event generation in Sartre is extremely fast ( &lt; 0.5 ms/event) when run w/o nuclear breakup switched on. Calculating the total cross section at the end (mandatory if you want to absolutely normalize the output) can be a bit slow depending on the range chosen.</p>
+
+    </div>
+<address>
+  <p align="right">Last Update: September 14, 2026</p>
+</address>
+</body>
+</html>

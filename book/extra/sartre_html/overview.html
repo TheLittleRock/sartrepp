@@ -1,0 +1,89 @@
+<!--
+ //==============================================================================
+ //  overview.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:33:37 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<!DOCTYPE html
+PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en_US" lang="en_US">
+    <head>
+        <title>Sartre - Overview</title>
+        <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />  <link href="sartre.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+                <td width="120" align="left" valign="top"><img src="images/sartreLogo.png" alt="" border="0" align="right" /></td>
+                <td width="10">&#xA0;&#xA0;</td>
+                <td align="left" valign="middle" class="postheader"><a href="index.html"><font color="#004faf">Home</font></a>&#xA0;&#xB7;
+                    <a href="overview.html"><font color="#004faf">Overview</font></a>&#xA0;&#xB7;
+                    <a href="usersGuide.html"><font color="#004faf">User Guide</font></a>&#xA0;&#xB7;
+                    <a href="referenceGuide.html"><font color="#004faf">Library Reference Guide</font></a></td></tr>
+        </table>
+        
+        <h1 class="title">Sartre 2 Overview</h1>
+
+        <p>Sar<em>t</em>re is a C++ library for modelling diffractive scattering in the dipole picture. Sartre 2 supports both exclusive and inclusive diffraction in electron&#x2013;proton (<em>ep</em>) and electron&#x2013;nucleus (<em>eA</em>) collisions. The library also retains support for exclusive ultra-peripheral collisions (UPC) at hadron colliders.</p>
+
+        <p>Its principal physics application is the study of small-<em>x</em> QCD and gluon saturation. Diffractive observables are especially sensitive to the gluon distribution, and nuclear targets enhance the relevant gluon densities. This makes diffractive <em>eA</em> scattering an important part of the Electron-Ion Collider (EIC) physics program.</p>
+
+        <h2>Physics processes</h2>
+
+        <p>Exclusive production covers vector mesons and deeply virtual Compton scattering (DVCS), including coherent and incoherent nuclear diffraction. Typical exclusive reactions are:</p>
+        <p class="code"><em>e p</em> &#x2192; <em>e' V p'</em><br />
+        <em>e A</em> &#x2192; <em>e' V A'</em><br />
+        <em>p p</em> &#x2192; <em>p' V p'</em><br />
+        <em>p A</em> &#x2192; <em>p' V A'</em><br />
+        <em>A A</em> &#x2192; <em>A' V A'</em></p>
+        <p>Here <em>V</em> denotes J/&#x3C8;, &#x3C6;, &#x3C1;, or a real photon for DVCS. A selection of commonly used nuclei is provided.</p>
+
+        <p>New in Sartre 2 is inclusive diffractive deep-inelastic scattering in both <em>ep</em> and <em>eA</em> collisions:</p>
+        <p class="code"><em>e p/A</em> &#x2192; <em>e' p'/A' X</em></p>
+        <p>Here <em>X</em> is a diffractive hadronic system, separated from the scattered proton or nucleus by a rapidity gap. Rather than projecting the scattered dipole onto one specified vector meson or a real photon, inclusive diffraction retains this broader final state. Its invariant mass is conventionally represented by <em>&#x3B2;</em> = <em>Q</em><sup>2</sup>/(<em>Q</em><sup>2</sup> + <em>M</em><sub>X</sub><sup>2</sup>), neglecting the small momentum transfer <em>t</em>.</p>
+        <p>The inclusive calculation includes transverse and longitudinal <em>q</em><em>q</em>&#x0305; contributions and the <em>q</em><em>q</em>&#x0305;<em>g</em> Fock state. The latter becomes essential at small <em>&#x3B2;</em>, where gluon-radiation phase space increases. Sartre subsequently hadronizes the generated partonic diffractive system, producing fully exclusive hadronic final states while retaining the inclusive character of <em>X</em>. The <code>SartreInclusiveDiffraction</code> interface provides the event-generation workflow; the inclusive cross-section and final-state-generator classes provide the underlying calculation and final-state construction.</p>
+
+        <h2>Library and examples</h2>
+
+        <p>Sar<em>t</em>re is a library rather than a stand-alone application. Applications supply a main program and use the public C++ API to configure a calculation, initialize it, generate events, calculate cross sections, and write their preferred output format. This keeps event selection, analysis, and storage under the application's control.</p>
+
+        <p>The distribution includes example programs for the two principal workflows:</p>
+        <ul>
+            <li><code>examples/sartreMain.cpp</code> for exclusive diffraction and UPC;</li>
+            <li><code>examples/sartreInclusiveDiffractionMain.cpp</code> for inclusive diffraction in <em>ep</em> and <em>eA</em>;</li>
+            <li><code>examples/tableGeneratorMain.cpp</code> and <code>examples/tableGeneratorInclusiveDiffractionMain.cpp</code> for producing the corresponding tables.</li>
+        </ul>
+
+        <h2>Models and tables</h2>
+
+        <p>The library implements the bSat, bCGC, and bNonSat dipole models. The inclusive-diffraction implementation uses the IPsat/bSat and IPNonSat/bNonSat amplitudes, allowing saturated and linearized non-saturated dynamics to be compared within one framework. For exclusive production, amplitudes and their moments are precomputed and stored in tables because evaluating the required integrations at every generated phase-space point would be impractical. The table-generation API is included for expert use; most users will work with supplied or previously generated tables.</p>
+
+        <p>The inclusive-diffraction implementation has its own cross-section and table workflow. Its examples show how to generate events or calculate distributions and reduced cross sections. The framework supports direct comparison with inclusive diffractive HERA measurements and predictions for EIC kinematics. See the <a href="references/refSartreInclusiveDiffraction.html">SartreInclusiveDiffraction reference</a> and the <a href="references/refInclusiveDiffractiveCrossSections.html">inclusive cross-section reference</a> for the API.</p>
+
+        <h2>Where to continue</h2>
+
+        <p>Start from the example that matches the desired physics process, then adapt its runcard and output handling. The <a href="usersGuide.html">User Guide</a> provides the existing workflow documentation. The <a href="referenceGuide.html">Library Reference Guide</a> describes the Sartre 2 classes, and the <a href="diagrams/c4Diagrams.html">design diagrams</a> provide a high-level view of the library and examples.</p>
+
+        <p>Sar<em>t</em>re relies on ROOT and GSL for four-vectors, numerical tools, and related infrastructure. Building and running Sartre therefore requires those dependencies, together with any optional components needed by the selected workflow.</p>
+        
+        <address><div align="center">
+            <table border="0" cellspacing="0" width="100%"><tbody><tr class="address">
+                <td align="left" width="40%">&#xA0;</td>
+                <td align="center" width="20%">&#xA0;</td>
+                <td align="right" width="40%"><div align="right"><br />Last Update:
+                    <!-- #BeginDate format:Am1 -->September 11, 2026<!-- #EndDate -->
+                </div></td>
+            </tr></tbody></table></div></address>
+        
+    </body></html>

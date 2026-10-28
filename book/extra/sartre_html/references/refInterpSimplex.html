@@ -1,0 +1,91 @@
+<!--
+ //==============================================================================
+ //  refInterpSimplex.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:44:24 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>Sartre 2 - InterpSimplex Class Reference</title>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+    <link href="../sartre.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120" align="left" valign="top">
+          <img src="../images/sartreLogo.png" alt="Sartre" border="0" align="right" />
+        </td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td align="left" valign="middle" class="postheader"><a href="../index.html"><font color="#004faf">Home</font></a>&#xA0;&#xB7; <a href="../overview.html"><font color="#004faf">Overview</font></a>&#xA0;&#xB7; <a href="../usersGuide.html"><font color="#004faf">User Guide</font></a>&#xA0;&#xB7; <a href="../referenceGuide.html"><font color="#004faf">Library Reference Guide</font></a></td>
+      </tr>
+    </table>
+    <!-- Page title and overview -->
+    <h1 class="title">
+      <span class="className">InterpSimplex&lt;N, T, CopyData, Continuous, ArrayRefCountT, GridRefCountT&gt;</span>
+      <span class="referenceKind">Class Reference</span>
+    </h1>
+    <p>N-dimensional simplex interpolation implementation. <a href="#details">More...</a></p>
+    <pre><span class="preprocessor">#include</span> "linterp.h"</pre>
+    <!-- Reference summaries and documentation -->
+    <h2>Inheritance</h2>
+    <p>Inherits from <a href="refNDInterpolator.html">NDInterpolator</a>.</p>
+    <h2>Public Member Functions</h2>
+    <table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tbody>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top"></td>
+          <td class="memItemRight" align="left" valign="top"><a href="#InterpSimplex">InterpSimplex</a>(IterT1 grids_begin, IterT2 grids_len_begin, IterT3 f_begin, IterT3 f_end)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top"></td>
+          <td class="memItemRight" align="left" valign="top"><a href="#InterpSimplexRef">InterpSimplex</a>(IterT1 grids_begin, IterT2 grids_len_begin, IterT3 f_begin, IterT3 f_end, ArrayRefCountT&amp; refF, RefCountIterT ref_begins)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">T</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#interp">interp</a>(IterT x_begin) const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">void</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#interp_vec">interp_vec</a>(int n, IterT1 coord_iter_begin, IterT1 coord_iter_end, IterT2 i_result) const</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr />
+    <h2>Public Member Function Documentation</h2>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="InterpSimplex" id="InterpSimplex"></a>InterpSimplex(IterT1 grids_begin, IterT2 grids_len_begin, IterT3 f_begin, IterT3 f_end)</span>
+    </h3>
+    <p>Constructs a simplex interpolator from grid and function-value iterators.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="InterpSimplexRef" id="InterpSimplexRef"></a>InterpSimplex(IterT1 grids_begin, IterT2 grids_len_begin, IterT3 f_begin, IterT3 f_end, ArrayRefCountT&amp; refF, RefCountIterT ref_begins)</span>
+    </h3>
+    <p>Reference-counted constructor variant; it forwards the grid, function-value, and reference-count iterators to the base interpolator.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="interp" id="interp"></a>T interp(IterT <var>x_begin</var>) const</span>
+    </h3>
+    <p>Interpolates one point. <var>x_begin</var> points to N coordinates.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="interp_vec" id="interp_vec"></a>void interp_vec(int <var>n</var>, IterT1 <var>coord_iter_begin</var>, IterT1 <var>coord_iter_end</var>, IterT2 <var>i_result</var>) const</span>
+    </h3>
+    <p>Interpolates <var>n</var> points. The coordinate iterator range must contain N coordinate arrays. Results are written through <var>i_result</var>.</p>
+    <hr />
+    <h2><a name="details" id="details"></a>Detailed Description</h2>
+    <p>N-dimensional simplex interpolation helper. It evaluates a tabulated function by locating the simplex containing the requested point and interpolating from its vertices.</p>
+  <address>
+    <p align="right">Last Update: September 14, 2026</p>
+  </address>
+  </body>
+</html>

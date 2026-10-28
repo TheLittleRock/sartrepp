@@ -1,0 +1,159 @@
+<!--
+ //==============================================================================
+ //  refLowerXpomeronFormula.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:44:24 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>Sartre 2 - LowerXpomeronFormula Class Reference</title>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+    <link href="../sartre.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120" align="left" valign="top">
+          <img src="../images/sartreLogo.png" alt="Sartre" border="0" align="right" />
+        </td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td align="left" valign="middle" class="postheader"><a href="../index.html"><font color="#004faf">Home</font></a>&#xA0;&#xB7; <a href="../overview.html"><font color="#004faf">Overview</font></a>&#xA0;&#xB7; <a href="../usersGuide.html"><font color="#004faf">User Guide</font></a>&#xA0;&#xB7; <a href="../referenceGuide.html"><font color="#004faf">Library Reference Guide</font></a></td>
+      </tr>
+    </table>
+    <!-- Page title and overview -->
+    <h1 class="title">
+      <span class="className">LowerXpomeronFormula</span>
+      <span class="referenceKind">Class Reference</span>
+    </h1>
+    <p>ROOT one-dimensional helper used by <code>Kinematics::validUPC()</code> to find a lower xpomeron bound. <a href="#details">More...</a></p>
+    <pre><span class="preprocessor">#include</span> "Kinematics.h"</pre>
+    <!-- Reference summaries and documentation -->
+    <h2>Inheritance</h2>
+    <p>Inherits from <a href="https://root.cern.ch/doc/master/classROOT_1_1Math_1_1IBaseFunctionOneDim.html">ROOT::Math::IBaseFunctionOneDim</a>.</p>
+    <h2>Public Member Functions</h2>
+    <table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tbody>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#DoEval">DoEval</a>(double) const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">ROOT::Math::IBaseFunctionOneDim*</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#Clone">Clone</a>() const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">void</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#calculateValidRange">calculateValidRange</a>(double&amp;, double&amp;)</td>
+        </tr>
+      </tbody>
+    </table>
+    <h2>Public Data Members</h2>
+    <table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tbody>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" valign="bottom" align="left">
+            <a href="#mT">mT</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" valign="top" align="left">
+            <a href="#mVmMass2">mVmMass2</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" valign="top" align="left">
+            <a href="#mXpomMin">mXpomMin</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" valign="top" align="left">
+            <a href="#mMY2">mMY2</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">TLorentzVector</td>
+          <td class="memItemRight" valign="top" align="left">
+            <a href="#mElectronBeam">mElectronBeam</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">TLorentzVector</td>
+          <td class="memItemRight" valign="top" align="left">
+            <a href="#mHadronBeam">mHadronBeam</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" valign="top" align="left">
+            <a href="#mMY2minusM2">mMY2minusM2</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <hr />
+    <h2>Public Member Function Documentation</h2>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="DoEval" id="DoEval"></a>double DoEval(double <var>x</var>) const</span>
+    </h3>
+    <p>Uses <var>x</var> as log(<em>x</em><sub>&#x2119;</sub>), exponentiates it, and evaluates the UPC kinematic constraint used by the ROOT one-dimensional solver.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="Clone" id="Clone"></a>ROOT::Math::IBaseFunctionOneDim* Clone() const</span>
+    </h3>
+    <p>Returns a heap-allocated copy through the ROOT function interface.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="calculateValidRange" id="calculateValidRange"></a>void calculateValidRange(double&amp; <var>lower</var>, double&amp; <var>upper</var>)</span>
+    </h3>
+    <p>Calculates a valid search range for the lower-xpomeron root finder.</p>
+    <h2>Data Member Documentation</h2>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="mT" id="mT"></a>double mT</span>
+    </h3>
+    <p>Momentum-transfer input used by the helper formula.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="mVmMass2" id="mVmMass2"></a>double mVmMass2</span>
+    </h3>
+    <p>Squared vector-meson mass input.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="mXpomMin" id="mXpomMin"></a>double mXpomMin</span>
+    </h3>
+    <p>Lower xpomeron limit.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="mMY2" id="mMY2"></a>double mMY2</span>
+    </h3>
+    <p>Squared recoil-system mass input.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="mElectronBeam" id="mElectronBeam"></a>TLorentzVector mElectronBeam</span>
+    </h3>
+    <p>Incoming electron beam four-vector.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="mHadronBeam" id="mHadronBeam"></a>TLorentzVector mHadronBeam</span>
+    </h3>
+    <p>Incoming hadron beam four-vector.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="mMY2minusM2" id="mMY2minusM2"></a>double mMY2minusM2</span>
+    </h3>
+    <p>Precomputed recoil-system mass combination used by the formula.</p>
+    <hr />
+    <h2><a name="details" id="details"></a>Detailed Description</h2>
+    <p>Functor that supplies the lower xpomeron boundary used by the numerical mode-finding machinery. It packages the relevant kinematic formula in the callable form expected by ROOT numerical utilities.</p>
+  <address>
+    <p align="right">Last Update: September 14, 2026</p>
+  </address>
+  </body>
+</html>

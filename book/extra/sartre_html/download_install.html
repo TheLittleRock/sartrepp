@@ -1,0 +1,143 @@
+<!--
+ //==============================================================================
+ //  download_install.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:33:37 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<!--
+ //==============================================================================
+ //  download_install.html
+ //
+ //  Sartre 2 documentation
+ //==============================================================================
+-->
+<!DOCTYPE html
+PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en_US" lang="en_US">
+  <head>
+    <title>Sartre 2 - Download and Installation</title>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+    <link href="sartre.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <!-- Standard documentation navigation. -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120" align="left" valign="top"><img src="images/sartreLogo.png" alt="Sartre" border="0" align="right" /></td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td align="left" valign="middle" class="postheader">
+          <a href="index.html"><font color="#004faf">Home</font></a>&#xA0;&#xB7;
+          <a href="overview.html"><font color="#004faf">Overview</font></a>&#xA0;&#xB7;
+          <a href="usersGuide.html"><font color="#004faf">User Guide</font></a>&#xA0;&#xB7;
+          <a href="referenceGuide.html"><font color="#004faf">Library Reference Guide</font></a>
+        </td>
+      </tr>
+    </table>
+
+    <h1 class="title">Download and Installation</h1>
+
+    <h2>Stable Sartre 2 source</h2>
+
+    <p>The public Sartre 2 source is available from the <a href="https://github.com/tobiastoll/sartre">Sartre GitHub repository</a>. This repository contains the latest stable version only. Development is carried out elsewhere, so the GitHub repository should be treated as a stable distribution source rather than a development branch.</p>
+
+    <p>To download the source with Git, open a terminal and run:</p>
+    <pre class="code">git clone https://github.com/tobiastoll/sartre.git
+cd sartre</pre>
+
+    <p>Alternatively, use the repository's <strong>Code</strong> button on GitHub and choose <strong>Download ZIP</strong>. Unpack the archive and change into the resulting <code>sartre</code> directory before continuing.</p>
+
+    <h2>Requirements</h2>
+
+    <p>Sartre is developed and tested on macOS and Linux. A C++17 compiler and CMake 3.30 or newer are required. The core library also requires:</p>
+    <ul>
+      <li><a href="https://root.cern/">ROOT</a>, including the MathMore and Unuran components;</li>
+      <li>the <a href="https://www.gnu.org/software/gsl/">GNU Scientific Library (GSL)</a>.</li>
+    </ul>
+
+    <p>Inclusive-diffraction event generation is enabled by default in Sartre 2 and additionally requires <a href="https://pythia.org/">Pythia 8</a>. If only the exclusive library is needed and Pythia 8 is unavailable, inclusive diffraction can be disabled at CMake configuration time. Boost is needed only for the optional multithreaded build.</p>
+
+    <h2>Configure, build, and install</h2>
+
+    <p>Use an out-of-source build. From the top-level Sartre source directory:</p>
+    <pre class="code">cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build
+cmake --install build</pre>
+
+    <p>By default, installation is under <code>/usr/local/sartre</code>. Select another prefix when configuring the build if needed:</p>
+    <pre class="code">cmake -S . -B build -DCMAKE_BUILD_TYPE=Release \
+  -DCMAKE_INSTALL_PREFIX=/path/to/install</pre>
+
+    <p>If CMake cannot find ROOT, GSL, or Pythia 8, configure their normal installation prefixes or environment setup before running CMake. The exact variables depend on how those packages were installed. Read CMake's configuration messages carefully; do not continue to the build step if a required dependency was not found.</p>
+
+    <h3>Exclusive-only build</h3>
+
+    <p>To build without the inclusive-diffraction event-generation components and therefore without Pythia 8:</p>
+    <pre class="code">cmake -S . -B build -DCMAKE_BUILD_TYPE=Release \
+  -DENABLE_INCLUSIVE_DIFFRACTION=OFF
+cmake --build build
+cmake --install build</pre>
+
+    <h3>Optional multithreaded build</h3>
+
+    <p>Table generation can use the optional multithreaded build. This requires Boost and should be enabled only when needed:</p>
+    <pre class="code">cmake -S . -B build -DCMAKE_BUILD_TYPE=Release \
+  -DMULTITHREADED=ON</pre>
+
+    <h2>Build the example programs</h2>
+
+    <p>Set <code>SARTRE_DIR</code> to the installed Sartre directory, then configure the supplied examples in a separate build directory. For an installation at the default prefix:</p>
+    <pre class="code">export SARTRE_DIR=/usr/local/sartre
+cmake -S "$SARTRE_DIR/examples" -B build_examples
+cmake --build build_examples</pre>
+
+    <p>The examples include <code>sartreMain</code> for exclusive diffraction and UPC, and <code>sartreInclusiveDiffractionMain</code> for inclusive diffraction. The latter requires that the library was installed with <code>ENABLE_INCLUSIVE_DIFFRACTION=ON</code>, which is the default.</p>
+
+    <h2>Installing tables</h2>
+
+    <p>Sartre event generation requires precomputed ROOT tables. They are large and are distributed separately from the source repository through the <a href="https://rhig.physics.yale.edu/~ullrich/sartre-tables/">Sartre table server</a>. A source checkout or installation therefore does not necessarily contain the table set required for a particular calculation.</p>
+
+    <p>The installed <code>getSartreTables.py</code> utility downloads a published table bundle and unpacks it into the correct directory below the installation's <code>tables/</code> directory. Always run the copy installed in Sartre's <code>bin/</code> directory; do not copy the script to another location. It discovers the Sartre installation from its installed path, so it also works when <code>sudo</code> removes <code>SARTRE_DIR</code> from the environment. List the catalog with:</p>
+
+    <pre class="code">$SARTRE_DIR/bin/getSartreTables.py list</pre>
+
+    <p>Select a table set with its collision system, dipole model, particle or process, and parameter set. Selection is case-insensitive. The catalog can be listed without administrator permission, but a system-wide installation normally requires <code>sudo</code> to install files. For example, to install exclusive &#x3C6;-meson tables for electron&#x2013;lead collisions with the bSat model:</p>
+
+    <pre class="code">sudo $SARTRE_DIR/bin/getSartreTables.py \
+  --sys=ePb --sat=bSat --part=phi --set=KMW</pre>
+
+    <p>The default selection is a non-UPC table set. Add <code>--upc</code> to request a UPC set. Use <code>--part=X</code> for inclusive-diffraction tables, for example:</p>
+
+    <pre class="code">sudo $SARTRE_DIR/bin/getSartreTables.py \
+  --sys=ePb --sat=bSat --part=X --set=KMW</pre>
+
+    <p>An explicitly set <code>SARTRE_DIR</code> overrides automatic discovery and is intended only for a deliberate installation override or development use. If no matching bundle is published, the utility stops without changing the installation and recommends <code>getSartreTables.py list</code>. It also refuses to overwrite existing table files. Use <code>--help</code> (or <code>-?</code>) for the complete command reference. The resulting hierarchy must be preserved; see <a href="tableTools.html">Tables and Table Tools</a> for the directory layout and table-inspection guidance.</p>
+
+    <h2>Next steps</h2>
+
+    <p>Begin with the example program matching the desired process and adapt its runcard and output handling. See the <a href="overview.html">Overview</a> for the distinction between exclusive and inclusive workflows, and the <a href="referenceGuide.html">Library Reference Guide</a> for the API.</p>
+
+    <address>
+      <div align="center">
+        <table border="0" cellspacing="0" width="100%">
+          <tbody>
+            <tr class="address">
+              <td align="left" width="40%">&#xA0;</td>
+              <td align="center" width="20%">&#xA0;</td>
+              <td align="right" width="40%"><div align="right"><br />Last Update: September 17, 2026</div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </address>
+  </body>
+</html>

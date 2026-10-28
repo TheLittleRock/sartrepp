@@ -1,0 +1,159 @@
+<!--
+ //==============================================================================
+ //  refDipoleModel_bSat.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:44:24 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<html>
+  <head>
+    <title>DipoleModel_bSat</title>
+    <link href="../sartre.css" rel="stylesheet" type="text/css"/>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120">
+          <img src="../images/sartreLogo.png" alt="Sartre" border="0" align="right"/>
+        </td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td class="postheader"><a href="../index.html">Home</a>&#xA0;&#xB7; <a href="../overview.html">Overview</a>&#xA0;&#xB7; <a href="../usersGuide.html">User Guide</a>&#xA0;&#xB7; <a href="../referenceGuide.html">Library Reference Guide</a></td>
+      </tr>
+    </table>
+    <!-- Page title and overview -->
+    <h1 class="title">
+      <span class="className">DipoleModel_bSat</span>
+      <span class="referenceKind">Class Reference</span>
+    </h1>
+    <p>bSat implementation of the dipole-model interface. <a href="#details">More...</a></p>
+    <pre>#include "DipoleModel.h"</pre>
+    <!-- Reference summaries and documentation -->
+    <h2>Inheritance</h2>
+    <p>Inherits from <a href="refDipoleModel.html">DipoleModel</a>.</p>
+    <h2>Public Member Functions</h2>
+    <table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tbody>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top"/>
+          <td class="memItemRight" align="left" valign="bottom"><a href="#ctor">DipoleModel_bSat</a>()</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top"/>
+          <td class="memItemRight" align="left" valign="top"><a href="#settings">DipoleModel_bSat</a>(Settings*)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top"/>
+          <td class="memItemRight" align="left" valign="top"><a href="#copy">DipoleModel_bSat</a>(const DipoleModel_bSat&amp;)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">DipoleModel_bSat&amp;</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#assign">operator=</a>(const DipoleModel_bSat&amp;)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top"/>
+          <td class="memItemRight" align="left" valign="top"><a href="#dtor">~DipoleModel_bSat</a>()</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">void</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#lookup">createSigma_ep_LookupTable</a>(double)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">void</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#configuration">createConfiguration</a>(int)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#dsigmadb2">dsigmadb2</a>(double, double, double, double)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#bDependence">bDependence</a>(double, double)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#ep">dsigmadb2ep</a>(double, double, double)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#coherent">coherentDsigmadb2</a>(double, double, double)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">bool</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#fast">canUseFastPath</a>() const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#rFactor">computeRFactor</a>(double r, double xprobe)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#omega">dsigmaFromOmega</a>(double omega) const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">void</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#fresh">generateFreshConfiguration</a>()</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">void</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#grid">fillTA_grid</a>(double* grid, int N, double db)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#ta">computeTA_at</a>(double bx, double by) const</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr/>
+    <h2>Public Member Function Documentation</h2>
+    <h3 class="fn"><a name="ctor" id="ctor"/>DipoleModel_bSat()</h3>
+    <p>Constructs the default bSat model.</p>
+    <h3 class="fn"><a name="settings" id="settings"/>DipoleModel_bSat(Settings*)</h3>
+    <p>Constructs the model from settings.</p>
+    <h3 class="fn"><a name="copy" id="copy"/>DipoleModel_bSat(const DipoleModel_bSat&amp;)</h3>
+    <p>Copy constructor.</p>
+    <h3 class="fn"><a name="assign" id="assign"/>DipoleModel_bSat&amp; operator=(const DipoleModel_bSat&amp;)</h3>
+    <p>Assignment operator.</p>
+    <h3 class="fn"><a name="dtor" id="dtor"/>~DipoleModel_bSat()</h3>
+    <p>Destructor.</p>
+    <h3 class="fn"><a name="lookup" id="lookup"/>void createSigma_ep_LookupTable(double xprobe)</h3>
+    <p>Creates the bSat proton cross-section lookup table at the supplied probe momentum fraction <em>x</em>.</p>
+    <h3 class="fn"><a name="configuration" id="configuration"/>void createConfiguration(int iConfiguration)</h3>
+    <p>Creates the target configuration identified by <var>iConfiguration</var>.</p>
+    <h3 class="fn"><a name="dsigmadb2" id="dsigmadb2"/>double dsigmadb2(double r, double b, double phi, double xprobe)</h3>
+    <p>Evaluates the bSat dipole cross-section density for dipole size <var>r</var>, impact parameter <var>b</var>, azimuth <var>phi</var>, and probe momentum fraction <var>xprobe</var>.</p>
+    <h3 class="fn"><a name="bDependence" id="bDependence"/>double bDependence(double b, double phi)</h3>
+    <p>Evaluates the bSat impact-parameter dependence at radius <var>b</var> and azimuth <var>phi</var>.</p>
+    <h3 class="fn"><a name="ep" id="ep"/>double dsigmadb2ep(double r, double b, double xprobe)</h3>
+    <p>Evaluates the bSat proton dipole cross-section density for <var>r</var>, <var>b</var>, and <var>xprobe</var>.</p>
+    <h3 class="fn"><a name="coherent" id="coherent"/>double coherentDsigmadb2(double r, double b, double xprobe)</h3>
+    <p>Evaluates the coherent bSat nuclear dipole cross-section density for <var>r</var>, <var>b</var>, and <var>xprobe</var>.</p>
+    <h3 class="fn"><a name="fast" id="fast"/>bool canUseFastPath() const</h3>
+    <p>Returns true: bSat supports the separable FFT fast path.</p>
+    <h3 class="fn"><a name="rFactor" id="rFactor"/>double computeRFactor(double r, double xprobe)</h3>
+    <p>Computes the r-dependent FFT factor.</p>
+    <h3 class="fn"><a name="omega" id="omega"/>double dsigmaFromOmega(double omega) const</h3>
+    <p>Converts opacity to dipole cross section.</p>
+    <h3 class="fn"><a name="fresh" id="fresh"/>void generateFreshConfiguration()</h3>
+    <p>Generates and stores an on-the-fly target configuration for FFT table generation.</p>
+    <h3 class="fn"><a name="grid" id="grid"/>void fillTA_grid(double* grid, int N, double db)</h3>
+    <p>Fills the caller-supplied N by N target-thickness grid.</p>
+    <h3 class="fn"><a name="ta" id="ta"/>double computeTA_at(double bx, double by) const</h3>
+    <p>Evaluates the bSat target thickness at Cartesian coordinates.</p>
+    <hr/>
+    <h2><a name="details" id="details"/>Detailed Description</h2>
+    <p>Concrete bSat dipole model for proton and nuclear targets. It can load or generate nuclear configurations, evaluate the impact-parameter-dependent cross section, and prepare the quantities used by the FFT-based all-t calculation.</p>
+  <address>
+    <p align="right">Last Update: September 14, 2026</p>
+  </address>
+  </body>
+</html>

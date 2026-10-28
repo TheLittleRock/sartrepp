@@ -1,0 +1,87 @@
+<!--
+ //==============================================================================
+ //  refDipoleModel_bCGC.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:44:24 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<html>
+  <head>
+    <title>DipoleModel_bCGC</title>
+    <link href="../sartre.css" rel="stylesheet" type="text/css"/>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120">
+          <img src="../images/sartreLogo.png" alt="Sartre" border="0" align="right"/>
+        </td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td class="postheader"><a href="../index.html">Home</a>&#xA0;&#xB7; <a href="../overview.html">Overview</a>&#xA0;&#xB7; <a href="../usersGuide.html">User Guide</a>&#xA0;&#xB7; <a href="../referenceGuide.html">Library Reference Guide</a></td>
+      </tr>
+    </table>
+    <!-- Page title and overview -->
+    <h1 class="title">
+      <span class="className">DipoleModel_bCGC</span>
+      <span class="referenceKind">Class Reference</span>
+    </h1>
+    <p>bCGC implementation of the dipole-model interface. <a href="#details">More...</a></p>
+    <pre>#include "DipoleModel.h"</pre>
+    <!-- Reference summaries and documentation -->
+    <h2>Inheritance</h2>
+    <p>Inherits from <a href="refDipoleModel.html">DipoleModel</a>.</p>
+    <h2>Public Member Functions</h2>
+    <table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tbody>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top"/>
+          <td class="memItemRight" align="left" valign="bottom"><a href="#ctor">DipoleModel_bCGC</a>()</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">void</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#createConfiguration">createConfiguration</a>(int)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#dsigmadb2">dsigmadb2</a>(double, double, double, double)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#dsigmadb2ep">dsigmadb2ep</a>(double, double, double)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#bDependence">bDependence</a>(double)</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr/>
+    <h2>Public Member Function Documentation</h2>
+    <h3 class="fn"><a name="ctor" id="ctor"/>DipoleModel_bCGC()</h3>
+    <p>Constructs a bCGC dipole model.</p>
+    <h3 class="fn"><a name="createConfiguration" id="createConfiguration"/>void createConfiguration(int)</h3>
+    <p>Creates the target configuration identified by the supplied configuration index.</p>
+    <h3 class="fn"><a name="dsigmadb2" id="dsigmadb2"/>double dsigmadb2(double, double, double, double)</h3>
+    <p>Evaluates the bCGC dipole cross-section density for dipole size, impact parameter, azimuth, and momentum fraction.</p>
+    <h3 class="fn"><a name="dsigmadb2ep" id="dsigmadb2ep"/>double dsigmadb2ep(double, double, double)</h3>
+    <p>Evaluates the bCGC proton dipole cross-section density for dipole size, impact parameter, and probe momentum fraction.</p>
+    <h3 class="fn"><a name="bDependence" id="bDependence"/>double bDependence(double)</h3>
+    <p>Evaluates the bCGC impact-parameter dependence.</p>
+    <hr/>
+    <h2><a name="details" id="details"/>Detailed Description</h2>
+    <p>Concrete impact-parameter-dependent Color Glass Condensate dipole model. It implements the base scattering interface with the bCGC parameterization and supplies proton and nuclear impact-parameter dependence.</p>
+  <address>
+    <p align="right">Last Update: September 14, 2026</p>
+  </address>
+  </body>
+</html>

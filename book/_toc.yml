@@ -1,0 +1,25 @@
+format: jb-book
+root: index
+parts:
+  - caption: "Simulation"
+    chapters:
+      - file: 06_sartre_simulation_and_analysis_benchmarks
+        title: "Sartre J/ψ Simulation & Cross-Section Analysis"
+
+  - caption: "Official Sartre 2 Documentation"
+    chapters:
+      - file: sartre_docs/01_sartre_html_portal
+        title: "1. Sartre Interactive Documentation Portal"
+      - file: sartre_docs/02_sartre_overview
+        title: "2. Sartre 2 Generator Overview"
+      - file: sartre_docs/03_sartre_users_guide
+        title: "3. Sartre 2 User's Guide"
+      - file: sartre_docs/04_sartre_upc_guide
+        title: "4. Ultra-Peripheral Collisions (UPC) Guide"
+      - file: sartre_docs/05_sartre_runcard_ref
+        title: "5. Sartre Runcard Reference"
+      - file: sartre_docs/06_sartre_event_record
+        title: "6. Sartre Event Record Structure"
+      - file: sartre_docs/07_code_modifications_summary
+        title: "7. Technical Code Modifications & Audit Log"
+

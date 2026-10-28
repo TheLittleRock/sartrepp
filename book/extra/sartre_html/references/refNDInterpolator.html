@@ -1,0 +1,181 @@
+<!--
+ //==============================================================================
+ //  refNDInterpolator.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:44:24 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>Sartre 2 - NDInterpolator Class Reference</title>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+    <link href="../sartre.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120" align="left" valign="top">
+          <img src="../images/sartreLogo.png" alt="Sartre" border="0" align="right" />
+        </td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td align="left" valign="middle" class="postheader"><a href="../index.html"><font color="#004faf">Home</font></a>&#xA0;&#xB7; <a href="../overview.html"><font color="#004faf">Overview</font></a>&#xA0;&#xB7; <a href="../usersGuide.html"><font color="#004faf">User Guide</font></a>&#xA0;&#xB7; <a href="../referenceGuide.html"><font color="#004faf">Library Reference Guide</font></a></td>
+      </tr>
+    </table>
+    <!-- Page title and overview -->
+    <h1 class="title">
+      <span class="className">NDInterpolator&lt;N, T, CopyData, Continuous, ArrayRefCountT, GridRefCountT&gt;</span>
+      <span class="referenceKind">Class Reference</span>
+    </h1>
+    <p>Base template for N-dimensional interpolation over rectangular grids. <a href="#details">More...</a></p>
+    <pre><span class="preprocessor">#include</span> "linterp.h"</pre>
+    <!-- Reference summaries and documentation -->
+    <h2>Public Types and Constants</h2>
+    <table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tbody>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">using</td>
+          <td class="memItemRight" align="left" valign="top">
+            <a href="#value_type">value_type = T</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">using</td>
+          <td class="memItemRight" align="left" valign="top">
+            <a href="#grid_type">grid_type = vector&lt;T&gt;</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">static constexpr</td>
+          <td class="memItemRight" align="left" valign="top">
+            <a href="#constants">m_N, m_bCopyData, m_bContinuous</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h2>Public Member Functions</h2>
+    <table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tbody>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top"></td>
+          <td class="memItemRight" align="left" valign="top"><a href="#NDInterpolator">NDInterpolator</a>(IterT1 grids_begin, IterT2 grids_len_begin, IterT3 f_begin, IterT3 f_end)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top"></td>
+          <td class="memItemRight" align="left" valign="top"><a href="#NDInterpolatorRef">NDInterpolator</a>(IterT1 grids_begin, IterT2 grids_len_begin, IterT3 f_begin, IterT3 f_end, ArrayRefCountT&amp; refF, RefCountIterT grid_refs_begin)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">void</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#init">init</a>(IterT1 grids_begin, IterT2 grids_len_begin, IterT3 f_begin, IterT3 f_end)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">void</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#init_refcount">init_refcount</a>(IterT1 grids_begin, IterT2 grids_len_begin, IterT3 f_begin, IterT3 f_end, ArrayRefCountT&amp; refF, RefCountIterT grid_refs_begin)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">void</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#set_grids">set_grids</a>(IterT1 grids_begin, IterT2 grids_len_begin, bool bCopy)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">void</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#set_grids_refcount">set_grids_refcount</a>(RefCountIterT refs_begin, RefCountIterT refs_end)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">void</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#set_f_array">set_f_array</a>(IterT f_begin, IterT f_end, bool bCopy)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">void</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#set_f_refcount">set_f_refcount</a>(ArrayRefCountT&amp; refF)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">int</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#find_cell">find_cell</a>(int dim, T x) const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">T</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#get_f_val">get_f_val</a>(const array&lt;int, N&gt;&amp; cell_index, const array&lt;int, N&gt;&amp; v_index) const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">T</td>
+          <td class="memItemRight" align="left" valign="top"><a href="#get_f_val_v">get_f_val</a>(const array&lt;int, N&gt;&amp; cell_index, int v) const</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr />
+    <h2>Public Member Function Documentation</h2>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="NDInterpolator" id="NDInterpolator"></a>NDInterpolator(IterT1 grids_begin, IterT2 grids_len_begin, IterT3 f_begin, IterT3 f_end)</span>
+    </h3>
+    <p>Constructs an interpolator from grid iterators, grid lengths, and function-value iterators. Data are copied when <code>CopyData</code> is true.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="NDInterpolatorRef" id="NDInterpolatorRef"></a>NDInterpolator(IterT1 grids_begin, IterT2 grids_len_begin, IterT3 f_begin, IterT3 f_end, ArrayRefCountT&amp; refF, RefCountIterT grid_refs_begin)</span>
+    </h3>
+    <p>Reference-counted constructor variant. It initialises the grids and function array, stores N grid reference-count objects, and stores the function-array reference-count object.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="init" id="init"></a>void init(IterT1 grids_begin, IterT2 grids_len_begin, IterT3 f_begin, IterT3 f_end)</span>
+    </h3>
+    <p>Initializes grids and the function array.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="init_refcount" id="init_refcount"></a>void init_refcount(IterT1 grids_begin, IterT2 grids_len_begin, IterT3 f_begin, IterT3 f_end, ArrayRefCountT&amp; refF, RefCountIterT grid_refs_begin)</span>
+    </h3>
+    <p>Initializes grids, function array, and reference-count objects.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="set_grids" id="set_grids"></a>void set_grids(IterT1 <var>grids_begin</var>, IterT2 <var>grids_len_begin</var>, bool <var>bCopy</var>)</span>
+    </h3>
+    <p>Stores each dimension's grid. With copying enabled the grids are copied into owned vectors.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="set_grids_refcount" id="set_grids_refcount"></a>void set_grids_refcount(RefCountIterT <var>refs_begin</var>, RefCountIterT <var>refs_end</var>)</span>
+    </h3>
+    <p>Stores N grid reference-count objects.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="set_f_array" id="set_f_array"></a>void set_f_array(IterT <var>f_begin</var>, IterT <var>f_end</var>, bool <var>bCopy</var>)</span>
+    </h3>
+    <p>Stores function values in C-order. Throws <code>std::invalid_argument</code> if the number of values does not match the grid shape.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="set_f_refcount" id="set_f_refcount"></a>void set_f_refcount(ArrayRefCountT&amp; <var>refF</var>)</span>
+    </h3>
+    <p>Stores the function-array reference-count object.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="find_cell" id="find_cell"></a>int find_cell(int <var>dim</var>, T <var>x</var>) const</span>
+    </h3>
+    <p>Returns the lower grid-cell index for coordinate <var>x</var> in dimension <var>dim</var>. Returns -1 below the grid and the last grid index above the grid.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="get_f_val" id="get_f_val"></a>T get_f_val(const array&lt;int, N&gt;&amp; <var>cell_index</var>, const array&lt;int, N&gt;&amp; <var>v_index</var>) const</span>
+    </h3>
+    <p>Returns the stored function value at a cell vertex, clamping outside-grid cell indices to boundary values.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="get_f_val_v" id="get_f_val_v"></a>T get_f_val(const array&lt;int, N&gt;&amp; <var>cell_index</var>, int <var>v</var>) const</span>
+    </h3>
+    <p>Returns the stored function value for vertex number <var>v</var>.</p>
+    <h2>Type Documentation</h2>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="value_type" id="value_type"></a>value_type</span>
+    </h3>
+    <p>Scalar value type used by the grid and stored function values.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="grid_type" id="grid_type"></a>grid_type</span>
+    </h3>
+    <p>One-dimensional grid container.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="constants" id="constants"></a>m_N, m_bCopyData, m_bContinuous</span>
+    </h3>
+    <p>Compile-time template parameters exposed as constants.</p>
+    <hr />
+    <h2><a name="details" id="details"></a>Detailed Description</h2>
+    <p>General N-dimensional interpolation wrapper used by table access. It owns or references grid data and dispatches to the selected interpolation method for a requested coordinate vector.</p>
+  <address>
+    <p align="right">Last Update: September 14, 2026</p>
+  </address>
+  </body>
+</html>

@@ -1,0 +1,115 @@
+<!--
+ //==============================================================================
+ //  refWaveOverlap.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:44:24 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<html>
+  <head>
+    <link href="../sartre.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120" align="left" valign="top">
+          <img src="../images/sartreLogo.png" alt="Sartre" border="0" align="right"/>
+        </td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td align="left" valign="middle" class="postheader"><a href="../index.html"><font color="#004faf">Home</font></a>&#xA0;&#xB7; <a href="../overview.html"><font color="#004faf">Overview</font></a>&#xA0;&#xB7; <a href="../usersGuide.html"><font color="#004faf">User Guide</font></a>&#xA0;&#xB7; <a href="../referenceGuide.html"><font color="#004faf">Library Reference Guide</font></a></td>
+      </tr>
+    </table>
+    <!-- Page title and overview -->
+    <h1 class="title">
+      <span class="className">WaveOverlap</span>
+      <span class="referenceKind">Class Reference</span>
+    </h1>
+    <p>Class reference. <a href="#details">More...</a></p>
+    <pre>#include "WaveOverlap.h"</pre>
+    <!-- Reference summaries and documentation -->
+    <h2>Public Member Functions</h2>
+    <table class="alignedsummary">
+      <tr>
+        <td class="memItemLeft" align="right" valign="top"/>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m0">WaveOverlap()</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top"/>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m1">~WaveOverlap()</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m2">setWaveOverlapFunctionParameters(int)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m3">setProcess(int)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m4">T(double, double, double) const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m5">L(double, double, double) const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m6">mf2() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m7">testBoostedGaussianParameters(int) const</a>
+        </td>
+      </tr>
+    </table>
+    <h2>Public Member Function Documentation</h2>
+<h3 class="fn" id="m0"> WaveOverlap()</h3>
+    <p>Constructs the abstract wave-overlap base object.</p>
+<h3 class="fn" id="m1"> ~WaveOverlap()</h3>
+    <p>Destroys the wave-overlap object.</p>
+<h3 class="fn" id="m2">void setWaveOverlapFunctionParameters(int)</h3>
+    <p>Sets process-dependent wave-function parameters; the base implementation performs no action.</p>
+<h3 class="fn" id="m3">void setProcess(int)</h3>
+    <p>Sets the process identifier; the base implementation performs no action.</p>
+<h3 class="fn" id="m4">double T(double, double, double) const</h3>
+    <p>Evaluates the transverse photon&#x2013;final-state wave-function overlap at the supplied coordinates.</p>
+<h3 class="fn" id="m5">double L(double, double, double) const</h3>
+    <p>Evaluates the longitudinal photon&#x2013;final-state wave-function overlap at the supplied coordinates.</p>
+<h3 class="fn" id="m6">double mf2() const</h3>
+    <p>Returns the squared quark mass used by the overlap.</p>
+<h3 class="fn" id="m7">void testBoostedGaussianParameters(int) const</h3>
+    <p>Checks boosted-Gaussian wave-function parameters for the supplied process; the base implementation performs no action.</p>
+    <hr/>
+    <h2><a name="details" id="details"/>Detailed Description</h2>
+    <p>Abstract interface for photon--final-state wave-function overlaps. Derived classes provide transverse and longitudinal overlap functions and their effective quark mass for exclusive-amplitude integrations.</p>
+  <address>
+    <p align="right">Last Update: September 14, 2026</p>
+  </address>
+  </body>
+</html>

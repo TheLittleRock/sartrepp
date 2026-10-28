@@ -1,0 +1,496 @@
+<!--
+ //==============================================================================
+ //  refTableGeneratorSettings.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:44:24 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Sartre 2 - TableGeneratorSettings</title>
+    <link href="../sartre.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120" align="left" valign="top">
+          <img src="../images/sartreLogo.png" alt="Sartre" border="0" align="right" />
+        </td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td align="left" valign="middle" class="postheader"><a href="../index.html"><font color="#004faf">Home</font></a>&#xA0;&#xB7; <a href="../overview.html"><font color="#004faf">Overview</font></a>&#xA0;&#xB7; <a href="../usersGuide.html"><font color="#004faf">User Guide</font></a>&#xA0;&#xB7; <a href="../referenceGuide.html"><font color="#004faf">Library Reference Guide</font></a></td>
+      </tr>
+    </table>
+    <!-- Page title and overview -->
+    <h1 class="title">
+      <span class="className">TableGeneratorSettings</span>
+      <span class="referenceKind">Class Reference</span>
+    </h1>
+    <p>Singleton configuration for exclusive, UPC, and inclusive table generation. <a href="#details">More...</a></p>
+    <pre>#include "TableGeneratorSettings.h"</pre>
+    <!-- Reference summaries and documentation -->
+    <h2>Inheritance</h2>
+    <p>Inherits from <a href="refSettings.html">Settings</a>.</p>
+    <h2>Public Member Functions</h2>
+    <table class="alignedsummary">
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">static TableGeneratorSettings*</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m0">instance()</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m1">setTmin(double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m2">tmin() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m3">setTmax(double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m4">tmax() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m5">setXmin(double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m6">xmin() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m7">setXmax(double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m8">xmax() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m9">setQ2bins(unsigned int)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">unsigned int</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m10">Q2bins() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m11">setW2bins(unsigned int)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">unsigned int</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m12">W2bins() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m13">setTbins(unsigned int)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">unsigned int</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m14">tbins() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m15">setXbins(unsigned int)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">unsigned int</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m16">xbins() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m17">setBetabins(unsigned int)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">unsigned int</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m18">betabins() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m19">setZbins(unsigned int)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">unsigned int</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m20">zbins() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">string</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m21">bSatLookupPath() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m22">setBSatLookupPath(string)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">unsigned int</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m23">numberOfConfigurations() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m24">setNumberOfConfigurations(unsigned int)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">vector&lt;double&gt;</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m25">dipoleModelCustomParameters() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m26">useBackupFile() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m27">setUseBackupFile(bool)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">int</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m28">startingBinFromBackup() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m29">setStartingBinFromBackup(int)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">int</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m30">startBin() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m31">setStartBin(int)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">int</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m32">endBin() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m33">setEndBin(int)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">int</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m34">modesToCalculate() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m35">setModesToCalculate(int)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">unsigned char</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m36">priority() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m37">setPriority(unsigned char)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m38">hasSubstructure() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m39">setHasSubstructure(bool)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m40">fractionOfBinsToFill() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m41">setFractionOfBinsToFill(double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m42">useFFT() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m43">setUseFFT(bool)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">int</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m44">nFFT() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m45">setNFFT(int)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m46">bmaxFactorFFT() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m47">setBmaxFactorFFT(double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">int</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m48">nThreads() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m49">setNThreads(int)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m50">useArbitraryTGrid() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m51">setUseArbitraryTGrid(bool)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">const std::vector&lt;double&gt;&amp;</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m52">customTGrid() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m53">setCustomTGrid(const std::vector&lt;double&gt;&amp; tValues)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m54">consolidateSettings()</a>
+        </td>
+      </tr>
+    </table>
+    <h2>Public Member Function Documentation</h2>
+    <h3 class="fn" id="m0">static TableGeneratorSettings* instance()</h3>
+    <p>Returns the shared table-generator settings instance.</p>
+    <h3 class="fn" id="m1">void setTmin(double)</h3>
+    <p>Sets the minimum momentum transfer <code>t</code> used when generating tables.</p>
+    <h3 class="fn" id="m2">double tmin() const</h3>
+    <p>Returns the configured minimum momentum transfer <code>t</code>.</p>
+    <h3 class="fn" id="m3">void setTmax(double)</h3>
+    <p>Sets the maximum momentum transfer <code>t</code> used when generating tables.</p>
+    <h3 class="fn" id="m4">double tmax() const</h3>
+    <p>Returns the configured maximum momentum transfer <code>t</code>.</p>
+    <h3 class="fn" id="m5">void setXmin(double)</h3>
+    <p>Sets the minimum <code>x</code> value used for UPC table generation.</p>
+    <h3 class="fn" id="m6">double xmin() const</h3>
+    <p>Returns the configured minimum <code>x</code> value.</p>
+    <h3 class="fn" id="m7">void setXmax(double)</h3>
+    <p>Sets the maximum <code>x</code> value used for UPC table generation.</p>
+    <h3 class="fn" id="m8">double xmax() const</h3>
+    <p>Returns the configured maximum <code>x</code> value.</p>
+    <h3 class="fn" id="m9">void setQ2bins(unsigned int)</h3>
+    <p>Sets the number of <code>Q&#xB2;</code> bins.</p>
+    <h3 class="fn" id="m10">unsigned int Q2bins() const</h3>
+    <p>Returns the number of <code>Q&#xB2;</code> bins.</p>
+    <h3 class="fn" id="m11">void setW2bins(unsigned int)</h3>
+    <p>Sets the number of <code>W&#xB2;</code> bins.</p>
+    <h3 class="fn" id="m12">unsigned int W2bins() const</h3>
+    <p>Returns the number of <code>W&#xB2;</code> bins.</p>
+    <h3 class="fn" id="m13">void setTbins(unsigned int)</h3>
+    <p>Sets the number of momentum-transfer bins.</p>
+    <h3 class="fn" id="m14">unsigned int tbins() const</h3>
+    <p>Returns the number of momentum-transfer bins.</p>
+    <h3 class="fn" id="m15">void setXbins(unsigned int)</h3>
+    <p>Sets the number of <code>x</code> bins for UPC tables.</p>
+    <h3 class="fn" id="m16">unsigned int xbins() const</h3>
+    <p>Returns the number of <code>x</code> bins for UPC tables.</p>
+    <h3 class="fn" id="m17">void setBetabins(unsigned int)</h3>
+    <p>Sets the number of diffractive <code>&#x3B2;</code> bins.</p>
+    <h3 class="fn" id="m18">unsigned int betabins() const</h3>
+    <p>Returns the number of diffractive <code>&#x3B2;</code> bins.</p>
+    <h3 class="fn" id="m19">void setZbins(unsigned int)</h3>
+    <p>Sets the number of inclusive-diffraction <code>z</code> bins.</p>
+    <h3 class="fn" id="m20">unsigned int zbins() const</h3>
+    <p>Returns the number of inclusive-diffraction <code>z</code> bins.</p>
+    <h3 class="fn" id="m21">string bSatLookupPath() const</h3>
+    <p>Returns the path used for the bSat lookup data.</p>
+    <h3 class="fn" id="m22">void setBSatLookupPath(string)</h3>
+    <p>Sets the path used for the bSat lookup data.</p>
+    <h3 class="fn" id="m23">unsigned int numberOfConfigurations() const</h3>
+    <p>Returns the number of nuclear configurations to generate.</p>
+    <h3 class="fn" id="m24">void setNumberOfConfigurations(unsigned int)</h3>
+    <p>Sets the number of nuclear configurations to generate.</p>
+    <h3 class="fn" id="m25">vector&lt;double&gt; dipoleModelCustomParameters() const</h3>
+    <p>Returns the configured custom dipole-model parameters.</p>
+    <h3 class="fn" id="m26">bool useBackupFile() const</h3>
+    <p>Returns whether periodic backup output is enabled.</p>
+    <h3 class="fn" id="m27">void setUseBackupFile(bool)</h3>
+    <p>Enables or disables periodic backup output.</p>
+    <h3 class="fn" id="m28">int startingBinFromBackup() const</h3>
+    <p>Returns the table bin at which backup recovery begins.</p>
+    <h3 class="fn" id="m29">void setStartingBinFromBackup(int)</h3>
+    <p>Sets the table bin at which backup recovery begins.</p>
+    <h3 class="fn" id="m30">int startBin() const</h3>
+    <p>Returns the first table bin selected for generation.</p>
+    <h3 class="fn" id="m31">void setStartBin(int)</h3>
+    <p>Sets the first table bin selected for generation.</p>
+    <h3 class="fn" id="m32">int endBin() const</h3>
+    <p>Returns the last table bin selected for generation.</p>
+    <h3 class="fn" id="m33">void setEndBin(int)</h3>
+    <p>Sets the last table bin selected for generation.</p>
+    <h3 class="fn" id="m34">int modesToCalculate() const</h3>
+    <p>Returns the selected diffraction modes to calculate.</p>
+    <h3 class="fn" id="m35">void setModesToCalculate(int)</h3>
+    <p>Sets the selected diffraction modes to calculate.</p>
+    <h3 class="fn" id="m36">unsigned char priority() const</h3>
+    <p>Returns the table priority.</p>
+    <h3 class="fn" id="m37">void setPriority(unsigned char)</h3>
+    <p>Sets the table priority.</p>
+    <h3 class="fn" id="m38">bool hasSubstructure() const</h3>
+    <p>Returns whether target substructure is enabled.</p>
+    <h3 class="fn" id="m39">void setHasSubstructure(bool)</h3>
+    <p>Enables or disables target substructure.</p>
+    <h3 class="fn" id="m40">double fractionOfBinsToFill() const</h3>
+    <p>Returns the fraction of table bins selected for filling.</p>
+    <h3 class="fn" id="m41">void setFractionOfBinsToFill(double)</h3>
+    <p>Sets the fraction of table bins selected for filling.</p>
+    <h3 class="fn" id="m42">bool useFFT() const</h3>
+    <p>Returns whether the FFT-based amplitude calculation is enabled.</p>
+    <h3 class="fn" id="m43">void setUseFFT(bool)</h3>
+    <p>Enables or disables the FFT-based amplitude calculation.</p>
+    <h3 class="fn" id="m44">int nFFT() const</h3>
+    <p>Returns the FFT grid size.</p>
+    <h3 class="fn" id="m45">void setNFFT(int)</h3>
+    <p>Sets the FFT grid size; it must be even.</p>
+    <h3 class="fn" id="m46">double bmaxFactorFFT() const</h3>
+    <p>Returns the factor that scales the target radius to obtain the FFT <code>b</code> maximum.</p>
+    <h3 class="fn" id="m47">void setBmaxFactorFFT(double)</h3>
+    <p>Sets the factor that scales the target radius to obtain the FFT <code>b</code> maximum.</p>
+    <h3 class="fn" id="m48">int nThreads() const</h3>
+    <p>Returns the requested number of OpenMP threads for the configuration loop.</p>
+    <h3 class="fn" id="m49">void setNThreads(int)</h3>
+    <p>Sets the requested number of OpenMP threads for the configuration loop.</p>
+    <h3 class="fn" id="m50">bool useArbitraryTGrid() const</h3>
+    <p>Returns whether exact user-specified <code>t</code> values are used with the FFT path.</p>
+    <h3 class="fn" id="m51">void setUseArbitraryTGrid(bool)</h3>
+    <p>Enables or disables use of exact user-specified <code>t</code> values with the FFT path.</p>
+    <h3 class="fn" id="m52">const std::vector&lt;double&gt;&amp; customTGrid() const</h3>
+    <p>Returns the optional user-defined negative-<code>t</code> grid.</p>
+    <h3 class="fn" id="m53">void setCustomTGrid(const std::vector&lt;double&gt;&amp; tValues)</h3>
+    <p>Sets the optional user-defined negative-<code>t</code> grid.</p>
+    <h3 class="fn" id="m54">void consolidateSettings()</h3>
+    <p>Validates and consolidates the configured settings after they are read or changed.</p>
+    <hr />
+    <h2><a name="details" id="details"></a>Detailed Description</h2>
+    <p>Singleton configuration for table generation. It extends Settings with grid limits and bin counts, configuration averaging, backup controls, target substructure, and options for the FFT-based all-t calculation.</p>
+  <address>
+    <p align="right">Last Update: September 14, 2026</p>
+  </address>
+  </body>
+</html>

@@ -1,0 +1,660 @@
+<!--
+ //==============================================================================
+ //  refSettings.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:44:24 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>Sartre 2 - Settings Class Reference</title>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+    <link href="../sartre.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120" align="left" valign="top">
+          <img src="../images/sartreLogo.png" alt="Sartre" border="0" align="right" />
+        </td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td align="left" valign="middle" class="postheader"><a href="../index.html"><font color="#004faf">Home</font></a>&#xA0;&#xB7; <a href="../overview.html"><font color="#004faf">Overview</font></a>&#xA0;&#xB7; <a href="../usersGuide.html"><font color="#004faf">User Guide</font></a>&#xA0;&#xB7; <a href="../referenceGuide.html"><font color="#004faf">Library Reference Guide</font></a></td>
+      </tr>
+    </table>
+    <!-- Page title and overview -->
+    <h1 class="title">
+      <span class="className">Settings</span>
+      <span class="referenceKind">Class Reference</span>
+    </h1>
+    <p>Abstract base class for Sartre runcard and generator settings. <a href="#details">More...</a></p>
+    <pre><span class="preprocessor">#include</span> "Settings.h"</pre>
+    <!-- Reference summaries and documentation -->
+    <h2>Public Member Functions</h2>
+    <table class="alignedsummary">
+      <tr>
+        <td class="memItemLeft" align="right" valign="top"></td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m0">Settings()</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top"></td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m1">~Settings()</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m2">readSettingsFromFile(const char*)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m3">list(ostream&amp; = cout)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">TParticlePDG*</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m4">lookupPDG(int) const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">string</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m5">particleName(int pdgID)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">static TRandom3*</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m6">randomGenerator()</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">unsigned int</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m7">seed() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m8">setSeed(unsigned int)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">int</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m9">userInt() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m10">userDouble() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">string</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m11">userString() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m12">setUserInt(int)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m13">setUserDouble(double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m14">setUserString(const string&amp;)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m15">setVerbose(bool)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m16">verbose() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m17">setVerboseLevel(int)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">int</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m18">verboseLevel() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m19">setQ2min(double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m20">Q2min() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m21">Qmin() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m22">setQ2max(double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m23">Q2max() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m24">Qmax() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m25">setWmin(double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m26">setW2min(double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m27">Wmin() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m28">W2min() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m29">setWmax(double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m30">setW2max(double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m31">Wmax() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m32">W2max() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m33">setXpomMin(double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m34">setXpomMax(double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m35">xpomMin() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m36">xpomMax() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m37">setbetamin(double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m38">betamin() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m39">setbetamax(double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m40">betamax() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m41">setZmin(double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m42">zmin() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m43">setZmax(double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m44">zmax() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">int</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m45">vectorMesonId() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m46">setVectorMesonId(int)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">static double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m47">quarkMass(int)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">static void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m48">setQuarkMass(int, double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">string</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m49">dipoleModelName() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">DipoleModelType</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m50">dipoleModelType() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m51">setDipoleModelType(DipoleModelType)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">string</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m52">dipoleModelParameterSetName() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">DipoleModelParameterSet</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m53">dipoleModelParameterSet() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m54">setDipoleModelParameterSet(DipoleModelParameterSet)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">string</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m55">tableSetTypeName() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">TableSetType</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m56">tableSetType() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m57">setTableSetType(TableSetType)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">unsigned int</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m58">A() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m59">setA(unsigned int)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">string</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m60">rootfile() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m61">setRootfile(const char*)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m62">setInclusiveDiffractionMode(bool)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m63">inclusiveDiffractionMode() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m64">exclusiveDiffractionMode() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m65">setUPC(bool)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m66">UPC() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m67">setUseInclusiveCrossSectionTables(bool)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m68">useInclusiveCrossSectionTables() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m69">setUPCA(unsigned int)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">unsigned int</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m70">UPCA() const</a>
+        </td>
+      </tr>
+    </table>
+    <h2>Public Member Function Documentation</h2>
+    <h3 class="fn" id="m0"> Settings()</h3>
+    
+<p>Constructor.</p>
+
+    <h3 class="fn" id="m1"> ~Settings()</h3>
+    
+<p>Destructor.</p>
+
+    <h3 class="fn" id="m2">bool readSettingsFromFile(const char*)</h3>
+    
+<p>Reads and sets all parameters from <var>file</var> (runcard). For file format and syntax see the <a href="../runcardRef.html">runcard reference</a> page. Returns <code>false</code> if <var>file</var> does not exist or could not be read, otherwise return <code>true</code>.</p>
+
+    <h3 class="fn" id="m3">bool list(ostream&amp; = cout)</h3>
+    
+<p>Prints all parameter with their current value. Useful to call after <a href="refSartre.html#m2">Sartre::init()</a> to verify that all parameters are set and to keep log.</p>
+
+    <h3 class="fn" id="m4">TParticlePDG* lookupPDG(int) const</h3>
+    
+<p>Return pointer to <span class="memItemRight">TParticlePDG</span>, a ROOT class that provides PDG information (e.g. mass, spin, etc.) on particle <var>pdgId</var>.</p>
+
+    <h3 class="fn" id="m5">string particleName(int pdgID)</h3>
+    
+<p>Returns name of the particle for given PDG identifier <var>pdgId</var>.</p>
+
+    <h3 class="fn" id="m6">static TRandom3* randomGenerator()</h3>
+    
+<p>Static method. Returns pointer to the main random generator used in Sar<em>t</em>re. Note that there is only one instance of <span class="memItemRight">TRandom3 in</span> Sar<em>t</em>re.</p>
+
+    <h3 class="fn" id="m7">unsigned int seed() const</h3>
+    
+<p>Returns the set seed for Sar<em>t</em>re's random number generator. Note that it is not the current seed at the time when the method is used but the original seed defined, that is the one set in <a href="refSartre.html#m2">Sartre::init()</a>.</p>
+
+    <h3 class="fn" id="m8">void setSeed(unsigned int)</h3>
+    
+<p>Sets the seed for Sar<em>t</em>re's random number generator to <em>value</em>. Be aware that when called after <a href="refSartre.html#m2">Sartre::init()</a> this method will set the new seed, ignoring previously defined seeds. The equivalent runcard entry is <a href="../runcardRef.html#seed">seed</a>.</p>
+
+    <h3 class="fn" id="m9">int userInt() const</h3>
+    
+<p>Returns integer user variable. See also <a href="#m12">setUserInt</a>(). Main advantage of adding variables to the "Settings" mechanism is to give the user some parameters to use in his application that can be set via <a href="../runcardRef.html">runcards</a>.</p>
+
+    <h3 class="fn" id="m10">double userDouble() const</h3>
+    
+<p>Returns floating point user variable. See also <a href="#m13">setUserDouble</a>(). Main advantage of adding variables to the "Settings" mechanism is to give the user some parameters to use in his application that can be set via <a href="../runcardRef.html">runcards</a>.</p>
+
+    <h3 class="fn" id="m11">string userString() const</h3>
+    
+<p>Returns string user variable. See also <a href="#m14">setUserString</a>(). Main advantage of adding variables to the "Settings" mechanism is to give the user some parameters to use in his application that can be set via <a href="../runcardRef.html">runcards</a>.</p>
+
+    <h3 class="fn" id="m12">void setUserInt(int)</h3>
+    
+<p>Sets user integer parameter to <var>val</var>. See also <a href="#m9">userInt</a>(). The equivalent runcard entry is <a href="../runcardRef.html#userInt">userInt</a>.</p>
+
+    <h3 class="fn" id="m13">void setUserDouble(double)</h3>
+    
+<p>Sets user floating point parameter to <var>val</var>. See also <a href="#m10">userDouble</a>(). The equivalent runcard entry is <a href="../runcardRef.html#userDouble">userDouble</a>.</p>
+
+    <h3 class="fn" id="m14">void setUserString(const string&amp;)</h3>
+    
+<p>Sets user string parameter to <var>val</var>. See also <a href="#m11">userString</a>(). The equivalent runcard entry is <a href="../runcardRef.html#userString">userString</a>.</p>
+<p>&#160;</p>
+
+    <h3 class="fn" id="m15">void setVerbose(bool)</h3>
+    <p>Enables or disables verbose diagnostic output.</p>
+<h3 class="fn" id="m16">bool verbose() const</h3>
+    <p>Returns whether verbose diagnostic output is enabled.</p>
+<h3 class="fn" id="m17">void setVerboseLevel(int)</h3>
+    <p>Sets the verbosity level used for diagnostic output.</p>
+<h3 class="fn" id="m18">int verboseLevel() const</h3>
+    <p>Returns the configured verbosity level.</p>
+<h3 class="fn" id="m19">void setQ2min(double)</h3>
+    <p>Sets the lower <em>Q</em><sup>2</sup> limit.</p>
+<h3 class="fn" id="m20">double Q2min() const</h3>
+    <p>Returns the lower <em>Q</em><sup>2</sup> limit.</p>
+<h3 class="fn" id="m21">double Qmin() const</h3>
+    <p>Returns the lower <em>Q</em> limit derived from the stored squared limit.</p>
+<h3 class="fn" id="m22">void setQ2max(double)</h3>
+    <p>Sets the upper <em>Q</em><sup>2</sup> limit.</p>
+<h3 class="fn" id="m23">double Q2max() const</h3>
+    <p>Returns the upper <em>Q</em><sup>2</sup> limit.</p>
+<h3 class="fn" id="m24">double Qmax() const</h3>
+    <p>Returns the upper <em>Q</em> limit derived from the stored squared limit.</p>
+<h3 class="fn" id="m25">void setWmin(double)</h3>
+    <p>Sets the lower <em>W</em> limit.</p>
+<h3 class="fn" id="m26">void setW2min(double)</h3>
+    <p>Sets the lower <em>W</em><sup>2</sup> limit.</p>
+<h3 class="fn" id="m27">double Wmin() const</h3>
+    <p>Returns the lower <em>W</em> limit.</p>
+<h3 class="fn" id="m28">double W2min() const</h3>
+    <p>Returns the lower <em>W</em><sup>2</sup> limit.</p>
+<h3 class="fn" id="m29">void setWmax(double)</h3>
+    <p>Sets the upper <em>W</em> limit.</p>
+<h3 class="fn" id="m30">void setW2max(double)</h3>
+    <p>Sets the upper <em>W</em><sup>2</sup> limit.</p>
+<h3 class="fn" id="m31">double Wmax() const</h3>
+    <p>Returns the upper <em>W</em> limit.</p>
+<h3 class="fn" id="m32">double W2max() const</h3>
+    <p>Returns the upper <em>W</em><sup>2</sup> limit.</p>
+<h3 class="fn" id="m33">void setXpomMin(double)</h3>
+    <p>Sets the lower UPC <em>x</em><sub>&#x2119;</sub> limit.</p>
+<h3 class="fn" id="m34">void setXpomMax(double)</h3>
+    <p>Sets the upper UPC <em>x</em><sub>&#x2119;</sub> limit.</p>
+<h3 class="fn" id="m35">double xpomMin() const</h3>
+    <p>Returns the lower UPC <em>x</em><sub>&#x2119;</sub> limit.</p>
+<h3 class="fn" id="m36">double xpomMax() const</h3>
+    <p>Returns the upper UPC <em>x</em><sub>&#x2119;</sub> limit.</p>
+<h3 class="fn" id="m37">void setbetamin(double)</h3>
+    <p>Sets the lower inclusive-diffraction &#x3B2; limit.</p>
+<h3 class="fn" id="m38">double betamin() const</h3>
+    <p>Returns the lower inclusive-diffraction &#x3B2; limit.</p>
+<h3 class="fn" id="m39">void setbetamax(double)</h3>
+    <p>Sets the upper inclusive-diffraction &#x3B2; limit.</p>
+<h3 class="fn" id="m40">double betamax() const</h3>
+    <p>Returns the upper inclusive-diffraction &#x3B2; limit.</p>
+<h3 class="fn" id="m41">void setZmin(double)</h3>
+    <p>Sets the lower inclusive-diffraction <em>z</em> limit.</p>
+<h3 class="fn" id="m42">double zmin() const</h3>
+    <p>Returns the lower inclusive-diffraction <em>z</em> limit.</p>
+<h3 class="fn" id="m43">void setZmax(double)</h3>
+    <p>Sets the upper inclusive-diffraction <em>z</em> limit.</p>
+<h3 class="fn" id="m44">double zmax() const</h3>
+    <p>Returns the upper inclusive-diffraction <em>z</em> limit.</p>
+<h3 class="fn" id="m45">int vectorMesonId() const</h3>
+    <p>Returns the configured vector-meson PDG identifier.</p>
+<h3 class="fn" id="m46">void setVectorMesonId(int)</h3>
+    <p>Sets the vector-meson PDG identifier.</p>
+<h3 class="fn" id="m47">static double quarkMass(int)</h3>
+    <p>Returns the configured mass of the quark species identified by the supplied index.</p>
+<h3 class="fn" id="m48">static void setQuarkMass(int, double)</h3>
+    <p>Sets the mass of the quark species identified by the supplied index.</p>
+<h3 class="fn" id="m49">string dipoleModelName() const</h3>
+    <p>Returns the human-readable name of the selected dipole model.</p>
+<h3 class="fn" id="m50">DipoleModelType dipoleModelType() const</h3>
+    <p>Returns the selected dipole-model enumeration value.</p>
+<h3 class="fn" id="m51">void setDipoleModelType(DipoleModelType)</h3>
+    <p>Sets the selected dipole-model type.</p>
+<h3 class="fn" id="m52">string dipoleModelParameterSetName() const</h3>
+    <p>Returns the human-readable name of the selected dipole-model parameter set.</p>
+<h3 class="fn" id="m53">DipoleModelParameterSet dipoleModelParameterSet() const</h3>
+    <p>Returns the selected dipole-model parameter-set enumeration value.</p>
+<h3 class="fn" id="m54">void setDipoleModelParameterSet(DipoleModelParameterSet)</h3>
+    <p>Sets the selected dipole-model parameter set.</p>
+<h3 class="fn" id="m55">string tableSetTypeName() const</h3>
+    <p>Returns the human-readable name of the selected table-set type.</p>
+<h3 class="fn" id="m56">TableSetType tableSetType() const</h3>
+    <p>Returns the selected table-set-type enumeration value.</p>
+<h3 class="fn" id="m57">void setTableSetType(TableSetType)</h3>
+    <p>Sets the selected table-set type.</p>
+<h3 class="fn" id="m58">unsigned int A() const</h3>
+    <p>Returns the target mass number.</p>
+<h3 class="fn" id="m59">void setA(unsigned int)</h3>
+    <p>Sets the target mass number.</p>
+<h3 class="fn" id="m60">string rootfile() const</h3>
+    <p>Returns the configured ROOT output filename.</p>
+<h3 class="fn" id="m61">void setRootfile(const char*)</h3>
+    <p>Sets the ROOT output filename.</p>
+<h3 class="fn" id="m62">void setInclusiveDiffractionMode(bool)</h3>
+    <p>Enables or disables inclusive-diffraction mode.</p>
+<h3 class="fn" id="m63">bool inclusiveDiffractionMode() const</h3>
+    <p>Returns whether inclusive-diffraction mode is selected.</p>
+<h3 class="fn" id="m64">bool exclusiveDiffractionMode() const</h3>
+    <p>Returns whether exclusive-diffraction mode is selected.</p>
+<h3 class="fn" id="m65">void setUPC(bool)</h3>
+    <p>Enables or disables ultra-peripheral-collision mode.</p>
+<h3 class="fn" id="m66">bool UPC() const</h3>
+    <p>Returns whether ultra-peripheral-collision mode is selected.</p>
+<h3 class="fn" id="m67">void setUseInclusiveCrossSectionTables(bool)</h3>
+    <p>Enables or disables use of precomputed inclusive cross-section tables.</p>
+<h3 class="fn" id="m68">bool useInclusiveCrossSectionTables() const</h3>
+    <p>Returns whether precomputed inclusive cross-section tables are used.</p>
+<h3 class="fn" id="m69">void setUPCA(unsigned int)</h3>
+    <p>Sets the mass number of the second UPC beam/target.</p>
+<h3 class="fn" id="m70">unsigned int UPCA() const</h3>
+    <p>Returns the mass number of the second UPC beam/target.</p>
+    <hr />
+    <h2><a name="details" id="details"></a>Detailed Description</h2>
+    <p><code>Settings</code> is the virtual base class for <code>EventGeneratorSettings</code> and <code>TableGeneratorSettings</code>. It defines Sartre's common settings mechanism, including runcard reading, registered parameters, shared random-number state, and common kinematic and model-selection options. It is an implementation base rather than a class normally used directly by applications.</p>
+  
+    <h3 id="legacy-sartre1">Legacy Sartre 1 notes and examples</h3>
+    <div class="legacyNotes">
+
+<p>The Settings class is the virtual base class for the <a href="refEventGeneratorSettings.html">EventGeneratorSettings</a> and TableGeneratorSettings classes. It is not directly used in Sar<em>t</em>re but defines the basic features of the "Settings" mechanism in Sar<em>t</em>re.</p>
+
+    </div>
+<address>
+  <p align="right">Last Update: September 14, 2026</p>
+</address>
+</body>
+</html>

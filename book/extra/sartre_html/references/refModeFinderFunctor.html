@@ -1,0 +1,123 @@
+<!--
+ //==============================================================================
+ //  refModeFinderFunctor.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:44:24 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>Sartre 2 - ModeFinderFunctor Class Reference</title>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+    <link href="../sartre.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120" align="left" valign="top">
+          <img src="../images/sartreLogo.png" alt="Sartre" border="0" align="right" />
+        </td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td align="left" valign="middle" class="postheader"><a href="../index.html"><font color="#004faf">Home</font></a>&#xA0;&#xB7; <a href="../overview.html"><font color="#004faf">Overview</font></a>&#xA0;&#xB7; <a href="../usersGuide.html"><font color="#004faf">User Guide</font></a>&#xA0;&#xB7; <a href="../referenceGuide.html"><font color="#004faf">Library Reference Guide</font></a></td>
+      </tr>
+    </table>
+    <!-- Page title and overview -->
+    <h1 class="title">
+      <span class="className">ModeFinderFunctor</span>
+      <span class="referenceKind">Class Reference</span>
+    </h1>
+    <p>ROOT one-dimensional function used to locate maxima of exclusive cross sections. <a href="#details">More...</a></p>
+    <pre><span class="preprocessor">#include</span> "ModeFinderFunctor.h"</pre>
+    <!-- Reference summaries and documentation -->
+    <h2>Inheritance</h2>
+    <p>Inherits from <a href="https://root.cern.ch/doc/master/classROOT_1_1Math_1_1IGenFunction.html">ROOT::Math::IGenFunction</a>.</p>
+    <h2>Public Member Functions</h2>
+    <table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tbody>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top"></td>
+          <td class="memItemRight" valign="top" align="left"><a href="#ModeFinderFunctor">ModeFinderFunctor</a>()</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top"></td>
+          <td class="memItemRight" valign="top" align="left"><a href="#ModeFinderFunctor2">ModeFinderFunctor</a>(CrossSection*, double Q2, double vmMass, double tmin, double tmax)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">double</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#DoEval">DoEval</a>(double) const</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">void</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#setQ2">setQ2</a>(double)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">void</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#setVmMass">setVmMass</a>(double)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">void</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#setMaxT">setMaxT</a>(double)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">void</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#setMinT">setMinT</a>(double)</td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">ROOT::Math::IGenFunction*</td>
+          <td class="memItemRight" valign="top" align="left"><a href="#Clone">Clone</a>() const</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr />
+    <h2>Public Member Function Documentation</h2>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="ModeFinderFunctor" id="ModeFinderFunctor"></a>ModeFinderFunctor()</span>
+    </h3>
+    <p>Default constructor. Leaves the object without an explicit cross-section pointer.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="ModeFinderFunctor2" id="ModeFinderFunctor2"></a>ModeFinderFunctor(CrossSection* <var>cs</var>, double <var>Q2</var>, double <var>vmMass</var>, double <var>tmin</var>, double <var>tmax</var>)</span>
+    </h3>
+    <p>Constructs the functor for cross-section object <var>cs</var>, photon virtuality <var>Q2</var>, vector-meson mass <var>vmMass</var>, and allowed t range.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="DoEval" id="DoEval"></a>double DoEval(double <var>x</var>) const</span>
+    </h3>
+    <p>Uses <var>x</var> as <em>W</em><sup>2</sup>, determines the allowed <em>t</em> value within the configured limits, evaluates the exclusive cross section, and returns its negative so ROOT minimisation finds the cross-section maximum.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="setQ2" id="setQ2"></a>void setQ2(double <var>Q2</var>)</span>
+    </h3>
+    <p>Sets the fixed photon virtuality.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="setVmMass" id="setVmMass"></a>void setVmMass(double <var>vmMass</var>)</span>
+    </h3>
+    <p>Sets the vector-meson mass used in kinematic limits.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="setMaxT" id="setMaxT"></a>void setMaxT(double <var>tmax</var>)</span>
+    </h3>
+    <p>Sets the upper t limit.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="setMinT" id="setMinT"></a>void setMinT(double <var>tmin</var>)</span>
+    </h3>
+    <p>Sets the lower t limit.</p>
+    <h3 class="fn">
+      <span class="memItemRight"><a name="Clone" id="Clone"></a>ROOT::Math::IGenFunction* Clone() const</span>
+    </h3>
+    <p>Returns a heap-allocated copy through the ROOT function interface.</p>
+    <hr />
+    <h2><a name="details" id="details"></a>Detailed Description</h2>
+    <p><code>ModeFinderFunctor</code> adapts the exclusive <a href="refCrossSection.html">CrossSection</a> object to ROOT minimization interfaces. It is used by a Brent minimizer to find cross-section maxima in W2 for fixed Q2 and t limits.</p>
+  <address>
+    <p align="right">Last Update: September 14, 2026</p>
+  </address>
+  </body>
+</html>

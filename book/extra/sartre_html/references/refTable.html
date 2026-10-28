@@ -1,0 +1,590 @@
+<!--
+ //==============================================================================
+ //  refTable.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:44:24 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>Sartre 2 - Table Class Reference</title>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+    <link href="../sartre.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120" align="left" valign="top">
+          <img src="../images/sartreLogo.png" alt="Sartre" border="0" align="right" />
+        </td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td align="left" valign="middle" class="postheader"><a href="../index.html"><font color="#004faf">Home</font></a>&#xA0;&#xB7; <a href="../overview.html"><font color="#004faf">Overview</font></a>&#xA0;&#xB7; <a href="../usersGuide.html"><font color="#004faf">User Guide</font></a>&#xA0;&#xB7; <a href="../referenceGuide.html"><font color="#004faf">Library Reference Guide</font></a></td>
+      </tr>
+    </table>
+    <!-- Page title and overview -->
+    <h1 class="title">
+      <span class="className">Table</span>
+      <span class="referenceKind">Class Reference</span>
+    </h1>
+    <p>ROOT-backed interpolation table for exclusive, inclusive-diffraction, and UPC quantities. <a href="#details">More...</a></p>
+    <pre><span class="preprocessor">#include</span> "Table.h"</pre>
+    <!-- Reference summaries and documentation -->
+    <h2>Public Member Functions</h2>
+    <table class="alignedsummary">
+      <tr>
+        <td class="memItemLeft" align="right" valign="top"></td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m0">Table()</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top"></td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m1">Table(const Table&amp;)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top"></td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m2">~Table()</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">Table&amp;</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m3">operator=(const Table&amp;)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m4">read(const char*)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m5">get(double Q2, double W2, double t) const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m6">get(double xpom, double t) const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m7">get(double Q2, double W2, double beta, double z)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">unsigned int</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m8">create(int, double, double, int, double, double, int, double, double, bool logQ2, bool logW2, bool logt, bool logContent, AmplitudeMoment, GammaPolarization, unsigned int A, int vm, DipoleModelType model, DipoleModelParameterSet pset, const char* filename = 0, unsigned char priority = 0, bool hotspots = false)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">unsigned int</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m9">create(int nbinsQ2, double Q2min, double Q2max, int nbinsW2, double W2min, double W2max, int nbinsT, const double* tAbsEdges, bool logQ2, bool logW2, bool logContent, AmplitudeMoment, GammaPolarization, unsigned int A, int vm, DipoleModelType model, DipoleModelParameterSet pset, const char* filename = 0, unsigned char priority = 0, bool hotspots = false)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">unsigned int</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m10">create(int, double, double, int, double, double, int, double, double, int, double, double, bool logbeta, bool logQ2, bool logW2, bool logz, bool logContent, AmplitudeMoment, GammaPolarization, FockState, unsigned int A, DipoleModelType model, DipoleModelParameterSet pset, int quarkSpecies, const char* filename = 0, unsigned char priority = 0, bool hotspots = false)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">unsigned int</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m11">create(int, double, double, int, double, double, bool logx, bool logt, bool logContent, AmplitudeMoment, GammaPolarization, unsigned int A, int vm, DipoleModelType model, DipoleModelParameterSet pset, const char* filename = 0, unsigned char priority = 0, bool hotspots = false)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m12">binCenter(int, double&amp; Q2, double&amp; W2, double&amp; t) const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m13">binCenter(int, double&amp; xpom, double&amp; t) const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m14">binCenter(int, double&amp; Q2, double&amp; W2, double&amp; beta, double&amp; z) const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m15">fill(int, double, double err = 0)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m16">write(const char* filename = 0)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m17">setAutobackup(const char* prefix, int freq)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">unsigned int</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m18">A() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m19">isTransverse() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m20">isLongitudinal() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">GammaPolarization</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m21">polarization() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m22">isForInclusive() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m23">isForExclusive() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m24">isMeanA2() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m25">isMeanA() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m26">isLambdaA() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m27">isLambdaSkew() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m28">isVarianceA() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">AmplitudeMoment</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m29">moment() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">int</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m30">vectorMesonId() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">int</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m31">numberOfEntries() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">unsigned int</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m32">dipoleModelType() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">unsigned int</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m33">dipoleModelParameterSet() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m34">minQ2() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m35">maxQ2() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m36">minW2() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m37">maxW2() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m38">minT() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m39">maxT() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m40">minX() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m41">maxX() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m42">minBeta() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m43">maxBeta() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m44">minZ() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m45">maxZ() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m46">binWidthQ2() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m47">binWidthW2() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m48">binWidthT() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m49">binWidthX() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m50">binWidthBeta() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m51">binWidthZ() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">unsigned int</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m52">priority() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m53">isUPC() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m54">hasHotspots() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">FockState</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m55">fockState() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">int</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m56">quarkId() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">uint64_t</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m57">id() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m58">list(ostream&amp; = cout, bool = false, bool = false, int = 0, int = 0)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">string</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m59">filename() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">int</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m60">globalBin(int binx, int biny, int binz) const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">int</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m61">globalBin(int binx, int biny) const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">int</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m62">globalBin(int bin0, int bin1, int bin2, int bin3) const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m63">binXY(int globalBin, int&amp; binx, int&amp; biny) const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m64">binXYZ(int globalBin, int&amp; binx, int&amp; biny, int&amp; binz) const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m65">binXYZW(int globalBin, int&amp; binx, int&amp; biny, int&amp; binz, int&amp; binw) const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m66">writeToBinaryFile(const string&amp;, bool verbose=false) const</a>
+        </td>
+      </tr>
+    </table>
+    <h2>Public Member Function Documentation</h2>
+<h3 class="fn" id="m0"> Table()</h3>
+    <p>Constructs an empty table with no allocated histogram content.</p>
+<h3 class="fn" id="m1"> Table(const Table&amp;)</h3>
+    <p>Constructs a copy of another table, including its metadata and stored content.</p>
+<h3 class="fn" id="m2"> ~Table()</h3>
+    <p>Destroys the table and releases its owned interpolation and histogram resources.</p>
+<h3 class="fn" id="m3">Table&amp; operator=(const Table&amp;)</h3>
+    <p>Replaces this table with a copy of another table.</p>
+<h3 class="fn" id="m4">bool read(const char*)</h3>
+    <p>Reads a Sartre ROOT table from the supplied filename and returns whether the read succeeded.</p>
+<h3 class="fn" id="m5">double get(double Q2, double W2, double t) const</h3>
+    <p>Returns the interpolated exclusive-table value at the supplied <em>Q</em><sup>2</sup>, <em>W</em><sup>2</sup>, and <em>t</em> point.</p>
+<h3 class="fn" id="m6">double get(double xpom, double t) const</h3>
+    <p>Returns the interpolated UPC-table value at the supplied <em>x</em><sub>&#x2119;</sub> and <em>t</em> point.</p>
+<h3 class="fn" id="m7">double get(double Q2, double W2, double beta, double z)</h3>
+    <p>Returns the interpolated inclusive-table value at the supplied <em>Q</em><sup>2</sup>, <em>W</em><sup>2</sup>, &#x3B2;, and <em>z</em> point.</p>
+<h3 class="fn" id="m8">unsigned int create(int, double, double, int, double, double, int, double, double, bool logQ2, bool logW2, bool logt, bool logContent, AmplitudeMoment, GammaPolarization, unsigned int A, int vm, DipoleModelType model, DipoleModelParameterSet pset, const char* filename = 0, unsigned char priority = 0, bool hotspots = false)</h3>
+    <p>Creates a regular three-dimensional exclusive table with the supplied binning, axis scaling, physics metadata, and optional output filename.</p>
+<h3 class="fn" id="m9">unsigned int create(int nbinsQ2, double Q2min, double Q2max, int nbinsW2, double W2min, double W2max, int nbinsT, const double* tAbsEdges, bool logQ2, bool logW2, bool logContent, AmplitudeMoment, GammaPolarization, unsigned int A, int vm, DipoleModelType model, DipoleModelParameterSet pset, const char* filename = 0, unsigned char priority = 0, bool hotspots = false)</h3>
+    <p>Creates an exclusive table with regular <em>Q</em><sup>2</sup> and <em>W</em><sup>2</sup> axes and explicitly supplied absolute-<em>t</em> bin edges.</p>
+<h3 class="fn" id="m10">unsigned int create(int, double, double, int, double, double, int, double, double, int, double, double, bool logbeta, bool logQ2, bool logW2, bool logz, bool logContent, AmplitudeMoment, GammaPolarization, FockState, unsigned int A, DipoleModelType model, DipoleModelParameterSet pset, int quarkSpecies, const char* filename = 0, unsigned char priority = 0, bool hotspots = false)</h3>
+    <p>Creates a four-dimensional inclusive-diffraction table with &#x3B2;, <em>Q</em><sup>2</sup>, <em>W</em><sup>2</sup>, and <em>z</em> axes and the supplied physics metadata.</p>
+<h3 class="fn" id="m11">unsigned int create(int, double, double, int, double, double, bool logx, bool logt, bool logContent, AmplitudeMoment, GammaPolarization, unsigned int A, int vm, DipoleModelType model, DipoleModelParameterSet pset, const char* filename = 0, unsigned char priority = 0, bool hotspots = false)</h3>
+    <p>Creates a two-dimensional UPC table with <em>x</em><sub>&#x2119;</sub> and <em>t</em> axes and the supplied physics metadata.</p>
+<h3 class="fn" id="m12">void binCenter(int, double&amp; Q2, double&amp; W2, double&amp; t) const</h3>
+    <p>Stores the centre coordinates of an exclusive global bin in the supplied <em>Q</em><sup>2</sup>, <em>W</em><sup>2</sup>, and <em>t</em> references.</p>
+<h3 class="fn" id="m13">void binCenter(int, double&amp; xpom, double&amp; t) const</h3>
+    <p>Stores the centre coordinates of a UPC global bin in the supplied <em>x</em><sub>&#x2119;</sub> and <em>t</em> references.</p>
+<h3 class="fn" id="m14">void binCenter(int, double&amp; Q2, double&amp; W2, double&amp; beta, double&amp; z) const</h3>
+    <p>Stores the centre coordinates of an inclusive global bin in the supplied <em>Q</em><sup>2</sup>, <em>W</em><sup>2</sup>, &#x3B2;, and <em>z</em> references.</p>
+<h3 class="fn" id="m15">void fill(int, double, double err = 0)</h3>
+    <p>Fills a global bin with a value and optional numerical error.</p>
+<h3 class="fn" id="m16">void write(const char* filename = 0)</h3>
+    <p>Writes the table to the supplied filename, or to its associated filename when no name is supplied.</p>
+<h3 class="fn" id="m17">void setAutobackup(const char* prefix, int freq)</h3>
+    <p>Enables periodic backup writing, using the supplied filename prefix and fill frequency.</p>
+<h3 class="fn" id="m18">unsigned int A() const</h3>
+    <p>Returns the target mass number recorded in the table metadata.</p>
+<h3 class="fn" id="m19">bool isTransverse() const</h3>
+    <p>Returns whether the table is for transverse photon polarization.</p>
+<h3 class="fn" id="m20">bool isLongitudinal() const</h3>
+    <p>Returns whether the table is for longitudinal photon polarization.</p>
+<h3 class="fn" id="m21">GammaPolarization polarization() const</h3>
+    <p>Returns the photon polarization recorded in the table metadata.</p>
+<h3 class="fn" id="m22">bool isForInclusive() const</h3>
+    <p>Returns whether this is an inclusive-diffraction table.</p>
+<h3 class="fn" id="m23">bool isForExclusive() const</h3>
+    <p>Returns whether this is an exclusive-diffraction table.</p>
+<h3 class="fn" id="m24">bool isMeanA2() const</h3>
+    <p>Returns whether the table stores the second amplitude moment, &#x27E8;A<sup>2</sup>&#x27E9;.</p>
+<h3 class="fn" id="m25">bool isMeanA() const</h3>
+    <p>Returns whether the table stores the first amplitude moment, &#x27E8;A&#x27E9;.</p>
+<h3 class="fn" id="m26">bool isLambdaA() const</h3>
+    <p>Returns whether the table stores the real-part correction parameter &#x3BB;<sub>A</sub>.</p>
+<h3 class="fn" id="m27">bool isLambdaSkew() const</h3>
+    <p>Returns whether the table stores the skewedness correction parameter.</p>
+<h3 class="fn" id="m28">bool isVarianceA() const</h3>
+    <p>Returns whether the table stores the variance derived from amplitude moments.</p>
+<h3 class="fn" id="m29">AmplitudeMoment moment() const</h3>
+    <p>Returns the amplitude-moment category recorded in the table metadata.</p>
+<h3 class="fn" id="m30">int vectorMesonId() const</h3>
+    <p>Returns the vector-meson PDG identifier recorded in the table metadata.</p>
+<h3 class="fn" id="m31">int numberOfEntries() const</h3>
+    <p>Returns the total number of stored table entries.</p>
+<h3 class="fn" id="m32">unsigned int dipoleModelType() const</h3>
+    <p>Returns the dipole-model type recorded in the table metadata.</p>
+<h3 class="fn" id="m33">unsigned int dipoleModelParameterSet() const</h3>
+    <p>Returns the dipole-model parameter-set identifier recorded in the table metadata.</p>
+<h3 class="fn" id="m34">double minQ2() const</h3>
+    <p>Returns the lower <em>Q</em><sup>2</sup> boundary of the table.</p>
+<h3 class="fn" id="m35">double maxQ2() const</h3>
+    <p>Returns the upper <em>Q</em><sup>2</sup> boundary of the table.</p>
+<h3 class="fn" id="m36">double minW2() const</h3>
+    <p>Returns the lower <em>W</em><sup>2</sup> boundary of the table.</p>
+<h3 class="fn" id="m37">double maxW2() const</h3>
+    <p>Returns the upper <em>W</em><sup>2</sup> boundary of the table.</p>
+<h3 class="fn" id="m38">double minT() const</h3>
+    <p>Returns the lower <em>t</em> boundary of the table.</p>
+<h3 class="fn" id="m39">double maxT() const</h3>
+    <p>Returns the upper <em>t</em> boundary of the table.</p>
+<h3 class="fn" id="m40">double minX() const</h3>
+    <p>Returns the lower <em>x</em><sub>&#x2119;</sub> boundary of a UPC table.</p>
+<h3 class="fn" id="m41">double maxX() const</h3>
+    <p>Returns the upper <em>x</em><sub>&#x2119;</sub> boundary of a UPC table.</p>
+<h3 class="fn" id="m42">double minBeta() const</h3>
+    <p>Returns the lower &#x3B2; boundary of an inclusive table.</p>
+<h3 class="fn" id="m43">double maxBeta() const</h3>
+    <p>Returns the upper &#x3B2; boundary of an inclusive table.</p>
+<h3 class="fn" id="m44">double minZ() const</h3>
+    <p>Returns the lower <em>z</em> boundary of an inclusive table.</p>
+<h3 class="fn" id="m45">double maxZ() const</h3>
+    <p>Returns the upper <em>z</em> boundary of an inclusive table.</p>
+<h3 class="fn" id="m46">double binWidthQ2() const</h3>
+    <p>Returns the <em>Q</em><sup>2</sup> bin width for a regular grid.</p>
+<h3 class="fn" id="m47">double binWidthW2() const</h3>
+    <p>Returns the <em>W</em><sup>2</sup> bin width for a regular grid.</p>
+<h3 class="fn" id="m48">double binWidthT() const</h3>
+    <p>Returns the <em>t</em> bin width for a regular grid.</p>
+<h3 class="fn" id="m49">double binWidthX() const</h3>
+    <p>Returns the <em>x</em><sub>&#x2119;</sub> bin width for a UPC grid.</p>
+<h3 class="fn" id="m50">double binWidthBeta() const</h3>
+    <p>Returns the &#x3B2; bin width for an inclusive grid.</p>
+<h3 class="fn" id="m51">double binWidthZ() const</h3>
+    <p>Returns the <em>z</em> bin width for an inclusive grid.</p>
+<h3 class="fn" id="m52">unsigned int priority() const</h3>
+    <p>Returns the priority recorded in the table metadata.</p>
+<h3 class="fn" id="m53">bool isUPC() const</h3>
+    <p>Returns whether this is a UPC table.</p>
+<h3 class="fn" id="m54">bool hasHotspots() const</h3>
+    <p>Returns whether the table metadata identifies a substructured/hotspot target.</p>
+<h3 class="fn" id="m55">FockState fockState() const</h3>
+    <p>Returns the inclusive Fock-state category recorded in the table metadata.</p>
+<h3 class="fn" id="m56">int quarkId() const</h3>
+    <p>Returns the quark PDG identifier recorded in an inclusive table.</p>
+<h3 class="fn" id="m57">uint64_t id() const</h3>
+    <p>Returns the encoded table identifier.</p>
+<h3 class="fn" id="m58">void list(ostream&amp; = cout, bool = false, bool = false, int = 0, int = 0)</h3>
+    <p>Writes a human-readable table summary to the supplied output stream.</p>
+<h3 class="fn" id="m59">string filename() const</h3>
+    <p>Returns the filename associated with this table.</p>
+<h3 class="fn" id="m60">int globalBin(int binx, int biny, int binz) const</h3>
+    <p>Converts three exclusive-table axis-bin indices to a global bin index.</p>
+<h3 class="fn" id="m61">int globalBin(int binx, int biny) const</h3>
+    <p>Converts two UPC-table axis-bin indices to a global bin index.</p>
+<h3 class="fn" id="m62">int globalBin(int bin0, int bin1, int bin2, int bin3) const</h3>
+    <p>Converts four inclusive-table axis-bin indices to a global bin index.</p>
+<h3 class="fn" id="m63">void binXY(int globalBin, int&amp; binx, int&amp; biny) const</h3>
+    <p>Converts a UPC global bin index to its two axis-bin indices.</p>
+<h3 class="fn" id="m64">void binXYZ(int globalBin, int&amp; binx, int&amp; biny, int&amp; binz) const</h3>
+    <p>Converts an exclusive global bin index to its three axis-bin indices.</p>
+<h3 class="fn" id="m65">void binXYZW(int globalBin, int&amp; binx, int&amp; biny, int&amp; binz, int&amp; binw) const</h3>
+    <p>Converts an inclusive global bin index to its four axis-bin indices.</p>
+<h3 class="fn" id="m66">bool writeToBinaryFile(const string&amp;, bool verbose=false) const</h3>
+    <p>Writes the table content to the named binary export file and returns whether writing succeeded.</p>
+    <hr />
+    <h2><a name="details" id="details"></a>Detailed Description</h2>
+    <p><code>Table</code> stores generated amplitude/cross-section table data and provides interpolation over the stored axes. Sartre 2 supports classic exclusive three-dimensional tables, UPC two-dimensional tables, inclusive-diffraction four-dimensional tables, and an exclusive FFT variant with user-supplied t-bin edges. Tables can be filled programmatically, written to ROOT files, read back, queried, listed, and optionally backed up while being filled.</p>
+  <address>
+    <p align="right">Last Update: September 14, 2026</p>
+  </address>
+  </body>
+</html>

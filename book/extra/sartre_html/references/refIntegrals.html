@@ -1,0 +1,246 @@
+<!--
+ //==============================================================================
+ //  refIntegrals.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:44:24 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>Sartre 2 - Integrals Class Reference</title>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+    <link href="../sartre.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120" align="left" valign="top">
+          <img src="../images/sartreLogo.png" alt="Sartre" border="0" align="right" />
+        </td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td align="left" valign="middle" class="postheader"><a href="../index.html"><font color="#004faf">Home</font></a>&#xA0;&#xB7; <a href="../overview.html"><font color="#004faf">Overview</font></a>&#xA0;&#xB7; <a href="../usersGuide.html"><font color="#004faf">User Guide</font></a>&#xA0;&#xB7; <a href="../referenceGuide.html"><font color="#004faf">Library Reference Guide</font></a></td>
+      </tr>
+    </table>
+    <!-- Page title and overview -->
+    <h1 class="title">
+      <span class="className">Integrals</span>
+      <span class="referenceKind">Class Reference</span>
+    </h1>
+    <p>Abstract base class for amplitude integrals. <a href="#details">More...</a></p>
+    <pre><span class="preprocessor">#include</span> "Integrals.h"</pre>
+    <!-- Reference summaries and documentation -->
+    <h2>Public Member Functions</h2>
+    <table class="alignedsummary">
+      <tr>
+        <td class="memItemLeft" align="right" valign="top"></td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m0">Integrals()</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top"></td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m1">~Integrals()</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top"></td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m2">Integrals(const Integrals&amp;)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">Integrals&amp;</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m3">operator=(const Integrals&amp;)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m4">operator()(double, double, double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m5">operator()(double, double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m6">integralImT() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m7">integralImL() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m8">integralReT() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m9">integralReL() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m10">errorImT() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m11">errorImL() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m12">errorReT() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m13">errorReL() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m14">probImT() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m15">probImL() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m16">probReT() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m17">probReL() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m18">integralTForSkewedness() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m19">integralLForSkewedness() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m20">errorTForSkewedness() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m21">errorLForSkewedness() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">DipoleModel*</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m22">dipoleModel() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">DipoleModel*</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m23">dipoleModelForSkewednessCorrection() const</a>
+        </td>
+      </tr>
+    </table>
+    <h2>Public Member Function Documentation</h2>
+<h3 class="fn" id="m0"> Integrals()</h3>
+    <p>Constructs the common base for exclusive amplitude integrations.</p>
+<h3 class="fn" id="m1"> ~Integrals()</h3>
+    <p>Destroys the integration object.</p>
+<h3 class="fn" id="m2"> Integrals(const Integrals&amp;)</h3>
+    <p>Constructs a copy of another integration object.</p>
+<h3 class="fn" id="m3">Integrals&amp; operator=(const Integrals&amp;)</h3>
+    <p>Replaces this object with a copy of another integration object.</p>
+<h3 class="fn" id="m4">void operator()(double, double, double)</h3>
+    <p>Sets an exclusive electroproduction kinematic point and performs the configured calculation.</p>
+<h3 class="fn" id="m5">void operator()(double, double)</h3>
+    <p>Sets a UPC kinematic point and performs the configured calculation.</p>
+<h3 class="fn" id="m6">double integralImT() const</h3>
+    <p>Returns the imaginary transverse integral at the last kinematic point.</p>
+<h3 class="fn" id="m7">double integralImL() const</h3>
+    <p>Returns the imaginary longitudinal integral at the last kinematic point.</p>
+<h3 class="fn" id="m8">double integralReT() const</h3>
+    <p>Returns the real transverse integral at the last kinematic point.</p>
+<h3 class="fn" id="m9">double integralReL() const</h3>
+    <p>Returns the real longitudinal integral at the last kinematic point.</p>
+<h3 class="fn" id="m10">double errorImT() const</h3>
+    <p>Returns the numerical error of the imaginary transverse integral.</p>
+<h3 class="fn" id="m11">double errorImL() const</h3>
+    <p>Returns the numerical error of the imaginary longitudinal integral.</p>
+<h3 class="fn" id="m12">double errorReT() const</h3>
+    <p>Returns the numerical error of the real transverse integral.</p>
+<h3 class="fn" id="m13">double errorReL() const</h3>
+    <p>Returns the numerical error of the real longitudinal integral.</p>
+<h3 class="fn" id="m14">double probImT() const</h3>
+    <p>Returns the integration probability reported for the imaginary transverse integral.</p>
+<h3 class="fn" id="m15">double probImL() const</h3>
+    <p>Returns the integration probability reported for the imaginary longitudinal integral.</p>
+<h3 class="fn" id="m16">double probReT() const</h3>
+    <p>Returns the integration probability reported for the real transverse integral.</p>
+<h3 class="fn" id="m17">double probReL() const</h3>
+    <p>Returns the integration probability reported for the real longitudinal integral.</p>
+<h3 class="fn" id="m18">double integralTForSkewedness() const</h3>
+    <p>Returns the transverse integral used for the skewedness correction.</p>
+<h3 class="fn" id="m19">double integralLForSkewedness() const</h3>
+    <p>Returns the longitudinal integral used for the skewedness correction.</p>
+<h3 class="fn" id="m20">double errorTForSkewedness() const</h3>
+    <p>Returns the numerical error of the transverse skewedness integral.</p>
+<h3 class="fn" id="m21">double errorLForSkewedness() const</h3>
+    <p>Returns the numerical error of the longitudinal skewedness integral.</p>
+<h3 class="fn" id="m22">DipoleModel* dipoleModel() const</h3>
+    <p>Returns the dipole model used by the integration.</p>
+<h3 class="fn" id="m23">DipoleModel* dipoleModelForSkewednessCorrection() const</h3>
+    <p>Returns the dipole model used for the skewedness-correction integration.</p>
+    <hr />
+    <h2><a name="details" id="details"></a>Detailed Description</h2>
+    <p><code>Integrals</code> stores common state and accessors for the real/imaginary transverse and longitudinal amplitude integrals. Derived classes implement the actual calculation for a kinematic point.</p>
+  <address>
+    <p align="right">Last Update: September 14, 2026</p>
+  </address>
+  </body>
+</html>

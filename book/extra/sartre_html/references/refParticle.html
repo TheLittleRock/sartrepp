@@ -1,0 +1,124 @@
+<!--
+ //==============================================================================
+ //  refParticle.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:44:24 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Sartre 2 - Particle</title>
+    <link href="../sartre.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120" align="left" valign="top">
+          <img src="../images/sartreLogo.png" alt="Sartre" border="0" align="right" />
+        </td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td align="left" valign="middle" class="postheader"><a href="../index.html"><font color="#004faf">Home</font></a>&#xA0;&#xB7; <a href="../overview.html"><font color="#004faf">Overview</font></a>&#xA0;&#xB7; <a href="../usersGuide.html"><font color="#004faf">User Guide</font></a>&#xA0;&#xB7; <a href="../referenceGuide.html"><font color="#004faf">Library Reference Guide</font></a></td>
+      </tr>
+    </table>
+    <!-- Page title and overview -->
+    <h1 class="title">
+      <span class="className">Particle</span>
+      <span class="referenceKind">Class Reference</span>
+    </h1>
+    <p>Public value record representing one particle in an event. <a href="#details">More...</a></p>
+    <pre>#include "Event.h"</pre>
+    <hr />
+    <!-- Reference summaries and documentation -->
+    <h2>Public Data Members</h2>
+    <table class="alignedsummary" border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tbody>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">int</td>
+          <td class="memItemRight" align="left" valign="top">
+            <a href="#index">index</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">int</td>
+          <td class="memItemRight" align="left" valign="top">
+            <a href="#pdgId">pdgId</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">int</td>
+          <td class="memItemRight" align="left" valign="top">
+            <a href="#status">status</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">TLorentzVector</td>
+          <td class="memItemRight" align="left" valign="top">
+            <a href="#p">p</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">vector&lt;int&gt;</td>
+          <td class="memItemRight" align="left" valign="top">
+            <a href="#parents">parents</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="memItemLeft" align="right" valign="top">vector&lt;int&gt;</td>
+          <td class="memItemRight" align="left" valign="top">
+            <a href="#daughters">daughters</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <hr />
+    <h2>Data Member Documentation</h2>
+    <h3 class="fn" id="index">int index</h3>
+    <p>Zero-based index of this particle in <code>Event::particles</code>. In the standard Sartre event record, index 0 is the incoming electron and index 1 is the incoming hadron. The index uniquely identifies the particle within the event.</p>
+    <h3 class="fn" id="pdgId">int pdgId</h3>
+    <p>Particle Data Group identifier. Nuclei and heavy fragments use the nuclear PDG form <code>10LZZZAAAI</code>, where <code>L</code> is the number of strange quarks for a hypernucleus and <code>I</code> is the isomer level (0 for the ground state). For example, the gold ion is encoded as <code>1000791970</code>.</p>
+    <h3 class="fn" id="status">int status</h3>
+    <p>Status follows the HepMC conventions used by the legacy documentation:</p>
+    <ul>
+      <li><code>0</code> — unused entry with no meaningful information.</li>
+      <li><code>1</code> — final-state particle that is not decayed further by the generator.</li>
+      <li><code>2</code> — decayed hadron, tau or muon, or intermediate virtual particle.</li>
+      <li><code>3</code> — documentation entry.</li>
+      <li><code>4</code> — incoming beam particle.</li>
+      <li><code>11</code>--<code>200</code> — other intermediate particles.</li>
+    </ul>
+    <p>Sartre currently uses status values <code>1</code>, <code>2</code>, and <code>4</code>.</p>
+    <h3 class="fn" id="p">TLorentzVector p</h3>
+    <p>Four-momentum with respect to the beam axis. The electron beam travels with negative <code>p<sub>z</sub></code>, while the hadron beam travels with positive <code>p<sub>z</sub></code>. For nuclei, momentum and energy are expressed per nucleon.</p>
+    <h3 class="fn" id="parents">vector&lt;int&gt; parents</h3>
+    <p>Indices of the parent particles in <code>Event::particles</code>. Sartre currently has at most two parents for a particle.</p>
+    <h3 class="fn" id="daughters">vector&lt;int&gt; daughters</h3>
+    <p>Indices of the daughter particles in <code>Event::particles</code>.</p>
+    <hr />
+    <h2><a name="details" id="details"></a>Detailed Description</h2>
+    <p><code>Particle</code> is a lightweight public record for one particle in an <code>Event</code>. It has no member functions and all its data members are public. The record stores a unique event index, status, four-momentum, and parent/daughter relationships expressed as indices into the event particle vector.</p>
+    <p>For nuclei, the event-record four-momentum is expressed per nucleon. See the individual data-member entries for the supported status values, nuclear PDG encoding, and beam-axis convention.</p>
+  
+    <h3 id="legacy-sartre1">Legacy Sartre 1 notes and examples</h3>
+    <div class="legacyNotes">
+
+<p>The Particle class contains all information needed to describe any particle used in Sar<em>t</em>e. The particles are stored in an internal list in the <a href="refEvent.html">Event</a> class. It is a lightweight class without any member functions and all data members are public. The data members hold information on the particle's status (stable/decayed), 4-momentum, parent particle(s), daughter particle(s). Each particle is uniquely identified by an index number.</p>
+<p>Note that moment and energy (TLorentzVector p) for nuclei are always expressed as <em>per-nucleon</em>.</p>
+
+    </div>
+<address>
+  <p align="right">Last Update: September 14, 2026</p>
+</address>
+</body>
+</html>

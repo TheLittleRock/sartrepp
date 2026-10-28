@@ -1,0 +1,200 @@
+<!--
+ //==============================================================================
+ //  UPCconsiderations.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:44:24 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<!--
+  UPCconsiderations.html
+
+  Sartre 2 documentation. This page supersedes the Sartre 1 note while
+  retaining its important beam-orientation guidance.
+-->
+<!DOCTYPE html
+PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en_US" lang="en_US">
+  <head>
+    <title>Sartre 2 - Ultra-Peripheral Collisions</title>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+    <link href="sartre.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <!-- Standard documentation navigation. -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120" align="left" valign="top"><img src="images/sartreLogo.png" alt="Sartre" border="0" align="right" /></td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td align="left" valign="middle" class="postheader">
+          <a href="index.html"><font color="#004faf">Home</font></a>&#xA0;&#xB7;
+          <a href="overview.html"><font color="#004faf">Overview</font></a>&#xA0;&#xB7;
+          <a href="usersGuide.html"><font color="#004faf">User Guide</font></a>&#xA0;&#xB7;
+          <a href="referenceGuide.html"><font color="#004faf">Library Reference Guide</font></a>
+        </td>
+      </tr>
+    </table>
+
+    <h1 class="title">Ultra-Peripheral Collisions</h1>
+
+    <p>Ultra-peripheral collisions (UPC) are hadron--hadron collisions at impact parameters large enough that the strong interaction is suppressed while the electromagnetic field of one beam supplies a quasi-real photon. In Sartre, the photon interacts diffractively with the other beam particle to produce an exclusive vector meson. The current UPC workflow is therefore the <strong>exclusive</strong> <a href="references/refSartre.html">Sartre</a> generator and <code>examples/sartreMain.cpp</code>, not <code>SartreInclusiveDiffraction</code>.</p>
+
+    <div class="pageToc">
+      <h2>On this page</h2>
+      <ul>
+        <li><a href="#scope">Scope and physics treatment</a></li>
+        <li><a href="#runcard">UPC runcard settings</a></li>
+        <li><a href="#orientation">Beam orientation and symmetric beams</a></li>
+        <li><a href="#asymmetric">Asymmetric beams and normalization</a></li>
+        <li><a href="#tables">Tables, event record, and checks</a></li>
+      </ul>
+    </div>
+
+    <h2 id="scope">Scope and physics treatment</h2>
+
+    <p>UPC mode produces exclusive vector-meson final states, schematically <em>h</em><sub>1</sub> + <em>h</em><sub>2</sub> &#x2192; <em>h</em><sub>1</sub><sup>&prime;</sup> + <em>h</em><sub>2</sub><sup>&prime;</sup> + <em>V</em>. Sartre samples the momentum transfer <em>t</em> and the pomeron momentum fraction <em>x</em><sub>&#x2119;</sub>, rather than the <em>Q</em><sup>2</sup> and <em>W</em> variables used for electron--hadron diffraction. The UPC cross-section path uses transverse photon polarization; generated UPC events have <em>Q</em><sup>2</sup> = 0.</p>
+
+    <p>The photon flux accounts for the electromagnetic field of a proton or nucleus and includes the no-hadronic-interaction probability. For coherent UPC production, Sartre evaluates the contributions associated with the two photon-source directions, including their interference. Incoherent production is also available when suitable variance tables are present. Nuclear breakup through the Gemini++ path is currently unavailable in UPC mode; Sartre switches <code>enableNuclearBreakup</code> off during initialization.</p>
+
+    <p><strong>Inclusive diffraction:</strong> Sartre 2 adds inclusive diffraction for <em>ep</em> and <em>eA</em>, but UPC is not its supported inclusive workflow. Keep <code>UPC = false</code> in an inclusive-diffraction runcard.</p>
+
+    <h2 id="runcard">UPC runcard settings</h2>
+
+    <p>Set <code>UPC = true</code> in an otherwise exclusive runcard. In UPC mode the historically named electron-beam settings are repurposed for the second hadron beam. The convention is fixed by the generator:</p>
+
+    <table width="100%" border="0" cellpadding="5">
+      <tr>
+        <th width="23%" bgcolor="#CCCCCC" scope="col"><div align="left">Setting</div></th>
+        <th bgcolor="#CCCCCC" scope="col"><div align="left">Meaning in UPC mode</div></th>
+      </tr>
+      <tr>
+        <td><code>UPC = true</code></td>
+        <td>Enables hadron--hadron UPC kinematics and the nuclear photon flux.</td>
+      </tr>
+      <tr>
+        <td><code>A</code></td>
+        <td>Mass number of hadron 1, the positive-<em>z</em> beam and the target represented by the primary amplitude tables. Use <code>1</code> for a proton.</td>
+      </tr>
+      <tr>
+        <td><code>UPCA</code></td>
+        <td>Mass number of hadron 2, the negative-<em>z</em> beam. It supplies the photon flux in the generator convention. Use <code>1</code> for a proton.</td>
+      </tr>
+      <tr>
+        <td><code>hBeamEnergy</code></td>
+        <td>Energy of hadron 1 in the positive-<em>z</em> direction.</td>
+      </tr>
+      <tr>
+        <td><code>eBeamEnergy</code></td>
+        <td>Energy of hadron 2 in the negative-<em>z</em> direction. The name is retained for runcard compatibility; it is not an electron beam in UPC mode.</td>
+      </tr>
+      <tr>
+        <td><code>vectorMesonId</code></td>
+        <td>PDG identifier of the exclusively produced vector meson.</td>
+      </tr>
+      <tr>
+        <td><code>xpomMin</code>, <code>xpomMax</code></td>
+        <td>Optional requested range in <em>x</em><sub>&#x2119;</sub>. Sartre intersects it with the available table and physical ranges.</td>
+      </tr>
+      <tr>
+        <td><code>applyPhotonFlux</code></td>
+        <td>Leave enabled for event generation. Disabling it is an expert-only cross-section study option.</td>
+      </tr>
+    </table>
+
+    <p>For example, a symmetric Pb--Pb setup begins with the following runcard fragment. Beam energies must match the desired collision system and the table coverage.</p>
+
+    <pre class="code"># Exclusive UPC configuration: Pb + Pb
+UPC = true
+A = 208
+UPCA = 208
+
+# Hadron 1 (+z) and hadron 2 (-z) energies
+hBeamEnergy = 100
+eBeamEnergy = 100
+
+vectorMesonId = 443
+dipoleModel = bSat
+applyPhotonFlux = true
+
+# Optional; leave disabled to accept the available UPC table range
+# xpomMin = 1e-5
+# xpomMax = 1</pre>
+
+    <p>The complete definitions and defaults are in the <a href="runcardRef.html#UPC">runcard reference</a>. The initialization printout identifies both UPC beam species, their four-vectors, the model, and the resolved kinematic range; retain it with production output.</p>
+
+    <h2 id="orientation">Beam orientation and symmetric beams</h2>
+
+    <p>Sartre stores hadron 1 (<code>A</code>) in the positive-<em>z</em> direction and hadron 2 (<code>UPCA</code>) in the negative-<em>z</em> direction. Thus the photon-emitting beam in the event record is initially always the beam arriving from the right in the usual beam-line drawing. For identical beams, an analysis should populate both physically equivalent orientations.</p>
+
+    <p>The distributed <code>sartreMain.cpp</code> does this by randomly reversing every four-vector in half of the UPC events when <code>A == UPCA</code>. A rotation by &#x03C0; about the <em>x</em> axis implements the reflection in the <em>xy</em> plane:</p>
+
+    <pre class="code">if (settings-&gt;UPC() &amp;&amp; settings-&gt;A() == settings-&gt;UPCA())
+    randomlyReverseBeams(event);
+
+void randomlyReverseBeams(Event* event)
+{
+    if (EventGeneratorSettings::randomGenerator()-&gt;Uniform(1) &gt; 0.5) {
+        for (unsigned int i = 0; i &lt; event-&gt;particles.size(); ++i)
+            event-&gt;particles.at(i).p.RotateX(M_PI);
+    }
+}</pre>
+
+    <p>Copy this step into a custom UPC driver if it needs the same symmetric acceptance. It changes the event orientation only; it must not be used as an additional event weight.</p>
+
+    <h2 id="asymmetric">Asymmetric beams and normalization</h2>
+
+    <p>For an asymmetric system, such as proton--gold, the two photon-emitter/target assignments are physically different. Generate and analyze the two configurations separately:</p>
+
+    <ol>
+      <li><code>A = 1</code>, <code>UPCA = 197</code>: photon emitted by gold and scattering from the proton;</li>
+      <li><code>A = 197</code>, <code>UPCA = 1</code>: photon emitted by the proton and scattering from gold.</li>
+    </ol>
+
+    <p>Combine the resulting samples using their respective calculated cross sections and generated event counts. The table set must match the target selected by <code>A</code> in each run. Experimental selections may make one contribution dominant, but that should be demonstrated for the particular observable and phase-space cuts.</p>
+
+    <p><strong>Normalization caution:</strong> the Sartre 1 page instructed users to multiply the symmetric-beam total cross section by two. The current UPC implementation already evaluates contributions from both photon-source directions in its coherent treatment, and the shipped <code>sartreMain</code> prints <code>Sartre::totalCrossSection()</code> without an additional factor. Do not apply a universal manual factor of two. Validate the normalization for the chosen collision system, table set, rapidity convention, and observable against a reference calculation before applying any external factor.</p>
+
+    <h2 id="tables">Tables, event record, and checks</h2>
+
+    <p>UPC amplitude tables differ from ordinary exclusive <em>ep</em>/<em>eA</em> tables: they are two-dimensional in <em>t</em> and <em>x</em><sub>&#x2119;</sub>. UPC table generation uses <code>tmin</code>, <code>tmax</code>, <code>tbins</code>, <code>xmin</code>, <code>xmax</code>, and <code>xbins</code>. Table production and merging are expert tasks; inspect delivered tables with <code>tableInspector</code> and query them with <code>tableQuery</code>, which prompts for <em>t</em> and <em>x</em><sub>&#x2119;</sub> for UPC tables. See <a href="tableTools.html">Table Tools and Tables</a>.</p>
+
+    <p>UPC events use the ordinary <a href="references/refEvent.html">Event</a> and <a href="references/refParticle.html">Particle</a> records. Before the exclusive final-state calculation, the generator sets <em>Q</em><sup>2</sup>, Bjorken <em>x</em>, and <em>W</em> to zero and marks the photon transverse; the final-state generator completes the UPC kinematics. Use <code>event-&gt;list()</code> for a few events whenever a custom program changes the record or applies beam reversal.</p>
+
+    <h3>Production checklist</h3>
+    <ul>
+      <li>Use <code>Sartre</code> and an exclusive vector-meson runcard, with <code>UPC = true</code>.</li>
+      <li>Verify that every required UPC table covers the generated <em>t</em> and <em>x</em><sub>&#x2119;</sub> range.</li>
+      <li>Keep <code>applyPhotonFlux = true</code> unless performing a documented expert-only calculation.</li>
+      <li>For symmetric beams, retain the random event reversal used by <code>sartreMain</code>.</li>
+      <li>For asymmetric beams, generate the two target/emitter assignments separately and normalize them deliberately.</li>
+      <li>Record the runcard, random seed, table identities, and initialization output with the event sample.</li>
+    </ul>
+
+    <h2>Further reading</h2>
+    <ul>
+      <li>T. Toll, <a href="https://arxiv.org/abs/2108.01944"><em>Subnucleon fluctuations in coherent and incoherent ultra-peripheral AA collisions at LHC and RHIC with the Sartre event generator</em></a>, arXiv:2108.01944 [hep-ph] (2021).</li>
+      <li>V. Nattoja and T. Toll, <a href="https://arxiv.org/abs/2511.13235"><em>Describing UPC data with the Sartre event generator</em></a>, arXiv:2511.13235 [hep-ph] (2025).</li>
+      <li><a href="sartrePubs.html">Sartre publications</a> and <a href="sartreTalks.html">Sartre talks</a> collect additional related material.</li>
+    </ul>
+
+    <div class="address">
+      <div align="center">
+        <table border="0" cellspacing="0" width="100%">
+          <tbody><tr class="address">
+            <td align="left" width="40%">&#xA0;</td>
+            <td align="center" width="20%">&#xA0;</td>
+            <td align="right" width="40%"><div align="right"><br />Last Update: September 14, 2026</div></td>
+          </tr></tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

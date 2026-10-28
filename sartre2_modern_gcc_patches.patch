@@ -1,0 +1,76 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index f3569fc..3917c46 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -47,7 +47,7 @@ message(STATUS "Build type = ${CMAKE_BUILD_TYPE}")
+ #  C++ standard — declared once here, inherited by src/ and gemini/
+ #  (both previously repeated this block independently).
+ #
+-set(CMAKE_CXX_STANDARD 17)
++set(CMAKE_CXX_STANDARD 23)
+ set(CMAKE_CXX_STANDARD_REQUIRED ON)
+ set(CMAKE_CXX_EXTENSIONS OFF)
+ 
+diff --git a/cmake/modules/FindPythia8.cmake b/cmake/modules/FindPythia8.cmake
+index 950e2e8..a6ece91 100644
+--- a/cmake/modules/FindPythia8.cmake
++++ b/cmake/modules/FindPythia8.cmake
+@@ -31,7 +31,7 @@ find_path(PYTHIA8_INCLUDE_DIR
+ 
+ if(PYTHIA8_INCLUDE_DIR MATCHES "include$")
+   get_filename_component(Pythia8_PREFIX ${PYTHIA8_INCLUDE_DIR}/.. ABSOLUTE)
+-elseif()
++else()
+   get_filename_component(Pythia8_PREFIX ${PYTHIA8_INCLUDE_DIR}/../.. ABSOLUTE)
+ endif()
+ 
+diff --git a/cuba/makefile.in b/cuba/makefile.in
+index 3dc83f0..22c0f31 100644
+--- a/cuba/makefile.in
++++ b/cuba/makefile.in
+@@ -1,3 +1,4 @@
++.NOTPARALLEL:
+ CC = @CC@
+ SUFFIX = @SUFFIX@
+ CFLAGS = @CFLAGS@ @DEFS@ -DREALSIZE=@REALSIZE@ -I$(common) -I. -I$(srcdir)
+diff --git a/cuba/src/common/stddecl.h b/cuba/src/common/stddecl.h
+index 7ff4f73..a2ad9c3 100644
+--- a/cuba/src/common/stddecl.h
++++ b/cuba/src/common/stddecl.h
+@@ -326,8 +326,12 @@ if( fail == 0 && (t)->statefile && KEEPFILE == 0 ) unlink((t)->statefile)
+ #define Extern extern "C"
+ #else
+ #define Extern extern
++#if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 202311L
++#include <stdbool.h>
++#else
+ typedef enum { false, true } bool;
+ #endif
++#endif
+ 
+ typedef const char cchar;
+ 
+diff --git a/src/Settings.cpp b/src/Settings.cpp
+index c78dd3f..a233361 100644
+--- a/src/Settings.cpp
++++ b/src/Settings.cpp
+@@ -14,6 +14,7 @@
+ //==============================================================================
+ #include "Settings.h"    
+ #include "Constants.h"
++#include <cmath>
+ #include <typeinfo>
+ #include <fstream>    
+ #include <sstream>    
+diff --git a/src/TableGeneratorSettings.cpp b/src/TableGeneratorSettings.cpp
+index dae4414..eac241d 100644
+--- a/src/TableGeneratorSettings.cpp
++++ b/src/TableGeneratorSettings.cpp
+@@ -16,6 +16,7 @@
+ #include "TableGeneratorSettings.h"    
+ #include "Constants.h"    
+ #include <cmath>    
++#include <algorithm>
+ #include <ctime>
+ #include <vector>
+ #include <stdlib.h>

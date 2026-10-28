@@ -1,0 +1,200 @@
+<!--
+ //==============================================================================
+ //  eventRecord.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:44:24 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<!--
+  eventRecord.html
+
+  User-facing guide to Sartre event records. Detailed API information is kept
+  in references/refEvent.html and references/refParticle.html.
+-->
+<!DOCTYPE html
+PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en_US" lang="en_US">
+  <head>
+    <title>Sartre 2 - Event Record</title>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+    <link href="sartre.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <!-- Standard documentation navigation. -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120" align="left" valign="top"><img src="images/sartreLogo.png" alt="Sartre" border="0" align="right" /></td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td align="left" valign="middle" class="postheader">
+          <a href="index.html"><font color="#004faf">Home</font></a>&#xA0;&#xB7;
+          <a href="overview.html"><font color="#004faf">Overview</font></a>&#xA0;&#xB7;
+          <a href="usersGuide.html"><font color="#004faf">User Guide</font></a>&#xA0;&#xB7;
+          <a href="referenceGuide.html"><font color="#004faf">Library Reference Guide</font></a>
+        </td>
+      </tr>
+    </table>
+
+    <h1 class="title">Event Record</h1>
+
+    <p>Every call to a Sartre event generator returns an <a href="references/refEvent.html"><code>Event</code></a> object. It holds the event kinematics, its coherent or incoherent classification, and a list of <a href="references/refParticle.html"><code>Particle</code></a> records connected by parent and daughter indices. This page explains how to use that information in an analysis program. The class references remain the authoritative API documentation.</p>
+
+    <div class="pageToc">
+      <h2>On this page</h2>
+      <ul>
+        <li><a href="#lifetime">Obtaining and retaining an event</a></li>
+        <li><a href="#kinematics">Event-level kinematics and traits</a></li>
+        <li><a href="#particles">Particle records and relationships</a></li>
+        <li><a href="#layouts">Exclusive and inclusive record layouts</a></li>
+        <li><a href="#root">Writing ROOT output</a></li>
+        <li><a href="#checks">Checks and important caveats</a></li>
+      </ul>
+    </div>
+
+    <h2 id="lifetime">Obtaining and retaining an event</h2>
+
+    <p>The exclusive <a href="references/refSartre.html"><code>Sartre</code></a> and inclusive <a href="references/refSartreInclusiveDiffraction.html"><code>SartreInclusiveDiffraction</code></a> generators both return a pointer to their current event:</p>
+
+    <pre class="code">Event* event = sartre.generateEvent();
+event-&gt;list();</pre>
+
+    <p>The generator owns this object and replaces it when the next event is generated. Read or store the information needed for an event <strong>before</strong> calling <code>generateEvent()</code> again. If an application needs an in-memory event collection, make a copy:</p>
+
+    <pre class="code">std::vector&lt;Event&gt; savedEvents;
+
+Event* event = sartre.generateEvent();
+savedEvents.push_back(*event);</pre>
+
+    <p>For large samples, writing only the variables and particles needed for analysis is generally more practical than retaining all events in memory. The supplied examples show one ROOT-based layout; it is a convention of the example programs, not a file format imposed by the library.</p>
+
+    <h2 id="kinematics">Event-level kinematics and traits</h2>
+
+    <p>The scalar fields in <code>Event</code> describe the generated interaction. Momentum-like quantities use GeV and squared quantities use GeV<sup>2</sup>.</p>
+
+    <table width="100%" border="0" cellpadding="5">
+      <tr>
+        <th width="25%" bgcolor="#CCCCCC" scope="col"><div align="left">Field</div></th>
+        <th bgcolor="#CCCCCC" scope="col"><div align="left">Use in an analysis</div></th>
+      </tr>
+      <tr><td><code>eventNumber</code></td><td>Sequential generated-event number.</td></tr>
+      <tr><td><code>Q2</code>, <code>W</code>, <code>x</code>, <code>y</code>, <code>s</code></td><td>DIS kinematics: photon virtuality, photon--hadron centre-of-mass energy, Bjorken <em>x</em>, inelasticity, and squared beam centre-of-mass energy.</td></tr>
+      <tr><td><code>t</code>, <code>xpom</code></td><td>Momentum transfer and diffractive momentum fraction.</td></tr>
+      <tr><td><code>polarization</code></td><td>Selected photon polarization: transverse or longitudinal.</td></tr>
+      <tr><td><code>diffractiveMode</code></td><td><code>coherent</code> when the target remains intact and <code>incoherent</code> when it dissociates or is excited.</td></tr>
+      <tr><td><code>crossSectionRatioLT</code></td><td>Recorded longitudinal-to-transverse cross-section ratio for the selected point.</td></tr>
+      <tr><td><code>beta</code>, <code>z</code>, <code>MX</code>, <code>quarkSpecies</code></td><td>Inclusive-diffraction variables: diffractive Bjorken variable, longitudinal momentum variable, diffractive mass, and selected quark-species index. They are meaningful for <code>SartreInclusiveDiffraction</code>.</td></tr>
+    </table>
+
+    <p>In exclusive <em>ep</em> and <em>eA</em> production, the familiar fields through <code>xpom</code> are the principal event observables. In inclusive diffraction, also retain <code>beta</code>, <code>z</code>, <code>MX</code>, and the Pythia-generated hadrons described below. UPC uses quasi-real transverse photons and has its own conventions; see <a href="UPCconsiderations.html">Ultra-Peripheral Collisions</a>.</p>
+
+    <h2 id="particles">Particle records and relationships</h2>
+
+    <p><code>Event::particles</code> is a <code>std::vector&lt;Particle&gt;</code>. A particle's <code>index</code> equals its position in that vector. Its <code>parents</code> and <code>daughters</code> contain indices into the same vector, which lets an analysis follow a particle history without pointers.</p>
+
+    <table width="100%" border="0" cellpadding="5">
+      <tr>
+        <th width="25%" bgcolor="#CCCCCC" scope="col"><div align="left">Particle field</div></th>
+        <th bgcolor="#CCCCCC" scope="col"><div align="left">Meaning</div></th>
+      </tr>
+      <tr><td><code>pdgId</code></td><td>PDG particle identifier. Nuclear ions and fragments use nuclear PDG identifiers.</td></tr>
+      <tr><td><code>status</code></td><td>Generator status. In normal Sartre output, <code>1</code> denotes a final particle, <code>2</code> a decayed or intermediate particle, and <code>4</code> an incoming beam particle.</td></tr>
+      <tr><td><code>p</code></td><td><code>TLorentzVector</code> four-momentum, with components available through <code>Px()</code>, <code>Py()</code>, <code>Pz()</code>, and <code>E()</code>.</td></tr>
+      <tr><td><code>parents</code>, <code>daughters</code></td><td>Zero, one, or more vector indices defining the record's particle graph.</td></tr>
+    </table>
+
+    <p>The electron beam travels in negative <em>z</em> and the hadron beam in positive <em>z</em>. For nuclei, the four-momentum recorded by Sartre is expressed <strong>per nucleon</strong>. The detailed <a href="references/refParticle.html">Particle reference</a> includes the status-code and nuclear-PDG conventions.</p>
+
+    <h2 id="layouts">Current record layouts</h2>
+
+    <p>For the <em>ep</em> and <em>eA</em> workflows, the initial beam entries are stable: index 0 is the incoming electron and index 1 is the incoming proton or nucleus. UPC uses a special hadron--hadron beam convention described on the <a href="UPCconsiderations.html">UPC page</a>. The supplied main programs use the following layouts after a successful event generation. Treat the remaining index positions as a useful current convention, not as an application-level guarantee; inspect <code>event-&gt;list()</code> after updating Sartre or changing final-state options.</p>
+
+    <h3>Exclusive diffraction</h3>
+
+    <table width="100%" border="0" cellpadding="5">
+      <tr>
+        <th width="12%" bgcolor="#CCCCCC" scope="col"><div align="left">Index</div></th>
+        <th bgcolor="#CCCCCC" scope="col"><div align="left">Record entry</div></th>
+      </tr>
+      <tr><td><code>0</code></td><td>Incoming electron.</td></tr>
+      <tr><td><code>1</code></td><td>Incoming proton or nuclear target.</td></tr>
+      <tr><td><code>2</code></td><td>Scattered electron.</td></tr>
+      <tr><td><code>3</code></td><td>Virtual photon.</td></tr>
+      <tr><td><code>4</code></td><td>Produced vector meson or DVCS final state.</td></tr>
+      <tr><td><code>5</code></td><td>Diffractive exchange (pomeron documentation entry).</td></tr>
+      <tr><td><code>6</code></td><td>Scattered target. For an incoherent nuclear event it can be an intermediate parent of breakup products.</td></tr>
+    </table>
+
+    <p>If the example program is configured to decay the vector meson, it appends the decay daughters and marks the parent at index 4 as decayed. If nuclear breakup is enabled for an incoherent nuclear event, stable breakup fragments are appended after the main exclusive record.</p>
+
+    <h3>Inclusive diffraction</h3>
+
+    <table width="100%" border="0" cellpadding="5">
+      <tr>
+        <th width="12%" bgcolor="#CCCCCC" scope="col"><div align="left">Index</div></th>
+        <th bgcolor="#CCCCCC" scope="col"><div align="left">Record entry</div></th>
+      </tr>
+      <tr><td><code>0</code></td><td>Incoming electron.</td></tr>
+      <tr><td><code>1</code></td><td>Incoming proton or nuclear target.</td></tr>
+      <tr><td><code>2</code></td><td>Scattered electron.</td></tr>
+      <tr><td><code>3</code></td><td>Virtual photon.</td></tr>
+      <tr><td><code>4</code></td><td>Scattered target.</td></tr>
+      <tr><td><code>5</code>, <code>6</code></td><td>Partonic quark and antiquark produced by the diffractive system.</td></tr>
+      <tr><td><code>7</code> onward</td><td>Pythia 8 shower and hadronization record. A particle with <code>status == 1</code> is a final-state Pythia particle suitable for final-state analyses.</td></tr>
+    </table>
+
+    <p>For a <em>q</em>&#x2013;<em>q</em>&#x0305;&#x2013;<em>g</em> contribution, an intermediate gluon is also present before the Pythia record. Nuclear-breakup products, when enabled, are appended after the Pythia entries. The <code>numberOfPythiaParticlesStored</code> field is used by the distributed inclusive example while transferring Pythia particles into ROOT. Because this field and the detailed Pythia layout are implementation details, retain the full <code>particles</code> vector or use the example's logic when an analysis depends on Pythia ancestry.</p>
+
+    <h2 id="root">Writing ROOT output</h2>
+
+    <p>Sartre itself returns C++ objects; it does not automatically write an event file. The main programs demonstrate one convenient ROOT representation:</p>
+
+    <ul>
+      <li><code>sartreMain.cpp</code> writes an <code>event</code> branch of exclusive scalar kinematics and separate <code>TLorentzVector</code> branches for the incoming and outgoing beams, virtual photon, and vector meson.</li>
+      <li><code>sartreInclusiveDiffractionMain.cpp</code> adds <code>beta</code>, <code>z</code>, and <code>MX</code>, records the partonic quark and antiquark, and stores stable Pythia particles in a <code>TClonesArray</code> branch named <code>pythia</code>.</li>
+    </ul>
+
+    <p>The inclusive example's essential selection is:</p>
+
+    <pre class="code">pythia.Clear();
+for (int i = 7; i &lt; event-&gt;numberOfPythiaParticlesStored; ++i) {
+    const Particle&amp; particle = event-&gt;particles[i];
+    if (particle.status == 1)
+        new (pythia[pythia.GetEntries()]) TLorentzVector(particle.p);
+}
+tree.Fill();</pre>
+
+    <p>Adapt branches, particle selection, and metadata to the intended analysis, but save the runcard, random seed, and table identity with the ROOT file. The <a href="examplePrograms.html">Example Program Walk-Through</a> describes both example programs in detail.</p>
+
+    <h2 id="checks">Checks and important caveats</h2>
+
+    <ul>
+      <li>Call <code>event-&gt;list()</code> for the first few events of every new configuration. It prints scalar kinematics followed by index, PDG ID, name, status, parent/daughter indices, and four-momentum for each particle.</li>
+      <li>Do not retain the generator-owned <code>Event*</code> past the next call to <code>generateEvent()</code>; copy it or write out the information first.</li>
+      <li>Do not assume that a particle is final merely because it has a familiar PDG ID. Select final states using <code>status == 1</code> and the parent/daughter graph where appropriate.</li>
+      <li>For nuclear momenta, remember the per-nucleon convention before forming energies or comparing them with whole-ion quantities.</li>
+      <li>With nuclear breakup enabled, the legacy Gemini++ breakup treatment supplies baryonic fragments but not photons. The resulting event record is therefore not strictly energy--momentum complete. Document this when using breakup fragments in an analysis.</li>
+    </ul>
+
+    <p>For every public field and function, see the <a href="references/refEvent.html">Event class reference</a> and <a href="references/refParticle.html">Particle class reference</a>.</p>
+
+    <div class="address">
+      <div align="center">
+        <table border="0" cellspacing="0" width="100%">
+          <tbody><tr class="address">
+            <td align="left" width="40%">&#xA0;</td>
+            <td align="center" width="20%">&#xA0;</td>
+            <td align="right" width="40%"><div align="right"><br />Last Update: September 14, 2026</div></td>
+          </tr></tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

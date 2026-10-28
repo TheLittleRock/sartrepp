@@ -1,0 +1,408 @@
+<!--
+ //==============================================================================
+ //  refIntegralsExclusive.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:44:24 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>Sartre 2 - IntegralsExclusive Class Reference</title>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+    <link href="../sartre.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120" align="left" valign="top">
+          <img src="../images/sartreLogo.png" alt="Sartre" border="0" align="right" />
+        </td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td align="left" valign="middle" class="postheader"><a href="../index.html"><font color="#004faf">Home</font></a>&#xA0;&#xB7; <a href="../overview.html"><font color="#004faf">Overview</font></a>&#xA0;&#xB7; <a href="../usersGuide.html"><font color="#004faf">User Guide</font></a>&#xA0;&#xB7; <a href="../referenceGuide.html"><font color="#004faf">Library Reference Guide</font></a></td>
+      </tr>
+    </table>
+    <!-- Page title and overview -->
+    <h1 class="title">
+      <span class="className">IntegralsExclusive</span>
+      <span class="referenceKind">Class Reference</span>
+    </h1>
+    <p>Exclusive-diffraction implementation of the amplitude integrals, including FFT paths. <a href="#details">More...</a></p>
+    <pre><span class="preprocessor">#include</span> "Integrals.h"</pre>
+    <!-- Reference summaries and documentation -->
+    <h2>Inheritance</h2>
+    <p>Inherits from <a href="refIntegrals.html">Integrals</a>.</p>
+    <h2>Public Member Functions</h2>
+    <table class="alignedsummary">
+      <tr>
+        <td class="memItemLeft" align="right" valign="top"></td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m0">IntegralsExclusive()</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top"></td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m1">IntegralsExclusive(const IntegralsExclusive&amp;)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">IntegralsExclusive&amp;</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m2">operator=(const IntegralsExclusive&amp;)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m3">uiAmplitudeTIm(double, double, double, double, double, double, double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m4">uiAmplitudeLIm(double, double, double, double, double, double, double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m5">uiAmplitudeTRe(double, double, double, double, double, double, double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m6">uiAmplitudeLRe(double, double, double, double, double, double, double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m7">uiAmplitudeTep(double, double, double, double, double, double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m8">uiAmplitudeLep(double, double, double, double, double, double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m9">uiCoherentAmplitudeT(double, double, double, double, double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m10">uiCoherentAmplitudeL(double, double, double, double, double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m11">coherentIntegrals(double, double, double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m12">coherentIntegrals(double, double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m13">coherentIntegralsEp(double, double, double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m14">coherentIntegralsEp(double, double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m15">uiAmplitudeTForSkewedness(double, double, double, double, double, double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m16">uiAmplitudeLForSkewedness(double, double, double, double, double, double)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m17">setKinematicPointForFFT(double Q2, double W2)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m18">setKinematicPointForFFT(double xpom)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m19">calculateViaFFT()</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m20">calculateViaFFT(const std::vector&lt;double&gt;&amp; rFactors)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m21">bDepGridValid() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m22">ensureBDepGrid()</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m23">precomputeRFactors(std::vector&lt;double&gt;&amp; rFactors) const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m24">precomputeRFactors(std::vector&lt;double&gt;&amp; rFactors, double xprobe) const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m25">precomputeRFactorsMultiX(int K, std::vector&lt;std::vector&lt;double&gt;&gt;&amp; rFactorsK, std::vector&lt;double&gt;&amp; xRef) const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m26">calculateViaFFT(const std::vector&lt;std::vector&lt;double&gt;&gt;&amp; rFactorsK, const std::vector&lt;double&gt;&amp; xRef)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m27">precomputeBesselKernels( std::vector&lt;std::vector&lt;double&gt;&gt;&amp; KT_table, std::vector&lt;std::vector&lt;double&gt;&gt;&amp; KL_table) const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m28">calculateViaFFT(const std::vector&lt;std::vector&lt;double&gt;&gt;&amp; rFactorsK, const std::vector&lt;double&gt;&amp; xRef, const std::vector&lt;std::vector&lt;double&gt;&gt;&amp; KT_table, const std::vector&lt;std::vector&lt;double&gt;&gt;&amp; KL_table)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m29">precomputeBesselKernels( const std::vector&lt;double&gt;&amp; deltas, std::vector&lt;std::vector&lt;double&gt;&gt;&amp; KT_table, std::vector&lt;std::vector&lt;double&gt;&gt;&amp; KL_table) const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m30">calculateAtDeltaValues( const std::vector&lt;double&gt;&amp; deltas, const std::vector&lt;std::vector&lt;double&gt;&gt;&amp; rFactorsK, const std::vector&lt;double&gt;&amp; xRef, const std::vector&lt;std::vector&lt;double&gt;&gt;&amp; KT_table, const std::vector&lt;std::vector&lt;double&gt;&gt;&amp; KL_table, const std::vector&lt;std::vector&lt;double&gt;&gt;&amp; cosTrig, const std::vector&lt;std::vector&lt;double&gt;&gt;&amp; sinTrig)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m31">xprobeForFFT() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m32">xprobeAtLastBin() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m33">calculateViaHankel(const std::vector&lt;double&gt;&amp; deltaValues)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m34">computeBspaceFFT(double r, double xprobe, double rFactor, std::vector&lt;double&gt;&amp; ftRe, std::vector&lt;double&gt;&amp; ftIm) const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m35">waveOverlapT(double z, double Q2, double r) const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m36">waveOverlapL(double z, double Q2, double r) const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">const std::vector&lt;double&gt;&amp;</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m37">deltaGrid() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">const std::vector&lt;double&gt;&amp;</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m38">integralImT_vec() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">const std::vector&lt;double&gt;&amp;</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m39">integralReT_vec() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">const std::vector&lt;double&gt;&amp;</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m40">integralImL_vec() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">const std::vector&lt;double&gt;&amp;</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m41">integralReL_vec() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">int</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m42">nFFT() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">double</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m43">dbFFT() const</a>
+        </td>
+      </tr>
+    </table>
+    <h2>Public Member Function Documentation</h2>
+    <h3 class="fn" id="m0"> IntegralsExclusive()</h3>
+    <p>Constructs the exclusive-diffraction integration implementation.</p>
+    <h3 class="fn" id="m1"> IntegralsExclusive(const IntegralsExclusive&amp;)</h3>
+    <p>Constructs a copy of another exclusive integration object.</p>
+    <h3 class="fn" id="m2">IntegralsExclusive&amp; operator=(const IntegralsExclusive&amp;)</h3>
+    <p>Replaces this object with a copy of another exclusive integration object.</p>
+    <h3 class="fn" id="m3">double uiAmplitudeTIm(double, double, double, double, double, double, double)</h3>
+    <p>Internal integrand for the imaginary transverse nuclear amplitude.</p>
+    <h3 class="fn" id="m4">double uiAmplitudeLIm(double, double, double, double, double, double, double)</h3>
+    <p>Internal integrand for the imaginary longitudinal nuclear amplitude.</p>
+    <h3 class="fn" id="m5">double uiAmplitudeTRe(double, double, double, double, double, double, double)</h3>
+    <p>Internal integrand for the real transverse nuclear amplitude.</p>
+    <h3 class="fn" id="m6">double uiAmplitudeLRe(double, double, double, double, double, double, double)</h3>
+    <p>Internal integrand for the real longitudinal nuclear amplitude.</p>
+    <h3 class="fn" id="m7">double uiAmplitudeTep(double, double, double, double, double, double)</h3>
+    <p>Internal integrand for the transverse proton amplitude.</p>
+    <h3 class="fn" id="m8">double uiAmplitudeLep(double, double, double, double, double, double)</h3>
+    <p>Internal integrand for the longitudinal proton amplitude.</p>
+    <h3 class="fn" id="m9">double uiCoherentAmplitudeT(double, double, double, double, double)</h3>
+    <p>Internal integrand for the coherent transverse nuclear amplitude.</p>
+    <h3 class="fn" id="m10">double uiCoherentAmplitudeL(double, double, double, double, double)</h3>
+    <p>Internal integrand for the coherent longitudinal nuclear amplitude.</p>
+    <h3 class="fn" id="m11">void coherentIntegrals(double, double, double)</h3>
+    <p>Calculates coherent exclusive integrals at the supplied electroproduction kinematic point.</p>
+    <h3 class="fn" id="m12">void coherentIntegrals(double, double)</h3>
+    <p>Calculates coherent exclusive integrals at the supplied UPC kinematic point.</p>
+    <h3 class="fn" id="m13">void coherentIntegralsEp(double, double, double)</h3>
+    <p>Calculates coherent proton integrals at the supplied electroproduction kinematic point.</p>
+    <h3 class="fn" id="m14">void coherentIntegralsEp(double, double)</h3>
+    <p>Calculates coherent proton integrals at the supplied UPC kinematic point.</p>
+    <h3 class="fn" id="m15">double uiAmplitudeTForSkewedness(double, double, double, double, double, double)</h3>
+    <p>Internal integrand for the transverse skewedness-correction amplitude.</p>
+    <h3 class="fn" id="m16">double uiAmplitudeLForSkewedness(double, double, double, double, double, double)</h3>
+    <p>Internal integrand for the longitudinal skewedness-correction amplitude.</p>
+    <h3 class="fn" id="m17">void setKinematicPointForFFT(double Q2, double W2)</h3>
+    <p>Sets the electroproduction kinematic point used by the FFT calculation.</p>
+    <h3 class="fn" id="m18">void setKinematicPointForFFT(double xpom)</h3>
+    <p>Sets the UPC kinematic point used by the FFT calculation.</p>
+    <h3 class="fn" id="m19">void calculateViaFFT()</h3>
+    <p>Calculates the configured amplitude integrals through the FFT path.</p>
+    <h3 class="fn" id="m20">void calculateViaFFT(const std::vector&lt;double&gt;&amp; rFactors)</h3>
+    <p>Calculates the FFT amplitude integrals using precomputed radial factors.</p>
+    <h3 class="fn" id="m21">bool bDepGridValid() const</h3>
+    <p>Returns whether the cached impact-parameter-dependence grid is valid.</p>
+    <h3 class="fn" id="m22">void ensureBDepGrid()</h3>
+    <p>Creates the cached impact-parameter-dependence grid when it is not already valid.</p>
+    <h3 class="fn" id="m23">void precomputeRFactors(std::vector&lt;double&gt;&amp; rFactors) const</h3>
+    <p>Precomputes radial factors for the current FFT kinematic point.</p>
+    <h3 class="fn" id="m24">void precomputeRFactors(std::vector&lt;double&gt;&amp; rFactors, double xprobe) const</h3>
+    <p>Precomputes radial factors for the supplied probe <em>x</em> value.</p>
+    <h3 class="fn" id="m25">void precomputeRFactorsMultiX(int K, std::vector&lt;std::vector&lt;double&gt;&gt;&amp; rFactorsK, std::vector&lt;double&gt;&amp; xRef) const</h3>
+    <p>Precomputes radial factors for several reference probe-<em>x</em> values.</p>
+    <h3 class="fn" id="m26">void calculateViaFFT(const std::vector&lt;std::vector&lt;double&gt;&gt;&amp; rFactorsK, const std::vector&lt;double&gt;&amp; xRef)</h3>
+    <p>Calculates FFT amplitude integrals using radial factors interpolated between reference <em>x</em> values.</p>
+    <h3 class="fn" id="m27">void precomputeBesselKernels( std::vector&lt;std::vector&lt;double&gt;&gt;&amp; KT_table, std::vector&lt;std::vector&lt;double&gt;&gt;&amp; KL_table) const</h3>
+    <p>Precomputes transverse and longitudinal Bessel kernels for the FFT grid.</p>
+    <h3 class="fn" id="m28">void calculateViaFFT(const std::vector&lt;std::vector&lt;double&gt;&gt;&amp; rFactorsK, const std::vector&lt;double&gt;&amp; xRef, const std::vector&lt;std::vector&lt;double&gt;&gt;&amp; KT_table, const std::vector&lt;std::vector&lt;double&gt;&gt;&amp; KL_table)</h3>
+    <p>Calculates FFT amplitude integrals using supplied radial factors and precomputed Bessel kernels.</p>
+    <h3 class="fn" id="m29">void precomputeBesselKernels( const std::vector&lt;double&gt;&amp; deltas, std::vector&lt;std::vector&lt;double&gt;&gt;&amp; KT_table, std::vector&lt;std::vector&lt;double&gt;&gt;&amp; KL_table) const</h3>
+    <p>Precomputes transverse and longitudinal Bessel kernels at explicitly supplied momentum-transfer values.</p>
+    <h3 class="fn" id="m30">void calculateAtDeltaValues( const std::vector&lt;double&gt;&amp; deltas, const std::vector&lt;std::vector&lt;double&gt;&gt;&amp; rFactorsK, const std::vector&lt;double&gt;&amp; xRef, const std::vector&lt;std::vector&lt;double&gt;&gt;&amp; KT_table, const std::vector&lt;std::vector&lt;double&gt;&gt;&amp; KL_table, const std::vector&lt;std::vector&lt;double&gt;&gt;&amp; cosTrig, const std::vector&lt;std::vector&lt;double&gt;&gt;&amp; sinTrig)</h3>
+    <p>Calculates amplitudes at explicit momentum-transfer values using supplied transform kernels and trigonometric tables.</p>
+    <h3 class="fn" id="m31">double xprobeForFFT() const</h3>
+    <p>Returns the probe <em>x</em> value used by the current FFT kinematic point.</p>
+    <h3 class="fn" id="m32">double xprobeAtLastBin() const</h3>
+    <p>Returns the probe <em>x</em> value at the largest FFT momentum-transfer bin.</p>
+    <h3 class="fn" id="m33">void calculateViaHankel(const std::vector&lt;double&gt;&amp; deltaValues)</h3>
+    <p>Calculates amplitudes at supplied momentum-transfer values through a Hankel-transform path.</p>
+    <h3 class="fn" id="m34">void computeBspaceFFT(double r, double xprobe, double rFactor, std::vector&lt;double&gt;&amp; ftRe, std::vector&lt;double&gt;&amp; ftIm) const</h3>
+    <p>Computes real and imaginary impact-parameter-space FFT contributions for one radial point.</p>
+    <h3 class="fn" id="m35">double waveOverlapT(double z, double Q2, double r) const</h3>
+    <p>Evaluates the transverse wave-function overlap used by the FFT calculation.</p>
+    <h3 class="fn" id="m36">double waveOverlapL(double z, double Q2, double r) const</h3>
+    <p>Evaluates the longitudinal wave-function overlap used by the FFT calculation.</p>
+    <h3 class="fn" id="m37">const std::vector&lt;double&gt;&amp; deltaGrid() const</h3>
+    <p>Returns the momentum-transfer grid used by the FFT/Hankel calculation.</p>
+    <h3 class="fn" id="m38">const std::vector&lt;double&gt;&amp; integralImT_vec() const</h3>
+    <p>Returns the vector of imaginary transverse integrals on that grid.</p>
+    <h3 class="fn" id="m39">const std::vector&lt;double&gt;&amp; integralReT_vec() const</h3>
+    <p>Returns the vector of real transverse integrals on that grid.</p>
+    <h3 class="fn" id="m40">const std::vector&lt;double&gt;&amp; integralImL_vec() const</h3>
+    <p>Returns the vector of imaginary longitudinal integrals on that grid.</p>
+    <h3 class="fn" id="m41">const std::vector&lt;double&gt;&amp; integralReL_vec() const</h3>
+    <p>Returns the vector of real longitudinal integrals on that grid.</p>
+    <h3 class="fn" id="m42">int nFFT() const</h3>
+    <p>Returns the FFT grid size.</p>
+    <h3 class="fn" id="m43">double dbFFT() const</h3>
+    <p>Returns the FFT impact-parameter spacing.</p>
+    <hr />
+    <h2><a name="details" id="details"></a>Detailed Description</h2>
+    <p>Concrete exclusive-amplitude integration engine. It combines photon--meson wave-function overlaps with a dipole model to calculate coherent, incoherent, ep, and correction amplitudes; it also contains the FFT and Hankel-transform paths for many t values.</p>
+  <address>
+    <p align="right">Last Update: September 14, 2026</p>
+  </address>
+  </body>
+</html>

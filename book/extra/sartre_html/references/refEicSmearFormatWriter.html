@@ -1,0 +1,108 @@
+<!--
+ //==============================================================================
+ //  refEicSmearFormatWriter.html
+ //
+ //  Copyright (C) 2010-2026 Tobias Toll and Thomas Ullrich
+ //
+ //  This file is part of the Sartre event generator.
+ //
+ //  This program is free software: you can redistribute it and/or modify
+ //  it under the terms of the GNU General Public License as published by
+ //  the Free Software Foundation. See <http://www.gnu.org/licenses/>.
+ //
+ //  $Date: 2026-09-18 13:44:24 -0400 (Fri, 18 Sep 2026) $
+ //  $Author: ullrich $
+ //==============================================================================
+ -->
+<html>
+  <head>
+    <title>EicSmearFormatWriter</title>
+    <link href="../sartre.css" rel="stylesheet" type="text/css"/>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="120" align="left" valign="top">
+          <img src="../images/sartreLogo.png" alt="Sartre" border="0" align="right"/>
+        </td>
+        <td width="10">&#xA0;&#xA0;</td>
+        <td align="left" valign="middle" class="postheader"><a href="../index.html"><font color="#004faf">Home</font></a>&#xA0;&#xB7; <a href="../overview.html"><font color="#004faf">Overview</font></a>&#xA0;&#xB7; <a href="../usersGuide.html"><font color="#004faf">User Guide</font></a>&#xA0;&#xB7; <a href="../referenceGuide.html"><font color="#004faf">Library Reference Guide</font></a></td>
+      </tr>
+    </table>
+    <!-- Page title and overview -->
+    <h1 class="title">
+      <span class="className">EicSmearFormatWriter</span>
+      <span class="referenceKind">Class Reference</span>
+    </h1>
+    <p>Class reference. <a href="#details">More...</a></p>
+    <pre>#include "EicSmearFormatWriter.h"</pre>
+    <!-- Reference summaries and documentation -->
+    <h2>Public Member Functions</h2>
+    <table class="alignedsummary">
+      <tr>
+        <td class="memItemLeft" align="right" valign="top"/>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m0">EicSmearFormatWriter()</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top"/>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m1">~EicSmearFormatWriter()</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m2">open(string, bool breakupOn = false)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m3">writeEvent(Event*)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">void</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m4">close()</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">bool</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m5">hasOpenFile() const</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="memItemLeft" align="right" valign="top">string</td>
+        <td class="memItemRight" align="left" valign="top">
+          <a href="#m6">filename() const</a>
+        </td>
+      </tr>
+    </table>
+    <h2>Public Member Function Documentation</h2>
+    <h3 class="fn" id="m0"> EicSmearFormatWriter()</h3>
+    <p>Constructs an eic-smear event-format writer with no open output file.</p>
+    <h3 class="fn" id="m1"> ~EicSmearFormatWriter()</h3>
+    <p>Destroys the writer and closes any open output file.</p>
+    <h3 class="fn" id="m2">bool open(string, bool breakupOn = false)</h3>
+    <p>Opens the named eic-smear output file and writes its header. Set <code>breakupOn</code> to include nuclear-breakup information.</p>
+    <h3 class="fn" id="m3">bool writeEvent(Event*)</h3>
+    <p>Writes the supplied Sartre event in eic-smear format and returns whether writing succeeded.</p>
+    <h3 class="fn" id="m4">void close()</h3>
+    <p>Closes the current output file.</p>
+    <h3 class="fn" id="m5">bool hasOpenFile() const</h3>
+    <p>Returns whether an output file is currently open.</p>
+    <h3 class="fn" id="m6">string filename() const</h3>
+    <p>Returns the filename of the current or most recently opened output file.</p>
+    <hr/>
+    <h2><a name="details" id="details"/>Detailed Description</h2>
+    <p>Writes generated events in the eic-smear format. Open a destination, pass generated Event records to writeEvent(), and close the writer when generation is complete.</p>
+  <address>
+    <p align="right">Last Update: September 14, 2026</p>
+  </address>
+  </body>
+</html>
