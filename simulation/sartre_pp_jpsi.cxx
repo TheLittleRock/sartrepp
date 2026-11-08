@@ -179,7 +179,7 @@ int main(int argc, char* argv[]) {
     // 4. Main Event Generation Loop
     TwoBodyVectorMesonDecay decayEngine;
     unsigned long nValidEvents = 0;
-    unsigned long printStep = max(1UL, min(1000UL, nEventsRequested / 10));
+    unsigned long printStep = max(1UL, min(100UL, nEventsRequested / 100));
 
     // How Sartre's `event->particles` array is structured:
     //   Index 0: Incoming Beam 1 proton (+z)
@@ -247,20 +247,21 @@ int main(int argc, char* argv[]) {
         tree->Fill();
         nValidEvents++;
 
-        if ((iEvt + 1) % printStep == 0) {
-            cout << "Processed " << (iEvt + 1) << " / " << nEventsRequested << " events...\n";
+        if ((iEvt + 1) % printStep == 0 || (iEvt + 1) == nEventsRequested) {
+            cout << "Processed " << (iEvt + 1) << " / " << nEventsRequested << " events..." << endl;
         }
     }
 
     // 5. Compute or Use Precomputed Total Cross Section (known_cs_nb)
-    // WHY `cmdCrossSection` (known_cs_nb) EXISTS:
-    // Calling `sartre.totalCrossSection()` integrates the dipole cross section over the
-    // entire (t, W, Q2) phase space. This takes several seconds of CPU time.
-    // When running 12 parallel workers on the same runcard, all 12 workers would calculate
-    // the exact same integral at the end. Passing `known_cs_nb` via argv[5] lets you skip
-    // that redundant calculation if you already know the cross section from a previous run.
-    // If you don't pass it (cmdCrossSection == 0), Sartre calculates it automatically here.
-    double totalCrossSection_nb = (cmdCrossSection > 0.0) ? cmdCrossSection : sartre.totalCrossSection();
+    // If a known cross section was explicitly provided via argv[5] (cmdCrossSection > 0.0),
+    // use it directly. Otherwise, compute it dynamically via Sartre's totalCrossSection().
+    double totalCrossSection_nb = 0.0;
+    if (cmdCrossSection > 0.0) {
+        totalCrossSection_nb = cmdCrossSection;
+    } else {
+        cout << "Calculating total cross section via Sartre phase-space integration..." << endl;
+        totalCrossSection_nb = sartre.totalCrossSection();
+    }
 
     cout << "Finished! Valid Events: " << nValidEvents
          << " | Cross Section: " << totalCrossSection_nb << " nb\n";
