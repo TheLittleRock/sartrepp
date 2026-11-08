@@ -9,7 +9,7 @@
 #include <string>
 #include <utility>
 
-// CERN ROOT headers
+// ROOT headers
 #include "TFile.h"
 #include "TTree.h"
 #include "TH1D.h"

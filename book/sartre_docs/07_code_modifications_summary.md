@@ -1,8 +1,6 @@
-# Sartre 2 Technical Modifications, Audit & Simulation Validity Log
+# Sartre 2 Technical Modifications
 
 **Author**: **Štěpán Skalka** (*Faculty of Nuclear Sciences and Physical Engineering, CTU in Prague*)  
-*Master Thesis*: Analysis of $J/\psi$ Photoproduction in $p+p$ Collisions at $\sqrt{s} = 510\text{ GeV}$ with Sartre  
-*Topic*: Rigorous Audit and Verification of Sartre 2 Codebase Modifications
 
 ---
 
@@ -197,10 +195,4 @@ The parallel orchestrator splits the requested 100,000 events into $N_{\text{cor
 
 ---
 
-## 6. Conclusion for Thesis Supervisors
 
-All changes implemented in this repository are strictly confined to **system portability, compiler compatibility, and simulation orchestration**. 
-
-The underlying physics of the Sartre 2 Color Dipole Model—including gluon saturation, skewedness corrections, Weizsäcker-Williams photon fluxes, and diffractive wave function overlaps—is executed by the original, unaltered, peer-reviewed C++ codebase developed by Tobias Toll and Thomas Ullrich. 
-
-The simulation results and cross sections presented in this thesis are scientifically robust, reproducible, and ready for defense before the STAR Collaboration and thesis examination committees.
