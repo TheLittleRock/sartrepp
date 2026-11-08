@@ -1,481 +1,284 @@
 //==============================================================================
 //  sartre_pp_jpsi.cxx
-//
-//  Analysis of J/psi Photoproduction in p+p Collisions at sqrt(s) = 510 GeV
-//  Author: Štěpán Skalka (Faculty of Nuclear Sciences, CTU in Prague)
-//
-//  ============================================================================
-//  PROGRAM OVERVIEW & ARCHITECTURE:
-//  ============================================================================
-//  This standalone C++ program serves as the core Monte Carlo simulation driver
-//  for the Sartre 2 event generator. It simulates central exclusive diffractive
-//  photoproduction of J/psi vector mesons in proton-proton (p+p) Ultra-Peripheral
-//  Collisions (UPCs) at RHIC energies (sqrt(s) = 510 GeV):
-//
-//      p + p  -->  p + J/psi + p,   with  J/psi --> e+ + e-
-//
-//  KEY RESPONSIBILITIES OF THIS DRIVER:
-//    1. Command-Line Interface & Runcard Loading:
-//       Reads runtime configuration from a Sartre runcard text file, with optional
-//       command-line overrides for event count, random seed, output file path,
-//       and precomputed integrated cross section.
-//
-//    2. Laboratory Frame Symmetrization (applyRandomBeamReversal):
-//       Sartre was originally authored for asymmetric electron-hadron (e+p, e+A)
-//       collisions where Beam 1 always emits the photon and Beam 2 is always
-//       the hadron target. In identical-species UPCs (p+p), both colliding
-//       protons have an identical (50%) quantum mechanical probability to emit
-//       the quasi-real photon or serve as the diffractive Pomeron target.
-//       This function restores full laboratory parity symmetry by randomly
-//       rotating the final-state kinematics by 180 degrees (pi radians) around
-//       the transverse x-axis.
-//
-//    3. Polarization-Aware Vector Meson Decay:
-//       Decays the vector meson (J/psi, PDG 443) into an electron-positron
-//       pair (e- [PDG 11] and e+ [PDG -11]) using Sartre's native
-//       TwoBodyVectorMesonDecay engine, strictly preserving s-channel helicity
-//       conservation (SCHC) and transverse vs. longitudinal decay kinematics.
-//
-//    4. Dual-Proton Kinematic Extraction:
-//       Separates the two distinct forward outgoing protons:
-//         - event->particles[2]: The scattered photon emitter (transverse
-//           momentum transfer k_T ~ 20-40 MeV/c, remaining inside beam pipe).
-//         - event->particles[6]: The diffractive Pomeron target proton
-//           (transverse recoil p_T ~ sqrt(-t) ~ 0.2-1.0 GeV/c, tagged by STAR
-//           Roman Pot detectors).
-//
-//    5. Flat Columnar Data Serialization:
-//       Fills a standard CERN ROOT TTree ("sartre_tree") with comprehensive
-//       event-level and particle-level kinematics for rapid vectorized analysis
-//       using Python (uproot, awkward array, vector) or ROOT macros.
-//
-//    6. Cross-Section Normalization Bookkeeping:
-//       Creates a 2-bin summary histogram ("histoForCSandNumberOfEvents") storing
-//       the total integrated cross section (in nanobarns) and the number of
-//       generated events. This schema is fully compatible with CERN ROOT's `hadd`
-//       utility for parallel multi-core merges.
+//  Monte Carlo Simulation Driver for Exclusive J/psi Photoproduction in p+p
+//  Reaction: p + p -> p + J/psi + p (with J/psi -> e+ e-) at sqrt(s) = 510 GeV
 //==============================================================================
 
 #include <iostream>
 #include <cmath>
-#include <cstdlib>
 #include <string>
-#include <vector>
 #include <utility>
 
-// CERN ROOT Data Structures & Utilities
-#include "TFile.h"          // Binary ROOT file container
-#include "TTree.h"          // Columnar hierarchical dataset
-#include "TH1D.h"           // 1D histogram for cross-section metadata
-#include "TLorentzVector.h" // Relativistic 4-momentum class (Px, Py, Pz, E)
-#include "TRandom3.h"       // Mersenne Twister pseudo-random generator
+// CERN ROOT headers
+#include "TFile.h"
+#include "TTree.h"
+#include "TH1D.h"
+#include "TLorentzVector.h"
+#include "TRandom3.h"
 
-// Sartre 2 Simulation Engine Headers
-#include "Sartre.h"                  // Primary Sartre generator interface
-#include "Settings.h"                // Runcard parsing & generator settings
-#include "Event.h"                   // Event record containing particle graph
-#include "TwoBodyVectorMesonDecay.h" // Vector meson 2-body decay engine
+// Sartre 2 headers
+#include "Sartre.h"
+#include "Settings.h"
+#include "Event.h"
+#include "TwoBodyVectorMesonDecay.h"
 
 using namespace std;
 
 //------------------------------------------------------------------------------
-// Function: applyRandomBeamReversal
-// Purpose:  Restore laboratory frame symmetry for identical colliding beams (p+p).
-//
-// Physics Explanation:
-//   In Sartre's standard coordinate convention:
-//     - Beam 1 (e or p) travels in the +z direction (positive rapidity).
-//     - Beam 2 (target nucleus/proton) travels in the -z direction (negative rapidity).
-//   For p+p collisions at sqrt(s) = 510 GeV, both colliding beams are identical
-//   protons. Either proton can emit the quasi-real photon with equal 50% probability.
-//   To model this physical symmetry, we sample a uniform random number in [0, 1).
-//   If u > 0.5, we perform a 180-degree (pi radian) rotation around the x-axis:
-//     Px' = Px
-//     Py' = -Py
-//     Pz' = -Pz  ==> Rapidities flip: y' = -y
-//     E'  = E
-//   This operation strictly preserves the invariant mass, transverse momentum
-//   magnitude, and four-momentum conservation while ensuring that the forward/backward
-//   rapidity distributions of final-state particles are symmetric around y = 0.
+// Helper Struct: ParticleBranch
+// Purpose: Avoids declaring 9 separate doubles and 9 tree->Branch() calls for
+//          every single particle. Creates the exact same flat branches in the
+//          ROOT TTree (e.g., "jpsi_px", "jpsi_pt", etc.) automatically.
 //------------------------------------------------------------------------------
-bool applyRandomBeamReversal(Event* event)
-{
-    TRandom3* rnd = EventGeneratorSettings::randomGenerator();
-    bool do_reverse = (rnd->Uniform(1.0) > 0.5);
-    if (do_reverse) {
-        for (size_t i = 0; i < event->particles.size(); ++i) {
-            // RotateX(M_PI) reverses py and pz while leaving px and energy unchanged
-            event->particles[i].p.RotateX(M_PI);
+struct ParticleBranch {
+    double px = 0, py = 0, pz = 0, E = 0;
+    double pt = 0, eta = 0, phi = 0, m = 0, y = 0;
+
+    // Register branches in the TTree with a given prefix (e.g. "jpsi", "em")
+    void bindToTree(TTree* tree, const string& prefix, bool includeRapidity = false) {
+        tree->Branch((prefix + "_px").c_str(),  &px,  (prefix + "_px/D").c_str());
+        tree->Branch((prefix + "_py").c_str(),  &py,  (prefix + "_py/D").c_str());
+        tree->Branch((prefix + "_pz").c_str(),  &pz,  (prefix + "_pz/D").c_str());
+        tree->Branch((prefix + "_E").c_str(),   &E,   (prefix + "_E/D").c_str());
+        tree->Branch((prefix + "_pt").c_str(),  &pt,  (prefix + "_pt/D").c_str());
+        tree->Branch((prefix + "_eta").c_str(), &eta, (prefix + "_eta/D").c_str());
+        tree->Branch((prefix + "_phi").c_str(), &phi, (prefix + "_phi/D").c_str());
+        tree->Branch((prefix + "_m").c_str(),   &m,   (prefix + "_m/D").c_str());
+        if (includeRapidity) {
+            tree->Branch((prefix + "_y").c_str(), &y, (prefix + "_y/D").c_str());
         }
     }
-    return do_reverse;
+
+    // Extract kinematics from a ROOT TLorentzVector
+    void fillFrom(const TLorentzVector& v) {
+        px  = v.Px();
+        py  = v.Py();
+        pz  = v.Pz();
+        E   = v.E();
+        pt  = v.Pt();
+        // Protect against division-by-zero in pseudorapidity when pT is ~0
+        eta = (pt > 1e-6) ? v.Eta() : 999.0;
+        phi = v.Phi();
+        m   = v.M();
+        y   = v.Rapidity();
+    }
+};
+
+//------------------------------------------------------------------------------
+// Function: applyRandomBeamReversal
+// Purpose:  Sartre assumes asymmetric collisions where Beam 1 (+z) ALWAYS emits
+//           the photon and Beam 2 (-z) is ALWAYS the Pomeron target.
+//           In symmetric p+p collisions, either proton has a 50% chance to emit
+//           the photon. We restore this symmetry by randomly rotating 50% of
+//           the events by 180 degrees (pi radians) around the x-axis, which
+//           flips Pz -> -Pz (rapidity y -> -y) and Py -> -Py.
+//------------------------------------------------------------------------------
+bool applyRandomBeamReversal(Event* event) {
+    TRandom3* rnd = EventGeneratorSettings::randomGenerator();
+    if (rnd->Uniform(1.0) > 0.5) {
+        for (size_t i = 0; i < event->particles.size(); ++i) {
+            event->particles[i].p.RotateX(M_PI);
+        }
+        return true;
+    }
+    return false;
 }
 
 //------------------------------------------------------------------------------
-// Function: main
-// Purpose:  Entry point for simulation driver binary.
-// Arguments:
-//   argv[1]: Path to Sartre runcard (e.g., runcard_bSat_HMPZ.txt) [REQUIRED]
-//   argv[2]: Path to output ROOT file (e.g., output.root)         [OPTIONAL]
-//   argv[3]: Number of events to generate override               [OPTIONAL]
-//   argv[4]: Pseudo-random generator seed override               [OPTIONAL]
-//   argv[5]: Precomputed total cross-section in nanobarns (nb)   [OPTIONAL]
+// Main Simulation Driver
 //------------------------------------------------------------------------------
-int main(int argc, char* argv[])
-{
+int main(int argc, char* argv[]) {
+    // 1. Parse Command-Line Arguments
+    // Only <runcard.txt> is required. Everything else is optional and overrides
+    // the settings inside the runcard (used when running parallel worker chunks).
     if (argc < 2 || argc > 6) {
-        cout << "Usage: " << argv[0] << " <runcard.txt> [output.root] [nEvents] [seed] [known_cs_nb]" << endl;
-        cout << "  runcard.txt:  Path to Sartre runcard configuration file." << endl;
-        cout << "  output.root:  Target output ROOT file (default: from runcard or sartre_out.root)." << endl;
-        cout << "  nEvents:      Event count override (default: from runcard)." << endl;
-        cout << "  seed:         Random seed override (default: from runcard)." << endl;
-        cout << "  known_cs_nb:  Known total cross-section in nb to bypass runtime integration." << endl;
+        cout << "Usage: " << argv[0] << " <runcard.txt> [output.root] [nEvents] [seed] [known_cs_nb]\n";
         return 1;
     }
 
-    // Parse command-line parameters
-    string runcard = argv[1];
-    string rootfile = (argc >= 3) ? argv[2] : "";
-    unsigned long cmdEvents = (argc >= 4) ? std::stoul(argv[3]) : 0;
-    unsigned int cmdSeed = (argc >= 5) ? std::stoul(argv[4]) : 0;
-    double cmdCrossSection = (argc >= 6) ? std::stod(argv[5]) : 0.0;
+    string runcard          = argv[1];
+    string rootfile         = (argc >= 3) ? argv[2] : "";
+    unsigned long cmdEvents = (argc >= 4) ? stoul(argv[3]) : 0;
+    unsigned int  cmdSeed   = (argc >= 5) ? stoul(argv[4]) : 0;
+    double cmdCrossSection  = (argc >= 6) ? stod(argv[5])  : 0.0;
 
-    cout << "==========================================================" << endl;
-    cout << "  Sartre 2 UPC p+p Simulation: J/psi -> e+ e- @ 510 GeV" << endl;
-    cout << "  Runcard: " << runcard << endl;
-    if (cmdEvents > 0) cout << "  Command-line event override: " << cmdEvents << endl;
-    if (cmdSeed > 0)   cout << "  Command-line seed override:  " << cmdSeed << endl;
-    if (cmdCrossSection > 0) cout << "  Command-line cross-section:  " << cmdCrossSection << " nb" << endl;
-    cout << "==========================================================" << endl;
-
-    // Initialize Sartre generator core
+    // 2. Initialize Sartre with the runcard
     Sartre sartre;
     if (!sartre.init(runcard)) {
-        cerr << "FATAL: Sartre initialization failed with runcard: " << runcard << endl;
+        cerr << "ERROR: Sartre failed to initialize runcard: " << runcard << endl;
         return 1;
     }
 
-    // Access runtime generator settings
     EventGeneratorSettings* settings = sartre.runSettings();
+
+    // Apply command-line overrides (if provided by the parallel Python runner)
     if (cmdSeed > 0) {
         settings->setSeed(cmdSeed);
         EventGeneratorSettings::randomGenerator()->SetSeed(cmdSeed);
     }
-    if (rootfile.empty()) {
-        rootfile = settings->rootfile();
-    }
-    if (rootfile.empty()) {
-        rootfile = "sartre_out.root";
-    }
+    if (rootfile.empty()) rootfile = settings->rootfile();
+    if (rootfile.empty()) rootfile = "sartre_out.root";
 
-    cout << "Target output ROOT file: " << rootfile << endl;
     unsigned long nEventsRequested = (cmdEvents > 0) ? cmdEvents : settings->numberOfEvents();
-    cout << "Events requested: " << nEventsRequested << endl;
 
-    // Create output ROOT container file
+    // Read decay daughter PDG ID from runcard's `userInt` (default to 11 = electron)
+    int daughterID = (settings->userInt() != 0) ? settings->userInt() : 11;
+
+    cout << "==========================================================\n"
+         << "  Runcard:          " << runcard << "\n"
+         << "  Output ROOT file: " << rootfile << "\n"
+         << "  Events to run:    " << nEventsRequested << "\n"
+         << "  Decay PDG ID:     " << daughterID << "\n"
+         << "==========================================================" << endl;
+
+    // 3. Create Output ROOT File and TTree
     TFile* outFile = new TFile(rootfile.c_str(), "RECREATE");
     if (!outFile || outFile->IsZombie()) {
-        cerr << "FATAL: Could not create output ROOT file: " << rootfile << endl;
+        cerr << "ERROR: Cannot create output ROOT file: " << rootfile << endl;
         return 1;
     }
 
-    // =========================================================================
-    // DECLARE TREE OUTPUT VARIABLES
-    // =========================================================================
-
-    // Overall Event Kinematics
-    int    iEvent_val  = 0;  // Sequential event index
-    double t_val       = 0;  // Mandelstam t: squared momentum transfer to target (GeV^2)
-    double Q2_val      = 0;  // Photon virtuality Q^2 (GeV^2, ~0 for quasi-real UPC)
-    double W_val       = 0;  // Photon-proton center-of-mass energy W_gp (GeV)
-    double x_val       = 0;  // Standard DIS Bjorken-x
-    double y_val       = 0;  // Lepton inelasticity variable y
-    double s_val       = 0;  // Total center-of-mass energy squared (s = 510^2 GeV^2)
-    double xpom_val    = 0;  // Fractional momentum loss of target proton (x_pomeron)
-    int    pol_val     = 0;  // Photon polarization state: 0 = transverse, 1 = longitudinal
-    int    dmode_val   = 0;  // Diffractive mode: 0 = coherent, 1 = incoherent
-    int    is_reversed = 0;  // Parity reversal flag: 1 if rotated by pi, 0 otherwise
-
-    // Vector Meson (J/psi) Kinematics
-    double jpsi_px = 0, jpsi_py = 0, jpsi_pz = 0, jpsi_E = 0;
-    double jpsi_pt = 0, jpsi_eta = 0, jpsi_phi = 0, jpsi_m = 0, jpsi_y = 0;
-
-    // Daughter Electron (e-, PDG ID: 11)
-    double em_px = 0, em_py = 0, em_pz = 0, em_E = 0;
-    double em_pt = 0, em_eta = 0, em_phi = 0, em_m = 0;
-
-    // Daughter Positron (e+, PDG ID: -11)
-    double ep_px = 0, ep_py = 0, ep_pz = 0, ep_E = 0;
-    double ep_pt = 0, ep_eta = 0, ep_phi = 0, ep_m = 0;
-
-    // Reconstructed Dielectron Pair Kinematics (d1 + d2)
-    double pair_m = 0, pair_pt = 0, pair_y = 0, pair_eta = 0;
-
-    // Outgoing Proton 1: Photon Emitter (ultra-low pT, typically stays in beam pipe)
-    double p_gamma_px = 0, p_gamma_py = 0, p_gamma_pz = 0, p_gamma_E = 0;
-    double p_gamma_pt = 0, p_gamma_eta = 0, p_gamma_phi = 0, p_gamma_m = 0;
-
-    // Outgoing Proton 2: Pomeron Target (diffractive recoil, enters Roman Pots)
-    double p_pom_px = 0, p_pom_py = 0, p_pom_pz = 0, p_pom_E = 0;
-    double p_pom_pt = 0, p_pom_eta = 0, p_pom_phi = 0, p_pom_m = 0;
-
-    // Transverse Momentum Imbalance & Global Conservation Checks
-    // Missing pT when only Pomeron target proton is tagged: |vec(pT_J/psi) + vec(pT_p_pom)|
-    double pt_missing_pom = 0;
-    // Missing pT when only photon emitter proton is tagged: |vec(pT_J/psi) + vec(pT_p_gamma)|
-    double pt_missing_gamma = 0;
-    // Global transverse balance: |vec(pT_J/psi) + vec(pT_p_pom) + vec(pT_p_gamma)| (must equal 0)
-    double pt_balance = 0;
-
-    // Instantiate CERN ROOT TTree
     TTree* tree = new TTree("sartre_tree", "Sartre Exclusive J/psi Photoproduction in p+p");
 
-    // Event branches
+    // Event-level kinematic variables
+    int    iEvent_val = 0, pol_val = 0, dmode_val = 0, is_reversed = 0;
+    double t_val = 0, Q2_val = 0, W_val = 0, x_val = 0, y_val = 0, s_val = 0, xpom_val = 0;
+
     tree->Branch("iEvent",      &iEvent_val,  "iEvent/I");
-    tree->Branch("t",           &t_val,       "t/D");
-    tree->Branch("Q2",          &Q2_val,      "Q2/D");
-    tree->Branch("W",           &W_val,       "W/D");
-    tree->Branch("x",           &x_val,       "x/D");
-    tree->Branch("y",           &y_val,       "y/D");
-    tree->Branch("s",           &s_val,       "s/D");
-    tree->Branch("xpom",        &xpom_val,    "xpom/D");
-    tree->Branch("pol",         &pol_val,     "pol/I");
-    tree->Branch("dmode",       &dmode_val,   "dmode/I");
-    tree->Branch("is_reversed", &is_reversed, "is_reversed/I");
+    tree->Branch("t",           &t_val,       "t/D");        // Momentum transfer squared at proton vertex (GeV^2)
+    tree->Branch("Q2",          &Q2_val,      "Q2/D");       // Photon virtuality (GeV^2)
+    tree->Branch("W",           &W_val,       "W/D");        // Photon-proton center-of-mass energy (GeV)
+    tree->Branch("x",           &x_val,       "x/D");        // Bjorken-x
+    tree->Branch("y",           &y_val,       "y/D");        // Photon inelasticity
+    tree->Branch("s",           &s_val,       "s/D");        // Total p+p center-of-mass energy squared (GeV^2)
+    tree->Branch("xpom",        &xpom_val,    "xpom/D");     // Pomeron momentum fraction
+    tree->Branch("pol",         &pol_val,     "pol/I");      // Photon polarization: 0 = T, 1 = L
+    tree->Branch("dmode",       &dmode_val,   "dmode/I");    // Diffractive mode: 0 = coherent, 1 = incoherent
+    tree->Branch("is_reversed", &is_reversed, "is_reversed/I"); // 1 if beams were flipped (+z <-> -z)
 
-    // Vector Meson (J/psi) branches
-    tree->Branch("jpsi_px",  &jpsi_px,  "jpsi_px/D");
-    tree->Branch("jpsi_py",  &jpsi_py,  "jpsi_py/D");
-    tree->Branch("jpsi_pz",  &jpsi_pz,  "jpsi_pz/D");
-    tree->Branch("jpsi_E",   &jpsi_E,   "jpsi_E/D");
-    tree->Branch("jpsi_pt",  &jpsi_pt,  "jpsi_pt/D");
-    tree->Branch("jpsi_eta", &jpsi_eta, "jpsi_eta/D");
-    tree->Branch("jpsi_phi", &jpsi_phi, "jpsi_phi/D");
-    tree->Branch("jpsi_m",   &jpsi_m,   "jpsi_m/D");
-    tree->Branch("jpsi_y",   &jpsi_y,   "jpsi_y/D");
+    // Particle branches using our helper struct
+    ParticleBranch b_jpsi, b_em, b_ep, b_p_gamma, b_p_pom;
+    b_jpsi.bindToTree(tree,    "jpsi",    true);  // J/psi (includes rapidity jpsi_y)
+    b_em.bindToTree(tree,      "em",      false); // Daughter electron (e-)
+    b_ep.bindToTree(tree,      "ep",      false); // Daughter positron (e+)
+    b_p_gamma.bindToTree(tree, "p_gamma", false); // Scattered proton that emitted the photon
+    b_p_pom.bindToTree(tree,   "p_pom",   false); // Scattered proton that exchanged the Pomeron
 
-    // Electron (e-) branches
-    tree->Branch("em_px",  &em_px,  "em_px/D");
-    tree->Branch("em_py",  &em_py,  "em_py/D");
-    tree->Branch("em_pz",  &em_pz,  "em_pz/D");
-    tree->Branch("em_E",   &em_E,   "em_E/D");
-    tree->Branch("em_pt",  &em_pt,  "em_pt/D");
-    tree->Branch("em_eta", &em_eta, "em_eta/D");
-    tree->Branch("em_phi", &em_phi, "em_phi/D");
-    tree->Branch("em_m",   &em_m,   "em_m/D");
+    // Reconstructed e+e- pair and transverse momentum balance variables
+    double pair_m = 0, pair_pt = 0, pair_y = 0, pair_eta = 0;
+    double pt_missing_pom = 0, pt_missing_gamma = 0, pt_balance = 0;
 
-    // Positron (e+) branches
-    tree->Branch("ep_px",  &ep_px,  "ep_px/D");
-    tree->Branch("ep_py",  &ep_py,  "ep_py/D");
-    tree->Branch("ep_pz",  &ep_pz,  "ep_pz/D");
-    tree->Branch("ep_E",   &ep_E,   "ep_E/D");
-    tree->Branch("ep_pt",  &ep_pt,  "ep_pt/D");
-    tree->Branch("ep_eta", &ep_eta, "ep_eta/D");
-    tree->Branch("ep_phi", &ep_phi, "ep_phi/D");
-    tree->Branch("ep_m",   &ep_m,   "ep_m/D");
-
-    // Reconstructed dielectron pair branches
-    tree->Branch("pair_m",   &pair_m,   "pair_m/D");
-    tree->Branch("pair_pt",  &pair_pt,  "pair_pt/D");
-    tree->Branch("pair_y",   &pair_y,   "pair_y/D");
-    tree->Branch("pair_eta", &pair_eta, "pair_eta/D");
-
-    // Photon-emitting proton branches
-    tree->Branch("p_gamma_px",  &p_gamma_px,  "p_gamma_px/D");
-    tree->Branch("p_gamma_py",  &p_gamma_py,  "p_gamma_py/D");
-    tree->Branch("p_gamma_pz",  &p_gamma_pz,  "p_gamma_pz/D");
-    tree->Branch("p_gamma_E",   &p_gamma_E,   "p_gamma_E/D");
-    tree->Branch("p_gamma_pt",  &p_gamma_pt,  "p_gamma_pt/D");
-    tree->Branch("p_gamma_eta", &p_gamma_eta, "p_gamma_eta/D");
-    tree->Branch("p_gamma_phi", &p_gamma_phi, "p_gamma_phi/D");
-    tree->Branch("p_gamma_m",   &p_gamma_m,   "p_gamma_m/D");
-
-    // Pomeron-target proton branches
-    tree->Branch("p_pom_px",  &p_pom_px,  "p_pom_px/D");
-    tree->Branch("p_pom_py",  &p_pom_py,  "p_pom_py/D");
-    tree->Branch("p_pom_pz",  &p_pom_pz,  "p_pom_pz/D");
-    tree->Branch("p_pom_E",   &p_pom_E,   "p_pom_E/D");
-    tree->Branch("p_pom_pt",  &p_pom_pt,  "p_pom_pt/D");
-    tree->Branch("p_pom_eta", &p_pom_eta, "p_pom_eta/D");
-    tree->Branch("p_pom_phi", &p_pom_phi, "p_pom_phi/D");
-    tree->Branch("p_pom_m",   &p_pom_m,   "p_pom_m/D");
-
-    // Transverse missing and balance branches
+    tree->Branch("pair_m",           &pair_m,           "pair_m/D");
+    tree->Branch("pair_pt",          &pair_pt,          "pair_pt/D");
+    tree->Branch("pair_y",           &pair_y,           "pair_y/D");
+    tree->Branch("pair_eta",         &pair_eta,         "pair_eta/D");
     tree->Branch("pt_missing_pom",   &pt_missing_pom,   "pt_missing_pom/D");
     tree->Branch("pt_missing_gamma", &pt_missing_gamma, "pt_missing_gamma/D");
     tree->Branch("pt_balance",       &pt_balance,       "pt_balance/D");
 
-    // Vector meson decay engine initialization
+    // 4. Main Event Generation Loop
     TwoBodyVectorMesonDecay decayEngine;
-    const int daughterID = 11; // PDG 11 = electron; decay produces e- (11) and e+ (-11)
-
-    cout << "Beginning event generation loop for " << nEventsRequested << " events..." << endl;
-    int printInterval = nEventsRequested / 10;
-    if (printInterval > 1000) printInterval = 1000;
-    if (printInterval < 1) printInterval = 1;
-
     unsigned long nValidEvents = 0;
+    unsigned long printStep = max(1UL, min(1000UL, nEventsRequested / 10));
 
-    // =========================================================================
-    // MAIN MONTE CARLO EVENT GENERATION LOOP
-    // =========================================================================
+    // How Sartre's `event->particles` array is structured:
+    //   Index 0: Incoming Beam 1 proton (+z)
+    //   Index 1: Incoming Beam 2 proton (-z)
+    //   Index 2: Outgoing proton from photon vertex (very small pT, stays in beam pipe)
+    //   Index 3: Virtual photon (gamma*)
+    //   Index 4: Produced Vector Meson (J/psi)
+    //   Index 5: Pomeron (IP)
+    //   Index 6: Outgoing proton from Pomeron vertex (higher pT, measured in Roman Pots)
     for (unsigned long iEvt = 0; iEvt < nEventsRequested; ++iEvt) {
-        // Sample one complete physical event from Sartre
         Event* event = sartre.generateEvent();
-        if (!event) {
-            cerr << "WARNING: Null event generated at index " << iEvt << "; skipping." << endl;
-            continue;
-        }
+        if (!event) continue;
 
-        // Apply symmetric random beam reversal for identical-species p+p collisions
-        bool rev = false;
-        if (settings->UPC() && settings->A() == settings->UPCA()) {
-            rev = applyRandomBeamReversal(event);
-        }
+        // Symmetrize identical p+p beams (50% chance to flip z-axis)
+        bool rev = (settings->UPC() && settings->A() == settings->UPCA())
+                   ? applyRandomBeamReversal(event) : false;
+
+        TLorentzVector vm     = event->particles[4].p; // J/psi
+        TLorentzVector pGamma = event->particles[2].p; // Photon-emitting proton
+        TLorentzVector pPom   = event->particles[6].p; // Pomeron-target proton
+
+        // Sanity check: skip event if J/psi 4-momentum has NaN or negative energy
+        if (vm.E() <= 0 || vm.M() <= 0 || !isfinite(vm.E())) continue;
+
+        // Decay J/psi -> e- (d1) + e+ (d2) preserving helicity polarization
+        pair<TLorentzVector, TLorentzVector> daughters = decayEngine.decayVectorMeson(vm, *event, daughterID);
+        TLorentzVector d1   = daughters.first;
+        TLorentzVector d2   = daughters.second;
+        TLorentzVector pair = d1 + d2;
+
+        // Fill event-level variables
+        iEvent_val  = event->eventNumber;
+        t_val       = event->t;
+        Q2_val      = event->Q2;
+        W_val       = event->W;
+        x_val       = event->x;
+        y_val       = event->y;
+        s_val       = event->s;
+        xpom_val    = event->xpom;
+        pol_val     = (event->polarization == transverse) ? 0 : 1;
+        dmode_val   = (event->diffractiveMode == coherent) ? 0 : 1;
         is_reversed = rev ? 1 : 0;
 
-        // Extract generated vector meson (particle index 4 in Sartre event graph)
-        TLorentzVector vm = event->particles[4].p;
-        if (vm.E() <= 0 || vm.M() <= 0 || !std::isfinite(vm.E()) ||
-            !std::isfinite(vm.Px()) || !std::isfinite(vm.Py()) || !std::isfinite(vm.Pz())) {
-            cerr << "WARNING: Skipping unphysical vector meson kinematics at event " << iEvt << endl;
-            continue;
-        }
+        // Fill particle kinematics using our helper struct
+        b_jpsi.fillFrom(vm);
+        b_em.fillFrom(d1);
+        b_ep.fillFrom(d2);
+        b_p_gamma.fillFrom(pGamma);
+        b_p_pom.fillFrom(pPom);
 
-        // Decay the vector meson J/psi -> e+ e- according to its polarization state
-        // d1 is particle (e-), d2 is antiparticle (e+)
-        pair<TLorentzVector, TLorentzVector> daughters = decayEngine.decayVectorMeson(vm, *event, daughterID);
-        TLorentzVector d1 = daughters.first;  // e-
-        TLorentzVector d2 = daughters.second; // e+
-
-        // Outgoing forward protons:
-        // Index 2 is the scattered photon emitter (quasi-elastic emitter, minimal pT)
-        // Index 6 is the scattered Pomeron target (diffractive recoil proton)
-        TLorentzVector pGamma = event->particles[2].p;
-        TLorentzVector pPom   = event->particles[6].p;
-
-        // Assign Event-level scalars
-        iEvent_val = event->eventNumber;
-        t_val      = event->t;
-        Q2_val     = event->Q2;
-        W_val      = event->W;
-        x_val      = event->x;
-        y_val      = event->y;
-        s_val      = event->s;
-        xpom_val   = event->xpom;
-        pol_val    = (event->polarization == transverse) ? 0 : 1;
-        dmode_val  = (event->diffractiveMode == coherent) ? 0 : 1;
-
-        // J/psi kinematic scalars
-        jpsi_px  = vm.Px();
-        jpsi_py  = vm.Py();
-        jpsi_pz  = vm.Pz();
-        jpsi_E   = vm.E();
-        jpsi_pt  = vm.Pt();
-        jpsi_eta = vm.Eta();
-        jpsi_phi = vm.Phi();
-        jpsi_m   = vm.M();
-        jpsi_y   = vm.Rapidity();
-
-        // Electron (e-) kinematics
-        em_px  = d1.Px();
-        em_py  = d1.Py();
-        em_pz  = d1.Pz();
-        em_E   = d1.E();
-        em_pt  = d1.Pt();
-        em_eta = d1.Eta();
-        em_phi = d1.Phi();
-        em_m   = d1.M();
-
-        // Positron (e+) kinematics
-        ep_px  = d2.Px();
-        ep_py  = d2.Py();
-        ep_pz  = d2.Pz();
-        ep_E   = d2.E();
-        ep_pt  = d2.Pt();
-        ep_eta = d2.Eta();
-        ep_phi = d2.Phi();
-        ep_m   = d2.M();
-
-        // Reconstructed dielectron pair kinematics
-        TLorentzVector pair = d1 + d2;
+        // Fill reconstructed pair kinematics
         pair_m   = pair.M();
         pair_pt  = pair.Pt();
         pair_y   = pair.Rapidity();
         pair_eta = pair.Eta();
 
-        // Photon-emitting proton kinematics
-        p_gamma_px  = pGamma.Px();
-        p_gamma_py  = pGamma.Py();
-        p_gamma_pz  = pGamma.Pz();
-        p_gamma_E   = pGamma.E();
-        p_gamma_pt  = pGamma.Pt();
-        p_gamma_eta = (p_gamma_pt > 1e-6) ? pGamma.Eta() : 999.0;
-        p_gamma_phi = pGamma.Phi();
-        p_gamma_m   = pGamma.M();
+        // Fill transverse momentum balance checks:
+        // In an exclusive reaction p+p -> p + J/psi + p, total transverse momentum is zero:
+        //   vec(pT_J/psi) + vec(pT_p_pom) + vec(pT_p_gamma) = 0
+        // If only the Roman Pot proton (p_pom) is detected, the missing pT equals p_gamma's pT:
+        pt_missing_pom   = (vm + pPom).Pt();
+        pt_missing_gamma = (vm + pGamma).Pt();
+        pt_balance       = (vm + pPom + pGamma).Pt(); // Should be ~0 (numerical precision check)
 
-        // Pomeron-target proton kinematics
-        p_pom_px  = pPom.Px();
-        p_pom_py  = pPom.Py();
-        p_pom_pz  = pPom.Pz();
-        p_pom_E   = pPom.E();
-        p_pom_pt  = pPom.Pt();
-        p_pom_eta = (p_pom_pt > 1e-6) ? pPom.Eta() : 999.0;
-        p_pom_phi = pPom.Phi();
-        p_pom_m   = pPom.M();
-
-        // Missing transverse momentum calculations:
-        // 1. Missing pT relative to the Pomeron target proton (tagged by Roman Pots):
-        //    pT_miss,pom = |vec(pT_J/psi) + vec(pT_p_pom)|
-        double miss_px_pom = vm.Px() + pPom.Px();
-        double miss_py_pom = vm.Py() + pPom.Py();
-        pt_missing_pom = std::sqrt(miss_px_pom * miss_px_pom + miss_py_pom * miss_py_pom);
-
-        // 2. Missing pT relative to the photon-emitting proton:
-        //    pT_miss,gamma = |vec(pT_J/psi) + vec(pT_p_gamma)|
-        double miss_px_gam = vm.Px() + pGamma.Px();
-        double miss_py_gam = vm.Py() + pGamma.Py();
-        pt_missing_gamma = std::sqrt(miss_px_gam * miss_px_gam + miss_py_gam * miss_py_gam);
-
-        // 3. Global transverse momentum balance (four-momentum conservation check):
-        //    pT_balance = |vec(pT_J/psi) + vec(pT_p_pom) + vec(pT_p_gamma)|  == 0
-        double bal_px = vm.Px() + pPom.Px() + pGamma.Px();
-        double bal_py = vm.Py() + pPom.Py() + pGamma.Py();
-        pt_balance = std::sqrt(bal_px * bal_px + bal_py * bal_py);
-
-        // Append record to TTree
         tree->Fill();
         nValidEvents++;
 
-        // Progress logging
-        if ((iEvt + 1) % printInterval == 0) {
-            cout << "Processed " << (iEvt + 1) << " / " << nEventsRequested 
-                 << " events (" << (100.0 * (iEvt + 1) / nEventsRequested) << "%)..." << endl;
+        if ((iEvt + 1) % printStep == 0) {
+            cout << "Processed " << (iEvt + 1) << " / " << nEventsRequested << " events...\n";
         }
     }
 
-    // Determine the integrated cross section in nanobarns
+    // 5. Compute or Use Precomputed Total Cross Section (known_cs_nb)
+    // WHY `cmdCrossSection` (known_cs_nb) EXISTS:
+    // Calling `sartre.totalCrossSection()` integrates the dipole cross section over the
+    // entire (t, W, Q2) phase space. This takes several seconds of CPU time.
+    // When running 12 parallel workers on the same runcard, all 12 workers would calculate
+    // the exact same integral at the end. Passing `known_cs_nb` via argv[5] lets you skip
+    // that redundant calculation if you already know the cross section from a previous run.
+    // If you don't pass it (cmdCrossSection == 0), Sartre calculates it automatically here.
     double totalCrossSection_nb = (cmdCrossSection > 0.0) ? cmdCrossSection : sartre.totalCrossSection();
-    cout << "Finished event generation." << endl;
-    cout << "Total Valid Events:         " << nValidEvents << endl;
-    cout << "Sartre Total Cross Section: " << totalCrossSection_nb << " nb" << endl;
 
-    // =========================================================================
-    // CROSS-SECTION & NORMALIZATION METADATA HISTOGRAM
-    // =========================================================================
-    // Bin 1: Total integrated cross section sigma_total in nb
-    // Bin 2: Number of valid simulated events (for luminosity / weight calculation)
+    cout << "Finished! Valid Events: " << nValidEvents
+         << " | Cross Section: " << totalCrossSection_nb << " nb\n";
+
+    // 6. Save Metadata Histogram (Cross Section & Event Count)
+    // NOTE ON PARALLEL MERGING (`hadd`):
+    // When `hadd` merges N worker files, it sums the bins of all histograms!
+    //   - Bin 2 (nEvents) will correctly equal the sum of all events across all workers.
+    //   - Bin 1 (sigma_total_nb) will be summed N times (N_workers * sigma_total_nb)!
     TH1D* hSummary = new TH1D("histoForCSandNumberOfEvents", "Cross section (nb) and event count", 2, 0, 2);
     hSummary->SetBinContent(1, totalCrossSection_nb);
     hSummary->SetBinContent(2, (double)nValidEvents);
     hSummary->GetXaxis()->SetBinLabel(1, "sigma_total_nb");
     hSummary->GetXaxis()->SetBinLabel(2, "nEvents");
 
-    // Persist tree and summary histogram to ROOT file
     tree->Write();
     hSummary->Write();
     outFile->Close();
 
-    cout << "Successfully written ROOT file: " << rootfile << endl;
     return 0;
 }

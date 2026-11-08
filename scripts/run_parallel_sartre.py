@@ -5,7 +5,7 @@ run_parallel_sartre.py
 
 Parallel Monte Carlo Event Generator Orchestrator for Sartre 2
 Analysis of J/psi Photoproduction in p+p Collisions at sqrt(s) = 510 GeV
-Author: Štěpán Skalka (CTU in Prague)
+Author: Štěpán Skalka 
 
 ================================================================================
 ARCHITECTURE & HOW THE MULTI-CORE ORCHESTRATION WORKS:

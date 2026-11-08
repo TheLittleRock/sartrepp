@@ -1,0 +1,26 @@
+Topic name:
+Analýza simulací fotoprodukce J/psi pomocí Sartre
+Topic name in English:
+Analysis of J/psi photoproduction with Sartre
+Contracting Authority:
+-
+Guidelines:
+Konzultant: Ing. Jaroslav Adam, Ph.D.
+
+1. Seznámení se s fyzikou fotoprodukce mezonů J/ψ.
+2. Popis experimentu STAR a jeho detektorového systému.
+3. Simulace fotoprodukce mezonů J/ψ pomocí programu Sartre.
+4. Porovnání výsledků simulací s experimentálními daty naměřenými experimentem STAR.
+5. Studium vlivu souběhu srážek (pile-up) v proton-protonových srážkách pomocí detektorů ZDC.
+Guidelines in English:
+1. Introduction to the physics of J/ψ photoproduction.
+2. Description of the STAR experiment and its detector systems.
+3. Simulation of J/ψ photoproduction using the Sartre event generator.
+4. Comparison of simulation results with experimental data collected by the STAR experiment.
+5. Study of pile-up effects in proton–proton collisions using the Zero Degree Calorimeters (ZDCs).
+Literature:
+1. T. Toll, B. Naik, J. Singh, T. Ullrich: Inclusive diffraction in eA at small x with the Sartre event generator. arXiv:2609.38963 [hep-ph] (2026).
+2. K. H. Ackermann et al. (STAR Collaboration): STAR detector overview. Nuclear Instruments and Methods in Physics Research A 499 (2003) 624–632.
+3. S. R. Klein: Ultra-peripheral collisions and hadronic structure. arXiv:1704.04715 [nucl-ex] (2017).
+4. V. Barone, E. Predazzi: High-Energy Particle Diffraction. Springer, Berlin–Heidelberg (2002). ISBN 978-3-540-42107-8.
+5. B. Schenke, H. Mäntysaari, F. Salazar, C. Shen, W. Zhao: Vector meson production in ultraperipheral heavy ion collisions. arXiv:2404.10833 [nucl-th] (2024).

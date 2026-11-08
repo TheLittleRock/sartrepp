@@ -1,35 +1,40 @@
 #==============================================================================
 # Sartre UPC Runcard: bSat (IPsat) with HMPZ Parameter Set
 # System: p + p -> p + J/psi + p @ sqrt(s) = 510 GeV
-# Decay: J/psi -> e+ e- (userInt = 11)
+# Decay:  J/psi -> e+ e- (userInt = 11)
 #==============================================================================
 
-eBeamEnergy = 255.0
-hBeamEnergy = 255.0
-A = 1
-UPCA = 1
-UPC = true
+# --- Beam & Collision System Kinematics ---
+eBeamEnergy = 255.0       # Energy of Beam 1 (GeV). In UPC, this is the proton acting as photon source.
+hBeamEnergy = 255.0       # Energy of Beam 2 (GeV), the hadron target proton (sqrt(s) = 2 * 255 = 510 GeV).
+A = 1                     # Mass number of hadron target (A = 1 for proton).
+UPCA = 1                  # Mass number of projectile emitting the quasi-real photon (UPCA = 1 for proton).
+UPC = true                # Enables Ultra-Peripheral Collision mode 
 
-numberOfEvents = 100000
-timesToShow = 10
+# --- Event Generation Volume & Verbosity ---
+numberOfEvents = 100000   # Default number of events to simulate (can be overridden via command line).
+timesToShow = 10          # Progress update frequency during table initialization.
+verbose = false           # Suppresses verbose generator debug logs.
+verboseLevel = 1          # Verbosity level (0 = quiet, 1 = informative, 2 = debug).
 
-verbose = false
-verboseLevel = 0
+# --- Output Storage ---
+rootfile = data/sartre_bSat_100k.root   # Default target ROOT output file.
 
-rootfile = data/sartre_bSat_100k.root
+# --- Microscopic Physics Model ---
+dipoleModel = bSat                  # Color dipole model: 'bSat' (IPsat gluon saturation) or 'bNonSat' (linear DGLAP).
+dipoleModelParameterSet = HMPZ      # Parameter fit: 'HMPZ' (Kowalski, Motyka, Watt 2006) or 'STU'.
+vectorMesonId = 443                 # PDG Monte Carlo particle code (443 = J/psi vector meson).
+tableSetType = total_and_coherent   # Dipole amplitude table lookup mode.
 
-dipoleModel = bSat
-dipoleModelParameterSet = HMPZ
-vectorMesonId = 443
-tableSetType = total_and_coherent
+# --- Vector Meson Decay Channel ---
+userInt = 11              # User flag passed to decay engine: 11 = electron (decays J/psi -> e+ e-).
 
-# Decay vector meson to e+ e- (PDG = 11)
-userInt = 11
+# --- Quantum Mechanical & Amplitude Corrections ---
+correctForRealAmplitude = true      # Incorporates real-to-imaginary amplitude ratio via dispersion relations.
+correctSkewedness = true            # Applies off-forward gluon skewedness factor Rg for unequal x and x'.
+maxLambdaUsedInCorrections = 0.1    # Upper bound on gluon anomalous dimension exponent lambda.
 
-correctForRealAmplitude = true
-correctSkewedness = true
-maxLambdaUsedInCorrections = 0.1
-
-enableNuclearBreakup = false
-applyPhotonFlux = true
-seed = 20261025
+# --- Nuclear & Electromagnetic Engines ---
+enableNuclearBreakup = false        # Gemini breakup engine (false for proton targets A = 1).
+applyPhotonFlux = true              # Applies the Weizsaecker-Williams photon flux of the relativistic proton.
+seed = 20261025                     # Base pseudo-random generator seed (TRandom3).

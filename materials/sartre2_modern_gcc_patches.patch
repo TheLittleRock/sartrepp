@@ -1,0 +1,75 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 1000000..2000000 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -19,4 +19,7 @@
+ cmake_minimum_required (VERSION 3.30)
+ project (SARTRE VERSION 1.1 LANGUAGES CXX C)
+ 
++set(CMAKE_CXX_STANDARD 23)
++set(CMAKE_CXX_STANDARD_REQUIRED ON)
++
+ message(STATUS "System = ${CMAKE_SYSTEM}")
+diff --git a/cmake/modules/FindPythia8.cmake b/cmake/modules/FindPythia8.cmake
+index 1000000..2000000 100644
+--- a/cmake/modules/FindPythia8.cmake
++++ b/cmake/modules/FindPythia8.cmake
+@@ -31,7 +31,7 @@
+ 
+ if(PYTHIA8_INCLUDE_DIR MATCHES "include$")
+   get_filename_component(Pythia8_PREFIX ${PYTHIA8_INCLUDE_DIR}/.. ABSOLUTE)
+-elseif()
++else()
+   get_filename_component(Pythia8_PREFIX ${PYTHIA8_INCLUDE_DIR}/../.. ABSOLUTE)
+ endif()
+ 
+diff --git a/cuba/makefile.in b/cuba/makefile.in
+index 1000000..2000000 100644
+--- a/cuba/makefile.in
++++ b/cuba/makefile.in
+@@ -1,3 +1,4 @@
++.NOTPARALLEL:
+ CC = @CC@
+ SUFFIX = @SUFFIX@
+ CFLAGS = @CFLAGS@ @DEFS@ -DREALSIZE=@REALSIZE@ -I$(common) -I. -I$(srcdir)
+diff --git a/cuba/src/common/stddecl.h b/cuba/src/common/stddecl.h
+index 1000000..2000000 100644
+--- a/cuba/src/common/stddecl.h
++++ b/cuba/src/common/stddecl.h
+@@ -326,7 +326,11 @@
+ #define Extern extern "C"
+ #else
+ #define Extern extern
++#if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 202311L
++#include <stdbool.h>
++#else
+ typedef enum { false, true } bool;
++#endif
+ #endif
+ 
+ typedef const char cchar;
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index 1000000..2000000 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -184,7 +184,7 @@ ExternalProject_Add(
+     DOWNLOAD_COMMAND ${CMAKE_COMMAND} -E copy_directory ${PROJECT_SOURCE_DIR}/cuba ${PROJECT_BINARY_DIR}/cuba
+     SOURCE_DIR ${PROJECT_BINARY_DIR}/cuba
+     PREFIX ${PROJECT_BINARY_DIR}/cuba
+-    CONFIGURE_COMMAND ${PROJECT_BINARY_DIR}/cuba/configure --prefix=${PROJECT_BINARY_DIR}/cuba/build
++    CONFIGURE_COMMAND ${PROJECT_BINARY_DIR}/cuba/configure CFLAGS=-std=gnu17 --prefix=${PROJECT_BINARY_DIR}/cuba/build
+     BUILD_COMMAND make -j1 lib
+     INSTALL_COMMAND make -j1 install
+     BUILD_IN_SOURCE 1
+diff --git a/src/Settings.cpp b/src/Settings.cpp
+index 1000000..2000000 100644
+--- a/src/Settings.cpp
++++ b/src/Settings.cpp
+@@ -14,6 +14,7 @@
+ //==============================================================================
+ #include "Settings.h"    
+ #include "Constants.h"
++#include <cmath>
+ #include <typeinfo>
+ #include <fstream>    
+ #include <sstream>    

@@ -81,11 +81,11 @@ g++ -O3 -std=c++23 simulation/sartre_pp_jpsi.cxx \
     -o simulation/sartre_pp_jpsi
 
 # 9. Run the simulation
-# Minimalist test run (1,000 events):
+# Minimalist single-core test run (1,000 events):
 python3 scripts/run_sartre_single.py --events 1000 --seed 20261025
 
-# Multi-core production run (100,000 events per model across CPU workers):
-python3 scripts/run_parallel_sartre.py --events 100000 --model all --workers 12
+# Multi-core production run (pass a runcard path or omit it for an interactive Tab-completing prompt):
+python3 scripts/run_parallel_sartre.py simulation/runcard_bSat_HMPZ.txt -w 12
 
 # 10. Build the interactive Jupyter Book
 jupyter-book build book/
@@ -225,18 +225,15 @@ cd ../..
 > `CMAKE_INSTALL_PREFIX` is set to `$(pwd)/../../sartre_install`. Because Sartre's internal CMake scripts install into `${CMAKE_INSTALL_PREFIX}/sartre/`, the final directory becomes `sartre_install/sartre/`, exactly matching `$SARTRE_DIR`.
 
 #### Technical Inventory of Applied Patches & Necessity Audit:
-| # | File | Issue & Root Cause | Exact Modification | Needed? |
-| :--- | :--- | :--- | :--- | :---: |
-| **1** | `cuba/src/common/stddecl.h` | **C23 bool keyword**: GCC 15 defaults to C23 where `bool`, `true`, `false` are standard keywords. Cuba 4.2.2's `typedef enum { false, true } bool;` triggers a compiler error. | Wrapped declaration in `#if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 202311L #include <stdbool.h> #else ... #endif`. | **YES** |
-| **2** | `cuba/makefile.in` | **Parallel archive race condition**: Concurrent `make -j` runs multiple `ar` commands on `libcuba.a`, corrupting the archive. | Added `.NOTPARALLEL:` to top of `makefile.in`. | **YES** |
-| **3** | `cmake/modules/FindPythia8.cmake` | **CMake syntax error**: Upstream has `elseif()` with no argument on line 34. | Replaced `elseif()` with `else()`. | **YES** |
-| **4** | `src/Settings.cpp` | **Missing math header**: Under modern GCC C++23, standard library headers have removed transitive includes of `<cmath>`, causing `sqrt` to be undeclared. | Added explicit `#include <cmath>`. | **YES** |
-| **5** | `src/TableGeneratorSettings.cpp` | **Missing algorithm header**: Under GCC 15 / C++23, `std::sort` requires explicit inclusion of `<algorithm>`. Without it, compilation fails with `error: 'sort' is not a member of 'std'`. | Added explicit `#include <algorithm>`. | **YES** |
-| **6** | `CMakeLists.txt` | **C++23 standard consistency**: Ensures Sartre uses C++23 matching CERN ROOT 6.40 ABI. Upstream line 50 set `CMAKE_CXX_STANDARD 17`, overriding user flags and causing ROOT header warnings. | Changed `set(CMAKE_CXX_STANDARD 17)` $\rightarrow$ `23` at line 50. | **YES** |
+| # | File | Issue & Root Cause | Exact Modification |
+| :--- | :--- | :--- | :--- |
+| **1** | `cuba/src/common/stddecl.h` | **C23 bool keyword**: GCC 15 defaults to C23 where `bool`, `true`, `false` are standard keywords. Cuba 4.2.2's `typedef enum { false, true } bool;` triggers a compiler error. | Wrapped declaration in `#if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 202311L #include <stdbool.h> #else ... #endif`. |
+| **2** | `cuba/makefile.in` | **Parallel archive race condition**: Concurrent `make -j` runs multiple `ar` commands on `libcuba.a`, corrupting the archive. | Added `.NOTPARALLEL:` to top of `makefile.in`. |
+| **3** | `cmake/modules/FindPythia8.cmake` | **CMake syntax error**: Upstream has `elseif()` with no argument on line 34. | Replaced `elseif()` with `else()`. |
+| **4** | `src/Settings.cpp` | **Missing math header**: Under modern GCC C++23, standard library headers have removed transitive includes of `<cmath>`, causing `sqrt` to be undeclared. | Added explicit `#include <cmath>`. |
+| **5** | `src/TableGeneratorSettings.cpp` | **Missing algorithm header**: Under GCC 15 / C++23, `std::sort` requires explicit inclusion of `<algorithm>`. Without it, compilation fails with `error: 'sort' is not a member of 'std'`. | Added explicit `#include <algorithm>`. |
+| **6** | `CMakeLists.txt` | **C++23 standard consistency**: Ensures Sartre uses C++23 matching CERN ROOT 6.40 ABI. Upstream line 50 set `CMAKE_CXX_STANDARD 17`, overriding user flags and causing ROOT header warnings. | Changed `set(CMAKE_CXX_STANDARD 17)` $\rightarrow$ `23` at line 50. |
 
-> [!TIP]
-> **Are all fixes in the original patch needed?**
-> The old patch attempted to inject `CFLAGS=-std=gnu17` into `src/CMakeLists.txt` for Cuba. That hunk failed because upstream context lines had changed (`BUILD_COMMAND make lib`). That change was also **redundant**: patching `cuba/src/common/stddecl.h` (Fix 1) allows Cuba to compile cleanly under C23 directly, eliminating the need to alter `src/CMakeLists.txt`.
 
 ---
 
@@ -265,7 +262,7 @@ You should see `UPC-A1-bSat-jpsi-HMPZ-mean_A-T.root`, `UPC-A1-bSat-jpsi-HMPZ-mea
 
 ### 2.5 Python Virtual Environment (`.venv`) with Automatic Environment Hooks
 
-To avoid manually setting environment variables every time a new terminal is opened, the virtual environment activation script (`.venv/bin/activate`) includes automatic environment hooks.
+To avoid manually setting environment variables every time a new terminal is opened (or hardcoding library paths inside Python scripts), the virtual environment activation script (`.venv/bin/activate`) includes automatic environment hooks.
 
 1. **Create the Virtual Environment**:
    ```bash
@@ -318,11 +315,11 @@ To avoid manually setting environment variables every time a new terminal is ope
 ## 3. Compiling the Simulation Driver (`simulation/sartre_pp_jpsi`)
 
 The simulation driver `simulation/sartre_pp_jpsi.cxx` is the standalone C++ binary that executes the Sartre 2 simulation. It:
-1. Loads the runcard settings (`runcard_bSat_HMPZ.txt` or `runcard_bNonSat_HMPZ.txt`).
+1. Loads the runcard settings (with optional command-line overrides for output path, event count, random seed, and precomputed cross section).
 2. Implements symmetric random beam reversal (`RotateX(M_PI)`) so both protons have equal $50\%$ probability of acting as the photon emitter.
-3. Decays the vector meson into $e^+e^-$ pairs using Sartre's `TwoBodyVectorMesonDecay` engine (preserving $s$-channel helicity conservation).
-4. Populates a flat ROOT `TTree` with full event kinematics (`jpsi_pt`, `jpsi_y`, `em_pt`, `em_eta`, `ep_pt`, `ep_eta`, `p_pom_px`, `p_pom_py`, `p_gamma_px`, `p_gamma_py`, `t`, `xpom`, `W`).
-5. Stores the total integrated cross section $\sigma$ (in nb) and event count in a summary `TH1D` histogram (`histoForCSandNumberOfEvents`).
+3. Reads the decay channel PDG ID from the runcard's `userInt` setting (defaulting to `11` for $J/\psi \rightarrow e^+e^-$) and decays the vector meson using Sartre's `TwoBodyVectorMesonDecay` engine (preserving $s$-channel helicity conservation).
+4. Uses a clean `ParticleBranch` struct to populate a flat ROOT `TTree` (`sartre_tree`) with full event and particle kinematics (`jpsi_*`, `em_*`, `ep_*`, `p_pom_*`, `p_gamma_*`, `t`, `xpom`, `W`, etc.).
+5. Stores the total integrated cross section $\sigma$ (in nb) and event count in a 2-bin summary `TH1D` histogram (`histoForCSandNumberOfEvents`).
 
 ### 3.1 Compilation Command
 ```bash
@@ -380,7 +377,7 @@ UPC = true                # Enables Ultra-Peripheral Collision mode (Weizsaecker
 numberOfEvents = 100000   # Default number of events to simulate (can be overridden via command line).
 timesToShow = 10          # Progress update frequency during table initialization.
 verbose = false           # Suppresses verbose generator debug logs.
-verboseLevel = 0          # Verbosity level (0 = quiet, 1 = informative, 2 = debug).
+verboseLevel = 1          # Verbosity level (0 = quiet, 1 = informative, 2 = debug).
 
 # --- Output Storage ---
 rootfile = data/sartre_bSat_100k.root   # Default target ROOT output file.
@@ -440,28 +437,37 @@ python3 scripts/run_sartre_single.py \
 
 ### 4.3 Running with the Multi-Core Parallel Script (`scripts/run_parallel_sartre.py`)
 
-Generating $100{,}000$ high-precision events on a single CPU core takes $\sim 3\text{ hours}$ per model. The multi-core orchestrator `scripts/run_parallel_sartre.py` distributes event generation across multiple CPU worker processes concurrently:
+Generating $100{,}000$ events on a single CPU core takes $\sim 3\text{ hours}$. The parallel runner `scripts/run_parallel_sartre.py` splits a single runcard simulation across multiple CPU cores concurrently.
+
+Make sure your virtual environment is activated (`source .venv/bin/activate`), then run:
 
 ```bash
-source .venv/bin/activate
+# Option 1: Interactive mode (prompts for runcard path with Tab-autocompletion)
+python3 scripts/run_parallel_sartre.py
 
-# Simulate 100,000 events for both bSat and bNonSat models across 12 CPU cores:
-python3 scripts/run_parallel_sartre.py --events 100000 --model all --workers 12
+# Option 2: Pass a runcard directly (automatically reads events, seed, and output path from the runcard)
+python3 scripts/run_parallel_sartre.py simulation/runcard_bSat_HMPZ.txt
 
-# Simulate only the bSat model with 8 cores:
-python3 scripts/run_parallel_sartre.py --events 100000 --model bSat --workers 8
+# Option 3: Override specific settings via command-line flags
+python3 scripts/run_parallel_sartre.py simulation/runcard_bNonSat_HMPZ.txt -w 12 -e 100000 --cs 39.2815
 ```
 
-#### How the Multi-Core Engine Works:
-1. **Even Event Partitioning**: Splits the requested 100,000 events into $N$ equal chunks (e.g. $8{,}334$ events per worker for 12 workers).
-2. **Statistically Independent Seeds**: Each worker $k \in \{1, \dots, N\}$ receives an independent random seed:
+#### Command-Line Arguments:
+- `runcard` *(positional, optional)*: Path to the Sartre runcard file. If omitted, the script interactively prompts you for the path with `Tab` completion enabled.
+- `-w`, `--workers`: Number of CPU cores to use (default: `12`, automatically capped to `CPU_cores - 2`).
+- `-e`, `--events`: Override `numberOfEvents` specified in the runcard.
+- `-o`, `--output`: Override `rootfile` output path specified in the runcard.
+- `--cs`: Optional precomputed total cross section in nanobarns (`nb`). Passing this skips the multidimensional phase-space integration (`sartre.totalCrossSection()`) at the end of each worker's run (e.g., `35.1315` nb for `bSat_HMPZ` or `39.2815` nb for `bNonSat_HMPZ`). If omitted, Sartre computes the cross section dynamically.
+
+#### How the Multi-Core Runner Works:
+1. **Runcard Parsing**: Automatically reads default values for `numberOfEvents`, `rootfile`, and `seed` directly from your runcard unless overridden on the command line.
+2. **Even Event Partitioning**: Splits the total requested events into $N$ equal chunks across the worker cores (distributing any division remainder across the first few workers).
+3. **Statistically Independent Seeds**: Each worker $k \in \{1, \dots, N\}$ receives a unique random seed:
    $$\text{Seed}_k = \text{BaseSeed} + 100 \times k$$
-   Because ROOT's `TRandom3` has a period of $2^{19937}-1$, disjoint seeds guarantee zero statistical correlation.
-3. **Low-Priority Execution**: Workers run under `nice -n 10` priority, ensuring the system remains responsive.
-4. **Automated Merging**: When all chunks finish, the script automatically merges the ROOT trees and cross-section histograms using CERN ROOT's `hadd` utility into the final consolidated dataset:
-   * `data/sartre_bSat_HMPZ_100k.root` ($\sigma_{\text{tot}} = 35.1315\text{ nb}$)
-   * `data/sartre_bNonSat_HMPZ_100k.root` ($\sigma_{\text{tot}} = 39.2815\text{ nb}$)
-5. **Cross-Section Metadata**: Appends execution benchmarks and cross sections to `data/cross_sections.json`.
+   Because ROOT's `TRandom3` has a period of $2^{19937}-1$, separate seeds guarantee zero statistical correlation between workers.
+4. **Low-Priority Execution**: Workers run under `nice -n 10` priority so your desktop and terminal remain responsive.
+5. **Automated Merging & Cleanup**: Once all workers finish, the script merges the temporary chunk files into the final output ROOT file using CERN ROOT's `hadd -f` utility and deletes the temporary chunks.
+   > **Note on `hadd` and `histoForCSandNumberOfEvents`**: Because `hadd` sums histogram bin contents across all $N$ merged chunk files, Bin 2 (`nEvents`) in the merged file equals the total event count, whereas Bin 1 (`sigma_total_nb`) will equal $N_{\text{workers}} \times \sigma_{\text{tot}}$.
 
 ---
 
@@ -524,11 +530,11 @@ sartrepp/
 │
 ├── scripts/                        # Simulation runners & utilities
 │   ├── run_sartre_single.py        # Minimalist single-instance Python simulation runner
-│   ├── run_parallel_sartre.py      # Multi-core parallel simulation orchestrator
+│   ├── run_parallel_sartre.py      # Multi-core parallel simulation runner for a single runcard
 │   └── verify_simulations.py       # 5-point physical sanity verification suite
 │
 ├── root_install/                   # CERN ROOT precompiled installation directory
 ├── pythia8_install/                # Pythia 8.318 compiled prefix directory
 ├── sartre_src/                     # Clean upstream Sartre 2 source tree (ready to patch & install)
-└── data/                           # Directory for generated ROOT files and cross_sections.json
+└── data/                           # Directory for generated ROOT files
 ```
