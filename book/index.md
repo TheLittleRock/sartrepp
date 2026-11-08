@@ -49,6 +49,7 @@ This research builds upon, scrutinizes, and extends the previous experimental me
 The book is organized into two primary parts:
 
 #### Part 1: Simulation
+- **[Physics Diagnosis: Sartre 2 UPC Kinematics & Initialization Fix](05_sartre_upc_kinematic_fix.md)**: Physical investigation, phase-space analysis, and resolution of kinematic lookup table boundary disconnects and 2D FFT initialization scaling in Sartre 2.
 - **[Sartre J/ψ Simulation & Cross-Section Analysis](06_sartre_simulation_and_analysis_benchmarks.ipynb)**: Executive simulation and analysis benchmark notebook evaluating baseline Monte Carlo simulations with exact runcards, C++ driver code, ROOT tree kinematics, side-by-side reproduced plots, and cross-section evaluations with and without Roman Pots.
 
 #### Part 2: Official Sartre 2 Documentation

@@ -50,6 +50,97 @@ index 7ff4f73..a2ad9c3 100644
  
  typedef const char cchar;
  
+diff --git a/src/CrossSection.cpp b/src/CrossSection.cpp
+index 916bd3c..86704db 100644
+--- a/src/CrossSection.cpp
++++ b/src/CrossSection.cpp
+@@ -321,15 +321,21 @@ double CrossSection::dsigdt_coherent(double t, double Q2, double W2, GammaPolari
+ //
+ double CrossSection::dsigdtdxp_incoherent(double t, double xpom) const
+ {
+-    double result = dsigdt_incoherent(t, xpom);
++    double result = 0;
+     if (mSettings->applyPhotonFlux()) {
+-        double y=- Kinematics::rapidity(mS, mVmMass, xpom, -t); //xpom~exp(+y)
+-        double xpom_minus=xpom*exp(-2*y);
++        double dsigdt_plus = dsigdt_incoherent(t, xpom);
++        double photonFlux_plus = (dsigdt_plus > 0) ? UPCPhotonFlux(t, xpom) : 0;
++        
++        double y = - Kinematics::rapidity(mS, mVmMass, xpom, -t); //xpom~exp(+y)
++        double xpom_minus = xpom * exp(-2 * y);
+         
+-        double photonFlux_plus= UPCPhotonFlux(t, xpom);
+-        double photonFlux_minus = UPCPhotonFlux(t, xpom_minus);
+         double dsigdt_minus = dsigdt_incoherent(t, xpom_minus);
+-        result = result * photonFlux_plus + dsigdt_minus * photonFlux_minus;
++        double photonFlux_minus = (dsigdt_minus > 0) ? UPCPhotonFlux(t, xpom_minus) : 0;
++        
++        result = dsigdt_plus * photonFlux_plus + dsigdt_minus * photonFlux_minus;
++    }
++    else {
++        result = dsigdt_incoherent(t, xpom);
+     }
+     return result;
+ }
+@@ -357,18 +363,24 @@ double CrossSection::dsigdtdxp_coherent(double t, double xpom, int nBins) const
+ 
+ double CrossSection::dsigdt_incoherent(double t, double xpom) const
+ {
++    if (!mTableCollection->tableExists(variance_A)) return 0;
++    if (xpom < mTableCollection->minX() || xpom > mTableCollection->maxX() ||
++        t < mTableCollection->minT() || t > mTableCollection->maxT())
++        return 0;
++
+     double result = mTableCollection->get(xpom, t, variance_A);  // fm^4
++    if (result <= 0) return 0;
+     result /= (16*M_PI);
+     result /= hbarc2;                  // in fm^2/GeV^2
+     result *= 1e7;                     // in nb/GeV^2
+     
+     double lambda = 0;
+-    
+-    if (mSettings->correctForRealAmplitude()) {
++    bool canCorrect = (xpom < mTableCollection->maxX());
++    if (mSettings->correctForRealAmplitude() && canCorrect) {
+         lambda = logDerivateOfAmplitude(t, xpom);
+         result *= realAmplitudeCorrection(lambda);
+     }
+-    if (mSettings->correctSkewedness()) {
++    if (mSettings->correctSkewedness() && canCorrect) {
+         lambda = logDerivateOfGluonDensity(t, xpom);
+         result *= skewednessCorrection(lambda);
+     }
+diff --git a/src/Sartre.cpp b/src/Sartre.cpp
+index fe3e9e9..7d7d332 100644
+--- a/src/Sartre.cpp
++++ b/src/Sartre.cpp
+@@ -640,9 +640,9 @@ bool Sartre::init(const char* runcard)
+         
+         ROOT::Math::BrentMinimizer1D minimizer;
+         minimizer.SetFunction(modeFunctor, log(mLowerLimit[1]), log(mUpperLimit[1]));
+-        minimizer.SetNpx(100000);
++        minimizer.SetNpx(40);
+ 
+-        ok = minimizer.Minimize(1000000, 1.e-8, 1.e-10);
++        ok = minimizer.Minimize(1000, 1.e-4, 1.e-5);
+         if (! ok) {
+             cout << "Error, failed to find mode of pdf." << endl;
+             return false;
+@@ -738,12 +738,12 @@ bool Sartre::init(const char* runcard)
+     mUnuran->Init(*mPDF, "method=hitro");     
+     mCrossSection->setCheckKinematics(true);  
+     mUnuran->SetSeed(mSettings->seed());    
+-               
+     //    
+     //  Burn in generator    
+     //    
+     double xrandom[3];    
+-    for (int i=0; i<1000; i++) {
++    int nBurnIn = mSettings->UPC() ? 10 : 1000;
++    for (int i = 0; i < nBurnIn; i++) {
+         mUnuran->SampleMulti(xrandom);
+     }
+         
 diff --git a/src/Settings.cpp b/src/Settings.cpp
 index c78dd3f..a233361 100644
 --- a/src/Settings.cpp
@@ -62,6 +153,30 @@ index c78dd3f..a233361 100644
  #include <typeinfo>
  #include <fstream>    
  #include <sstream>    
+diff --git a/src/TableCollection.cpp b/src/TableCollection.cpp
+index 09b8d01..1163222 100644
+--- a/src/TableCollection.cpp
++++ b/src/TableCollection.cpp
+@@ -191,6 +191,9 @@ double TableCollection::get(double xpom, double t, AmplitudeMoment mom, Table *&
+     }
+     if (associatedTables.size() == 0) {
+         table = 0;
++        if (t < minT() || t > maxT() || xpom < minX() || xpom > maxX())
++            return 0;
++
+         if ( mom != lambda_skew && mom != lambda_real ) {  // no warnings needed (can be calculated w/o tables)
+             string txt;
+             if (mom == mean_A)
+@@ -377,6 +380,9 @@ double TableCollection::get(double Q2, double W2, double t,
+     }
+     if (associatedTables.size() == 0) {
+         table = 0;
++        if (t < minT() || t > maxT() || Q2 < minQ2() || Q2 > maxQ2() || W2 < minW2() || W2 > maxW2())
++            return 0;
++
+         if (mom != lambda_real && mom != lambda_skew) { // no warnings needed (can be calculated w/o tables)
+             string txt;
+             if (mom == mean_A)
 diff --git a/src/TableGeneratorSettings.cpp b/src/TableGeneratorSettings.cpp
 index dae4414..eac241d 100644
 --- a/src/TableGeneratorSettings.cpp

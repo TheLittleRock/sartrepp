@@ -193,6 +193,4 @@ The parallel orchestrator splits the requested 100,000 events into $N_{\text{cor
 | **Decay Engine** | Unaltered Sartre decay | Invariant mass & energy balance check | **Preserves 4-Momentum Conservation** |
 | **Random Seeds** | Independent per-worker seeds | Seed collision & distribution audit | **Guarantees Statistical Independence** |
 
----
-
 
