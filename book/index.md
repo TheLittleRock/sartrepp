@@ -19,7 +19,7 @@ This research builds upon data analysis and simulations done in his Diploma Thes
 The book is organized into two primary parts:
 
 #### Part 1: Simulation
-- **[Setup README](01_sartre_installation_setup.md)**: How to install Sartre 2 and its dependencies and run the simulation.
+- **[Setup README](README.md)**: How to install Sartre 2 and its dependencies and run the simulation.
 - **[Sartre Setup Fix](05_sartre_upc_kinematic_fix.md)**: What has to be done to fix the Sartre 2 to be able to run the simulation.
 - **[Sartre J/ψ Simulation](07_sartre_simulation_analysis_and_plots.ipynb)**: Main Jupyter Notebook that documents the simulation and post processes the results, producing plots and tables.
 

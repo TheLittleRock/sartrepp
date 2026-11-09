@@ -462,7 +462,11 @@ python3 scripts/run_parallel_sartre.py simulation/runcard_bNonSat_HMPZ.txt -w 12
 1. **Runcard Parsing**: Automatically reads default values for `numberOfEvents`, `rootfile`, and `seed` directly from your runcard unless overridden on the command line.
 2. **Even Event Partitioning**: Splits the total requested events into $N$ equal chunks across the worker cores (distributing any division remainder across the first few workers).
 3. **Statistically Independent Seeds**: Each worker $k \in \{1, \dots, N\}$ receives a unique random seed:
-   $$\text{Seed}_k = \text{BaseSeed} + 100 \times k$$
+
+   $$
+   \text{Seed}_k = \text{BaseSeed} + 100 \times k
+   $$
+
    Because ROOT's `TRandom3` has a period of $2^{19937}-1$, separate seeds guarantee zero statistical correlation between workers.
 4. **Low-Priority Execution**: Workers run under `nice -n 10` priority so your desktop and terminal remain responsive.
 5. **Automated Merging & Cleanup**: Once all workers finish, the script merges the temporary chunk files into the final output ROOT file using CERN ROOT's `hadd -f` utility and deletes the temporary chunks.
