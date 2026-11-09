@@ -2,7 +2,6 @@
 
 **Author**: **Štěpán Skalka**  
 *Faculty of Nuclear Sciences and Physical Engineering, Czech Technical University in Prague*  
-*STAR Collaboration & Electron-Ion Collider Group*
 
 <div class="figure-adaptive-pair" style="text-align: center; margin: 1.5rem auto; max-width: 720px;">
   <img src="_static/figures/fig_1_5_jpsi_qcd_light.svg" class="only-light" style="width: 100%; margin: 0 auto; display: block;" alt="J/psi photoproduction in QCD" />
@@ -11,24 +10,13 @@
 
 ## Welcome to the Project Companion & Documentation
 
-This pedagogical interactive book serves as the comprehensive computational and physical companion to the research by **Štěpán Skalka** on **Central Exclusive Photoproduction of $J/\psi$ mesons in proton-proton ($p+p$) Ultra-Peripheral Collisions (UPCs)** at the Relativistic Heavy Ion Collider (RHIC), $\sqrt{s} = 510\text{ GeV}$.
+This is documentation and analysis of Sartre simulation of **Central Exclusive Photoproduction of $J/\psi$ in proton-proton ($p+p$) Ultra-Peripheral Collisions (UPCs)** at the Relativistic Heavy Ion Collider (RHIC), $\sqrt{s} = 510\text{ GeV}$.
 
-This research builds upon, scrutinizes, and extends the previous experimental measurements and STARlight Monte Carlo simulations documented in the 2026 Diploma Thesis by **Michal Vranovský** (CTU in Prague), titled:
-> *"Study of photoproduction of $J/\psi$ in $p+p$ collisions at $510\text{ GeV}$"*
-
-### Core Scientific Questions
-1. **Can the Color Dipole Model (Sartre 2) describe exclusive $J/\psi$ photoproduction in $p+p$ collisions at $\sqrt{s} = 510\text{ GeV}$?**
-   How do saturation models (`bSat` / `IPsat`) and non-saturation models (`bNonSat` / `IPnonsat`) compare against STAR experimental data?
-2. **Where does the STAR data excess come from at $p_T > 0.4\text{ GeV}/c$?**
-   Is the discrepancy observed in STAR experimental data without Roman Pots caused by diffractive proton dissociation, electromagnetic bremsstrahlung, or saturation gluon dynamics?
-3. **What is the true origin of protons detected in the STAR Roman Pots?**
-   Michal Vranovský observed that STARlight Monte Carlo predicted almost zero acceptance for the photon-emitting proton in the Roman Pots. Using Sartre's dual-proton tracking, we answer his **Page 78 hypothesis** with exact quantitative proof:
-   - What fraction of Roman Pot hits originate from the Pomeron-target proton vs. the photon emitter?
-   - How does transverse-momentum interference affect the recoil distribution?
+This research builds upon data analysis and simulations done in his Diploma Thesis by **Michal Vranovský**.
 
 ---
 
-### Key Simulation & Experimental Parameters
+### Important Parameters lookup table
 
 | Parameter | Symbol / Variable | Value | Physical Significance |
 | :--- | :--- | :--- | :--- |
@@ -49,7 +37,7 @@ This research builds upon, scrutinizes, and extends the previous experimental me
 The book is organized into two primary parts:
 
 #### Part 1: Simulation
-- **[Physics Diagnosis: Sartre 2 UPC Kinematics & Initialization Fix](05_sartre_upc_kinematic_fix.md)**: Physical investigation, phase-space analysis, and resolution of kinematic lookup table boundary disconnects and 2D FFT initialization scaling in Sartre 2.
+- **[Sartre ](05_sartre_upc_kinematic_fix.md)**: Physical investigation, phase-space analysis, and resolution of kinematic lookup table boundary disconnects and 2D FFT initialization scaling in Sartre 2.
 - **[Sartre J/ψ Simulation & Cross-Section Analysis](07_sartre_simulation_analysis_and_plots.ipynb)**: Executive simulation and analysis benchmark notebook evaluating baseline Monte Carlo simulations with exact runcards, C++ driver code, ROOT tree kinematics, side-by-side reproduced plots, and cross-section evaluations with and without Roman Pots.
 
 #### Part 2: Official Sartre 2 Documentation

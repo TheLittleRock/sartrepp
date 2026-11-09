@@ -28,8 +28,12 @@
       document.body.appendChild(backdrop);
     }
 
-    // 2. Add clean close button inside primary sidebar if not present
-    if (!primarySidebar.querySelector('.pst-mobile-close-btn')) {
+    function isMobile() {
+      return window.innerWidth < 992;
+    }
+
+    // 2. Add clean close button inside primary sidebar only on mobile if not present
+    if (isMobile() && !primarySidebar.querySelector('.pst-mobile-close-btn')) {
       const closeBtn = document.createElement('button');
       closeBtn.className = 'pst-mobile-close-btn';
       closeBtn.setAttribute('aria-label', 'Close sidebar');
@@ -42,8 +46,8 @@
       primarySidebar.insertBefore(closeBtn, primarySidebar.firstChild);
     }
 
-    // 3. Add clean close button inside secondary sidebar if not present
-    if (secondarySidebar && !secondarySidebar.querySelector('.pst-mobile-close-btn')) {
+    // 3. Add clean close button inside secondary sidebar only on mobile if not present
+    if (isMobile() && secondarySidebar && !secondarySidebar.querySelector('.pst-mobile-close-btn')) {
       const closeSecBtn = document.createElement('button');
       closeSecBtn.className = 'pst-mobile-close-btn';
       closeSecBtn.setAttribute('aria-label', 'Close page contents');
@@ -54,10 +58,6 @@
         closeAll();
       });
       secondarySidebar.insertBefore(closeSecBtn, secondarySidebar.firstChild);
-    }
-
-    function isMobile() {
-      return window.innerWidth < 992;
     }
 
     function openPrimary() {

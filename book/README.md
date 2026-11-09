@@ -1,4 +1,4 @@
-# Simulation of $J/\psi$ Photoproduction in $p+p$ Collisions at $\sqrt{s} = 510\text{ GeV}$ with Sartre
+# Simulation of J/ψ Photoproduction in p+p Collisions at √s = 510 GeV with Sartre
 
 **Author**: **Štěpán Skalka**  
 *Faculty of Nuclear Sciences and Physical Engineering, Czech Technical University in Prague*  

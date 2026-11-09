@@ -3,9 +3,11 @@
  * -----------------------------------------------------------------------------
  * Custom enhancements for Sartre 2 Jupyter Book:
  * 1. Immediate 2-state Dark/Light mode toggle (fixes 3-state PyData bug)
- * 2. VS Code Dark+ semantic syntax highlighting (ROOT, C++, Python, Runcard)
- * 3. Smooth scrolling for internal anchor links and chapter jumps
- * 4. Animated expand/collapse for subchapters and TOC entries
+ * 2. Dynamic Home button placed as first item on left in header toolbar
+ * 3. Clean document title (replaces \(J/\psi\) with Unicode symbols)
+ * 4. Smooth accordion animation for in-page TOC and sidebar subchapters
+ * 5. Smooth scrolling for internal anchor links and chapter jumps
+ * 6. VS Code Dark+ semantic syntax highlighting (ROOT, C++, Python, Runcard)
  * -----------------------------------------------------------------------------
  */
 
@@ -13,11 +15,49 @@
   'use strict';
 
   // =========================================================================
-  // 1. Theme Mode: Enforce Dark Default & Immediate 2-State Switcher
+  // 1. Clean Browser Headline / Document Title (Replace LaTeX with Symbols)
+  // =========================================================================
+  function cleanDocumentTitle() {
+    if (!document.title) return;
+    document.title = document.title
+      .replace(/\\\(J\/\\psi\\\)/g, 'J/ψ')
+      .replace(/\\\([Jj]\/\\psi\\\)/g, 'J/ψ')
+      .replace(/\$J\/\\psi\$/g, 'J/ψ')
+      .replace(/\\\(p\s*\+\s*p\\\)/g, 'p+p')
+      .replace(/\$p\s*\+\s*p\$/g, 'p+p')
+      .replace(/\\\(\\sqrt\{s\}\s*=\s*510(?:\\text\{)?\s*(?:GeV\}?)?\\\)/g, '√s = 510 GeV')
+      .replace(/\$\\sqrt\{s\}\s*=\s*510(?:\\text\{)?\s*(?:GeV\}?)?\$/g, '√s = 510 GeV');
+  }
+
+  // =========================================================================
+  // 2. Add Home Button to Far Left of Article Toolbar
+  // =========================================================================
+  function initHomeButton() {
+    const articleButtons = document.querySelector('.article-header-buttons');
+    if (!articleButtons || articleButtons.querySelector('.btn-home-button')) return;
+
+    const root = document.documentElement.dataset.content_root || './';
+    const homeUrl = root + 'index.html';
+
+    const homeLink = document.createElement('a');
+    homeLink.href = homeUrl;
+    homeLink.className = 'btn btn-sm btn-home-button pst-navbar-icon';
+    homeLink.setAttribute('title', 'Go to home page');
+    homeLink.setAttribute('aria-label', 'Go to home page');
+    homeLink.setAttribute('data-bs-placement', 'bottom');
+    homeLink.setAttribute('data-bs-toggle', 'tooltip');
+    homeLink.innerHTML = '<span class="btn__icon-container"><i class="fa-solid fa-house"></i></span>';
+
+    // Insert as the first item on the far left
+    articleButtons.insertBefore(homeLink, articleButtons.firstChild);
+  }
+
+  // =========================================================================
+  // 3. Theme Mode: Enforce Dark Default & Immediate 2-State Switcher
   // =========================================================================
   function initThemeToggle() {
     const savedMode = localStorage.getItem('mode') || localStorage.getItem('theme');
-    
+
     // Default to dark mode if not explicitly chosen
     if (!savedMode || savedMode === 'auto') {
       document.documentElement.dataset.mode = 'dark';
@@ -61,7 +101,7 @@
   }
 
   // =========================================================================
-  // 2. Smooth Scrolling for Internal Links & TOC
+  // 4. Smooth Scrolling for Internal Links & TOC
   // =========================================================================
   function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
@@ -72,12 +112,11 @@
         const target = document.querySelector(href);
         if (target) {
           e.preventDefault();
-          const targetY = target.getBoundingClientRect().top + window.pageYOffset - 20;
+          const targetY = target.getBoundingClientRect().top + window.pageYOffset - 30;
           window.scrollTo({
             top: targetY,
             behavior: 'smooth'
           });
-          // Update URL hash without jumping
           if (history.pushState) {
             history.pushState(null, null, href);
           }
@@ -87,13 +126,28 @@
   }
 
   // =========================================================================
-  // 3. Smooth Expanding Animation for Subchapters / Subsections
+  // 5. Smooth Expanding Animation for Subchapters / Subsections
   // =========================================================================
   function initNavAnimations() {
     // Add smooth animated transitions to collapsible sidebar sub-lists
     const subLists = document.querySelectorAll('.bd-sidenav ul, .section-nav ul');
     subLists.forEach(function (ul) {
-      ul.style.transition = 'max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease';
+      ul.style.transition = 'max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, transform 0.25s ease';
+    });
+
+    // Animate in-page TOC unrolling
+    const tocEntries = document.querySelectorAll('#pst-page-toc-nav .toc-entry');
+    tocEntries.forEach(function (entry) {
+      const link = entry.querySelector('a.nav-link');
+      if (link) {
+        link.addEventListener('click', function () {
+          const childUl = entry.querySelector('ul.nav');
+          if (childUl) {
+            childUl.style.maxHeight = '1200px';
+            childUl.style.opacity = '1';
+          }
+        });
+      }
     });
 
     // Animate details / dropdown cards
@@ -113,7 +167,7 @@
   }
 
   // =========================================================================
-  // 4. VS Code Dark+ Semantic Syntax Highlighting
+  // 6. VS Code Dark+ Semantic Syntax Highlighting
   // =========================================================================
   function enhanceVSCodeSyntax() {
     // Known C++ / ROOT types and custom classes
@@ -202,6 +256,8 @@
   // Initialization
   // =========================================================================
   function initAll() {
+    cleanDocumentTitle();
+    initHomeButton();
     initThemeToggle();
     initSmoothScroll();
     initNavAnimations();

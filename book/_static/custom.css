@@ -1,6 +1,6 @@
 /* ==============================================================================
    Master Thesis Theme: Sartre 2 Simulation & Analysis
-   Background: #1e2129 | Code Cells: #1c1e25 | Accent: #005f56
+   Background: #1e2129 | Code Cells: #1c1e25 | Accent: #005f56 & #10b981
    VS Code Dark+ Highlighting & Modern Animated Layout
    ============================================================================== */
 
@@ -12,13 +12,43 @@
   --sartre-bg-dark: #1e2129;
   --sartre-code-bg: #1c1e25;
   --sartre-accent: #005f56;
-  --sartre-accent-hover: #028071;
-  --sartre-accent-light: #00897b;
+  --sartre-accent-hover: #00897b;
+  --sartre-green: #10b981;
+  --sartre-green-hover: #34d399;
   --sartre-text-main: #d4d4d4;
   --sartre-text-muted: #94a3b8;
   --sartre-border-dark: rgba(255, 255, 255, 0.08);
 
   scroll-behavior: smooth !important;
+}
+
+/* Global Modern Scrollbars (Thin, Sleek, Dark Teal) */
+* {
+  scrollbar-width: thin !important;
+  scrollbar-color: rgba(0, 137, 123, 0.45) transparent !important;
+}
+
+::-webkit-scrollbar {
+  width: 6px !important;
+  height: 6px !important;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 137, 123, 0.45) !important;
+  border-radius: 9999px !important;
+  transition: background 0.2s ease !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 137, 123, 0.8) !important;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent !important;
 }
 
 /* Light Theme Variables */
@@ -33,13 +63,13 @@ html[data-theme="light"] {
   --pst-color-border: #e2e8f0 !important;
 }
 
-/* Dark Theme Variables (Primary Dark Background #1e2129) */
+/* Dark Theme Variables (Primary Dark Background #1e2129 & Green Accents) */
 html[data-theme="dark"] {
   --pst-color-primary: #00897b !important;
-  --pst-color-primary-highlight: #26a69a !important;
+  --pst-color-primary-highlight: #10b981 !important;
   --pst-color-secondary: #005f56 !important;
-  --pst-color-link: #38bdf8 !important;
-  --pst-color-link-hover: #7dd3fc !important;
+  --pst-color-link: #10b981 !important;
+  --pst-color-link-hover: #34d399 !important;
   --pst-color-background: #1e2129 !important;
   --pst-color-surface: #1e2129 !important;
   --pst-color-text-base: #d4d4d4 !important;
@@ -68,7 +98,7 @@ html[data-theme="dark"] .bd-sidebar-secondary {
 }
 
 /* ==============================================================================
-   2. Layout Cleanups: Remove Redundant Top Navbar & Sidepanel Icon
+   2. Layout Cleanups & Header Toolbar
    ============================================================================== */
 
 /* Completely remove redundant top navbar */
@@ -89,41 +119,73 @@ header.bd-header,
   display: none !important;
 }
 
-/* Remove redundant search button from article header (sidebar search is kept) */
+/* Completely hide mobile close button on desktop */
+.pst-mobile-close-btn {
+  display: none !important;
+}
+
+/* Remove redundant search button from article header */
 .article-header-buttons .search-button,
 .article-header-buttons .search-button__button {
   display: none !important;
 }
 
-/* Sleek Article Header Toolbar */
+/* Article Header Toolbar */
 .bd-header-article {
-  padding-top: 1rem !important;
-  padding-bottom: 0.75rem !important;
+  padding-top: 0.8rem !important;
+  padding-bottom: 0.6rem !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   margin-bottom: 1.5rem !important;
 }
 
-/* Direct GitHub Repository Button Styling */
+.article-header-buttons {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.35rem !important;
+}
+
+/* Sleek Icon Buttons in Article Toolbar: No Squares, Perfectly Aligned */
+.article-header-buttons .btn,
+.article-header-buttons a.btn,
+.btn-home-button,
 .btn-source-repository-button,
-.article-header-buttons .btn {
+.btn-fullscreen-button,
+.theme-switch-button,
+.dropdown-download-buttons .btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 34px !important;
+  height: 34px !important;
+  min-width: 34px !important;
+  min-height: 34px !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  color: #94a3b8 !important;
   border-radius: 6px !important;
+  font-size: 1.05rem !important;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
-html[data-theme="dark"] .article-header-buttons .btn {
-  background-color: rgba(255, 255, 255, 0.05) !important;
-  color: #94a3b8 !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-}
-
-html[data-theme="dark"] .article-header-buttons .btn:hover {
-  background-color: rgba(0, 95, 86, 0.25) !important;
-  color: #38bdf8 !important;
-  border-color: #005f56 !important;
+.article-header-buttons .btn:hover,
+.article-header-buttons a.btn:hover,
+.btn-home-button:hover,
+.btn-source-repository-button:hover,
+.btn-fullscreen-button:hover,
+.theme-switch-button:hover {
+  color: #10b981 !important;
+  background-color: rgba(0, 95, 86, 0.2) !important;
   transform: translateY(-1px);
 }
 
-/* Sidebar Search Field Styling */
+.dropdown-download-buttons .dropdown-toggle::after {
+  display: none !important;
+}
+
+/* Sidebar Search Field */
 .sidebar-primary-item .search-button-field {
   width: 100% !important;
   border-radius: 6px !important;
@@ -135,7 +197,7 @@ html[data-theme="dark"] .article-header-buttons .btn:hover {
 
 html[data-theme="dark"] .sidebar-primary-item .search-button-field {
   background-color: #1c1e25 !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
   color: #94a3b8 !important;
 }
 
@@ -146,20 +208,25 @@ html[data-theme="dark"] .sidebar-primary-item .search-button-field:hover {
 }
 
 /* ==============================================================================
-   3. Code Cells & Inputs: #1c1e25 with #005f56 Left Accent & Compact Text
+   3. Code Cells: #1c1e25 with #005f56 Accent, NO Ugly White Borders
    ============================================================================== */
 
 /* Notebook code input containers */
 div.cell_input,
-.cell_input.docutils.container,
-div.highlight,
+.cell_input,
 div[class*="highlight-"] {
-  border-radius: 6px !important;
+  border-left: 4px solid #005f56 !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  border-radius: 4px !important;
   margin-top: 0.8rem !important;
   margin-bottom: 0.8rem !important;
 }
 
-/* Dark mode code blocks: #1c1e25 background with #005f56 left border */
+/* Dark mode code blocks */
 html[data-theme="dark"] div.cell_input,
 html[data-theme="dark"] div.cell_input > div.highlight,
 html[data-theme="dark"] div.highlight-c\+\+ div.highlight,
@@ -171,34 +238,22 @@ html[data-theme="dark"] div[class*="highlight-"] pre,
 html[data-theme="dark"] pre {
   background-color: #1c1e25 !important;
   color: #d4d4d4 !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
 
-/* Code Cell Left Accent Border */
-div.cell_input,
-div.highlight-c\+\+,
-div.highlight-python,
-div.highlight-ini,
-div.highlight-ipython3 {
-  border-left: 4px solid #005f56 !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  border-right: 1px solid rgba(255, 255, 255, 0.05);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  background-color: #1c1e25 !important;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-}
-
-/* Light mode fallback for code cell */
+/* Light mode fallback */
 html[data-theme="light"] div.cell_input,
 html[data-theme="light"] div.highlight-c\+\+,
 html[data-theme="light"] div.highlight-python,
 html[data-theme="light"] div.highlight-ini,
 html[data-theme="light"] div.highlight-ipython3 {
   border-left: 4px solid #005f56 !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
   background-color: #f6f8fa !important;
-  border-top: 1px solid #e1e4e8;
-  border-right: 1px solid #e1e4e8;
-  border-bottom: 1px solid #e1e4e8;
 }
 
 /* Compact Code Text Size */
@@ -217,22 +272,226 @@ div.cell_input pre,
 html[data-theme="dark"] code.docutils.literal {
   background-color: #1c1e25 !important;
   color: #4ec9b0 !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
   padding: 0.15rem 0.35rem !important;
   border-radius: 4px !important;
   font-size: 0.85em !important;
 }
 
-/* Cell Outputs */
-html[data-theme="dark"] div.cell_output,
-html[data-theme="dark"] div.cell_output .output {
-  background-color: #191b21 !important;
-  border-radius: 0 0 6px 6px !important;
-  color: #cbd5e1 !important;
+/* ==============================================================================
+   4. Code Cell Outputs & Plots: Clean Background & Centered Aspect Ratio
+   ============================================================================== */
+
+/* Remove mismatched background boxes under cell outputs */
+div.cell_output,
+div.cell_output .output,
+div.cell_output .output_subarea,
+.output_area {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Center plot outputs */
+div.cell_output:has(img),
+div.output_png,
+.output_area:has(img) {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0.8rem 0 !important;
+}
+
+/* Plot images: Keep natural aspect ratio, centered, NO gray border */
+html[data-theme="dark"] div.cell_output img,
+html[data-theme="dark"] div.output_png img,
+div.cell_output img,
+div.output_png img,
+.output_subarea img,
+.output_area img {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  max-width: 100% !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+  display: block !important;
+  margin: 1.2rem auto !important;
+  border-radius: 4px !important;
 }
 
 /* ==============================================================================
-   4. VS Code Dark+ Code Syntax Highlighting
+   5. Tables: Full Width, No Squeezing, Clean Transparent Container
+   ============================================================================== */
+
+div.output.text_html,
+div.cell_output:has(table) {
+  background: transparent !important;
+  width: 100% !important;
+  overflow-x: auto !important;
+}
+
+table.dataframe,
+table.table {
+  background: transparent !important;
+  border-collapse: collapse !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 1.5rem auto !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  font-size: 0.88rem !important;
+}
+
+html[data-theme="dark"] table.dataframe th,
+html[data-theme="dark"] table.table th {
+  background-color: rgba(0, 95, 86, 0.35) !important;
+  color: #f8fafc !important;
+  font-weight: 600 !important;
+  padding: 0.75rem 1rem !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-bottom: 2px solid #005f56 !important;
+  white-space: nowrap !important;
+  text-align: left !important;
+}
+
+html[data-theme="dark"] table.dataframe td,
+html[data-theme="dark"] table.table td {
+  padding: 0.7rem 1rem !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  background-color: transparent !important;
+  color: #cbd5e1 !important;
+  white-space: nowrap !important;
+}
+
+html[data-theme="dark"] table.dataframe tr:nth-child(even) td,
+html[data-theme="dark"] table.table tr:nth-child(even) td {
+  background-color: rgba(255, 255, 255, 0.02) !important;
+}
+
+html[data-theme="dark"] table.dataframe tr:hover td,
+html[data-theme="dark"] table.table tr:hover td {
+  background-color: rgba(0, 95, 86, 0.12) !important;
+}
+
+/* ==============================================================================
+   6. Sidebar Navigation & In-Page TOC: Green Accents & Smooth Unroll Animation
+   ============================================================================== */
+
+/* Universal Link Reset in Sidebars */
+.bd-sidebar-primary a,
+.bd-sidenav a,
+nav.bd-links a {
+  color: var(--pst-color-text-base) !important;
+  text-decoration: none !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Base link styling */
+.bd-sidenav li > a,
+nav.bd-links li > a {
+  border-left: 3px solid transparent;
+  padding: 0.4rem 0.75rem !important;
+  border-radius: 0 4px 4px 0;
+  display: block;
+}
+
+/* Link Hover: Green Accent */
+html[data-theme="dark"] .bd-sidenav li > a:hover,
+html[data-theme="dark"] nav.bd-links li > a:hover {
+  color: #34d399 !important;
+  background-color: rgba(0, 95, 86, 0.15) !important;
+  border-left: 3px solid #005f56 !important;
+  transform: translateX(2px);
+}
+
+/* Active Chapter Highlight (Emerald Green, Strictly No Blue) */
+html[data-theme="dark"] .bd-sidenav li.current > a,
+html[data-theme="dark"] .bd-sidenav li.active > a,
+html[data-theme="dark"] nav.bd-links li.current > a,
+html[data-theme="dark"] nav.bd-links li.active > a {
+  color: #10b981 !important;
+  border-left: 3px solid #00897b !important;
+  font-weight: 600 !important;
+  background-color: rgba(0, 95, 86, 0.22) !important;
+}
+
+/* In-Page Right Sidebar (TOC) Active Entry: Green Accent */
+.toc-entry a.nav-link {
+  transition: all 0.2s ease-in-out !important;
+  border-left: 2px solid transparent !important;
+  color: #94a3b8 !important;
+}
+
+html[data-theme="dark"] .toc-entry a.nav-link:hover {
+  color: #34d399 !important;
+  transform: translateX(2px);
+}
+
+html[data-theme="dark"] .toc-entry a.nav-link.active {
+  color: #10b981 !important;
+  border-left: 2px solid #005f56 !important;
+  font-weight: 600 !important;
+  background-color: rgba(0, 95, 86, 0.16) !important;
+}
+
+/* Smooth Accordion Unroll Animation for in-page TOC Subsections */
+.bd-toc .nav .nav {
+  display: block !important;
+  max-height: 0 !important;
+  opacity: 0 !important;
+  overflow: hidden !important;
+  transform: translateY(-4px) !important;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, transform 0.25s ease !important;
+  padding-left: 1rem !important;
+}
+
+.bd-toc .nav > .active > ul,
+.bd-toc .nav .nav.pst-show_toc_level {
+  max-height: 1200px !important;
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* General in-content links */
+a.reference.internal,
+a.reference.external {
+  color: #10b981 !important;
+  text-decoration: none !important;
+  transition: color 0.15s ease !important;
+}
+
+a.reference.internal:hover,
+a.reference.external:hover {
+  color: #34d399 !important;
+  text-decoration: underline !important;
+}
+
+/* Part Header Captions in Sidebar */
+.bd-sidenav p.caption {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.78rem;
+  color: #64748b;
+  margin-top: 1.4rem;
+  margin-bottom: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+html[data-theme="dark"] .bd-sidenav p.caption {
+  color: #94a3b8;
+}
+
+/* ==============================================================================
+   7. VS Code Dark+ Code Syntax Highlighting
    ============================================================================== */
 
 /* Comments: Calm Forest Green */
@@ -341,7 +600,7 @@ html[data-theme="dark"] div.cell_output .output {
 }
 
 /* ==============================================================================
-   5. Runcard (INI) Color Scheme: Neutral VS Code Dark+ Config Style
+   8. Runcard (INI) Color Scheme: Neutral VS Code Dark+ Config Style
    (Eliminates Yellow & Radioactive Green)
    ============================================================================== */
 
@@ -393,134 +652,26 @@ html[data-theme="dark"] div.cell_output .output {
 }
 
 /* ==============================================================================
-   6. Sidebar Navigation & Links: Animations & Polish
-   ============================================================================== */
-
-/* Universal Link Reset in Sidebars */
-.bd-sidebar-primary a,
-.bd-sidenav a,
-nav.bd-links a {
-  color: var(--pst-color-text-base) !important;
-  text-decoration: none !important;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
-}
-
-/* Base link styling */
-.bd-sidenav li > a,
-nav.bd-links li > a {
-  border-left: 3px solid transparent;
-  padding: 0.4rem 0.75rem !important;
-  border-radius: 0 4px 4px 0;
-  display: block;
-}
-
-/* Link Hover */
-html[data-theme="dark"] .bd-sidenav li > a:hover,
-html[data-theme="dark"] nav.bd-links li > a:hover {
-  color: #38bdf8 !important;
-  background-color: rgba(0, 95, 86, 0.2) !important;
-  border-left: 3px solid #005f56 !important;
-  transform: translateX(2px);
-}
-
-/* Active Chapter Highlight (Teal Accent, No Orange) */
-html[data-theme="dark"] .bd-sidenav li.current > a,
-html[data-theme="dark"] .bd-sidenav li.active > a,
-html[data-theme="dark"] nav.bd-links li.current > a,
-html[data-theme="dark"] nav.bd-links li.active > a {
-  color: #38bdf8 !important;
-  border-left: 3px solid #00897b !important;
-  font-weight: 600 !important;
-  background-color: rgba(0, 95, 86, 0.3) !important;
-}
-
-/* Subchapter list accordion expand animation */
-.bd-sidenav ul,
-.section-nav ul {
-  transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease, transform 0.25s ease !important;
-}
-
-/* In-Page Right Sidebar (TOC) Active Entry */
-.toc-entry a.nav-link {
-  transition: all 0.2s ease-in-out !important;
-  border-left: 2px solid transparent !important;
-}
-
-html[data-theme="dark"] .toc-entry a.nav-link:hover {
-  color: #38bdf8 !important;
-  transform: translateX(2px);
-}
-
-html[data-theme="dark"] .toc-entry a.nav-link.active {
-  color: #38bdf8 !important;
-  border-left: 2px solid #00897b !important;
-  font-weight: 600 !important;
-  background-color: rgba(0, 95, 86, 0.15) !important;
-}
-
-/* Part Header Captions in Sidebar */
-.bd-sidenav p.caption {
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  font-size: 0.78rem;
-  color: #64748b;
-  margin-top: 1.4rem;
-  margin-bottom: 0.5rem;
-  padding-left: 0.5rem;
-}
-
-html[data-theme="dark"] .bd-sidenav p.caption {
-  color: #94a3b8;
-}
-
-/* ==============================================================================
-   7. Tables & Admonitions Styling
-   ============================================================================== */
-
-table.table,
-table.dataframe {
-  border-collapse: collapse;
-  width: 100%;
-  margin: 1.5rem 0;
-  font-size: 0.9rem;
-  border-radius: 6px;
-  overflow: hidden;
-}
-
-html[data-theme="dark"] table.table th,
-html[data-theme="dark"] table.dataframe th {
-  background-color: rgba(0, 95, 86, 0.3) !important;
-  color: #f1f5f9 !important;
-  border-bottom: 2px solid #005f56 !important;
-  padding: 0.65rem 0.9rem;
-  font-weight: 600;
-}
-
-html[data-theme="dark"] table.table td,
-html[data-theme="dark"] table.dataframe td {
-  padding: 0.55rem 0.9rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  background-color: rgba(30, 33, 41, 0.6);
-}
-
-html[data-theme="dark"] table.table tr:hover td,
-html[data-theme="dark"] table.dataframe tr:hover td {
-  background-color: rgba(0, 95, 86, 0.12) !important;
-}
-
-/* Admonitions */
-html[data-theme="dark"] .admonition {
-  background-color: #1c1e25 !important;
-  border-left-width: 4px !important;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
-}
-
-/* ==============================================================================
-   8. Mobile Navigation Drawer & Backdrop
+   9. Mobile Drawer & Backdrop Styling
    ============================================================================== */
 
 @media (max-width: 991.98px) {
+  .pst-mobile-close-btn {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    border: none;
+    color: #94a3b8;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 0.8rem;
+    align-self: flex-end;
+  }
+
   #pst-primary-sidebar.bd-sidebar-primary {
     position: fixed !important;
     top: 0 !important;
@@ -533,7 +684,6 @@ html[data-theme="dark"] .admonition {
     background-color: #1e2129 !important;
     z-index: 100000 !important;
     overflow-y: auto !important;
-    -webkit-overflow-scrolling: touch !important;
     box-shadow: 6px 0 28px rgba(0, 0, 0, 0.5) !important;
     transform: translateX(-105%) !important;
     transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.28s ease !important;
