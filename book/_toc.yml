@@ -4,9 +4,9 @@ parts:
   - caption: "Simulation"
     chapters:
       - file: 05_sartre_upc_kinematic_fix
-        title: "Physics Diagnosis: Sartre 2 UPC Kinematics & Initialization Fix"
-      - file: 06_sartre_simulation_and_analysis_benchmarks
-        title: "Sartre J/ψ Simulation & Cross-Section Analysis"
+        title: "Sartre Setup Fix"
+      - file: 07_sartre_simulation_analysis_and_plots
+        title: "Sartre 2 Simulation"
 
   - caption: "Official Sartre 2 Documentation"
     chapters:

@@ -298,6 +298,25 @@ def main():
     if hadd_res.returncode != 0:
         sys.exit(f"hadd failed:\n{hadd_res.stderr}")
 
+    # Rescale histoForCSandNumberOfEvents: hadd sums Bin 1 across all workers,
+    # resulting in len(chunk_files) * sigma_tot. Divide Bin 1 by len(chunk_files)
+    # and reset fEntries to 2 so downstream analysis scripts read the true cross section.
+    try:
+        root_lib = PROJECT_ROOT / "root_install" / "lib"
+        if root_lib.exists() and str(root_lib) not in sys.path:
+            sys.path.insert(0, str(root_lib))
+        import ROOT
+        rfile = ROOT.TFile.Open(str(output_file), "UPDATE")
+        if rfile and not rfile.IsZombie():
+            h = rfile.Get("histoForCSandNumberOfEvents")
+            if h:
+                h.SetBinContent(1, h.GetBinContent(1) / len(chunk_files))
+                h.SetEntries(2)
+                h.Write("", ROOT.TObject.kOverwrite)
+            rfile.Close()
+    except Exception as e:
+        print(f"Warning: Could not rescale histoForCSandNumberOfEvents: {e}")
+
     # 8. Delete the temporary chunk files
     for cf in chunk_files:
         cf.unlink(missing_ok=True)
