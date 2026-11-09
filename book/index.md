@@ -14,6 +14,24 @@ This is documentation and analysis of Sartre simulation of **Central Exclusive P
 
 This research builds upon data analysis and simulations done in his Diploma Thesis by **Michal Vranovský**.
 
+### Book Organization
+
+The book is organized into two primary parts:
+
+#### Part 1: Simulation
+- **[Setup README](01_sartre_installation_setup.md)**: How to install Sartre 2 and its dependencies and run the simulation.
+- **[Sartre Setup Fix](05_sartre_upc_kinematic_fix.md)**: What has to be done to fix the Sartre 2 to be able to run the simulation.
+- **[Sartre J/ψ Simulation](07_sartre_simulation_analysis_and_plots.ipynb)**: Main Jupyter Notebook that documents the simulation and post processes the results, producing plots and tables.
+
+#### Part 2: Official Sartre 2 Documentation
+- **[Sartre Interactive Documentation Portal](sartre_docs/01_sartre_html_portal.md)**: Gateway to the original Sartre 2 HTML documentation.
+- **[Sartre 2 Generator Overview](sartre_docs/02_sartre_overview.md)**: Embedded original `overview.html`.
+- **[Sartre 2 User's Guide](sartre_docs/03_sartre_users_guide.md)**: Embedded original `usersGuide.html`.
+- **[Ultra-Peripheral Collisions (UPC) Guide](sartre_docs/04_sartre_upc_guide.md)**: Embedded original `UPCconsiderations.html` documenting UPC mode of Sartre 2.
+- **[Sartre Runcard Reference](sartre_docs/05_sartre_runcard_ref.md)**: Embedded original `runcardRef.html` documenting all runcard parameters and their default values.
+- **[Sartre Event Record Structure](sartre_docs/06_sartre_event_record.md)**: Embedded original `eventRecord.html` documenting data classes and event record structure of Sartre 2.
+- **[Technical Code Modifications & Audit Log](sartre_docs/07_code_modifications_summary.md)**: Detailed report of fixes and optimizations applied to Sartre 2.
+
 ---
 
 ### Important Parameters lookup table
@@ -31,20 +49,3 @@ This research builds upon data analysis and simulations done in his Diploma Thes
 | **Sartre 2 Total Cross Section** | `bNonSat_HMPZ` | $39.28\text{ nb}$ ($2345.5\text{ pb}$ in $e^+e^-$) | Non-saturation Color Dipole Model |
 
 ---
-
-### Book Organization
-
-The book is organized into two primary parts:
-
-#### Part 1: Simulation
-- **[Sartre ](05_sartre_upc_kinematic_fix.md)**: Physical investigation, phase-space analysis, and resolution of kinematic lookup table boundary disconnects and 2D FFT initialization scaling in Sartre 2.
-- **[Sartre J/ψ Simulation & Cross-Section Analysis](07_sartre_simulation_analysis_and_plots.ipynb)**: Executive simulation and analysis benchmark notebook evaluating baseline Monte Carlo simulations with exact runcards, C++ driver code, ROOT tree kinematics, side-by-side reproduced plots, and cross-section evaluations with and without Roman Pots.
-
-#### Part 2: Official Sartre 2 Documentation
-- **[1. Sartre Interactive Documentation Portal](sartre_docs/01_sartre_html_portal.md)**: Interactive gateway providing direct access and full embedded views of the official untouched Sartre 2 HTML documentation suite.
-- **[2. Sartre 2 Generator Overview](sartre_docs/02_sartre_overview.md)**: Embedded original `overview.html` documenting physics processes, dipole models, and library design.
-- **[3. Sartre 2 User's Guide](sartre_docs/03_sartre_users_guide.md)**: Embedded original `usersGuide.html` documenting C++ programming APIs, memory management, and event loops.
-- **[4. Ultra-Peripheral Collisions (UPC) Guide](sartre_docs/04_sartre_upc_guide.md)**: Embedded original `UPCconsiderations.html` documenting photon flux treatment, symmetric beam reversal, and cross-section normalization.
-- **[5. Sartre Runcard Reference](sartre_docs/05_sartre_runcard_ref.md)**: Embedded original `runcardRef.html` documenting the runtime configuration parameters.
-- **[6. Sartre Event Record Structure](sartre_docs/06_sartre_event_record.md)**: Embedded original `eventRecord.html` documenting data classes, particle statuses, and ancestry indices.
-- **[7. Technical Code Modifications & Audit Log](sartre_docs/07_code_modifications_summary.md)**: Detailed report of fixes and optimizations applied to Sartre 2.
