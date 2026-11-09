@@ -3,9 +3,8 @@
 **Author**: **Štěpán Skalka**  
 *Faculty of Nuclear Sciences and Physical Engineering, Czech Technical University in Prague*  
 
-[![Build & Deploy Jupyter Book](https://github.com/TheLittleRock/sartrepp/actions/workflows/deploy-book.yml/badge.svg)](https://github.com/TheLittleRock/sartrepp/actions/workflows/deploy-book.yml)
 [![Pages](https://img.shields.io/badge/GitHub%20Pages-Live%20Book-059669)](https://TheLittleRock.github.io/sartrepp/)
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
 
 ---
 

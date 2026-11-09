@@ -1,232 +1,526 @@
 /* ==============================================================================
-   Custom Theme Styling for Master Thesis: Sartre 2 Simulation & Analysis
-   Primary Accent Color: Emerald Green (#059669 / #10b981 / #34d399)
+   Master Thesis Theme: Sartre 2 Simulation & Analysis
+   Background: #1e2129 | Code Cells: #1c1e25 | Accent: #005f56
+   VS Code Dark+ Highlighting & Modern Animated Layout
    ============================================================================== */
 
-:root,
-html,
-html[data-theme="light"],
-html[data-theme="dark"] {
-  --pst-color-primary: #059669 !important;
-  --pst-color-primary-text: #ffffff !important;
-  --pst-color-primary-highlight: #047857 !important;
-  --pst-color-secondary: #10b981 !important;
-  --pst-color-secondary-text: #ffffff !important;
-  --pst-color-secondary-highlight: #059669 !important;
-  --pst-color-link: #059669 !important;
-  --pst-color-link-hover: #10b981 !important;
-  --pst-color-link-higher-contrast: #047857 !important;
-  --pst-color-target: rgba(5, 150, 105, 0.2) !important;
-  --sd-color-primary: #059669 !important;
-  --sd-color-secondary: #10b981 !important;
+/* ==============================================================================
+   1. Global Variables & Color Palette
+   ============================================================================== */
+
+:root {
+  --sartre-bg-dark: #1e2129;
+  --sartre-code-bg: #1c1e25;
+  --sartre-accent: #005f56;
+  --sartre-accent-hover: #028071;
+  --sartre-accent-light: #00897b;
+  --sartre-text-main: #d4d4d4;
+  --sartre-text-muted: #94a3b8;
+  --sartre-border-dark: rgba(255, 255, 255, 0.08);
+
+  scroll-behavior: smooth !important;
 }
 
-html[data-theme="dark"] {
-  --pst-color-primary: #34d399 !important;
-  --pst-color-primary-text: #064e3b !important;
-  --pst-color-primary-highlight: #10b981 !important;
-  --pst-color-secondary: #6ee7b7 !important;
-  --pst-color-secondary-text: #064e3b !important;
-  --pst-color-link: #34d399 !important;
-  --pst-color-link-hover: #6ee7b7 !important;
-  --pst-color-link-higher-contrast: #6ee7b7 !important;
-  --pst-color-target: rgba(52, 211, 153, 0.2) !important;
+/* Light Theme Variables */
+html[data-theme="light"] {
+  --pst-color-primary: #005f56 !important;
+  --pst-color-primary-highlight: #004d40 !important;
+  --pst-color-secondary: #00897b !important;
+  --pst-color-link: #005f56 !important;
+  --pst-color-link-hover: #00897b !important;
+  --pst-color-background: #f8fafc !important;
+  --pst-color-surface: #ffffff !important;
+  --pst-color-border: #e2e8f0 !important;
 }
 
+/* Dark Theme Variables (Primary Dark Background #1e2129) */
+html[data-theme="dark"] {
+  --pst-color-primary: #00897b !important;
+  --pst-color-primary-highlight: #26a69a !important;
+  --pst-color-secondary: #005f56 !important;
+  --pst-color-link: #38bdf8 !important;
+  --pst-color-link-hover: #7dd3fc !important;
+  --pst-color-background: #1e2129 !important;
+  --pst-color-surface: #1e2129 !important;
+  --pst-color-text-base: #d4d4d4 !important;
+  --pst-color-text-muted: #94a3b8 !important;
+  --pst-color-border: rgba(255, 255, 255, 0.08) !important;
+  --pst-color-target: rgba(0, 95, 86, 0.25) !important;
+}
+
+/* Base Body & Container Backgrounds */
+html[data-theme="dark"],
+html[data-theme="dark"] body,
+html[data-theme="dark"] .bd-container,
+html[data-theme="dark"] .bd-main,
+html[data-theme="dark"] .bd-content,
+html[data-theme="dark"] .bd-article-container,
+html[data-theme="dark"] .bd-sidebar-primary,
+html[data-theme="dark"] .bd-sidebar-secondary {
+  background-color: #1e2129 !important;
+  color: #d4d4d4 !important;
+}
+
+/* Selection Styling */
 ::selection {
-  background-color: rgba(5, 150, 105, 0.25) !important;
-  color: inherit !important;
-}
-
-::-moz-selection {
-  background-color: rgba(5, 150, 105, 0.25) !important;
-  color: inherit !important;
+  background-color: rgba(0, 95, 86, 0.45) !important;
+  color: #ffffff !important;
 }
 
 /* ==============================================================================
-   Sidebar Navigation Link Styling (Eliminate Any Orange Highlights)
+   2. Layout Cleanups: Remove Redundant Top Navbar & Sidepanel Icon
    ============================================================================== */
 
-/* Universal Link Reset in Sidebars: prevent orange/purple :visited or default styles */
+/* Completely remove redundant top navbar */
+#pst-header,
+header.bd-header,
+.bd-header {
+  display: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Remove icon / branding header from sidepanel completely */
+.sidebar-primary-item:has(.navbar-brand),
+.navbar-brand.logo,
+.navbar-brand,
+.navbar-brand-box {
+  display: none !important;
+}
+
+/* Remove redundant search button from article header (sidebar search is kept) */
+.article-header-buttons .search-button,
+.article-header-buttons .search-button__button {
+  display: none !important;
+}
+
+/* Sleek Article Header Toolbar */
+.bd-header-article {
+  padding-top: 1rem !important;
+  padding-bottom: 0.75rem !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  margin-bottom: 1.5rem !important;
+}
+
+/* Direct GitHub Repository Button Styling */
+.btn-source-repository-button,
+.article-header-buttons .btn {
+  border-radius: 6px !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+html[data-theme="dark"] .article-header-buttons .btn {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  color: #94a3b8 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+html[data-theme="dark"] .article-header-buttons .btn:hover {
+  background-color: rgba(0, 95, 86, 0.25) !important;
+  color: #38bdf8 !important;
+  border-color: #005f56 !important;
+  transform: translateY(-1px);
+}
+
+/* Sidebar Search Field Styling */
+.sidebar-primary-item .search-button-field {
+  width: 100% !important;
+  border-radius: 6px !important;
+  margin-top: 0.8rem !important;
+  margin-bottom: 0.8rem !important;
+  font-size: 0.88rem !important;
+  transition: all 0.2s ease !important;
+}
+
+html[data-theme="dark"] .sidebar-primary-item .search-button-field {
+  background-color: #1c1e25 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #94a3b8 !important;
+}
+
+html[data-theme="dark"] .sidebar-primary-item .search-button-field:hover {
+  border-color: #005f56 !important;
+  background-color: rgba(0, 95, 86, 0.15) !important;
+  color: #ffffff !important;
+}
+
+/* ==============================================================================
+   3. Code Cells & Inputs: #1c1e25 with #005f56 Left Accent & Compact Text
+   ============================================================================== */
+
+/* Notebook code input containers */
+div.cell_input,
+.cell_input.docutils.container,
+div.highlight,
+div[class*="highlight-"] {
+  border-radius: 6px !important;
+  margin-top: 0.8rem !important;
+  margin-bottom: 0.8rem !important;
+}
+
+/* Dark mode code blocks: #1c1e25 background with #005f56 left border */
+html[data-theme="dark"] div.cell_input,
+html[data-theme="dark"] div.cell_input > div.highlight,
+html[data-theme="dark"] div.highlight-c\+\+ div.highlight,
+html[data-theme="dark"] div.highlight-python div.highlight,
+html[data-theme="dark"] div.highlight-ipython3 div.highlight,
+html[data-theme="dark"] div.highlight-ini div.highlight,
+html[data-theme="dark"] div.highlight-text div.highlight,
+html[data-theme="dark"] div[class*="highlight-"] pre,
+html[data-theme="dark"] pre {
+  background-color: #1c1e25 !important;
+  color: #d4d4d4 !important;
+}
+
+/* Code Cell Left Accent Border */
+div.cell_input,
+div.highlight-c\+\+,
+div.highlight-python,
+div.highlight-ini,
+div.highlight-ipython3 {
+  border-left: 4px solid #005f56 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  background-color: #1c1e25 !important;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* Light mode fallback for code cell */
+html[data-theme="light"] div.cell_input,
+html[data-theme="light"] div.highlight-c\+\+,
+html[data-theme="light"] div.highlight-python,
+html[data-theme="light"] div.highlight-ini,
+html[data-theme="light"] div.highlight-ipython3 {
+  border-left: 4px solid #005f56 !important;
+  background-color: #f6f8fa !important;
+  border-top: 1px solid #e1e4e8;
+  border-right: 1px solid #e1e4e8;
+  border-bottom: 1px solid #e1e4e8;
+}
+
+/* Compact Code Text Size */
+pre,
+code,
+.highlight pre,
+div.cell_input pre,
+.cell_input code {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Roboto Mono', 'SFMono-Regular', Menlo, Monaco, Consolas, monospace !important;
+  font-size: 0.84rem !important;
+  line-height: 1.52 !important;
+  letter-spacing: -0.01em !important;
+}
+
+/* Inline code badges */
+html[data-theme="dark"] code.docutils.literal {
+  background-color: #1c1e25 !important;
+  color: #4ec9b0 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  padding: 0.15rem 0.35rem !important;
+  border-radius: 4px !important;
+  font-size: 0.85em !important;
+}
+
+/* Cell Outputs */
+html[data-theme="dark"] div.cell_output,
+html[data-theme="dark"] div.cell_output .output {
+  background-color: #191b21 !important;
+  border-radius: 0 0 6px 6px !important;
+  color: #cbd5e1 !important;
+}
+
+/* ==============================================================================
+   4. VS Code Dark+ Code Syntax Highlighting
+   ============================================================================== */
+
+/* Comments: Calm Forest Green */
+.highlight .c,
+.highlight .c1,
+.highlight .ch,
+.highlight .cm,
+.highlight .cs {
+  color: #6a9955 !important;
+  font-style: italic !important;
+}
+
+/* C++ Types & Keywords: Blue (#569cd6) */
+.highlight .kt {
+  color: #569cd6 !important;
+}
+
+/* Control Flow Keywords (if, for, return, using, namespace, import): Purple (#c586c0) */
+.highlight .k,
+.highlight .kn,
+.highlight .kd,
+.highlight .kr {
+  color: #c586c0 !important;
+}
+
+/* Preprocessor (#include): Purple (#c586c0) */
+.highlight .cp {
+  color: #c586c0 !important;
+}
+
+/* Preprocessor file / strings: Warm Orange (#ce9178) */
+.highlight .cpf {
+  color: #ce9178 !important;
+}
+
+/* Strings: Warm Orange/Peach (#ce9178) */
+.highlight .s,
+.highlight .s1,
+.highlight .s2,
+.highlight .sb,
+.highlight .sc,
+.highlight .sd,
+.highlight .sh,
+.highlight .si,
+.highlight .sx,
+.highlight .sr,
+.highlight .ss {
+  color: #ce9178 !important;
+}
+
+/* String Escapes: Tan (#d7ba7d) */
+.highlight .se {
+  color: #d7ba7d !important;
+}
+
+/* Numbers (int, float, hex): Soft Sage Green (#b5cea8) */
+.highlight .m,
+.highlight .mi,
+.highlight .mf,
+.highlight .mh,
+.highlight .mo,
+.highlight .il,
+.highlight .mb {
+  color: #b5cea8 !important;
+}
+
+/* Constants & Booleans (true, false, True, False, None, nullptr): Blue (#569cd6) */
+.highlight .kc {
+  color: #569cd6 !important;
+}
+
+/* Operators (=, +, -, *, /, ->, ::, ?): Neutral Off-white (#d4d4d4) */
+.highlight .o,
+.highlight .p {
+  color: #d4d4d4 !important;
+}
+
+/* Functions & Methods: Light Yellow (#dcdcaa) */
+.highlight .nf,
+.highlight .fm,
+.highlight .nb,
+.highlight .vscode-fn {
+  color: #dcdcaa !important;
+}
+
+/* Classes, Custom Types & Modules (TRandom3, Event, TTree, np, plt, etc.): Mint Teal (#4ec9b0) */
+.highlight .nc,
+.highlight .nn,
+.highlight .vscode-type {
+  color: #4ec9b0 !important;
+}
+
+/* Variables & Identifiers: Soft Light Blue (#9cdcfe) */
+.highlight .n,
+.highlight .nv,
+.highlight .vc,
+.highlight .vg,
+.highlight .vi,
+.highlight .vm {
+  color: #9cdcfe !important;
+}
+
+/* Python Keyword Arguments / Parameters (figsize=, bins=, etc.): Sand Tan (#d7ba7d) */
+.highlight .vscode-param {
+  color: #d7ba7d !important;
+}
+
+/* ==============================================================================
+   5. Runcard (INI) Color Scheme: Neutral VS Code Dark+ Config Style
+   (Eliminates Yellow & Radioactive Green)
+   ============================================================================== */
+
+/* Runcard Keys: Soft Light Blue (#9cdcfe) */
+.highlight-ini .na,
+.highlight-cfg .na,
+.vscode-ini-key {
+  color: #9cdcfe !important;
+  font-weight: 500 !important;
+}
+
+/* Runcard Section Headers: Slate Blue (#569cd6) */
+.highlight-ini .nt,
+.highlight-ini .k {
+  color: #569cd6 !important;
+  font-weight: 600 !important;
+}
+
+/* Runcard Equals Operators: Neutral Subtle Gray (#d4d4d4) */
+.highlight-ini .o {
+  color: #d4d4d4 !important;
+}
+
+/* Runcard Numbers: Soft Sage Olive (#b5cea8) */
+.highlight-ini .mi,
+.highlight-ini .mf,
+.vscode-ini-number {
+  color: #b5cea8 !important;
+}
+
+/* Runcard Booleans (true, false): Calm Blue (#569cd6), NOT radioactive lime */
+.vscode-ini-bool {
+  color: #569cd6 !important;
+  font-weight: 500 !important;
+}
+
+/* Runcard Strings / Values: Soft Peach (#ce9178) */
+.highlight-ini .s,
+.highlight-ini .s2,
+.vscode-ini-value {
+  color: #ce9178 !important;
+}
+
+/* Runcard Comments: Calm Forest Green (#6a9955) */
+.highlight-ini .c,
+.highlight-ini .c1 {
+  color: #6a9955 !important;
+  font-style: italic !important;
+}
+
+/* ==============================================================================
+   6. Sidebar Navigation & Links: Animations & Polish
+   ============================================================================== */
+
+/* Universal Link Reset in Sidebars */
 .bd-sidebar-primary a,
-.bd-sidebar-primary a:visited,
 .bd-sidenav a,
-.bd-sidenav a:visited,
-.bd-links a,
-.bd-links a:visited,
-nav.bd-links a,
-nav.bd-links a:visited {
+nav.bd-links a {
   color: var(--pst-color-text-base) !important;
   text-decoration: none !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 /* Base link styling */
 .bd-sidenav li > a,
 nav.bd-links li > a {
-  color: var(--pst-color-text-base) !important;
-  text-decoration: none !important;
   border-left: 3px solid transparent;
-  transition: all 0.15s ease-in-out;
+  padding: 0.4rem 0.75rem !important;
+  border-radius: 0 4px 4px 0;
+  display: block;
 }
 
 /* Link Hover */
-.bd-sidenav li > a:hover,
-nav.bd-links li > a:hover {
-  color: #059669 !important;
-  background-color: rgba(5, 150, 105, 0.08) !important;
-  border-left: 3px solid #10b981 !important;
-  text-decoration: none !important;
-}
-
 html[data-theme="dark"] .bd-sidenav li > a:hover,
 html[data-theme="dark"] nav.bd-links li > a:hover {
-  color: #34d399 !important;
-  background-color: rgba(52, 211, 153, 0.1) !important;
-  border-left: 3px solid #34d399 !important;
+  color: #38bdf8 !important;
+  background-color: rgba(0, 95, 86, 0.2) !important;
+  border-left: 3px solid #005f56 !important;
+  transform: translateX(2px);
 }
 
-/* Active / Current Chapter Highlight (Emerald Green, Strictly No Orange) */
-.bd-sidenav li.current > a,
-.bd-sidenav li.active > a,
-.bd-sidenav li.current.active > a,
-.bd-sidenav > .active > a,
-.bd-sidenav .active > a,
-nav.bd-links li.current > a,
-nav.bd-links li.active > a,
-nav.bd-links .current > a,
-nav.bd-links .active > a,
-.bd-toc-item.current > a,
-.bd-toc-item.active > a {
-  color: #059669 !important;
-  border-left: 3px solid #059669 !important;
-  font-weight: 600 !important;
-  background-color: rgba(5, 150, 105, 0.12) !important;
-  text-decoration: none !important;
-}
-
+/* Active Chapter Highlight (Teal Accent, No Orange) */
 html[data-theme="dark"] .bd-sidenav li.current > a,
 html[data-theme="dark"] .bd-sidenav li.active > a,
-html[data-theme="dark"] .bd-sidenav li.current.active > a,
-html[data-theme="dark"] .bd-sidenav > .active > a,
-html[data-theme="dark"] .bd-sidenav .active > a,
 html[data-theme="dark"] nav.bd-links li.current > a,
-html[data-theme="dark"] nav.bd-links li.active > a,
-html[data-theme="dark"] nav.bd-links .current > a,
-html[data-theme="dark"] nav.bd-links .active > a,
-html[data-theme="dark"] .bd-toc-item.current > a,
-html[data-theme="dark"] .bd-toc-item.active > a {
-  color: #34d399 !important;
-  border-left: 3px solid #34d399 !important;
+html[data-theme="dark"] nav.bd-links li.active > a {
+  color: #38bdf8 !important;
+  border-left: 3px solid #00897b !important;
   font-weight: 600 !important;
-  background-color: rgba(52, 211, 153, 0.15) !important;
-  text-decoration: none !important;
+  background-color: rgba(0, 95, 86, 0.3) !important;
 }
 
-/* In-Page Right Sidebar Active TOC */
-.toc-entry a.nav-link.active {
-  color: #059669 !important;
-  border-left: 2px solid #059669 !important;
-  font-weight: 600 !important;
+/* Subchapter list accordion expand animation */
+.bd-sidenav ul,
+.section-nav ul {
+  transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease, transform 0.25s ease !important;
 }
 
-html[data-theme="dark"] .toc-entry a.nav-link.active {
-  color: #34d399 !important;
-  border-left: 2px solid #34d399 !important;
-  font-weight: 600 !important;
-}
-
-.toc-entry a.nav-link:hover {
-  color: #10b981 !important;
+/* In-Page Right Sidebar (TOC) Active Entry */
+.toc-entry a.nav-link {
+  transition: all 0.2s ease-in-out !important;
+  border-left: 2px solid transparent !important;
 }
 
 html[data-theme="dark"] .toc-entry a.nav-link:hover {
-  color: #6ee7b7 !important;
+  color: #38bdf8 !important;
+  transform: translateX(2px);
 }
 
-/* General Link Styling */
-a.reference.internal,
-a.reference.external {
-  color: #059669;
-  text-decoration: none;
-}
-
-html[data-theme="dark"] a.reference.internal,
-html[data-theme="dark"] a.reference.external {
-  color: #34d399;
-}
-
-a.reference.internal:hover,
-a.reference.external:hover {
-  color: #10b981;
-  text-decoration: underline;
-}
-
-html[data-theme="dark"] a.reference.internal:hover,
-html[data-theme="dark"] a.reference.external:hover {
-  color: #6ee7b7;
+html[data-theme="dark"] .toc-entry a.nav-link.active {
+  color: #38bdf8 !important;
+  border-left: 2px solid #00897b !important;
+  font-weight: 600 !important;
+  background-color: rgba(0, 95, 86, 0.15) !important;
 }
 
 /* Part Header Captions in Sidebar */
 .bd-sidenav p.caption {
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: #4b5563;
-  margin-top: 1.2rem;
+  letter-spacing: 0.06em;
+  font-size: 0.78rem;
+  color: #64748b;
+  margin-top: 1.4rem;
   margin-bottom: 0.5rem;
+  padding-left: 0.5rem;
 }
 
 html[data-theme="dark"] .bd-sidenav p.caption {
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
-/* Table styling fixes */
+/* ==============================================================================
+   7. Tables & Admonitions Styling
+   ============================================================================== */
+
 table.table,
 table.dataframe {
   border-collapse: collapse;
   width: 100%;
   margin: 1.5rem 0;
-  font-size: 0.92rem;
-}
-
-table.table th,
-table.dataframe th {
-  background-color: rgba(5, 150, 105, 0.1);
-  color: inherit;
-  font-weight: 600;
-  padding: 0.6rem 0.8rem;
-  border-bottom: 2px solid #059669;
-  text-align: left;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  overflow: hidden;
 }
 
 html[data-theme="dark"] table.table th,
 html[data-theme="dark"] table.dataframe th {
-  background-color: rgba(52, 211, 153, 0.12);
-  border-bottom: 2px solid #34d399;
+  background-color: rgba(0, 95, 86, 0.3) !important;
+  color: #f1f5f9 !important;
+  border-bottom: 2px solid #005f56 !important;
+  padding: 0.65rem 0.9rem;
+  font-weight: 600;
 }
 
-table.table td,
-table.dataframe td {
-  padding: 0.5rem 0.8rem;
-  border-bottom: 1px solid rgba(156, 163, 175, 0.2);
+html[data-theme="dark"] table.table td,
+html[data-theme="dark"] table.dataframe td {
+  padding: 0.55rem 0.9rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background-color: rgba(30, 33, 41, 0.6);
 }
 
-table.table tr:hover,
-table.dataframe tr:hover {
-  background-color: rgba(5, 150, 105, 0.04);
+html[data-theme="dark"] table.table tr:hover td,
+html[data-theme="dark"] table.dataframe tr:hover td {
+  background-color: rgba(0, 95, 86, 0.12) !important;
 }
 
-html[data-theme="dark"] table.table tr:hover,
-html[data-theme="dark"] table.dataframe tr:hover {
-  background-color: rgba(52, 211, 153, 0.05);
+/* Admonitions */
+html[data-theme="dark"] .admonition {
+  background-color: #1c1e25 !important;
+  border-left-width: 4px !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
 }
 
 /* ==============================================================================
-   Mobile Sidebar Drawer & Backdrop Styling (Robust Phone Navigation)
+   8. Mobile Navigation Drawer & Backdrop
    ============================================================================== */
 
 @media (max-width: 991.98px) {
-  /* Off-canvas slide-out drawer for primary sidebar on phones/tablets */
   #pst-primary-sidebar.bd-sidebar-primary {
     position: fixed !important;
     top: 0 !important;
@@ -236,27 +530,24 @@ html[data-theme="dark"] table.dataframe tr:hover {
     max-height: 100vh !important;
     width: 85vw !important;
     max-width: 320px !important;
-    background-color: var(--pst-color-background) !important;
+    background-color: #1e2129 !important;
     z-index: 100000 !important;
     overflow-y: auto !important;
     -webkit-overflow-scrolling: touch !important;
-    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.35) !important;
+    box-shadow: 6px 0 28px rgba(0, 0, 0, 0.5) !important;
     transform: translateX(-105%) !important;
-    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.25s ease !important;
+    transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.28s ease !important;
     visibility: hidden !important;
-    margin-left: 0 !important;
+    padding: 1.2rem 1rem !important;
     display: flex !important;
     flex-direction: column !important;
-    padding: 1.2rem 1rem !important;
   }
 
-  /* When toggled open on phone, slide in smoothly */
   #pst-primary-sidebar.bd-sidebar-primary.mobile-show {
     transform: translateX(0) !important;
     visibility: visible !important;
   }
 
-  /* Secondary sidebar (On this page TOC) on mobile */
   .bd-sidebar-secondary {
     position: fixed !important;
     top: 0 !important;
@@ -266,17 +557,13 @@ html[data-theme="dark"] table.dataframe tr:hover {
     max-height: 100vh !important;
     width: 85vw !important;
     max-width: 320px !important;
-    background-color: var(--pst-color-background) !important;
+    background-color: #1e2129 !important;
     z-index: 100000 !important;
     overflow-y: auto !important;
-    -webkit-overflow-scrolling: touch !important;
-    box-shadow: -4px 0 24px rgba(0, 0, 0, 0.35) !important;
+    box-shadow: -6px 0 28px rgba(0, 0, 0, 0.5) !important;
     transform: translateX(105%) !important;
-    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.25s ease !important;
+    transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.28s ease !important;
     visibility: hidden !important;
-    margin-right: 0 !important;
-    display: flex !important;
-    flex-direction: column !important;
     padding: 1.2rem 1rem !important;
   }
 
@@ -284,48 +571,17 @@ html[data-theme="dark"] table.dataframe tr:hover {
     transform: translateX(0) !important;
     visibility: visible !important;
   }
-
-  /* Mobile Close Button ("✕") */
-  .pst-mobile-close-btn {
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: rgba(156, 163, 175, 0.15);
-    border: none;
-    color: var(--pst-color-text-base);
-    font-size: 1.1rem;
-    cursor: pointer;
-    margin-bottom: 0.8rem;
-    align-self: flex-end;
-    transition: background 0.15s ease, color 0.15s ease;
-  }
-
-  .pst-mobile-close-btn:hover,
-  .pst-mobile-close-btn:active {
-    background: rgba(5, 150, 105, 0.2);
-    color: #059669;
-  }
 }
 
-@media (min-width: 992px) {
-  .pst-mobile-close-btn {
-    display: none !important;
-  }
-}
-
-/* Semi-transparent dark backdrop overlay */
 .pst-mobile-backdrop {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.55);
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
+  background-color: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
   z-index: 99990;
   opacity: 0;
   visibility: hidden;
@@ -337,50 +593,7 @@ html[data-theme="dark"] table.dataframe tr:hover {
   visibility: visible;
 }
 
-/* Lock body scrolling when mobile drawer is open */
 body.pst-mobile-sidebar-open {
   overflow: hidden !important;
   touch-action: none;
 }
-
-/* ==============================================================================
-   Sidebar Logo Emblem Styling (Compact & Crisp in Light/Dark Mode)
-   ============================================================================== */
-
-html[data-theme="dark"] .only-light {
-  display: none !important;
-}
-
-html[data-theme="light"] .only-dark {
-  display: none !important;
-}
-
-.navbar-brand {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  padding: 0.8rem 1rem !important;
-}
-
-.logo__image {
-  max-height: 85px !important;
-  width: auto !important;
-  border-radius: 50% !important;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12) !important;
-  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s ease !important;
-}
-
-.logo__image:hover {
-  transform: scale(1.04) !important;
-  box-shadow: 0 6px 20px rgba(5, 150, 105, 0.25) !important;
-}
-
-html[data-theme="dark"] .logo__image {
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45) !important;
-}
-
-html[data-theme="dark"] .logo__image:hover {
-  box-shadow: 0 6px 22px rgba(52, 211, 153, 0.35) !important;
-}
-
-

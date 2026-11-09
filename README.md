@@ -3,15 +3,14 @@
 **Author**: **Štěpán Skalka**  
 *Faculty of Nuclear Sciences and Physical Engineering, Czech Technical University in Prague*  
 
-[![Build & Deploy Jupyter Book](https://github.com/TheLittleRock/sartrepp/actions/workflows/deploy-book.yml/badge.svg)](https://github.com/TheLittleRock/sartrepp/actions/workflows/deploy-book.yml)
 [![Pages](https://img.shields.io/badge/GitHub%20Pages-Live%20Book-059669)](https://TheLittleRock.github.io/sartrepp/)
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
 
 ---
 
 ## Executive Summary & Physics Context
 
-This repository hosts the simulation, analysis, and documentation pipeline for the Master Thesis project studying central exclusive $J/\psi \rightarrow e^+e^-$ photoproduction in proton-proton ($p+p$) Ultra-Peripheral Collisions (UPCs) at the Relativistic Heavy Ion Collider (RHIC) with center-of-mass energy $\sqrt{s} = 510\text{ GeV}$.
+This repository hosts the simulation, analysis, and documentation pipeline for the Master Thesis project studying central exclusive $J/\psi \rightarrow e^+e^-$ photoproduction in proton-proton ($p+p$) Ultra-Peripheral Collisions (UPCs) at the Relativistic Heavy Ion Collider (RHIC) with center-of-mass energy $\sqrt{s} = 510\text{ GeV}$. Analysis and documentation are published in [the interactive Jupyter Book](https://TheLittleRock.github.io/sartrepp/).
 
 The project explores the predictions of the microscopic **Color Dipole Model** implemented in the **Sartre 2** Monte Carlo event generator (`bSat`/`IPsat` with gluon saturation and `bNonSat`/`IPnonsat` linear evolution) and compares them to:
 1. **STAR Experimental Data** at $\sqrt{s} = 510\text{ GeV}$ from RHIC Run 17 (both without forward Roman Pot tagging and with tagged forward recoil protons).
